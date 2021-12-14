@@ -95,4 +95,27 @@ extension hAnalyticsEvent {
     }
   }
 
+  public static func testGraphqlEvent(numberOfReferrals: Int) -> AnalyticsClosure {
+    return AnalyticsClosure {
+      let properties: [String: Any] = ["NUMBER_OF_REFERRALS": numberOfReferrals, "HELLO": 0]
+
+      hAnalyticsProviders.performGraphQLQuery(
+        "query AnalyticsMemberID {  member {    id  }}",
+        properties
+      ) { data in
+        let graphqlProperties = ["MEMBER_ID": data.getValue(at: "member.id")].compactMapValues {
+          $0
+        }
+
+        hAnalyticsProviders.sendEvent(
+          hAnalyticsEvent(
+            name: "SCREEN_VIEW_FOREVER",
+            properties: properties.merging(graphqlProperties, uniquingKeysWith: { _, rhs in rhs })
+              .compactMapValues { any in any as? hAnalyticsProperty }
+          )
+        )
+      }
+    }
+  }
+
 }

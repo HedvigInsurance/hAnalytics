@@ -1,5 +1,3 @@
-// gryphon output: main.kt
-
 import Foundation
 
 public typealias ResultMap = [String: Any?]

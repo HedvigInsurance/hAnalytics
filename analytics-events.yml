@@ -4,3 +4,4 @@ events:
   - events/screenViews/forever.yml
   - events/screenViews/profile.yml
   - events/onboarding/chooseInsuranceType.yml
+  - events/dummyGraphQLEvent.yml

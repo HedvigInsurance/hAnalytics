@@ -1,5 +1,5 @@
 name: SCREEN_VIEW_FOREVER
-accessor: screenViewForever
+accessor: testGraphqlEvent
 inputs:
   - name: NUMBER_OF_REFERRALS
     type: Int
