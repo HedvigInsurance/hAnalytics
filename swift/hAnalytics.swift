@@ -26,7 +26,7 @@ public struct hAnalyticsEvent {
   let properties: [String: Any]
 }
 
-typealias AnalyticsClosure = () -> Void
+public typealias AnalyticsClosure = () -> Void
 
 struct hAnalytics {
 
