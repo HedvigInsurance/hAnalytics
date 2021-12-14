@@ -1,5 +1,5 @@
 ---
-to: kotlin/hAnalytics.kt
+to: kotlin/src/main/kotlin/hAnalytics.kt
 ---
 data class hAnalyticsProviders(
 

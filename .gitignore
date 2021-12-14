@@ -3,3 +3,5 @@ node_modules
 .DS_Store
 .swiftpm
 ktfmt.jar
+# Ignore Gradle project-specific cache directory
+.gradle
