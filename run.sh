@@ -33,4 +33,4 @@ HYGEN_OVERWRITE=1 hygen generator hAnalytics
 
 swift-format format -i swift/hAnalytics.swift
 
-swiftc swift/DeepFind.swift swift/hAnalytics.swift
+swiftc swift/DeepFind.swift swift/hAnalytics.swift swift/SwiftUIExtensions.swift

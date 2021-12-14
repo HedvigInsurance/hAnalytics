@@ -1,2 +1,3 @@
 events:
   - events/screenViewForever.yml
+  - events/testEvent.yml

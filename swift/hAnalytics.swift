@@ -3,8 +3,7 @@ import Foundation
 public struct hAnalyticsProviders {
   /// The function that is called when a tracking event should be sent
   /// Use this to integrate with analytics provider
-  public static var sendEvent:
-    (_ name: String, _ properties: [String: hAnalyticsProperty]) -> Void = { _, _ in }
+  public static var sendEvent: (_ event: hAnalyticsEvent) -> Void = { _ in }
 
   /// The function that is called when a tracking event needs to perform a GraphQLQuery to enrich data
   public static var performGraphQLQuery:
@@ -22,28 +21,47 @@ extension Float: hAnalyticsProperty {}
 extension Int: hAnalyticsProperty {}
 extension Date: hAnalyticsProperty {}
 
+public struct hAnalyticsEvent {
+  let name: String
+  let properties: [String: Any]
+}
+
+typealias AnalyticsClosure = () -> Void
+
 struct hAnalytics {
 
-  public static func screenViewForever(numberOfReferrals: Int) {
-    let properties: [String: Any] = ["NUMBER_OF_REFERRALS": numberOfReferrals, "HELLO": 0]
+  public static func screenViewForever(numberOfReferrals: Int) -> AnalyticsClosure {
+    return {
+      let properties: [String: Any] = ["NUMBER_OF_REFERRALS": numberOfReferrals, "HELLO": 0]
 
-    hAnalyticsProviders.performGraphQLQuery(
-      """
-      query AnalyticsMemberID {
-      member {
-      id
-      }
-      }
+      hAnalyticsProviders.performGraphQLQuery(
+        "query AnalyticsMemberID {  member {    id  }}",
+        properties
+      ) { data in
+        let graphqlProperties = ["MEMBER_ID": data.getValue(at: "member.id")].compactMapValues {
+          $0
+        }
 
-      """,
-      properties
-    ) { data in
-      let graphqlProperties = ["MEMBER_ID": data.getValue(at: "member.id")].compactMapValues { $0 }
+        hAnalyticsProviders.sendEvent(
+          hAnalyticsEvent(
+            name: "SCREEN_VIEW_FOREVER",
+            properties: properties.merging(graphqlProperties, uniquingKeysWith: { _, rhs in rhs })
+              .compactMapValues { any in any as? hAnalyticsProperty }
+          )
+        )
+      }
+    }
+  }
+
+  public static func helloHello() -> AnalyticsClosure {
+    return {
+      let properties: [String: Any] = [:]
 
       hAnalyticsProviders.sendEvent(
-        "SCREEN_VIEW_FOREVER",
-        properties.merging(graphqlProperties, uniquingKeysWith: { _, rhs in rhs }).compactMapValues
-        { any in any as? hAnalyticsProperty }
+        hAnalyticsEvent(
+          name: "HELLO_HELLO",
+          properties: properties.compactMapValues { any in any as? hAnalyticsProperty }
+        )
       )
     }
   }
