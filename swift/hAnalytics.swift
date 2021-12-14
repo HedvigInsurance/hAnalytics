@@ -26,12 +26,12 @@ public struct hAnalyticsEvent {
   let properties: [String: Any]
 }
 
-public typealias AnalyticsClosure = () -> Void
+public struct AnalyticsClosure { let send: () -> Void }
 
-struct hAnalytics {
+extension hAnalyticsEvent {
 
   public static func screenViewForever(numberOfReferrals: Int) -> AnalyticsClosure {
-    return {
+    return AnalyticsClosure {
       let properties: [String: Any] = ["NUMBER_OF_REFERRALS": numberOfReferrals, "HELLO": 0]
 
       hAnalyticsProviders.performGraphQLQuery(
@@ -54,7 +54,7 @@ struct hAnalytics {
   }
 
   public static func helloHello() -> AnalyticsClosure {
-    return {
+    return AnalyticsClosure {
       let properties: [String: Any] = [:]
 
       hAnalyticsProviders.sendEvent(

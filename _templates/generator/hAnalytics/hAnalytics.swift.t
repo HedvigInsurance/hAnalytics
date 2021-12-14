@@ -25,12 +25,14 @@ public struct hAnalyticsEvent {
     let properties: [String: Any]
 }
 
-typealias AnalyticsClosure = () -> Void
+public struct AnalyticsClosure {
+    let send: () -> Void
+}
 
 extension hAnalyticsEvent {
 <% events.forEach(function(event) { %>
     public static func <%= event.accessor %>(<%= (event.inputs ?? []).map((input) => `${input.argument}: ${input.type}`).join(",") %>) -> AnalyticsClosure {
-        return {
+        return AnalyticsClosure {
         <% if(event.graphql) { %>
                 let properties: [String: Any] = [
                     <% (event.inputs ?? []).forEach(function(input) { %>
