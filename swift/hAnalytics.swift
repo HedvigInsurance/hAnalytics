@@ -30,36 +30,65 @@ public struct AnalyticsClosure { let send: () -> Void }
 
 extension hAnalyticsEvent {
 
-  public static func screenViewForever(numberOfReferrals: Int) -> AnalyticsClosure {
-    return AnalyticsClosure {
-      let properties: [String: Any] = ["NUMBER_OF_REFERRALS": numberOfReferrals, "HELLO": 0]
-
-      hAnalyticsProviders.performGraphQLQuery(
-        "query AnalyticsMemberID {  member {    id  }}",
-        properties
-      ) { data in
-        let graphqlProperties = ["MEMBER_ID": data.getValue(at: "member.id")].compactMapValues {
-          $0
-        }
-
-        hAnalyticsProviders.sendEvent(
-          hAnalyticsEvent(
-            name: "SCREEN_VIEW_FOREVER",
-            properties: properties.merging(graphqlProperties, uniquingKeysWith: { _, rhs in rhs })
-              .compactMapValues { any in any as? hAnalyticsProperty }
-          )
-        )
-      }
-    }
-  }
-
-  public static func helloHello() -> AnalyticsClosure {
+  public static func screenViewHome() -> AnalyticsClosure {
     return AnalyticsClosure {
       let properties: [String: Any] = [:]
 
       hAnalyticsProviders.sendEvent(
         hAnalyticsEvent(
-          name: "HELLO_HELLO",
+          name: "screen_view_home",
+          properties: properties.compactMapValues { any in any as? hAnalyticsProperty }
+        )
+      )
+    }
+  }
+
+  public static func screenViewInsurances() -> AnalyticsClosure {
+    return AnalyticsClosure {
+      let properties: [String: Any] = [:]
+
+      hAnalyticsProviders.sendEvent(
+        hAnalyticsEvent(
+          name: "screen_view_insurances",
+          properties: properties.compactMapValues { any in any as? hAnalyticsProperty }
+        )
+      )
+    }
+  }
+
+  public static func screenViewForever() -> AnalyticsClosure {
+    return AnalyticsClosure {
+      let properties: [String: Any] = [:]
+
+      hAnalyticsProviders.sendEvent(
+        hAnalyticsEvent(
+          name: "screen_view_forever",
+          properties: properties.compactMapValues { any in any as? hAnalyticsProperty }
+        )
+      )
+    }
+  }
+
+  public static func screenViewProfile() -> AnalyticsClosure {
+    return AnalyticsClosure {
+      let properties: [String: Any] = [:]
+
+      hAnalyticsProviders.sendEvent(
+        hAnalyticsEvent(
+          name: "screen_view_profile",
+          properties: properties.compactMapValues { any in any as? hAnalyticsProperty }
+        )
+      )
+    }
+  }
+
+  public static func chooseInsuranceType(typeOfContract: String) -> AnalyticsClosure {
+    return AnalyticsClosure {
+      let properties: [String: Any] = ["type_of_contract": typeOfContract]
+
+      hAnalyticsProviders.sendEvent(
+        hAnalyticsEvent(
+          name: "choose_insurance_type",
           properties: properties.compactMapValues { any in any as? hAnalyticsProperty }
         )
       )
