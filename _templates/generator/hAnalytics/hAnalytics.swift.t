@@ -27,7 +27,7 @@ public struct hAnalyticsEvent {
 
 typealias AnalyticsClosure = () -> Void
 
-struct hAnalytics {
+extension hAnalyticsEvent {
 <% events.forEach(function(event) { %>
     public static func <%= event.accessor %>(<%= (event.inputs ?? []).map((input) => `${input.argument}: ${input.type}`).join(",") %>) -> AnalyticsClosure {
         return {
