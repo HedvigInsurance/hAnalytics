@@ -12,7 +12,8 @@ jobs:
     - uses: actions/checkout@v2
     - run: sh compile.sh
     - uses: EndBug/add-and-commit@v7
-      add: '.'
+      with:
+        add: '.'
     - uses: "marvinpinto/action-automatic-releases@latest"
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
