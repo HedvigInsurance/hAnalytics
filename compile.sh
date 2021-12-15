@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 set -e
-set -x
 
 if [ -x /usr/local/bin/swift-format ] 
 then
@@ -40,4 +39,4 @@ HYGEN_OVERWRITE=1 hygen generator hAnalytics
 
 swift-format format -i swift/hAnalytics.swift
 
-java -jar ktfmt.jar --kotlinlang-style kotlin/hAnalytics.kt
+java -jar ktfmt.jar --kotlinlang-style kotlin/src/main/kotlin/hAnalytics.kt

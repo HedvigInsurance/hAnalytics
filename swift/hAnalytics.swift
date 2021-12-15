@@ -9,7 +9,7 @@ public struct hAnalyticsProviders {
   public static var performGraphQLQuery:
     (
       _ query: String, _ variables: [String: Any],
-      _ onComplete: @escaping (_ data: ResultMap) -> Void
+      _ onComplete: @escaping (_ data: ResultMap?) -> Void
     ) -> Void = { _, _, _ in }
 }
 
@@ -103,7 +103,7 @@ extension hAnalyticsEvent {
         "query AnalyticsMemberID {  member {    id  }}",
         properties
       ) { data in
-        let graphqlProperties = ["MEMBER_ID": data.getValue(at: "member.id")].compactMapValues {
+        let graphqlProperties = ["MEMBER_ID": data?.getValue(at: "member.id")].compactMapValues {
           $0
         }
 
