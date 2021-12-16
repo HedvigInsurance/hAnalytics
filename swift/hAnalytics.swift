@@ -30,7 +30,7 @@ public struct AnalyticsClosure { let send: () -> Void }
 
 extension hAnalyticsEvent {
 
-  /// no description given
+  /// When Home tab is shown
   public static func screenViewHome() -> AnalyticsClosure {
     return AnalyticsClosure {
       let properties: [String: Any] = [:]
@@ -44,7 +44,7 @@ extension hAnalyticsEvent {
     }
   }
 
-  /// no description given
+  /// When Insurances tab is shown
   public static func screenViewInsurances() -> AnalyticsClosure {
     return AnalyticsClosure {
       let properties: [String: Any] = [:]
@@ -72,7 +72,7 @@ extension hAnalyticsEvent {
     }
   }
 
-  /// no description given
+  /// When Profile tab is shown
   public static func screenViewProfile() -> AnalyticsClosure {
     return AnalyticsClosure {
       let properties: [String: Any] = [:]
@@ -86,14 +86,14 @@ extension hAnalyticsEvent {
     }
   }
 
-  /// no description given
-  public static func chooseInsuranceType(typeOfContract: String) -> AnalyticsClosure {
+  /// When an embark flow is choosen on the choose screen
+  public static func chooseEmbarkFlow(embarkStoryId: String) -> AnalyticsClosure {
     return AnalyticsClosure {
-      let properties: [String: Any] = ["type_of_contract": typeOfContract]
+      let properties: [String: Any] = ["embark_story_id": embarkStoryId]
 
       hAnalyticsProviders.sendEvent(
         hAnalyticsEvent(
-          name: "choose_insurance_type",
+          name: "onboarding_choose_embark_flow",
           properties: properties.compactMapValues { any in any as? hAnalyticsProperty }
         )
       )

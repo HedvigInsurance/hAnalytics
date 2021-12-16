@@ -11,8 +11,7 @@ data class hAnalyticsEvent(internal val name: String, internal val properties: M
 
 data class AnalyticsClosure(internal val send: () -> Unit)
 
-/**
- */
+/** When Home tab is shown */
 fun hAnalyticsEvent.Companion.screenViewHome(): AnalyticsClosure {
     return AnalyticsClosure {
         val properties: Map<String, Any> = mapOf()
@@ -29,8 +28,7 @@ fun hAnalyticsEvent.Companion.screenViewHome(): AnalyticsClosure {
     }
 }
 
-/**
- */
+/** When Insurances tab is shown */
 fun hAnalyticsEvent.Companion.screenViewInsurances(): AnalyticsClosure {
     return AnalyticsClosure {
         val properties: Map<String, Any> = mapOf()
@@ -64,8 +62,7 @@ fun hAnalyticsEvent.Companion.screenViewForever(): AnalyticsClosure {
     }
 }
 
-/**
- */
+/** When Profile tab is shown */
 fun hAnalyticsEvent.Companion.screenViewProfile(): AnalyticsClosure {
     return AnalyticsClosure {
         val properties: Map<String, Any> = mapOf()
@@ -82,18 +79,17 @@ fun hAnalyticsEvent.Companion.screenViewProfile(): AnalyticsClosure {
     }
 }
 
-/**
- */
-fun hAnalyticsEvent.Companion.chooseInsuranceType(typeOfContract: String): AnalyticsClosure {
+/** When an embark flow is choosen on the choose screen */
+fun hAnalyticsEvent.Companion.chooseEmbarkFlow(embarkStoryId: String): AnalyticsClosure {
     return AnalyticsClosure {
         val properties: Map<String, Any> =
             mapOf(
-                "type_of_contract" to typeOfContract,
+                "embark_story_id" to embarkStoryId,
             )
 
         hAnalyticsProviders.sendEvent(
             hAnalyticsEvent(
-                name = "choose_insurance_type",
+                name = "onboarding_choose_embark_flow",
                 properties =
                     properties
                         .merging(graphqlProperties, { _, rhs -> rhs })
