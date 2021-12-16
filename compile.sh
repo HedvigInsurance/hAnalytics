@@ -1,6 +1,16 @@
 #!/usr/bin/env bash
 set -e
 
+if [ -x /usr/local/bin/hygen ] 
+then
+    echo "Skipping installing npm stuff"
+else
+    npm i js-yaml
+    sudo npm i -g hygen
+fi
+
+HYGEN_OVERWRITE=1 hygen generator hAnalytics
+
 if [ -x /usr/local/bin/swift-format ] 
 then
     echo "Skipping installing swift-format"
@@ -21,13 +31,7 @@ else
     cd ../../
 fi
 
-if [ -x /usr/local/bin/hygen ] 
-then
-    echo "Skipping installing npm stuff"
-else
-    sudo npm i -g js-yaml
-    sudo npm i -g hygen
-fi
+swift-format format -i swift/hAnalytics.swift
 
 if [ -f ktfmt.jar ]
 then
@@ -35,9 +39,5 @@ then
 else
     curl https://repo1.maven.org/maven2/com/facebook/ktfmt/0.30/ktfmt-0.30-jar-with-dependencies.jar --output ktfmt.jar
 fi
-
-HYGEN_OVERWRITE=1 hygen generator hAnalytics
-
-swift-format format -i swift/hAnalytics.swift
 
 java -jar ktfmt.jar --kotlinlang-style kotlin/src/main/kotlin/hAnalytics.kt
