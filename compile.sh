@@ -23,9 +23,10 @@ fi
 
 if [ -x /usr/local/bin/hygen ] 
 then
-    echo "Skipping installing hygen"
+    echo "Skipping installing npm stuff"
 else
     sudo npm i -g hygen
+    sudo npm install -g js-yaml
 fi
 
 if [ -f ktfmt.jar ]

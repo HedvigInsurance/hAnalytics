@@ -21,8 +21,8 @@ extension Int: hAnalyticsProperty {}
 extension Date: hAnalyticsProperty {}
 
 public struct hAnalyticsEvent {
-    let name: String
-    let properties: [String: Any]
+    public let name: String
+    public let properties: [String: hAnalyticsProperty]
 }
 
 public struct AnalyticsClosure {
