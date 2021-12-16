@@ -87,7 +87,7 @@ extension hAnalyticsEvent {
   }
 
   /// When an embark flow is choosen on the choose screen
-  public static func chooseEmbarkFlow(embarkStoryId: String) -> AnalyticsClosure {
+  public static func onboardingChooseEmbarkFlow(embarkStoryId: String) -> AnalyticsClosure {
     return AnalyticsClosure {
       let properties: [String: Any] = ["embark_story_id": embarkStoryId]
 
