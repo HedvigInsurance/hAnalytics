@@ -1,6 +1,6 @@
 name: onboarding_choose_embark_flow
 description: When an embark flow is choosen on the choose screen
-accessor: chooseEmbarkFlow
+accessor: onboardingChooseEmbarkFlow
 inputs:
   - name: embark_story_id
     type: String
