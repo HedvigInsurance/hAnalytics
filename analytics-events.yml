@@ -3,5 +3,5 @@ events:
   - events/screenViews/insurances.yml
   - events/screenViews/forever.yml
   - events/screenViews/profile.yml
-  - events/onboarding/chooseInsuranceType.yml
+  - events/onboarding/chooseEmbarkFlow.yml
   - events/dummyGraphQLEvent.yml
