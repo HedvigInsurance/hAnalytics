@@ -23,6 +23,9 @@ data class AnalyticsClosure(
 )
 
 <% events.forEach(function(event) { %>
+    /**
+     * <%= event.description %>
+     */
     fun hAnalyticsEvent.Companion.<%= event.accessor %>(<%= (event.inputs ?? []).map((input) => `${input.argument}: ${input.type}`).join(",") %>): AnalyticsClosure {
         return AnalyticsClosure {
         <% if(event.graphql) { %>

@@ -30,6 +30,7 @@ public struct AnalyticsClosure { let send: () -> Void }
 
 extension hAnalyticsEvent {
 
+  /// no description given
   public static func screenViewHome() -> AnalyticsClosure {
     return AnalyticsClosure {
       let properties: [String: Any] = [:]
@@ -43,6 +44,7 @@ extension hAnalyticsEvent {
     }
   }
 
+  /// no description given
   public static func screenViewInsurances() -> AnalyticsClosure {
     return AnalyticsClosure {
       let properties: [String: Any] = [:]
@@ -56,6 +58,7 @@ extension hAnalyticsEvent {
     }
   }
 
+  /// When Hedvig Forever is shown
   public static func screenViewForever() -> AnalyticsClosure {
     return AnalyticsClosure {
       let properties: [String: Any] = [:]
@@ -69,6 +72,7 @@ extension hAnalyticsEvent {
     }
   }
 
+  /// no description given
   public static func screenViewProfile() -> AnalyticsClosure {
     return AnalyticsClosure {
       let properties: [String: Any] = [:]
@@ -82,6 +86,7 @@ extension hAnalyticsEvent {
     }
   }
 
+  /// no description given
   public static func chooseInsuranceType(typeOfContract: String) -> AnalyticsClosure {
     return AnalyticsClosure {
       let properties: [String: Any] = ["type_of_contract": typeOfContract]
@@ -95,6 +100,7 @@ extension hAnalyticsEvent {
     }
   }
 
+  /// no description given
   public static func testGraphqlEvent(numberOfReferrals: Int) -> AnalyticsClosure {
     return AnalyticsClosure {
       let properties: [String: Any] = ["NUMBER_OF_REFERRALS": numberOfReferrals, "HELLO": 0]

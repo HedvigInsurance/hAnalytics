@@ -11,6 +11,8 @@ data class hAnalyticsEvent(internal val name: String, internal val properties: M
 
 data class AnalyticsClosure(internal val send: () -> Unit)
 
+/**
+ */
 fun hAnalyticsEvent.Companion.screenViewHome(): AnalyticsClosure {
     return AnalyticsClosure {
         val properties: Map<String, Any> = mapOf()
@@ -27,6 +29,8 @@ fun hAnalyticsEvent.Companion.screenViewHome(): AnalyticsClosure {
     }
 }
 
+/**
+ */
 fun hAnalyticsEvent.Companion.screenViewInsurances(): AnalyticsClosure {
     return AnalyticsClosure {
         val properties: Map<String, Any> = mapOf()
@@ -43,6 +47,7 @@ fun hAnalyticsEvent.Companion.screenViewInsurances(): AnalyticsClosure {
     }
 }
 
+/** When Hedvig Forever is shown */
 fun hAnalyticsEvent.Companion.screenViewForever(): AnalyticsClosure {
     return AnalyticsClosure {
         val properties: Map<String, Any> = mapOf()
@@ -59,6 +64,8 @@ fun hAnalyticsEvent.Companion.screenViewForever(): AnalyticsClosure {
     }
 }
 
+/**
+ */
 fun hAnalyticsEvent.Companion.screenViewProfile(): AnalyticsClosure {
     return AnalyticsClosure {
         val properties: Map<String, Any> = mapOf()
@@ -75,6 +82,8 @@ fun hAnalyticsEvent.Companion.screenViewProfile(): AnalyticsClosure {
     }
 }
 
+/**
+ */
 fun hAnalyticsEvent.Companion.chooseInsuranceType(typeOfContract: String): AnalyticsClosure {
     return AnalyticsClosure {
         val properties: Map<String, Any> =
@@ -94,6 +103,8 @@ fun hAnalyticsEvent.Companion.chooseInsuranceType(typeOfContract: String): Analy
     }
 }
 
+/**
+ */
 fun hAnalyticsEvent.Companion.testGraphqlEvent(numberOfReferrals: Int): AnalyticsClosure {
     return AnalyticsClosure {
         val properties: Map<String, Any> =

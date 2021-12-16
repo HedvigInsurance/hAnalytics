@@ -1,6 +1,0 @@
-name: choose_insurance_type
-accessor: chooseInsuranceType
-inputs:
-  - name: type_of_contract
-    type: String
-    argument: typeOfContract

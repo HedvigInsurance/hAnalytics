@@ -1,2 +1,3 @@
 name: screen_view_forever
+description: When Hedvig Forever is shown
 accessor: screenViewForever

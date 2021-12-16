@@ -31,6 +31,7 @@ public struct AnalyticsClosure {
 
 extension hAnalyticsEvent {
 <% events.forEach(function(event) { %>
+    /// <%= event.description || "no description given" %>
     public static func <%= event.accessor %>(<%= (event.inputs ?? []).map((input) => `${input.argument}: ${input.type}`).join(",") %>) -> AnalyticsClosure {
         return AnalyticsClosure {
         <% if(event.graphql) { %>
