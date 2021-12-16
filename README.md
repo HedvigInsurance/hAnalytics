@@ -1,4 +1,4 @@
-## app-analytics-definitions
+## hAnalytics
 
 This repo contains shared analytics definitions of events between Hedvigs iOS and Android apps.
 
