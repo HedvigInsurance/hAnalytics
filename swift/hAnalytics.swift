@@ -27,6 +27,7 @@ public struct hAnalyticsEvent {
 }
 
 public struct AnalyticsClosure {
+  /// sends the event instantly
   public let send: () -> Void
 }
 
