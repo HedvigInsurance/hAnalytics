@@ -80,7 +80,7 @@ fun hAnalyticsEvent.Companion.screenViewProfile(): AnalyticsClosure {
 }
 
 /** When an embark flow is choosen on the choose screen */
-fun hAnalyticsEvent.Companion.chooseEmbarkFlow(embarkStoryId: String): AnalyticsClosure {
+fun hAnalyticsEvent.Companion.onboardingChooseEmbarkFlow(embarkStoryId: String): AnalyticsClosure {
     return AnalyticsClosure {
         val properties: Map<String, Any> =
             mapOf(
