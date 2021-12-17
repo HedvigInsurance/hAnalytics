@@ -26,7 +26,9 @@ public struct hAnalyticsEvent {
   public let properties: [String: hAnalyticsProperty]
 }
 
-public struct AnalyticsClosure { let send: () -> Void }
+public struct AnalyticsClosure {
+  public let send: () -> Void
+}
 
 extension hAnalyticsEvent {
 

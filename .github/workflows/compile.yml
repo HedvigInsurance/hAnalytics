@@ -13,6 +13,13 @@ jobs:
     - uses: actions/setup-node@v2
       with:
         node-version: '14'
+    - name: Cache multiple paths
+      uses: actions/cache@v2
+      with:
+        path: |
+          /usr/local/bin/swift-format
+          ktfmt.jar
+        key: ${{ runner.os }}
     - run: sh compile.sh
     - uses: EndBug/add-and-commit@v7
       with:
