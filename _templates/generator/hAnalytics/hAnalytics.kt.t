@@ -26,7 +26,7 @@ data class AnalyticsClosure(
     /**
      * <%= event.description %>
      */
-    fun hAnalyticsEvent.Companion.<%= event.accessor %>(<%= (event.inputs ?? []).map((input) => `${input.argument}: ${input.type}`).join(",") %>): AnalyticsClosure {
+    fun hAnalyticsEvent.Companion.<%= event.accessor %>(<%= (event.inputs ?? []).map((input) => `${input.argument}: ${kotlinTypeMap[input.type]}`).join(",") %>): AnalyticsClosure {
         return AnalyticsClosure {
         <% if(event.graphql) { %>
                 val properties: Map<String, Any> = mapOf(
@@ -36,7 +36,7 @@ data class AnalyticsClosure(
                     <% (event.constants ?? []).forEach(function(constant) { %>
                             "<%= constant.name %>" to <%= constant.value %>,
                     <% }); %>
-                )
+                ).compactMapValues({ it })
 
                 hAnalyticsProviders.performGraphQLQuery(
                 "<%= event.graphql.query.replace(/(\r\n|\n|\r)/gm, "") %>",
@@ -62,7 +62,7 @@ data class AnalyticsClosure(
                     <% (event.constants ?? []).forEach(function(constant) { %>
                             "<%= constant.name %>" to <%= constant.value %>,
                     <% }); %>
-                )
+                ).compactMapValues({ it })
 
                 hAnalyticsProviders.sendEvent(hAnalyticsEvent(
                         name = "<%= event.name %>",

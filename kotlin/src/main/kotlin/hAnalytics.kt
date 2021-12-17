@@ -14,7 +14,7 @@ data class AnalyticsClosure(internal val send: () -> Unit)
 /** When Home tab is shown */
 fun hAnalyticsEvent.Companion.screenViewHome(): AnalyticsClosure {
     return AnalyticsClosure {
-        val properties: Map<String, Any> = mapOf()
+        val properties: Map<String, Any> = mapOf().compactMapValues({ it })
 
         hAnalyticsProviders.sendEvent(
             hAnalyticsEvent(
@@ -31,7 +31,7 @@ fun hAnalyticsEvent.Companion.screenViewHome(): AnalyticsClosure {
 /** When Insurances tab is shown */
 fun hAnalyticsEvent.Companion.screenViewInsurances(): AnalyticsClosure {
     return AnalyticsClosure {
-        val properties: Map<String, Any> = mapOf()
+        val properties: Map<String, Any> = mapOf().compactMapValues({ it })
 
         hAnalyticsProviders.sendEvent(
             hAnalyticsEvent(
@@ -48,7 +48,7 @@ fun hAnalyticsEvent.Companion.screenViewInsurances(): AnalyticsClosure {
 /** When Hedvig Forever is shown */
 fun hAnalyticsEvent.Companion.screenViewForever(): AnalyticsClosure {
     return AnalyticsClosure {
-        val properties: Map<String, Any> = mapOf()
+        val properties: Map<String, Any> = mapOf().compactMapValues({ it })
 
         hAnalyticsProviders.sendEvent(
             hAnalyticsEvent(
@@ -65,7 +65,7 @@ fun hAnalyticsEvent.Companion.screenViewForever(): AnalyticsClosure {
 /** When Profile tab is shown */
 fun hAnalyticsEvent.Companion.screenViewProfile(): AnalyticsClosure {
     return AnalyticsClosure {
-        val properties: Map<String, Any> = mapOf()
+        val properties: Map<String, Any> = mapOf().compactMapValues({ it })
 
         hAnalyticsProviders.sendEvent(
             hAnalyticsEvent(
@@ -84,8 +84,9 @@ fun hAnalyticsEvent.Companion.onboardingChooseEmbarkFlow(embarkStoryId: String):
     return AnalyticsClosure {
         val properties: Map<String, Any> =
             mapOf(
-                "embark_story_id" to embarkStoryId,
-            )
+                    "embark_story_id" to embarkStoryId,
+                )
+                .compactMapValues({ it })
 
         hAnalyticsProviders.sendEvent(
             hAnalyticsEvent(
@@ -105,9 +106,10 @@ fun hAnalyticsEvent.Companion.testGraphqlEvent(numberOfReferrals: Int): Analytic
     return AnalyticsClosure {
         val properties: Map<String, Any> =
             mapOf(
-                "NUMBER_OF_REFERRALS" to numberOfReferrals,
-                "HELLO" to 0,
-            )
+                    "NUMBER_OF_REFERRALS" to numberOfReferrals,
+                    "HELLO" to 0,
+                )
+                .compactMapValues({ it })
 
         hAnalyticsProviders.performGraphQLQuery(
             "query AnalyticsMemberID {  member {    id  }}",

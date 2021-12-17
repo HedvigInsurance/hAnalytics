@@ -27,6 +27,7 @@ public struct hAnalyticsEvent {
 }
 
 public struct AnalyticsClosure {
+  /// sends the event instantly
   public let send: () -> Void
 }
 
@@ -35,7 +36,7 @@ extension hAnalyticsEvent {
   /// When Home tab is shown
   public static func screenViewHome() -> AnalyticsClosure {
     return AnalyticsClosure {
-      let properties: [String: Any] = [:]
+      let properties: [String: Any] = [:].compactMapValues { $0 }
 
       hAnalyticsProviders.sendEvent(
         hAnalyticsEvent(
@@ -49,7 +50,7 @@ extension hAnalyticsEvent {
   /// When Insurances tab is shown
   public static func screenViewInsurances() -> AnalyticsClosure {
     return AnalyticsClosure {
-      let properties: [String: Any] = [:]
+      let properties: [String: Any] = [:].compactMapValues { $0 }
 
       hAnalyticsProviders.sendEvent(
         hAnalyticsEvent(
@@ -63,7 +64,7 @@ extension hAnalyticsEvent {
   /// When Hedvig Forever is shown
   public static func screenViewForever() -> AnalyticsClosure {
     return AnalyticsClosure {
-      let properties: [String: Any] = [:]
+      let properties: [String: Any] = [:].compactMapValues { $0 }
 
       hAnalyticsProviders.sendEvent(
         hAnalyticsEvent(
@@ -77,7 +78,7 @@ extension hAnalyticsEvent {
   /// When Profile tab is shown
   public static func screenViewProfile() -> AnalyticsClosure {
     return AnalyticsClosure {
-      let properties: [String: Any] = [:]
+      let properties: [String: Any] = [:].compactMapValues { $0 }
 
       hAnalyticsProviders.sendEvent(
         hAnalyticsEvent(
@@ -91,7 +92,7 @@ extension hAnalyticsEvent {
   /// When an embark flow is choosen on the choose screen
   public static func onboardingChooseEmbarkFlow(embarkStoryId: String) -> AnalyticsClosure {
     return AnalyticsClosure {
-      let properties: [String: Any] = ["embark_story_id": embarkStoryId]
+      let properties: [String: Any] = ["embark_story_id": embarkStoryId].compactMapValues { $0 }
 
       hAnalyticsProviders.sendEvent(
         hAnalyticsEvent(
@@ -106,6 +107,7 @@ extension hAnalyticsEvent {
   public static func testGraphqlEvent(numberOfReferrals: Int) -> AnalyticsClosure {
     return AnalyticsClosure {
       let properties: [String: Any] = ["NUMBER_OF_REFERRALS": numberOfReferrals, "HELLO": 0]
+        .compactMapValues { $0 }
 
       hAnalyticsProviders.performGraphQLQuery(
         "query AnalyticsMemberID {  member {    id  }}",

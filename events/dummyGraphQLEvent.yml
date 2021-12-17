@@ -2,11 +2,11 @@ name: SCREEN_VIEW_FOREVER
 accessor: testGraphqlEvent
 inputs:
   - name: NUMBER_OF_REFERRALS
-    type: Int
+    type: Integer
     argument: numberOfReferrals
 constants:
   - name: HELLO
-    type: Int
+    type: Integer
     value: 0
 graphql:
   query: |

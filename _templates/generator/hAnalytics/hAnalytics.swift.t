@@ -33,7 +33,7 @@ public struct AnalyticsClosure {
 extension hAnalyticsEvent {
 <% events.forEach(function(event) { %>
     /// <%= event.description || "no description given" %>
-    public static func <%= event.accessor %>(<%= (event.inputs ?? []).map((input) => `${input.argument}: ${input.type}`).join(",") %>) -> AnalyticsClosure {
+    public static func <%= event.accessor %>(<%= (event.inputs ?? []).map((input) => `${input.argument}: ${swiftTypeMap[input.type]}`).join(",") %>) -> AnalyticsClosure {
         return AnalyticsClosure {
         <% if(event.graphql) { %>
                 let properties: [String: Any] = [
@@ -44,7 +44,7 @@ extension hAnalyticsEvent {
                             "<%= constant.name %>": <%= constant.value %>,
                     <% }); %>
                     <%= !event.inputs && !event.constants ? ":" : "" %>
-                ]
+                ].compactMapValues { $0 }
 
                 hAnalyticsProviders.performGraphQLQuery("<%= event.graphql.query.replace(/(\r\n|\n|\r)/gm, "") %>", properties) { data in
                     let graphqlProperties = [
@@ -72,7 +72,7 @@ extension hAnalyticsEvent {
                             "<%= constant.name %>": <%= constant.value %>,
                     <% }); %>
                     <%= !event.inputs && !event.constants ? ":" : "" %>
-                ]
+                ].compactMapValues { $0 }
 
                 hAnalyticsProviders.sendEvent(hAnalyticsEvent(
                     name: "<%= event.name %>",
