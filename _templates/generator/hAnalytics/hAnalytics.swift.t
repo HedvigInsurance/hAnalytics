@@ -26,7 +26,7 @@ public struct hAnalyticsEvent {
 }
 
 public struct AnalyticsClosure {
-    let send: () -> Void
+    public let send: () -> Void
 }
 
 extension hAnalyticsEvent {
