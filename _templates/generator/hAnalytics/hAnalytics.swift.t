@@ -38,8 +38,8 @@ extension hAnalyticsEvent {
                     <%= !event.inputs && !event.constants ? ":" : "" %>
                 ]
 
-                <% const graphQLInputs = (event.inputs ?? []).filter(input => event.graphql.variables.includes(input.name)) %>
-                <% const graphQLConstants = (event.constants ?? []).filter(input => event.graphql.variables.includes(input.name)) %>
+                <% const graphQLInputs = (event.inputs ?? []).filter(input => (event.graphql.variables ?? []).includes(input.name)) %>
+                <% const graphQLConstants = (event.constants ?? []).filter(input => (event.graphql.variables ?? []).includes(input.name)) %>
 
                 let graphQLVariables: [String: Any?] = [
                     <% graphQLInputs.forEach(function(input) { %>

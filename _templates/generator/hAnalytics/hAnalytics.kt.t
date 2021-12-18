@@ -35,8 +35,8 @@ data class AnalyticsClosure(
                     <% }); %>
                 )
 
-                <% const graphQLInputs = (event.inputs ?? []).filter(input => event.graphql.variables.includes(input.name)) %>
-                <% const graphQLConstants = (event.constants ?? []).filter(input => event.graphql.variables.includes(input.name)) %>
+                <% const graphQLInputs = (event.inputs ?? []).filter(input => (event.graphql.variables ?? []).includes(input.name)) %>
+                <% const graphQLConstants = (event.constants ?? []).filter(input => (event.graphql.variables ?? []).includes(input.name)) %>
 
                 val graphQLVariables: Map<String, Any?> = mapOf(
                     <% graphQLInputs.forEach(function(input) { %>
@@ -47,7 +47,9 @@ data class AnalyticsClosure(
                     <% }); %>
                 )
 
-                hAnalyticsProviders.performGraphQLQuery("""<%= formatGQL(event.graphql.query) %>""",
+                hAnalyticsProviders.performGraphQLQuery("""
+                <%= formatGQL(event.graphql.query) %>
+                """,
                 graphQLVariables,
                 { data ->
                     val graphqlProperties: Map<String, Any?> = mapOf(

@@ -10,13 +10,11 @@ constants:
     value: 0
 graphql:
   query: |
-    query AnalyticsMemberID($HELLO: String!) {
-      angelStory(name: $HELLO, locale: "test") {
-        content
+    query AnalyticsMemberID {
+      member {
+        id
       }
     }
-  variables:
-    - HELLO
   getters:
     - name: MEMBER_ID
       getter: member.id

@@ -92,17 +92,16 @@ fun hAnalyticsEvent.Companion.testGraphqlEvent(numberOfReferrals: String): Analy
                 "HELLO" to 0,
             )
 
-        val graphQLVariables: Map<String, Any?> =
-            mapOf(
-                "NUMBER_OF_REFERRALS" to numberOfReferrals,
-            )
+        val graphQLVariables: Map<String, Any?> = mapOf()
 
         hAnalyticsProviders.performGraphQLQuery(
-            """query AnalyticsMemberID($NUMBER_OF_REFERRALS: String!) {
-	angelStory(name: $NUMBER_OF_REFERRALS, locale: &#34;test&#34;) {
-		content
+            """
+                query AnalyticsMemberID {
+	member {
+		id
 	}
-}""",
+}
+                """,
             graphQLVariables,
             { data ->
                 val graphqlProperties: Map<String, Any?> =

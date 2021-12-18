@@ -85,13 +85,13 @@ extension hAnalyticsEvent {
     return AnalyticsClosure {
       let properties: [String: Any?] = ["NUMBER_OF_REFERRALS": numberOfReferrals, "HELLO": 0]
 
-      let graphQLVariables: [String: Any?] = ["NUMBER_OF_REFERRALS": numberOfReferrals]
+      let graphQLVariables: [String: Any?] = []
 
       hAnalyticsProviders.performGraphQLQuery(
         """
-        query AnalyticsMemberID($NUMBER_OF_REFERRALS: String!) {
-        	angelStory(name: $NUMBER_OF_REFERRALS, locale: &#34;test&#34;) {
-        		content
+        query AnalyticsMemberID {
+        	member {
+        		id
         	}
         }
         """,

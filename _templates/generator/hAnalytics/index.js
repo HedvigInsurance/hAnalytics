@@ -41,7 +41,7 @@ module.exports = {
                     event.constants ?? []
                 ]
                     .flatMap(i => i)
-                    .filter(input => event.graphql.variables.includes(input.name))
+                    .filter(input => (event.graphql.variables ?? []).includes(input.name))
                     .reduce((prev, curr) => {
                         switch (curr.type) {
                             case "String":
