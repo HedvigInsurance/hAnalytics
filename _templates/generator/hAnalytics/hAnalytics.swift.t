@@ -60,7 +60,7 @@ extension hAnalyticsEvent {
                     if let data = data {
                         graphqlProperties= [
                         <% event.graphql.getters.forEach(function(getter) { %>
-                            "<%= getter.name %>": try? (try? JMESExpression.compile("<%= getter.getter %>"))?.search(object: data),
+                            "<%= getter.name %>": try? (try? JMESExpression.compile("<%- getter.getter %>"))?.search(object: data),
                         <% }); %>
                         ]
                     } else {

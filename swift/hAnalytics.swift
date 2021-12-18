@@ -104,9 +104,9 @@ extension hAnalyticsEvent {
         if let data = data {
           graphqlProperties = [
             "TYPE_OF_CONTRACTS": try?
-              (try? JMESExpression.compile("quoteBundle.quotes.typeOfContract"))?.search(
-                object: data
-              )
+              (try? JMESExpression.compile(
+                "quoteBundle.quotes[*].typeOfContract | sort(@) | join(', ', @)"
+              ))?.search(object: data)
           ]
         }
         else {

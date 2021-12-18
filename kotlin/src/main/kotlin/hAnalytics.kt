@@ -112,7 +112,10 @@ fun hAnalyticsEvent.Companion.screenViewOffer(offerIds: Array<String>): Analytic
                 val graphqlProperties: Map<String, Any?> =
                     mapOf(
                         "TYPE_OF_CONTRACTS" to
-                            data?.getValue(path = "quoteBundle.quotes.typeOfContract"),
+                            data?.getValue(
+                                path =
+                                    "quoteBundle.quotes[*].typeOfContract | sort(@) | join(&#39;, &#39;, @)"
+                            ),
                     )
 
                 hAnalyticsProviders.sendEvent(
