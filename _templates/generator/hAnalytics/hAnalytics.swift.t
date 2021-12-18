@@ -10,7 +10,7 @@ public struct hAnalyticsProviders {
     public static var sendEvent: (_ event: hAnalyticsEvent) -> Void = { _ in }
 
     /// The function that is called when a tracking event needs to perform a GraphQLQuery to enrich data
-    public static var performGraphQLQuery: (_ query: String, _ variables: [String: Any?], _ onComplete: @escaping (_ data: ResultMap?) -> Void) -> Void = { _, _, _ in }
+    public static var performGraphQLQuery: (_ query: String, _ variables: [String: Any?], _ onComplete: @escaping (_ data: Any?) -> Void) -> Void = { _, _, _ in }
 }
 
 public struct hAnalyticsEvent {
