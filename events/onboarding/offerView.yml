@@ -20,4 +20,4 @@ graphql:
     - offer_ids
   getters:
     - name: TYPE_OF_CONTRACTS
-      getter: quotes.typeOfContract
+      getter: quoteBundle.quotes.typeOfContract
