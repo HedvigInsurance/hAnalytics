@@ -8,7 +8,7 @@ const fetch = require('cross-fetch');
 
 const basename = __dirname + '/../../../'
 
-const executor = async ({ document, variables, context }) => {
+const executor = async ({ document, variables }) => {
     const query = print(document)
 
     const fetchResult = await fetch('https://graphql.dev.hedvigit.com/graphql', {
