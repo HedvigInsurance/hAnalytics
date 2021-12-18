@@ -5,6 +5,7 @@ const { addMocksToSchema } = require("@graphql-tools/mock")
 const { introspectSchema } = require('@graphql-tools/wrap')
 const { graphql, print } = require('graphql')
 const fetch = require('cross-fetch');
+const jmespath = require('jmespath');
 
 const basename = __dirname + '/../../../'
 
@@ -105,6 +106,10 @@ module.exports = {
                     console.log(result)
                     throw `Invalid graphql: ${event.graphql.query} in ${basename + importPath}`
                 }
+
+                event.graphql.getters.forEach(getter => {
+                    console.log(`Result for ${getter.getter}: ${jmespath.search(result.data, getter.getter)}`)
+                });
             }
 
             return event
