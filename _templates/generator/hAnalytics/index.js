@@ -140,14 +140,14 @@ module.exports = {
                 "Optional<Integer>": "Int?",
                 "Optional<Boolean>": "Boolean?",
                 "Optional<Double>": "Double?",
-                "Array<String>": "[String]",
-                "Array<Integer>": "[Int]",
-                "Array<Boolean>": "[Boolean]",
-                "Array<Double>": "[Double]",
-                "Array<Optional<String>>": "[String?]",
-                "Array<Optional<Integer>>": "[Int?]",
-                "Array<Optional<Boolean>>": "[Boolean?]",
-                "Array<Optional<Double>>": "[Double?]"
+                "Array<String>": "Array<String>",
+                "Array<Integer>": "Array<Int>",
+                "Array<Boolean>": "Array<Boolean>",
+                "Array<Double>": "Array<Double>",
+                "Array<Optional<String>>": "Array<String?>",
+                "Array<Optional<Integer>>": "Array<Int?>",
+                "Array<Optional<Boolean>>": "Array<Boolean?>",
+                "Array<Optional<Double>>": "Array<Double?>"
             },
             formatGQL: (string) => format(string)
         }

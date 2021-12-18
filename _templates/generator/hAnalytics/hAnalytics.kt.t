@@ -23,7 +23,7 @@ data class AnalyticsClosure(
     /**
      * <%= event.description %>
      */
-    fun hAnalyticsEvent.Companion.<%= event.accessor %>(<%= (event.inputs ?? []).map((input) => `${input.argument}: ${kotlinTypeMap[input.type]}`).join(",") %>): AnalyticsClosure {
+    fun hAnalyticsEvent.Companion.<%= event.accessor %>(<%- (event.inputs ?? []).map((input) => `${input.argument}: ${kotlinTypeMap[input.type]}`).join(",") %>): AnalyticsClosure {
         return AnalyticsClosure {
         <% if(event.graphql) { %>
                 val properties: Map<String, Any?> = mapOf(
@@ -48,7 +48,7 @@ data class AnalyticsClosure(
                 )
 
                 hAnalyticsProviders.performGraphQLQuery("""
-                <%= formatGQL(event.graphql.query) %>
+                <%- formatGQL(event.graphql.query) %>
                 """,
                 graphQLVariables,
                 { data ->

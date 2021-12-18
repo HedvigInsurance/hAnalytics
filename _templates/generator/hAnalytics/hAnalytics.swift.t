@@ -53,7 +53,7 @@ extension hAnalyticsEvent {
                 ]
 
                 hAnalyticsProviders.performGraphQLQuery("""
-                <%= formatGQL(event.graphql.query) %>
+                <%- formatGQL(event.graphql.query) %>
                 """, graphQLVariables) { data in
                     let graphqlProperties: [String: Any?]
 
