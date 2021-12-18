@@ -1,4 +1,5 @@
 import Foundation
+import JMESPath
 
 public struct hAnalyticsProviders {
   /// The function that is called when a tracking event should be sent
@@ -80,28 +81,43 @@ extension hAnalyticsEvent {
     }
   }
 
-  /// no description given
-  public static func testGraphqlEvent(numberOfReferrals: String) -> AnalyticsClosure {
+  /// When Offer screen is shown
+  public static func screenViewOffer(offerIds: [String]) -> AnalyticsClosure {
     return AnalyticsClosure {
-      let properties: [String: Any?] = ["NUMBER_OF_REFERRALS": numberOfReferrals, "HELLO": 0]
+      let properties: [String: Any?] = ["offer_ids": offerIds]
 
-      let graphQLVariables: [String: Any?] = []
+      let graphQLVariables: [String: Any?] = ["offer_ids": offerIds]
 
       hAnalyticsProviders.performGraphQLQuery(
         """
-        query AnalyticsMemberID {
-        	member {
-        		id
+        query AnalyticsScreenViewOfferFetchTypeOfContracts($offer_ids: [ID!]!) {
+        	quoteBundle(input: {
+        		ids: $offer_ids
+        	}) {
+        		quotes {
+        			typeOfContract
+        		}
         	}
         }
         """,
         graphQLVariables
-      ) { data in
-        let graphqlProperties: [String: Any?] = ["MEMBER_ID": data?.getValue(at: "member.id")]
+      ) { data in let graphqlProperties: [String: Any?]
+
+        if let data = data {
+          graphqlProperties = [
+            "TYPE_OF_CONTRACTS": (try? JMESExpression.compile("quotes.typeOfContract")).search(
+              object: data,
+              as: Any?.self
+            )
+          ]
+        }
+        else {
+          graphqlProperties = [:]
+        }
 
         hAnalyticsProviders.sendEvent(
           hAnalyticsEvent(
-            name: "SCREEN_VIEW_FOREVER",
+            name: "screen_view_offer",
             properties: properties.merging(graphqlProperties, uniquingKeysWith: { _, rhs in rhs })
           )
         )

@@ -4,4 +4,4 @@ events:
   - events/screenViews/forever.yml
   - events/screenViews/profile.yml
   - events/onboarding/chooseEmbarkFlow.yml
-  - events/dummyGraphQLEvent.yml
+  - events/onboarding/offerView.yml

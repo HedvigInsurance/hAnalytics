@@ -25,7 +25,7 @@ Each event defines the following fields:
             - INPUT_VARIABLE_NAME
         getters:
             - name: FIRST_NAME
-              getter: member.firstName (DeepFind similar to lodash._get)
+              getter: member.firstName (JMESPath spec path)
 
 ### Build
 

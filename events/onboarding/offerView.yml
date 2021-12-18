@@ -1,0 +1,23 @@
+name: screen_view_offer
+description: When Offer screen is shown
+accessor: screenViewOffer
+inputs:
+  - name: offer_ids
+    type: Array<String>
+    argument: offerIds
+graphql:
+  query: |
+    query AnalyticsScreenViewOfferFetchTypeOfContracts($offer_ids: [ID!]!) {
+      quoteBundle(input: {
+        ids: $offer_ids
+      }) {
+        quotes {
+          typeOfContract
+        }
+      }
+    }
+  variables:
+    - offer_ids
+  getters:
+    - name: TYPE_OF_CONTRACTS
+      getter: quotes.typeOfContract

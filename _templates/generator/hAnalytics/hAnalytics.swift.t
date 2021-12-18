@@ -2,6 +2,7 @@
 to: swift/hAnalytics.swift
 ---
 import Foundation
+import JMESPath
 
 public struct hAnalyticsProviders {
     /// The function that is called when a tracking event should be sent
@@ -54,11 +55,17 @@ extension hAnalyticsEvent {
                 hAnalyticsProviders.performGraphQLQuery("""
                 <%= formatGQL(event.graphql.query) %>
                 """, graphQLVariables) { data in
-                    let graphqlProperties: [String: Any?] = [
+                    let graphqlProperties: [String: Any?]
+
+                    if let data = data {
+                        graphqlProperties= [
                         <% event.graphql.getters.forEach(function(getter) { %>
-                            "<%= getter.name %>": data?.getValue(at: "<%= getter.getter %>"),
+                            "<%= getter.name %>": (try? JMESExpression.compile("<%= getter.getter %>")).search(object: data, as: Any?.self),
                         <% }); %>
-                    ]
+                        ]
+                    } else {
+                        graphqlProperties = [:]
+                    }
 
                     hAnalyticsProviders.sendEvent(hAnalyticsEvent(
                         name: "<%= event.name %>",

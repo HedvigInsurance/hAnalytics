@@ -13,11 +13,16 @@ let package = Package(
             targets: ["hAnalytics"]
         ),
     ],
-    dependencies: [],
+    dependencies: [
+        .package(
+            url: "https://github.com/adam-fowler/jmespath.swift.git", 
+            from: "1.0.0"
+        )
+    ],
     targets: [
         .target(
             name: "hAnalytics",
-            dependencies: [],
+            dependencies: ["JMESPath"]
             path: "swift"
         )
     ]
