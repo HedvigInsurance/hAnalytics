@@ -22,7 +22,7 @@ let package = Package(
     targets: [
         .target(
             name: "hAnalytics",
-            dependencies: ["JMESPath"],
+            dependencies: ["jmespath.swift"],
             path: "swift"
         )
     ]
