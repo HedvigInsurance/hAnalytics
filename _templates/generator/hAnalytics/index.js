@@ -108,7 +108,7 @@ module.exports = {
                 }
 
                 event.graphql.getters.forEach(getter => {
-                    console.log(`Result for ${getter.getter}: ${jmespath.search(result.data, getter.getter)}`)
+                    console.log(`Result for JMESPath: "${getter.getter}": ${jmespath.search(result.data, getter.getter)}`)
                 });
             }
 
