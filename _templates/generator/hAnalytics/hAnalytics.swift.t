@@ -9,20 +9,12 @@ public struct hAnalyticsProviders {
     public static var sendEvent: (_ event: hAnalyticsEvent) -> Void = { _ in }
 
     /// The function that is called when a tracking event needs to perform a GraphQLQuery to enrich data
-    public static var performGraphQLQuery: (_ query: String, _ variables: [String: Any], _ onComplete: @escaping (_ data: ResultMap?) -> Void) -> Void = { _, _, _ in }
+    public static var performGraphQLQuery: (_ query: String, _ variables: [String: Any?], _ onComplete: @escaping (_ data: ResultMap?) -> Void) -> Void = { _, _, _ in }
 }
-
-public protocol hAnalyticsProperty {}
-
-extension Array: hAnalyticsProperty where Element: hAnalyticsProperty {}
-extension String: hAnalyticsProperty {}
-extension Float: hAnalyticsProperty {}
-extension Int: hAnalyticsProperty {}
-extension Date: hAnalyticsProperty {}
 
 public struct hAnalyticsEvent {
     public let name: String
-    public let properties: [String: hAnalyticsProperty]
+    public let properties: [String: Any?]
 }
 
 public struct AnalyticsClosure {
@@ -36,7 +28,7 @@ extension hAnalyticsEvent {
     public static func <%= event.accessor %>(<%= (event.inputs ?? []).map((input) => `${input.argument}: ${swiftTypeMap[input.type]}`).join(",") %>) -> AnalyticsClosure {
         return AnalyticsClosure {
         <% if(event.graphql) { %>
-                let properties: [String: Any] = [
+                let properties: [String: Any?] = [
                     <% (event.inputs ?? []).forEach(function(input) { %>
                             "<%= input.name %>": <%= input.argument %>,
                     <% }); %>
@@ -44,27 +36,40 @@ extension hAnalyticsEvent {
                             "<%= constant.name %>": <%= constant.value %>,
                     <% }); %>
                     <%= !event.inputs && !event.constants ? ":" : "" %>
-                ].compactMapValues { $0 }
+                ]
 
-                hAnalyticsProviders.performGraphQLQuery("<%= event.graphql.query.replace(/(\r\n|\n|\r)/gm, "") %>", properties) { data in
-                    let graphqlProperties = [
+                <% const graphQLInputs = (event.inputs ?? []).filter(input => event.graphql.variables.includes(input.name)) %>
+                <% const graphQLConstants = (event.constants ?? []).filter(input => event.graphql.variables.includes(input.name)) %>
+
+                let graphQLVariables: [String: Any?] = [
+                    <% graphQLInputs.forEach(function(input) { %>
+                            "<%= input.name %>": <%= input.argument %>,
+                    <% }); %>
+                    <% graphQLConstants.forEach(function(constant) { %>
+                            "<%= constant.name %>": <%= constant.value %>,
+                    <% }); %>
+                    <%= !graphQLConstants && !graphQLInputs ? ":" : "" %>
+                ]
+
+                hAnalyticsProviders.performGraphQLQuery("""
+                <%= formatGQL(event.graphql.query) %>
+                """, graphQLVariables) { data in
+                    let graphqlProperties: [String: Any?] = [
                         <% event.graphql.getters.forEach(function(getter) { %>
                             "<%= getter.name %>": data?.getValue(at: "<%= getter.getter %>"),
                         <% }); %>
-                    ].compactMapValues { $0 }
+                    ]
 
                     hAnalyticsProviders.sendEvent(hAnalyticsEvent(
                         name: "<%= event.name %>",
                         properties: properties.merging(
                             graphqlProperties,
                             uniquingKeysWith: { _, rhs in rhs}
-                        ).compactMapValues { any in
-                            any as? hAnalyticsProperty
-                        }
+                        )
                     ))
                 }
         <% } else { %>
-                let properties: [String: Any] = [
+                let properties: [String: Any?] = [
                     <% (event.inputs ?? []).forEach(function(input) { %>
                             "<%= input.name %>": <%= input.argument %>,
                     <% }); %>
@@ -72,13 +77,12 @@ extension hAnalyticsEvent {
                             "<%= constant.name %>": <%= constant.value %>,
                     <% }); %>
                     <%= !event.inputs && !event.constants ? ":" : "" %>
-                ].compactMapValues { $0 }
+                ]
 
                 hAnalyticsProviders.sendEvent(hAnalyticsEvent(
                     name: "<%= event.name %>",
-                    properties: properties.compactMapValues { any in
-                    any as? hAnalyticsProperty
-                }))
+                    properties: properties
+                ))
         <% } %>
         }
    }

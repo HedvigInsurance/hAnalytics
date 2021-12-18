@@ -5,7 +5,7 @@ if [ -x /usr/local/bin/hygen ]
 then
     echo "Skipping installing npm stuff"
 else
-    npm i js-yaml
+    npm install
     sudo npm i -g hygen
 fi
 

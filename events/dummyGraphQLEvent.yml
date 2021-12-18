@@ -2,7 +2,7 @@ name: SCREEN_VIEW_FOREVER
 accessor: testGraphqlEvent
 inputs:
   - name: NUMBER_OF_REFERRALS
-    type: Integer
+    type: String
     argument: numberOfReferrals
 constants:
   - name: HELLO
@@ -10,11 +10,13 @@ constants:
     value: 0
 graphql:
   query: |
-    query AnalyticsMemberID {
-      member {
-        id
+    query AnalyticsMemberID($HELLO: String!) {
+      angelStory(name: $HELLO, locale: "test") {
+        content
       }
     }
+  variables:
+    - HELLO
   getters:
     - name: MEMBER_ID
       getter: member.id
