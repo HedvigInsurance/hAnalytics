@@ -26,3 +26,7 @@ Each event defines the following fields:
         getters:
             - name: FIRST_NAME
               getter: member.firstName (DeepFind similar to lodash._get)
+
+### Build
+
+`sh compile.sh`
