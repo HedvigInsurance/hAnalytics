@@ -107,8 +107,8 @@ module.exports = {
                     throw `Invalid graphql: ${event.graphql.query} in ${basename + importPath}`
                 }
 
-                event.graphql.getters.forEach(getter => {
-                    console.log(`Result for JMESPath: "${getter.getter}": ${jmespath.search(result.data, getter.getter)}`)
+                event.graphql.selectors.forEach(selector => {
+                    console.log(`Result for JMESPath: "${selector.path}": ${jmespath.search(result.data, selector.path)}`)
                 });
             }
 

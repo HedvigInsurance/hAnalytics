@@ -97,7 +97,7 @@ fun hAnalyticsEvent.Companion.screenViewOffer(offerIds: Array<String>): Analytic
 
         hAnalyticsProviders.performGraphQLQuery(
             """
-                query AnalyticsScreenViewOfferFetchTypeOfContracts($offer_ids: [ID!]!) {
+                query ScreenViewOffer($offer_ids: [ID!]!) {
 	quoteBundle(input: {
 		ids: $offer_ids
 	}) {
@@ -111,11 +111,7 @@ fun hAnalyticsEvent.Companion.screenViewOffer(offerIds: Array<String>): Analytic
             { data ->
                 val graphqlProperties: Map<String, Any?> =
                     mapOf(
-                        "TYPE_OF_CONTRACTS" to
-                            data?.getValue(
-                                path =
-                                    "quoteBundle.quotes[*].typeOfContract | sort(@) | join(&#39;, &#39;, @)"
-                            ),
+                        "type_of_contracts" to data?.getValue(path = ""),
                     )
 
                 hAnalyticsProviders.sendEvent(

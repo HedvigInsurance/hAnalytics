@@ -53,7 +53,7 @@ data class AnalyticsClosure(
                 graphQLVariables,
                 { data ->
                     val graphqlProperties: Map<String, Any?> = mapOf(
-                        <% event.graphql.getters.forEach(function(getter) { %>
+                        <% event.graphql.selectors.forEach(function(getter) { %>
                             "<%= getter.name %>" to data?.getValue(path = "<%= getter.getter %>"),
                         <% }); %>
                     )

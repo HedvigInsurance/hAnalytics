@@ -23,9 +23,9 @@ Each event defines the following fields:
             }
         variables: (optional)
             - INPUT_VARIABLE_NAME
-        getters:
+        selectors:
             - name: FIRST_NAME
-              getter: member.firstName (JMESPath spec path)
+              path: member.firstName (JMESPath spec path)
 
 ### Build
 

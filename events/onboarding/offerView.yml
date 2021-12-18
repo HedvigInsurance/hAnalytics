@@ -7,7 +7,7 @@ inputs:
     argument: offerIds
 graphql:
   query: |
-    query AnalyticsScreenViewOfferFetchTypeOfContracts($offer_ids: [ID!]!) {
+    query ScreenViewOffer($offer_ids: [ID!]!) {
       quoteBundle(input: {
         ids: $offer_ids
       }) {
@@ -18,6 +18,6 @@ graphql:
     }
   variables:
     - offer_ids
-  getters:
-    - name: TYPE_OF_CONTRACTS
-      getter: quoteBundle.quotes[*].typeOfContract | sort(@) | join(', ', @)
+  selectors:
+    - name: type_of_contracts
+      path: quoteBundle.quotes[*].typeOfContract | sort(@) | join(', ', @)

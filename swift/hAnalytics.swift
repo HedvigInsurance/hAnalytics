@@ -88,7 +88,7 @@ extension hAnalyticsEvent {
 
       hAnalyticsProviders.performGraphQLQuery(
         """
-        query AnalyticsScreenViewOfferFetchTypeOfContracts($offer_ids: [ID!]!) {
+        query ScreenViewOffer($offer_ids: [ID!]!) {
         	quoteBundle(input: {
         		ids: $offer_ids
         	}) {
@@ -103,7 +103,7 @@ extension hAnalyticsEvent {
 
         if let data = data {
           graphqlProperties = [
-            "TYPE_OF_CONTRACTS": try?
+            "type_of_contracts": try?
               (try? JMESExpression.compile(
                 "quoteBundle.quotes[*].typeOfContract | sort(@) | join(', ', @)"
               ))?.search(object: data)
