@@ -1,5 +1,5 @@
 const yaml = require('js-yaml');
-const fs   = require('fs');
+const fs = require('fs');
 const { format } = require("graphql-formatter")
 const { addMocksToSchema } = require("@graphql-tools/mock")
 const { introspectSchema } = require('@graphql-tools/wrap')
@@ -12,14 +12,14 @@ const executor = async ({ document, variables, context }) => {
     const query = print(document)
 
     const fetchResult = await fetch('https://graphql.dev.hedvigit.com/graphql', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ query, variables })
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ query, variables })
     })
     return fetchResult.json()
-  }
+}
 
 const mockRunGraphQLQuery = async (query, variables) => {
     const schema = await introspectSchema(executor)
@@ -32,15 +32,14 @@ const mockRunGraphQLQuery = async (query, variables) => {
 
 module.exports = {
     params: async () => {
-        const events = await Promise.all(yaml.load(fs.readFileSync(basename + 'analytics-events.yml', 'utf8')).events.map(async importPath => 
-            {
-                const event = yaml.load(fs.readFileSync(basename + importPath, 'utf8'))
+        const events = await Promise.all(yaml.load(fs.readFileSync(basename + 'analytics-events.yml', 'utf8')).events.map(async importPath => {
+            const event = yaml.load(fs.readFileSync(basename + importPath, 'utf8'))
 
-                if (event.graphql) {
-                    const variables = [
-                        event.inputs ?? [],
-                        event.constants ?? []
-                    ]
+            if (event.graphql) {
+                const variables = [
+                    event.inputs ?? [],
+                    event.constants ?? []
+                ]
                     .flatMap(i => i)
                     .filter(input => event.graphql.variables.includes(input.name))
                     .reduce((prev, curr) => {
@@ -56,7 +55,7 @@ module.exports = {
                                 break
                             case "Optional<Integer>":
                                 prev[curr.name] = 20
-                                break 
+                                break
                             case "Boolean":
                                 prev[curr.name] = true
                                 break
@@ -74,7 +73,7 @@ module.exports = {
                                 break
                             case "Array<Integer>":
                                 return prev[curr.name] = [20]
-                            break
+                                break
                             case "Array<Boolean>":
                                 prev[curr.name] = [true]
                                 break
@@ -97,19 +96,19 @@ module.exports = {
                         return prev
                     }, {})
 
-                    const result = await mockRunGraphQLQuery(
-                        event.graphql.query,
-                        variables ?? {}
-                    )
+                const result = await mockRunGraphQLQuery(
+                    event.graphql.query,
+                    variables ?? {}
+                )
 
-                    if (result.errors) {
-                        console.log(result)
-                        throw `Invalid graphql: ${event.graphql.query} in ${basename + importPath}`
-                    }
+                if (result.errors) {
+                    console.log(result)
+                    throw `Invalid graphql: ${event.graphql.query} in ${basename + importPath}`
                 }
-                
-                return event
             }
+
+            return event
+        }
         ))
 
         return {
