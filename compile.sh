@@ -43,4 +43,4 @@ fi
 
 java -jar ktfmt.jar --kotlinlang-style kotlin/src/main/kotlin/hAnalytics.kt
 
-npm run test
+npm run test -- --ci
