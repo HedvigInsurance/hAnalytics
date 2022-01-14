@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "test": "jest"
+  },
   "dependencies": {
     "@graphql-tools/mock": "^8.5.0",
     "@graphql-tools/schema": "^8.3.1",
@@ -13,5 +16,8 @@
     "js-yaml": "^4.1.0",
     "node-fetch": "^3.1.0",
     "validate-graphql": "^1.0.9"
+  },
+  "devDependencies": {
+    "jest": "^27.4.7"
   }
 }

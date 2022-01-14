@@ -3,11 +3,12 @@ set -e
 
 if [ -x /usr/local/bin/hygen ] 
 then
-    echo "Skipping installing npm stuff"
+    echo "Skipping installing hygen"
 else
-    npm install
     sudo npm i -g hygen
 fi
+
+npm install
 
 HYGEN_OVERWRITE=1 hygen generator hAnalytics
 
@@ -41,3 +42,5 @@ else
 fi
 
 java -jar ktfmt.jar --kotlinlang-style kotlin/src/main/kotlin/hAnalytics.kt
+
+npm run test

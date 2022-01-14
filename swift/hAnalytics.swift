@@ -40,9 +40,42 @@ extension hAnalyticsEvent {
     return AnalyticsClosure {
       let properties: [String: Any?] = [:]
 
-      hAnalyticsProviders.sendEvent(
-        hAnalyticsEvent(name: "screen_view_insurances", properties: properties)
-      )
+      let graphQLVariables: [String: Any?] = []
+
+      hAnalyticsProviders.performGraphQLQuery(
+        """
+        query ScreenViewInsurances {
+        	contracts {
+        		typeOfContract
+        	}
+        }
+        """,
+        graphQLVariables
+      ) { data in let graphqlProperties: [String: Any?]
+
+        if let data = data {
+          graphqlProperties = [
+            "has_accident_insurance": try?
+              (try? JMESExpression.compile(
+                "(contracts[?contains(typeOfContract, 'ACCIDENT') == `true`] && true) == true"
+              ))?.search(object: data),
+            "has_home_insurance": try?
+              (try? JMESExpression.compile(
+                "((contracts[?contains(typeOfContract, 'HOME') == `true`] || contracts[?contains(typeOfContract, 'APARTMENT') == `true`] || contracts[?contains(typeOfContract, 'HOUSE') == `true`]) && true) == true"
+              ))?.search(object: data),
+          ]
+        }
+        else {
+          graphqlProperties = [:]
+        }
+
+        hAnalyticsProviders.sendEvent(
+          hAnalyticsEvent(
+            name: "screen_view_insurances",
+            properties: properties.merging(graphqlProperties, uniquingKeysWith: { _, rhs in rhs })
+          )
+        )
+      }
     }
   }
 

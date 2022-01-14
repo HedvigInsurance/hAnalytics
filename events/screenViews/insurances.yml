@@ -1,3 +1,15 @@
 name: screen_view_insurances
 description: When Insurances tab is shown
 accessor: screenViewInsurances
+graphql:
+  query: |
+    query ScreenViewInsurances {
+      contracts {
+        typeOfContract
+      }
+    }
+  selectors:
+    - name: has_accident_insurance
+      path: "(contracts[?contains(typeOfContract, 'ACCIDENT') == `true`] && true) == true"
+    - name: has_home_insurance
+      path: "((contracts[?contains(typeOfContract, 'HOME') == `true`] || contracts[?contains(typeOfContract, 'APARTMENT') == `true`] || contracts[?contains(typeOfContract, 'HOUSE') == `true`]) && true) == true"

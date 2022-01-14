@@ -28,11 +28,31 @@ fun hAnalyticsEvent.Companion.screenViewInsurances(): AnalyticsClosure {
     return AnalyticsClosure {
         val properties: Map<String, Any?> = mapOf()
 
-        hAnalyticsProviders.sendEvent(
-            hAnalyticsEvent(
-                name = "screen_view_insurances",
-                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
-            )
+        val graphQLVariables: Map<String, Any?> = mapOf()
+
+        hAnalyticsProviders.performGraphQLQuery(
+            """
+                query ScreenViewInsurances {
+	contracts {
+		typeOfContract
+	}
+}
+                """,
+            graphQLVariables,
+            { data ->
+                val graphqlProperties: Map<String, Any?> =
+                    mapOf(
+                        "has_accident_insurance" to data?.getValue(path = ""),
+                        "has_home_insurance" to data?.getValue(path = ""),
+                    )
+
+                hAnalyticsProviders.sendEvent(
+                    hAnalyticsEvent(
+                        name = "screen_view_insurances",
+                        properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+                    )
+                )
+            }
         )
     }
 }
