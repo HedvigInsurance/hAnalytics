@@ -12,6 +12,18 @@ test('sets has_accident_insurance correctly for SE_ACCIDENT', () => {
     expect(event).toMatchSnapshot()
 });
 
+test('sets has_accident_insurance correctly for DK_ACCIDENT', () => {
+    const event = validateEvent(__filename, {
+        contracts: [
+            {
+                typeOfContract: "DK_ACCIDENT"
+            }
+        ]
+    })
+
+    expect(event).toMatchSnapshot()
+});
+
 test('sets has_home_insurance correctly for SE_APARTMENT', () => {
     const event = validateEvent(__filename, {
         contracts: [
