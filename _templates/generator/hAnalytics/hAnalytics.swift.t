@@ -49,7 +49,7 @@ extension hAnalyticsEvent {
                     <% graphQLConstants.forEach(function(constant) { %>
                             "<%= constant.name %>": <%= constant.value %>,
                     <% }); %>
-                    <%= !graphQLConstants && !graphQLInputs ? ":" : "" %>
+                    <%= graphQLConstants.length === 0 && graphQLInputs.length === 0 ? ":" : "" %>
                 ]
 
                 hAnalyticsProviders.performGraphQLQuery("""

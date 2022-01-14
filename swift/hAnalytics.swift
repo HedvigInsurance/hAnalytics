@@ -40,7 +40,7 @@ extension hAnalyticsEvent {
     return AnalyticsClosure {
       let properties: [String: Any?] = [:]
 
-      let graphQLVariables: [String: Any?] = []
+      let graphQLVariables: [String: Any?] = [:]
 
       hAnalyticsProviders.performGraphQLQuery(
         """
