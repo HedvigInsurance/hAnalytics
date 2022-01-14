@@ -1,5 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`sets has_accident_insurance correctly for DK_ACCIDENT 1`] = `
+Object {
+  "name": "screen_view_insurances",
+  "variables": Object {
+    "has_accident_insurance": true,
+    "has_home_insurance": false,
+  },
+}
+`;
+
 exports[`sets has_accident_insurance correctly for SE_ACCIDENT 1`] = `
 Object {
   "name": "screen_view_insurances",

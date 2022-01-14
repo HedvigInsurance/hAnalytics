@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`validate chooseEmbarkFlow 1`] = `
+Object {
+  "name": "onboarding_choose_embark_flow",
+  "variables": Object {
+    "embark_story_id": "embark_id",
+  },
+}
+`;

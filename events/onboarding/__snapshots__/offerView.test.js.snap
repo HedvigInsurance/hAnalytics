@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`one SE_ACCIDENT quote 1`] = `
+Object {
+  "name": "screen_view_offer",
+  "variables": Object {
+    "offer_ids": Array [
+      "123",
+    ],
+    "type_of_contracts": "SE_ACCIDENT",
+  },
+}
+`;
+
+exports[`two different quotes 1`] = `
+Object {
+  "name": "screen_view_offer",
+  "variables": Object {
+    "offer_ids": Array [
+      "123",
+      "12345",
+    ],
+    "type_of_contracts": "SE_ACCIDENT, SE_APARTMENT_BRF",
+  },
+}
+`;

@@ -1,7 +1,7 @@
 const validateEvent = require("../../commons/validate-event.js")
 
 test('sets has_accident_insurance correctly for SE_ACCIDENT', () => {
-    const event = validateEvent(__filename, {
+    const event = validateEvent(__filename, {}, {
         contracts: [
             {
                 typeOfContract: "SE_ACCIDENT"
@@ -13,7 +13,7 @@ test('sets has_accident_insurance correctly for SE_ACCIDENT', () => {
 });
 
 test('sets has_accident_insurance correctly for DK_ACCIDENT', () => {
-    const event = validateEvent(__filename, {
+    const event = validateEvent(__filename, {}, {
         contracts: [
             {
                 typeOfContract: "DK_ACCIDENT"
@@ -25,7 +25,7 @@ test('sets has_accident_insurance correctly for DK_ACCIDENT', () => {
 });
 
 test('sets has_home_insurance correctly for SE_APARTMENT', () => {
-    const event = validateEvent(__filename, {
+    const event = validateEvent(__filename, {}, {
         contracts: [
             {
                 typeOfContract: "SE_APARTMENT"
@@ -37,7 +37,7 @@ test('sets has_home_insurance correctly for SE_APARTMENT', () => {
 });
 
 test('sets has_home_insurance correctly for SE_HOUSE', () => {
-    const event = validateEvent(__filename, {
+    const event = validateEvent(__filename, {}, {
         contracts: [
             {
                 typeOfContract: "SE_HOUSE"
@@ -49,7 +49,7 @@ test('sets has_home_insurance correctly for SE_HOUSE', () => {
 });
 
 test('sets has_home_insurance correctly for NO_HOME_CONTENT_OWN', () => {
-    const event = validateEvent(__filename, {
+    const event = validateEvent(__filename, {}, {
         contracts: [
             {
                 typeOfContract: "NO_HOME_CONTENT_OWN"

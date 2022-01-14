@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`validate home 1`] = `
+Object {
+  "name": "screen_view_home",
+  "variables": Object {},
+}
+`;
