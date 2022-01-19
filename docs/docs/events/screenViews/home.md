@@ -5,5 +5,3 @@ When Home tab is shown
 
 | Name      | Type |
 | ----------- | ----------- |
-
-

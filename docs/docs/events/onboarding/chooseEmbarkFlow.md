@@ -6,4 +6,3 @@ When an embark flow is choosen on the choose screen
 | Name      | Type |
 | ----------- | ----------- |
 | embark_story_id      | String       |
-

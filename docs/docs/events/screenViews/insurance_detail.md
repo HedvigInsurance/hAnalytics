@@ -6,4 +6,3 @@ When detail screen of an insurance is shown
 | Name      | Type |
 | ----------- | ----------- |
 | contract_id      | String       |
-

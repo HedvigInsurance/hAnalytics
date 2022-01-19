@@ -6,4 +6,3 @@ When the detail screen of a cross sell is shown
 | Name      | Type |
 | ----------- | ----------- |
 | type_of_contract      | String       |
-

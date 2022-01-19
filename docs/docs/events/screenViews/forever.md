@@ -5,5 +5,3 @@ When Hedvig Forever is shown
 
 | Name      | Type |
 | ----------- | ----------- |
-
-

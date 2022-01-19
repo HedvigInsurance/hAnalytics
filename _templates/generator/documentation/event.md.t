@@ -9,5 +9,8 @@ to: docs/docs/<%= file %>.md
 
 | Name      | Type |
 | ----------- | ----------- |
-<%= [(event.inputs ?? []), (event.constants ?? [])].flatMap(i => i).map(input => `| ${input.name}      | ${input.type}       |`).join("\n") %>
-<%= (event.graphql?.selectors ?? []).map(input => `| ${input.name}      | Any       |`).join("\n") %>
+<%= [(event.inputs ?? []),
+    (event.constants ?? []),
+    (event.graphql?.selectors ?? []).map(selector => ({ name: selector.name, type: "Any" }))
+].flatMap(i => i).map(input => `| ${input.name}      | ${input.type}       |`).join("\r\n")
+%>

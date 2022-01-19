@@ -5,5 +5,3 @@ When Profile tab is shown
 
 | Name      | Type |
 | ----------- | ----------- |
-
-
