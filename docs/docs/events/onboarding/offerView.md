@@ -6,7 +6,7 @@ When Offer screen is shown
 | Name      | Type |
 | ----------- | ----------- |
 | offer_ids      | Array&lt;String&gt;       |
-| type_of_contracts      | Any       |
+| type_of_contracts      | string       |
 
 ## Swift
 

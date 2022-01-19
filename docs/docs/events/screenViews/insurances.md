@@ -5,8 +5,8 @@ When Insurances tab is shown
 
 | Name      | Type |
 | ----------- | ----------- |
-| has_accident_insurance      | Any       |
-| has_home_insurance      | Any       |
+| has_accident_insurance      | boolean       |
+| has_home_insurance      | boolean       |
 
 ## Swift
 

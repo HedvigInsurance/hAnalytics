@@ -11,7 +11,7 @@ to: docs/docs/<%= file %>.md
 | ----------- | ----------- |
 <%= [(event.inputs ?? []),
     (event.constants ?? []),
-    (event.graphql?.selectors ?? []).map(selector => ({ name: selector.name, type: "Any" }))
+    (graphqlResults ?? []).map(result => ({ name: result.name, type: typeof result.result }))
 ].flatMap(i => i).map(input => `| ${input.name}      | ${input.type}       |`).join("\r\n")
 %>
 
