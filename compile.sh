@@ -12,6 +12,10 @@ npm install
 
 HYGEN_OVERWRITE=1 hygen generator hAnalytics
 
+for file in $( find events -type f -name '*.yml' );
+    do HYGEN_OVERWRITE=1 hygen generator documentation --path $file
+done
+
 if [ -x /usr/local/bin/swift-format ] 
 then
     echo "Skipping installing swift-format"
