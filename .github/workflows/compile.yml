@@ -19,10 +19,10 @@ jobs:
           npm run build
 
       - name: Deploy 🚀
-          uses: JamesIves/github-pages-deploy-action@v4.2.2
-          with:
-            branch: gh-pages
-            folder: docs/build
+        uses: JamesIves/github-pages-deploy-action@v4.2.2
+        with:
+          branch: gh-pages
+          folder: docs/build
   build:
     runs-on: ubuntu-latest
 
