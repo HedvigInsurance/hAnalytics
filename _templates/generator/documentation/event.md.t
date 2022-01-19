@@ -1,5 +1,5 @@
 ---
-to: docs/docs/events/<%= event.name %>.md
+to: docs/docs/<%= file %>.md
 ---
 
 # <%= event.name %>
