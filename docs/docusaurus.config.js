@@ -23,7 +23,7 @@ const config = {
       ({
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          editUrl: 'https://github.com/HedvigInsurance/hAnalytics/tree/main/packages/create-docusaurus/templates/shared/',
+          editUrl: 'https://github.com/HedvigInsurance/hAnalytics/tree/main/docs/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),

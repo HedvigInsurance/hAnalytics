@@ -1,7 +1,14 @@
 # screen_view_forever
 When Hedvig Forever is shown
 
-## Parameters
+## Attributes
 
 | Name      | Type |
 | ----------- | ----------- |
+
+
+## Swift
+
+```swift
+hAnalyticsEvent.screenViewForever()
+```
