@@ -8,8 +8,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'hAnalytics',
   tagline: 'Unified Hedvig app-analytics',
-  url: 'https://hedviginsurance.github.io/hAnalytics',
-  baseUrl: '/',
+  url: 'https://hedviginsurance.github.io',
+  baseUrl: '/hAnalytics',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
