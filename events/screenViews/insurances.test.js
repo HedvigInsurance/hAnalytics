@@ -1,4 +1,4 @@
-const validateEvent = require("../../commons/validate-event.js")
+const validateEvent = require("../../commons/validateEvent.js")
 
 test('sets has_accident_insurance correctly for SE_ACCIDENT', () => {
     const event = validateEvent(__filename, {}, {

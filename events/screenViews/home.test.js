@@ -1,4 +1,4 @@
-const validateEvent = require("../../commons/validate-event.js")
+const validateEvent = require("../../commons/validateEvent.js")
 
 test('validate home', () => {
     const event = validateEvent(__filename)

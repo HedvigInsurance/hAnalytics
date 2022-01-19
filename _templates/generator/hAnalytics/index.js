@@ -3,7 +3,7 @@ const fs = require('fs');
 const { format } = require("graphql-formatter")
 const glob = require('glob')
 const typeMaps = require('../../../commons/typeMaps')
-const mockRunGraphQLQuery = require('../../../commons/mock_run_graphql_event')
+const mockRunGraphQLQuery = require('../../../commons/mockRunGraphqlEvent')
 
 const basename = __dirname + '/../../../'
 
