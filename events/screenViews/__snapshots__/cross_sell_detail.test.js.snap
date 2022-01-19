@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`validate cross_sell_detail 1`] = `
+Object {
+  "name": "screen_view_cross_sell_detail",
+  "variables": Object {
+    "type_of_contract": undefined,
+  },
+}
+`;

@@ -2,7 +2,7 @@ const yaml = require('js-yaml')
 const fs = require('fs')
 const jmespath = require('jmespath')
 
-module.exports = (path, inputData, graphqlData) => {
+module.exports = (path, inputData = {}, graphqlData) => {
     const event = yaml.load(fs.readFileSync(path.replace(".test.js", ".yml"), 'utf8'))
 
     const inputVariables = (event.inputs ?? []).reduce((acc, input) => {
