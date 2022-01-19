@@ -6,6 +6,7 @@ const { introspectSchema } = require('@graphql-tools/wrap')
 const { graphql, print } = require('graphql')
 const fetch = require('cross-fetch');
 const jmespath = require('jmespath');
+const glob = require('glob')
 
 const basename = __dirname + '/../../../'
 
@@ -33,7 +34,7 @@ const mockRunGraphQLQuery = async (query, variables) => {
 
 module.exports = {
     params: async () => {
-        const events = await Promise.all(yaml.load(fs.readFileSync(basename + 'analytics-events.yml', 'utf8')).events.map(async importPath => {
+        const importEvent = async importPath => {
             const event = yaml.load(fs.readFileSync(basename + importPath, 'utf8'))
 
             if (event.graphql) {
@@ -114,7 +115,13 @@ module.exports = {
 
             return event
         }
-        ))
+
+        const events = await new Promise((resolve) => {
+            glob("events/**/*.yml", {}, async (er, files) => {
+                const events = await Promise.all(files.map(importEvent))
+                resolve(events)
+            })
+        })
 
         return {
             events: events,

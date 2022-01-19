@@ -1,7 +1,0 @@
-events:
-  - events/screenViews/home.yml
-  - events/screenViews/insurances.yml
-  - events/screenViews/forever.yml
-  - events/screenViews/profile.yml
-  - events/onboarding/chooseEmbarkFlow.yml
-  - events/onboarding/offerView.yml

@@ -24,83 +24,6 @@ public struct AnalyticsClosure {
 
 extension hAnalyticsEvent {
 
-  /// When Home tab is shown
-  public static func screenViewHome() -> AnalyticsClosure {
-    return AnalyticsClosure {
-      let properties: [String: Any?] = [:]
-
-      hAnalyticsProviders.sendEvent(
-        hAnalyticsEvent(name: "screen_view_home", properties: properties)
-      )
-    }
-  }
-
-  /// When Insurances tab is shown
-  public static func screenViewInsurances() -> AnalyticsClosure {
-    return AnalyticsClosure {
-      let properties: [String: Any?] = [:]
-
-      let graphQLVariables: [String: Any?] = [:]
-
-      hAnalyticsProviders.performGraphQLQuery(
-        """
-        query ScreenViewInsurances {
-        	contracts {
-        		typeOfContract
-        	}
-        }
-        """,
-        graphQLVariables
-      ) { data in let graphqlProperties: [String: Any?]
-
-        if let data = data {
-          graphqlProperties = [
-            "has_accident_insurance": try?
-              (try? JMESExpression.compile(
-                "(contracts[?contains(typeOfContract, 'ACCIDENT') == `true`] && true) == true"
-              ))?.search(object: data),
-            "has_home_insurance": try?
-              (try? JMESExpression.compile(
-                "((contracts[?contains(typeOfContract, 'HOME') == `true`] || contracts[?contains(typeOfContract, 'APARTMENT') == `true`] || contracts[?contains(typeOfContract, 'HOUSE') == `true`]) && true) == true"
-              ))?.search(object: data),
-          ]
-        }
-        else {
-          graphqlProperties = [:]
-        }
-
-        hAnalyticsProviders.sendEvent(
-          hAnalyticsEvent(
-            name: "screen_view_insurances",
-            properties: properties.merging(graphqlProperties, uniquingKeysWith: { _, rhs in rhs })
-          )
-        )
-      }
-    }
-  }
-
-  /// When Hedvig Forever is shown
-  public static func screenViewForever() -> AnalyticsClosure {
-    return AnalyticsClosure {
-      let properties: [String: Any?] = [:]
-
-      hAnalyticsProviders.sendEvent(
-        hAnalyticsEvent(name: "screen_view_forever", properties: properties)
-      )
-    }
-  }
-
-  /// When Profile tab is shown
-  public static func screenViewProfile() -> AnalyticsClosure {
-    return AnalyticsClosure {
-      let properties: [String: Any?] = [:]
-
-      hAnalyticsProviders.sendEvent(
-        hAnalyticsEvent(name: "screen_view_profile", properties: properties)
-      )
-    }
-  }
-
   /// When an embark flow is choosen on the choose screen
   public static func onboardingChooseEmbarkFlow(embarkStoryId: String) -> AnalyticsClosure {
     return AnalyticsClosure {
@@ -153,6 +76,105 @@ extension hAnalyticsEvent {
           )
         )
       }
+    }
+  }
+
+  /// When the detail screen of a cross sell is shown
+  public static func screenViewCrossSellDetail(typeOfContract: String) -> AnalyticsClosure {
+    return AnalyticsClosure {
+      let properties: [String: Any?] = ["type_of_contract": typeOfContract]
+
+      hAnalyticsProviders.sendEvent(
+        hAnalyticsEvent(name: "screen_view_cross_sell_detail", properties: properties)
+      )
+    }
+  }
+
+  /// When Hedvig Forever is shown
+  public static func screenViewForever() -> AnalyticsClosure {
+    return AnalyticsClosure {
+      let properties: [String: Any?] = [:]
+
+      hAnalyticsProviders.sendEvent(
+        hAnalyticsEvent(name: "screen_view_forever", properties: properties)
+      )
+    }
+  }
+
+  /// When Home tab is shown
+  public static func screenViewHome() -> AnalyticsClosure {
+    return AnalyticsClosure {
+      let properties: [String: Any?] = [:]
+
+      hAnalyticsProviders.sendEvent(
+        hAnalyticsEvent(name: "screen_view_home", properties: properties)
+      )
+    }
+  }
+
+  /// When detail screen of an insurance is shown
+  public static func screenViewInsuranceDetail(contractId: String) -> AnalyticsClosure {
+    return AnalyticsClosure {
+      let properties: [String: Any?] = ["contract_id": contractId]
+
+      hAnalyticsProviders.sendEvent(
+        hAnalyticsEvent(name: "screen_view_insurance_detail", properties: properties)
+      )
+    }
+  }
+
+  /// When Insurances tab is shown
+  public static func screenViewInsurances() -> AnalyticsClosure {
+    return AnalyticsClosure {
+      let properties: [String: Any?] = [:]
+
+      let graphQLVariables: [String: Any?] = [:]
+
+      hAnalyticsProviders.performGraphQLQuery(
+        """
+        query ScreenViewInsurances {
+        	contracts {
+        		typeOfContract
+        	}
+        }
+        """,
+        graphQLVariables
+      ) { data in let graphqlProperties: [String: Any?]
+
+        if let data = data {
+          graphqlProperties = [
+            "has_accident_insurance": try?
+              (try? JMESExpression.compile(
+                "(contracts[?contains(typeOfContract, 'ACCIDENT') == `true`] && true) == true"
+              ))?.search(object: data),
+            "has_home_insurance": try?
+              (try? JMESExpression.compile(
+                "((contracts[?contains(typeOfContract, 'HOME') == `true`] || contracts[?contains(typeOfContract, 'APARTMENT') == `true`] || contracts[?contains(typeOfContract, 'HOUSE') == `true`]) && true) == true"
+              ))?.search(object: data),
+          ]
+        }
+        else {
+          graphqlProperties = [:]
+        }
+
+        hAnalyticsProviders.sendEvent(
+          hAnalyticsEvent(
+            name: "screen_view_insurances",
+            properties: properties.merging(graphqlProperties, uniquingKeysWith: { _, rhs in rhs })
+          )
+        )
+      }
+    }
+  }
+
+  /// When Profile tab is shown
+  public static func screenViewProfile() -> AnalyticsClosure {
+    return AnalyticsClosure {
+      let properties: [String: Any?] = [:]
+
+      hAnalyticsProviders.sendEvent(
+        hAnalyticsEvent(name: "screen_view_profile", properties: properties)
+      )
     }
   }
 
