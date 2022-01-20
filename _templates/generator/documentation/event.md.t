@@ -1,8 +1,6 @@
 ---
-to: docs/docs/<%= file %>.mdx
+to: docs/docs/<%= file %>.md
 ---
-import { GithubStatus } from '../../../src/components/GithubStatus'
-
 # <%= event.name %>
 <%= event.description %>
 
@@ -32,5 +30,7 @@ hAnalyticsEvent.Companion.<%= event.accessor %>(<%= (event.inputs ?? []).map((in
 
 | Platform      | Status |
 | ----------- | ----------- |
-| iOS      | <GithubStatus query="hAnalyticsEvent.<%= event.accessor %> in:file repo:HedvigInsurance/Ugglan" />       |
-| Android      | <GithubStatus query="hAnalyticsEvent.Companion.<%= event.accessor %> in:file repo:HedvigInsurance/Android" />       |
+| iOS      |    <%= integrationStatus.ios ? "Yes" : "No" %>    |
+| Android      | <%= integrationStatus.android ? "Yes" : "No" %>       |
+
+Integration status was last checked on <%= integrationStatus.lastUpdated %>

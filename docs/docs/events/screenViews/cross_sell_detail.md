@@ -1,5 +1,3 @@
-import { GithubStatus } from '../../../src/components/GithubStatus'
-
 # screen_view_cross_sell_detail
 When the detail screen of a cross sell is shown
 
@@ -15,9 +13,17 @@ When the detail screen of a cross sell is shown
 hAnalyticsEvent.screenViewCrossSellDetail(typeOfContract: String)
 ```
 
+## Kotlin
+
+```kotlin
+hAnalyticsEvent.Companion.screenViewCrossSellDetail(typeOfContract: String)
+```
+
 ## Integration status
 
 | Platform      | Status |
 | ----------- | ----------- |
-| iOS      | <GithubStatus query="hAnalyticsEvent.screenViewCrossSellDetail in:file repo:HedvigInsurance/Ugglan" />       |
-| Android      | <GithubStatus query="hAnalyticsEvent.Companion.screenViewCrossSellDetail in:file repo:HedvigInsurance/Android" />       |
+| iOS      |    No    |
+| Android      | No       |
+
+Integration status was last checked on 2022-1-20

@@ -1,5 +1,3 @@
-import { GithubStatus } from '../../../src/components/GithubStatus'
-
 # claims_status_detail_screen_view
 When the claims status detail screen is shown
 
@@ -15,9 +13,17 @@ When the claims status detail screen is shown
 hAnalyticsEvent.claimsStatusDetailScreenView(claimId: String)
 ```
 
+## Kotlin
+
+```kotlin
+hAnalyticsEvent.Companion.claimsStatusDetailScreenView(claimId: String)
+```
+
 ## Integration status
 
 | Platform      | Status |
 | ----------- | ----------- |
-| iOS      | <GithubStatus query="hAnalyticsEvent.claimsStatusDetailScreenView in:file repo:HedvigInsurance/Ugglan" />       |
-| Android      | <GithubStatus query="hAnalyticsEvent.Companion.claimsStatusDetailScreenView in:file repo:HedvigInsurance/Android" />       |
+| iOS      |    No    |
+| Android      | No       |
+
+Integration status was last checked on 2022-1-20

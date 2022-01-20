@@ -1,5 +1,3 @@
-import { GithubStatus } from '../../../src/components/GithubStatus'
-
 # claim_card_visible
 When a claim card has been shown on screen
 
@@ -15,9 +13,17 @@ When a claim card has been shown on screen
 hAnalyticsEvent.claimCardVisible(claimId: String)
 ```
 
+## Kotlin
+
+```kotlin
+hAnalyticsEvent.Companion.claimCardVisible(claimId: String)
+```
+
 ## Integration status
 
 | Platform      | Status |
 | ----------- | ----------- |
-| iOS      | <GithubStatus query="hAnalyticsEvent.claimCardVisible in:file repo:HedvigInsurance/Ugglan" />       |
-| Android      | <GithubStatus query="hAnalyticsEvent.Companion.claimCardVisible in:file repo:HedvigInsurance/Android" />       |
+| iOS      |    No    |
+| Android      | No       |
+
+Integration status was last checked on 2022-1-20

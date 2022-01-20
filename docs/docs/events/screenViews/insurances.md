@@ -1,5 +1,3 @@
-import { GithubStatus } from '../../../src/components/GithubStatus'
-
 # screen_view_insurances
 When Insurances tab is shown
 
@@ -16,9 +14,17 @@ When Insurances tab is shown
 hAnalyticsEvent.screenViewInsurances()
 ```
 
+## Kotlin
+
+```kotlin
+hAnalyticsEvent.Companion.screenViewInsurances()
+```
+
 ## Integration status
 
 | Platform      | Status |
 | ----------- | ----------- |
-| iOS      | <GithubStatus query="hAnalyticsEvent.screenViewInsurances in:file repo:HedvigInsurance/Ugglan" />       |
-| Android      | <GithubStatus query="hAnalyticsEvent.Companion.screenViewInsurances in:file repo:HedvigInsurance/Android" />       |
+| iOS      |    No    |
+| Android      | No       |
+
+Integration status was last checked on 2022-1-20

@@ -1,5 +1,3 @@
-import { GithubStatus } from '../../../src/components/GithubStatus'
-
 # screen_view_offer
 When Offer screen is shown
 
@@ -16,9 +14,17 @@ When Offer screen is shown
 hAnalyticsEvent.screenViewOffer(offerIds: [String])
 ```
 
+## Kotlin
+
+```kotlin
+hAnalyticsEvent.Companion.screenViewOffer(offerIds: Array&lt;String&gt;)
+```
+
 ## Integration status
 
 | Platform      | Status |
 | ----------- | ----------- |
-| iOS      | <GithubStatus query="hAnalyticsEvent.screenViewOffer in:file repo:HedvigInsurance/Ugglan" />       |
-| Android      | <GithubStatus query="hAnalyticsEvent.Companion.screenViewOffer in:file repo:HedvigInsurance/Android" />       |
+| iOS      |    No    |
+| Android      | No       |
+
+Integration status was last checked on 2022-1-20
