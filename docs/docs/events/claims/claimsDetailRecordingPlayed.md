@@ -26,4 +26,8 @@ hAnalyticsEvent.Companion.claimsDetailRecordingPlayed(claimId: String)
 | iOS      |    No    |
 | Android      | No       |
 
+<<<<<<< HEAD
 Integration status was last checked on 2022-01-20 15:12:19
+=======
+Integration status was last checked on 2022-01-20 14:03:46
+>>>>>>> de3bdb940e723b2119c015826a7cbf564cc2080b
