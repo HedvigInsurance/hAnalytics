@@ -8,7 +8,7 @@ export const GithubStatus = (props) => {
 
     useEffect(async () => {
         const result = await octokit.request('GET /search/code', {
-            q: `${props.query} in:file org:HedvigInsurance`
+            q: props.query
         })
 
         setIntegrated(result.data.total_count > 0)

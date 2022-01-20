@@ -26,5 +26,5 @@ hAnalyticsEvent.<%= event.accessor %>(<%= (event.inputs ?? []).map((input) => `$
 
 | Platform      | Status |
 | ----------- | ----------- |
-| iOS      | <GithubStatus query="hAnalyticsEvent.<%= event.accessor %>" />       |
-| Android      | <GithubStatus query="hAnalyticsEvent.Companion.<%= event.accessor %>" />       |
+| iOS      | <GithubStatus query="hAnalyticsEvent.<%= event.accessor %> in:file repo:HedvigInsurance/Ugglan" />       |
+| Android      | <GithubStatus query="hAnalyticsEvent.Companion.<%= event.accessor %> in:file repo:HedvigInsurance/Android" />       |
