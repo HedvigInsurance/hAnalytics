@@ -23,7 +23,7 @@ hAnalyticsEvent.Companion.onboardingChooseEmbarkFlow(embarkStoryId: String)
 
 | Platform      | Status |
 | ----------- | ----------- |
-| iOS      |    No    |
+| iOS      |    Yes    |
 | Android      | No       |
 
-Integration status was last checked on 2022-1-20
+Integration status was last checked on 2022-01-20 14:03:43
