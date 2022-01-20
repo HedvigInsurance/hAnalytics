@@ -8,17 +8,17 @@ const octokit = new Octokit({
     auth: process.env.GITHUB_TOKEN
 })
 
-const getIntegrationStatus = async () => {
+const getIntegrationStatus = async (event) => {
     const today = new Date();
     const lastUpdated = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 
     try {
         const iosResult = await octokit.request('GET /search/code', {
-            q: props.query
+            q: `hAnalyticsEvent.${event.accessor} in:file repo:HedvigInsurance/Ugglan`
         })
 
         const androidResult = await octokit.request('GET /search/code', {
-            q: props.query
+            q: `hAnalyticsEvent.Companion.${event.accessor} in:file repo:HedvigInsurance/Android`
         })
 
         return {
@@ -45,7 +45,7 @@ module.exports = {
             event,
             graphqlResults: graphqlResults,
             file: args.path.replace(".yml", ""),
-            integrationStatus: await getIntegrationStatus(),
+            integrationStatus: await getIntegrationStatus(event),
             ...typeMaps
         }
     }
