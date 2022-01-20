@@ -24,6 +24,17 @@ public struct AnalyticsClosure {
 
 extension hAnalyticsEvent {
 
+  /// When a claim card has been clicked on screen
+  public static func claimCardClick(claimId: String, claimStatus: String) -> AnalyticsClosure {
+    return AnalyticsClosure {
+      let properties: [String: Any?] = ["claim_id": claimId, "claim_status": claimStatus]
+
+      hAnalyticsProviders.sendEvent(
+        hAnalyticsEvent(name: "claim_card_click", properties: properties)
+      )
+    }
+  }
+
   /// When a claim card has been shown on screen
   public static func claimCardVisible(claimId: String) -> AnalyticsClosure {
     return AnalyticsClosure {
