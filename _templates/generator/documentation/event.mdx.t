@@ -22,6 +22,12 @@ import { GithubStatus } from '../../../src/components/GithubStatus'
 hAnalyticsEvent.<%= event.accessor %>(<%= (event.inputs ?? []).map((input) => `${input.argument}: ${swiftTypeMap[input.type]}`).join(",") %>)
 ```
 
+## Kotlin
+
+```kotlin
+hAnalyticsEvent.Companion.<%= event.accessor %>(<%= (event.inputs ?? []).map((input) => `${input.argument}: ${kotlinTypeMap[input.type]}`).join(",") %>)
+```
+
 ## Integration status
 
 | Platform      | Status |
