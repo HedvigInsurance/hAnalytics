@@ -27,4 +27,4 @@ hAnalyticsEvent.Companion.quotesSigned(quoteIds: Array&lt;String&gt;)
 | iOS      |    No    |
 | Android      | No       |
 
-Integration status was last checked on 2022-01-20 15:23:54
+Integration status was last checked on 2022-01-20 15:26:03
