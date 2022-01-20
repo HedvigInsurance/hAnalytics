@@ -12,6 +12,8 @@ npm install
 
 HYGEN_OVERWRITE=1 hygen generator hAnalytics
 
+rm -rf docs/docs/events
+
 for file in $( find events -type f -name '*.yml' );
     do HYGEN_OVERWRITE=1 hygen generator documentation --path $file
 done

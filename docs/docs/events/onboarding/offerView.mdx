@@ -1,0 +1,24 @@
+import { GithubStatus } from '../../../src/components/GithubStatus'
+
+# screen_view_offer
+When Offer screen is shown
+
+## Attributes
+
+| Name      | Type |
+| ----------- | ----------- |
+| offer_ids      | Array&lt;String&gt;       |
+| type_of_contracts      | string       |
+
+## Swift
+
+```swift
+hAnalyticsEvent.screenViewOffer(offerIds: [String])
+```
+
+## Integration status
+
+| Platform      | Status |
+| ----------- | ----------- |
+| iOS      | <GithubStatus query="hAnalyticsEvent.screenViewOffer" />       |
+| Android      | <GithubStatus query="hAnalyticsEvent.Companion.screenViewOffer" />       |

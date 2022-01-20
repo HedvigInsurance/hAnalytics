@@ -1,0 +1,23 @@
+import { GithubStatus } from '../../../src/components/GithubStatus'
+
+# claims_detail_recording_played
+When a claims recording has been played in the claims status screen
+
+## Attributes
+
+| Name      | Type |
+| ----------- | ----------- |
+| claim_id      | String       |
+
+## Swift
+
+```swift
+hAnalyticsEvent.claimsDetailRecordingPlayed(claimId: String)
+```
+
+## Integration status
+
+| Platform      | Status |
+| ----------- | ----------- |
+| iOS      | <GithubStatus query="hAnalyticsEvent.claimsDetailRecordingPlayed" />       |
+| Android      | <GithubStatus query="hAnalyticsEvent.Companion.claimsDetailRecordingPlayed" />       |

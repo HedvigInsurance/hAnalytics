@@ -1,6 +1,7 @@
 ---
-to: docs/docs/<%= file %>.md
+to: docs/docs/<%= file %>.mdx
 ---
+import { GithubStatus } from '../../../src/components/GithubStatus'
 
 # <%= event.name %>
 <%= event.description %>
@@ -20,3 +21,10 @@ to: docs/docs/<%= file %>.md
 ```swift
 hAnalyticsEvent.<%= event.accessor %>(<%= (event.inputs ?? []).map((input) => `${input.argument}: ${swiftTypeMap[input.type]}`).join(",") %>)
 ```
+
+## Integration status
+
+| Platform      | Status |
+| ----------- | ----------- |
+| iOS      | <GithubStatus query="hAnalyticsEvent.<%= event.accessor %>" />       |
+| Android      | <GithubStatus query="hAnalyticsEvent.Companion.<%= event.accessor %>" />       |
