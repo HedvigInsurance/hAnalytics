@@ -26,4 +26,4 @@ hAnalyticsEvent.Companion.claimsStatusDetailScreenView(claimId: String)
 | iOS      |    No    |
 | Android      | No       |
 
-Integration status was last checked on 2022-01-20 13:54:57
+Integration status was last checked on 2022-01-20 14:03:47

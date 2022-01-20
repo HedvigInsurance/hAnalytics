@@ -24,7 +24,7 @@ hAnalyticsEvent.Companion.screenViewOffer(offerIds: Array&lt;String&gt;)
 
 | Platform      | Status |
 | ----------- | ----------- |
-| iOS      |    No    |
+| iOS      |    Yes    |
 | Android      | No       |
 
-Integration status was last checked on 2022-01-20 13:54:55
+Integration status was last checked on 2022-01-20 14:03:45

@@ -23,7 +23,7 @@ hAnalyticsEvent.Companion.screenViewProfile()
 
 | Platform      | Status |
 | ----------- | ----------- |
-| iOS      |    No    |
+| iOS      |    Yes    |
 | Android      | No       |
 
-Integration status was last checked on 2022-01-20 13:54:51
+Integration status was last checked on 2022-01-20 14:03:42

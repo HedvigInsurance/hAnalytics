@@ -26,4 +26,4 @@ hAnalyticsEvent.Companion.screenViewInsuranceDetail(contractId: String)
 | iOS      |    No    |
 | Android      | No       |
 
-Integration status was last checked on 2022-01-20 13:54:52
+Integration status was last checked on 2022-01-20 14:03:42
