@@ -200,6 +200,17 @@ extension hAnalyticsEvent {
     }
   }
 
+  /// When moving flow intro screen is shown
+  public static func screenViewMovingFlowIntro() -> AnalyticsClosure {
+    return AnalyticsClosure {
+      let properties: [String: Any?] = [:]
+
+      hAnalyticsProviders.sendEvent(
+        hAnalyticsEvent(name: "screen_view_moving_flow_intro", properties: properties)
+      )
+    }
+  }
+
   /// When Profile tab is shown
   public static func screenViewProfile() -> AnalyticsClosure {
     return AnalyticsClosure {

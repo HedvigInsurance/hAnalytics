@@ -216,6 +216,20 @@ fun hAnalyticsEvent.Companion.screenViewInsurances(): AnalyticsClosure {
     }
 }
 
+/** When moving flow intro screen is shown */
+fun hAnalyticsEvent.Companion.screenViewMovingFlowIntro(): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> = mapOf()
+
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "screen_view_moving_flow_intro",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
+
 /** When Profile tab is shown */
 fun hAnalyticsEvent.Companion.screenViewProfile(): AnalyticsClosure {
     return AnalyticsClosure {

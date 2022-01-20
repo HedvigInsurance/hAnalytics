@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`validate insurance detail 1`] = `
+exports[`validate insuranceDetail 1`] = `
 Object {
   "name": "screen_view_insurance_detail",
   "variables": Object {

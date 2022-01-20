@@ -1,5 +1,5 @@
-# screen_view_home
-When Home tab is shown
+# screen_view_moving_flow_intro
+When moving flow intro screen is shown
 
 ## Attributes
 
@@ -10,13 +10,13 @@ When Home tab is shown
 ## Swift
 
 ```swift
-hAnalyticsEvent.screenViewHome()
+hAnalyticsEvent.screenViewMovingFlowIntro()
 ```
 
 ## Kotlin
 
 ```kotlin
-hAnalyticsEvent.Companion.screenViewHome()
+hAnalyticsEvent.Companion.screenViewMovingFlowIntro()
 ```
 
 ## Integration status
@@ -26,4 +26,4 @@ hAnalyticsEvent.Companion.screenViewHome()
 | iOS      |    No    |
 | Android      | No       |
 
-Integration status was last checked on 2022-01-20 15:12:17
+Integration status was last checked on 2022-01-20 15:12:13

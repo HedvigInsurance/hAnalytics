@@ -27,4 +27,4 @@ hAnalyticsEvent.Companion.screenViewInsurances()
 | iOS      |    No    |
 | Android      | No       |
 
-Integration status was last checked on 2022-01-20 13:54:51
+Integration status was last checked on 2022-01-20 15:12:17

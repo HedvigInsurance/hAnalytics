@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`validate movingFlowIntro 1`] = `
+Object {
+  "name": "screen_view_moving_flow_intro",
+  "variables": Object {},
+}
+`;
