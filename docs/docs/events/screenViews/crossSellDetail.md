@@ -26,8 +26,4 @@ hAnalyticsEvent.Companion.screenViewCrossSellDetail(typeOfContract: String)
 | iOS      |    No    |
 | Android      | No       |
 
-<<<<<<< HEAD:docs/docs/events/screenViews/crossSellDetail.md
-Integration status was last checked on 2022-01-20 15:12:16
-=======
-Integration status was last checked on 2022-01-20 14:03:40
->>>>>>> de3bdb940e723b2119c015826a7cbf564cc2080b:docs/docs/events/screenViews/cross_sell_detail.md
+Integration status was last checked on 2022-01-20 15:14:55
