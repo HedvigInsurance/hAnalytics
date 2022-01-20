@@ -9,8 +9,7 @@ const octokit = new Octokit({
 })
 
 const getIntegrationStatus = async (event) => {
-    const today = new Date();
-    const lastUpdated = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    const lastUpdated = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '')
 
     try {
         const iosResult = await octokit.request('GET /search/code', {
