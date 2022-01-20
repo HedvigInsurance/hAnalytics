@@ -26,4 +26,4 @@ hAnalyticsEvent.Companion.screenViewHome()
 | iOS      |    No    |
 | Android      | No       |
 
-Integration status was last checked on 2022-1-20
+Integration status was last checked on 2022-01-20 13:54:52
