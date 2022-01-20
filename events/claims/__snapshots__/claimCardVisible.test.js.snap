@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`validate claimCardVisible 1`] = `
+Object {
+  "name": "claim_card_visible",
+  "variables": Object {
+    "claim_id": "id_of_claim",
+  },
+}
+`;

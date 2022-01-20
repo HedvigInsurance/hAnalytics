@@ -24,6 +24,39 @@ public struct AnalyticsClosure {
 
 extension hAnalyticsEvent {
 
+  /// When a claim card has been shown on screen
+  public static func claimCardVisible(claimId: String) -> AnalyticsClosure {
+    return AnalyticsClosure {
+      let properties: [String: Any?] = ["claim_id": claimId]
+
+      hAnalyticsProviders.sendEvent(
+        hAnalyticsEvent(name: "claim_card_visible", properties: properties)
+      )
+    }
+  }
+
+  /// When a claims recording has been played in the claims status screen
+  public static func claimsDetailRecordingPlayed(claimId: String) -> AnalyticsClosure {
+    return AnalyticsClosure {
+      let properties: [String: Any?] = ["claim_id": claimId]
+
+      hAnalyticsProviders.sendEvent(
+        hAnalyticsEvent(name: "claims_detail_recording_played", properties: properties)
+      )
+    }
+  }
+
+  /// When the claims status detail screen is shown
+  public static func claimsStatusDetailScreenView(claimId: String) -> AnalyticsClosure {
+    return AnalyticsClosure {
+      let properties: [String: Any?] = ["claim_id": claimId]
+
+      hAnalyticsProviders.sendEvent(
+        hAnalyticsEvent(name: "claims_status_detail_screen_view", properties: properties)
+      )
+    }
+  }
+
   /// When an embark flow is choosen on the choose screen
   public static func onboardingChooseEmbarkFlow(embarkStoryId: String) -> AnalyticsClosure {
     return AnalyticsClosure {

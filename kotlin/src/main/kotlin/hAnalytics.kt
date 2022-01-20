@@ -9,6 +9,57 @@ data class hAnalyticsEvent(internal val name: String, internal val properties: M
 
 data class AnalyticsClosure(internal val send: () -> Unit)
 
+/** When a claim card has been shown on screen */
+fun hAnalyticsEvent.Companion.claimCardVisible(claimId: String): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> =
+            mapOf(
+                "claim_id" to claimId,
+            )
+
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "claim_card_visible",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
+
+/** When a claims recording has been played in the claims status screen */
+fun hAnalyticsEvent.Companion.claimsDetailRecordingPlayed(claimId: String): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> =
+            mapOf(
+                "claim_id" to claimId,
+            )
+
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "claims_detail_recording_played",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
+
+/** When the claims status detail screen is shown */
+fun hAnalyticsEvent.Companion.claimsStatusDetailScreenView(claimId: String): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> =
+            mapOf(
+                "claim_id" to claimId,
+            )
+
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "claims_status_detail_screen_view",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
+
 /** When an embark flow is choosen on the choose screen */
 fun hAnalyticsEvent.Companion.onboardingChooseEmbarkFlow(embarkStoryId: String): AnalyticsClosure {
     return AnalyticsClosure {

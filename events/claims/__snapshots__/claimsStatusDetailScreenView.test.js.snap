@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`validate claimsStatusDetailScreenView 1`] = `
+Object {
+  "name": "claims_status_detail_screen_view",
+  "variables": Object {
+    "claim_id": "id_of_claim",
+  },
+}
+`;

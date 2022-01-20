@@ -1,0 +1,7 @@
+name: claim_card_visible
+description: When a claim card has been shown on screen
+accessor: claimCardVisible
+inputs:
+  - name: claim_id
+    type: String
+    argument: claimId
