@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`signed one SE_ACCIDENT quote 1`] = `
+Object {
+  "name": "quotes_signed",
+  "variables": Object {
+    "quote_ids": Array [
+      "123",
+    ],
+    "type_of_contracts": "SE_ACCIDENT",
+  },
+}
+`;
+
+exports[`signed two quotes 1`] = `
+Object {
+  "name": "quotes_signed",
+  "variables": Object {
+    "quote_ids": Array [
+      "123",
+      "12333",
+    ],
+    "type_of_contracts": "SE_ACCIDENT, SE_HOUSE",
+  },
+}
+`;

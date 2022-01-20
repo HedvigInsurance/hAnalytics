@@ -60,6 +60,49 @@ fun hAnalyticsEvent.Companion.claimsStatusDetailScreenView(claimId: String): Ana
     }
 }
 
+/** When quotes are signed in the offer screen */
+fun hAnalyticsEvent.Companion.quotesSigned(quoteIds: Array<String>): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> =
+            mapOf(
+                "quote_ids" to quoteIds,
+            )
+
+        val graphQLVariables: Map<String, Any?> =
+            mapOf(
+                "quote_ids" to quoteIds,
+            )
+
+        hAnalyticsProviders.performGraphQLQuery(
+            """
+                query QuotesSigned($quote_ids: [ID!]!) {
+	quoteBundle(input: {
+		ids: $quote_ids
+	}) {
+		quotes {
+			typeOfContract
+		}
+	}
+}
+                """,
+            graphQLVariables,
+            { data ->
+                val graphqlProperties: Map<String, Any?> =
+                    mapOf(
+                        "type_of_contracts" to data?.getValue(path = ""),
+                    )
+
+                hAnalyticsProviders.sendEvent(
+                    hAnalyticsEvent(
+                        name = "quotes_signed",
+                        properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+                    )
+                )
+            }
+        )
+    }
+}
+
 /** When an embark flow is choosen on the choose screen */
 fun hAnalyticsEvent.Companion.onboardingChooseEmbarkFlow(embarkStoryId: String): AnalyticsClosure {
     return AnalyticsClosure {

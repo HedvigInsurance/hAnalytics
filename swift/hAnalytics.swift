@@ -57,6 +57,50 @@ extension hAnalyticsEvent {
     }
   }
 
+  /// When quotes are signed in the offer screen
+  public static func quotesSigned(quoteIds: [String]) -> AnalyticsClosure {
+    return AnalyticsClosure {
+      let properties: [String: Any?] = ["quote_ids": quoteIds]
+
+      let graphQLVariables: [String: Any?] = ["quote_ids": quoteIds]
+
+      hAnalyticsProviders.performGraphQLQuery(
+        """
+        query QuotesSigned($quote_ids: [ID!]!) {
+        	quoteBundle(input: {
+        		ids: $quote_ids
+        	}) {
+        		quotes {
+        			typeOfContract
+        		}
+        	}
+        }
+        """,
+        graphQLVariables
+      ) { data in let graphqlProperties: [String: Any?]
+
+        if let data = data {
+          graphqlProperties = [
+            "type_of_contracts": try?
+              (try? JMESExpression.compile(
+                "quoteBundle.quotes[*].typeOfContract | sort(@) | join(', ', @)"
+              ))?.search(object: data)
+          ]
+        }
+        else {
+          graphqlProperties = [:]
+        }
+
+        hAnalyticsProviders.sendEvent(
+          hAnalyticsEvent(
+            name: "quotes_signed",
+            properties: properties.merging(graphqlProperties, uniquingKeysWith: { _, rhs in rhs })
+          )
+        )
+      }
+    }
+  }
+
   /// When an embark flow is choosen on the choose screen
   public static func onboardingChooseEmbarkFlow(embarkStoryId: String) -> AnalyticsClosure {
     return AnalyticsClosure {

@@ -1,0 +1,23 @@
+name: quotes_signed
+description: When quotes are signed in the offer screen
+accessor: quotesSigned
+inputs:
+  - name: quote_ids
+    type: Array<String>
+    argument: quoteIds
+graphql:
+  query: |
+    query QuotesSigned($quote_ids: [ID!]!) {
+      quoteBundle(input: {
+        ids: $quote_ids
+      }) {
+        quotes {
+          typeOfContract
+        }
+      }
+    }
+  variables:
+    - quote_ids
+  selectors:
+    - name: type_of_contracts
+      path: quoteBundle.quotes[*].typeOfContract | sort(@) | join(', ', @)

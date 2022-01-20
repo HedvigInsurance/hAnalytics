@@ -1,23 +1,23 @@
-# screen_view_offer
-When Offer screen is shown
+# quotes_signed
+When quotes are signed in the offer screen
 
 ## Attributes
 
 | Name      | Type |
 | ----------- | ----------- |
-| offer_ids      | Array&lt;String&gt;       |
+| quote_ids      | Array&lt;String&gt;       |
 | type_of_contracts      | string       |
 
 ## Swift
 
 ```swift
-hAnalyticsEvent.screenViewOffer(offerIds: [String])
+hAnalyticsEvent.quotesSigned(quoteIds: [String])
 ```
 
 ## Kotlin
 
 ```kotlin
-hAnalyticsEvent.Companion.screenViewOffer(offerIds: Array&lt;String&gt;)
+hAnalyticsEvent.Companion.quotesSigned(quoteIds: Array&lt;String&gt;)
 ```
 
 ## Integration status
@@ -27,4 +27,4 @@ hAnalyticsEvent.Companion.screenViewOffer(offerIds: Array&lt;String&gt;)
 | iOS      |    No    |
 | Android      | No       |
 
-Integration status was last checked on 2022-01-20 15:23:59
+Integration status was last checked on 2022-01-20 15:23:54
