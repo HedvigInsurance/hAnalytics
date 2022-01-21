@@ -27,4 +27,4 @@ hAnalyticsEvent.Companion.claimCardClick(claimId: String,claimStatus: String)
 | iOS      |    No    |
 | Android      | No       |
 
-Integration status was last checked on 2022-01-21 09:53:56
+Integration status was last checked on 2022-01-21 10:06:34
