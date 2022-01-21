@@ -167,6 +167,34 @@ fun hAnalyticsEvent.Companion.screenViewOffer(offerIds: Array<String>): Analytic
     }
 }
 
+/** A payment card was shown on the home screen */
+fun hAnalyticsEvent.Companion.homePaymentCardVisible(): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> = mapOf()
+
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "home_payment_card_visible",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
+
+/** Connecting payment with Trustly screen was shown */
+fun hAnalyticsEvent.Companion.screenViewConnectPaymentTrustly(): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> = mapOf()
+
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "screen_view_connect_payment_trustly",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
+
 /** When the detail screen of a cross sell is shown */
 fun hAnalyticsEvent.Companion.screenViewCrossSellDetail(typeOfContract: String): AnalyticsClosure {
     return AnalyticsClosure {

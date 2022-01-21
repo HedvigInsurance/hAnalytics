@@ -166,6 +166,28 @@ extension hAnalyticsEvent {
     }
   }
 
+  /// A payment card was shown on the home screen
+  public static func homePaymentCardVisible() -> AnalyticsClosure {
+    return AnalyticsClosure {
+      let properties: [String: Any?] = [:]
+
+      hAnalyticsProviders.sendEvent(
+        hAnalyticsEvent(name: "home_payment_card_visible", properties: properties)
+      )
+    }
+  }
+
+  /// Connecting payment with Trustly screen was shown
+  public static func screenViewConnectPaymentTrustly() -> AnalyticsClosure {
+    return AnalyticsClosure {
+      let properties: [String: Any?] = [:]
+
+      hAnalyticsProviders.sendEvent(
+        hAnalyticsEvent(name: "screen_view_connect_payment_trustly", properties: properties)
+      )
+    }
+  }
+
   /// When the detail screen of a cross sell is shown
   public static func screenViewCrossSellDetail(typeOfContract: String) -> AnalyticsClosure {
     return AnalyticsClosure {
