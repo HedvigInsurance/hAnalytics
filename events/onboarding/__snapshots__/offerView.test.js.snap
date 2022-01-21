@@ -4,6 +4,7 @@ exports[`one SE_ACCIDENT quote 1`] = `
 Object {
   "name": "screen_view_offer",
   "variables": Object {
+    "initiated_from": "SELF_CHANGE",
     "offer_ids": Array [
       "123",
     ],
@@ -16,6 +17,7 @@ exports[`two different quotes 1`] = `
 Object {
   "name": "screen_view_offer",
   "variables": Object {
+    "initiated_from": "APP",
     "offer_ids": Array [
       "123",
       "12345",

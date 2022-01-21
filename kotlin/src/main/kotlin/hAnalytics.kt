@@ -81,6 +81,7 @@ fun hAnalyticsEvent.Companion.quotesSigned(quoteIds: Array<String>): AnalyticsCl
 	}) {
 		quotes {
 			typeOfContract
+			initiatedFrom
 		}
 	}
 }
@@ -90,6 +91,7 @@ fun hAnalyticsEvent.Companion.quotesSigned(quoteIds: Array<String>): AnalyticsCl
                 val graphqlProperties: Map<String, Any?> =
                     mapOf(
                         "type_of_contracts" to data?.getValue(path = ""),
+                        "initiated_from" to data?.getValue(path = ""),
                     )
 
                 hAnalyticsProviders.sendEvent(
@@ -141,6 +143,7 @@ fun hAnalyticsEvent.Companion.screenViewOffer(offerIds: Array<String>): Analytic
 	}) {
 		quotes {
 			typeOfContract
+			initiatedFrom
 		}
 	}
 }
@@ -150,6 +153,7 @@ fun hAnalyticsEvent.Companion.screenViewOffer(offerIds: Array<String>): Analytic
                 val graphqlProperties: Map<String, Any?> =
                     mapOf(
                         "type_of_contracts" to data?.getValue(path = ""),
+                        "initiated_from" to data?.getValue(path = ""),
                     )
 
                 hAnalyticsProviders.sendEvent(

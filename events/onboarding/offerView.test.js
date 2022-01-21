@@ -7,7 +7,8 @@ test('one SE_ACCIDENT quote', () => {
         quoteBundle: {
             quotes: [
                 {
-                    typeOfContract: "SE_ACCIDENT"
+                    typeOfContract: "SE_ACCIDENT",
+                    initiatedFrom: "SELF_CHANGE"
                 }
             ]
         }
@@ -23,10 +24,12 @@ test('two different quotes', () => {
         quoteBundle: {
             quotes: [
                 {
-                    typeOfContract: "SE_ACCIDENT"
+                    typeOfContract: "SE_ACCIDENT",
+                    initiatedFrom: "APP"
                 },
                 {
-                    typeOfContract: "SE_APARTMENT_BRF"
+                    typeOfContract: "SE_APARTMENT_BRF",
+                    initiatedFrom: "APP"
                 }
             ]
         }

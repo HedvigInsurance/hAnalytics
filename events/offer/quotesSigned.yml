@@ -13,6 +13,7 @@ graphql:
       }) {
         quotes {
           typeOfContract
+          initiatedFrom
         }
       }
     }
@@ -21,3 +22,5 @@ graphql:
   selectors:
     - name: type_of_contracts
       path: quoteBundle.quotes[*].typeOfContract | sort(@) | join(', ', @)
+    - name: initiated_from
+      path: quoteBundle.quotes[0].initiatedFrom

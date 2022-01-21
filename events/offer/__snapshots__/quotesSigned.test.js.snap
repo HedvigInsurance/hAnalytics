@@ -4,6 +4,7 @@ exports[`signed one SE_ACCIDENT quote 1`] = `
 Object {
   "name": "quotes_signed",
   "variables": Object {
+    "initiated_from": "SELF_CHANGE",
     "quote_ids": Array [
       "123",
     ],
@@ -16,6 +17,7 @@ exports[`signed two quotes 1`] = `
 Object {
   "name": "quotes_signed",
   "variables": Object {
+    "initiated_from": "APP",
     "quote_ids": Array [
       "123",
       "12333",

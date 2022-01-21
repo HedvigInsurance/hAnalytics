@@ -72,6 +72,7 @@ extension hAnalyticsEvent {
         	}) {
         		quotes {
         			typeOfContract
+        			initiatedFrom
         		}
         	}
         }
@@ -84,7 +85,11 @@ extension hAnalyticsEvent {
             "type_of_contracts": try?
               (try? JMESExpression.compile(
                 "quoteBundle.quotes[*].typeOfContract | sort(@) | join(', ', @)"
-              ))?.search(object: data)
+              ))?.search(object: data),
+            "initiated_from": try?
+              (try? JMESExpression.compile("quoteBundle.quotes[0].initiatedFrom"))?.search(
+                object: data
+              ),
           ]
         }
         else {
@@ -127,6 +132,7 @@ extension hAnalyticsEvent {
         	}) {
         		quotes {
         			typeOfContract
+        			initiatedFrom
         		}
         	}
         }
@@ -139,7 +145,11 @@ extension hAnalyticsEvent {
             "type_of_contracts": try?
               (try? JMESExpression.compile(
                 "quoteBundle.quotes[*].typeOfContract | sort(@) | join(', ', @)"
-              ))?.search(object: data)
+              ))?.search(object: data),
+            "initiated_from": try?
+              (try? JMESExpression.compile("quoteBundle.quotes[0].initiatedFrom"))?.search(
+                object: data
+              ),
           ]
         }
         else {
