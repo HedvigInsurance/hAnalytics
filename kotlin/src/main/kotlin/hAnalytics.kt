@@ -181,6 +181,48 @@ fun hAnalyticsEvent.Companion.homePaymentCardVisible(): AnalyticsClosure {
     }
 }
 
+/** Connecting payment with Adyen screen was shown */
+fun hAnalyticsEvent.Companion.screenViewConnectPaymentAdyen(): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> = mapOf()
+
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "screen_view_connect_payment_adyen",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
+
+/** When payment connection did fail */
+fun hAnalyticsEvent.Companion.screenViewConnectPaymentFailed(): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> = mapOf()
+
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "screen_view_connect_payment_failed",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
+
+/** When payment was connected successfully */
+fun hAnalyticsEvent.Companion.screenViewConnectPaymentSuccess(): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> = mapOf()
+
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "screen_view_connect_payment_success",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
+
 /** Connecting payment with Trustly screen was shown */
 fun hAnalyticsEvent.Companion.screenViewConnectPaymentTrustly(): AnalyticsClosure {
     return AnalyticsClosure {

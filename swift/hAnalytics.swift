@@ -177,6 +177,39 @@ extension hAnalyticsEvent {
     }
   }
 
+  /// Connecting payment with Adyen screen was shown
+  public static func screenViewConnectPaymentAdyen() -> AnalyticsClosure {
+    return AnalyticsClosure {
+      let properties: [String: Any?] = [:]
+
+      hAnalyticsProviders.sendEvent(
+        hAnalyticsEvent(name: "screen_view_connect_payment_adyen", properties: properties)
+      )
+    }
+  }
+
+  /// When payment connection did fail
+  public static func screenViewConnectPaymentFailed() -> AnalyticsClosure {
+    return AnalyticsClosure {
+      let properties: [String: Any?] = [:]
+
+      hAnalyticsProviders.sendEvent(
+        hAnalyticsEvent(name: "screen_view_connect_payment_failed", properties: properties)
+      )
+    }
+  }
+
+  /// When payment was connected successfully
+  public static func screenViewConnectPaymentSuccess() -> AnalyticsClosure {
+    return AnalyticsClosure {
+      let properties: [String: Any?] = [:]
+
+      hAnalyticsProviders.sendEvent(
+        hAnalyticsEvent(name: "screen_view_connect_payment_success", properties: properties)
+      )
+    }
+  }
+
   /// Connecting payment with Trustly screen was shown
   public static func screenViewConnectPaymentTrustly() -> AnalyticsClosure {
     return AnalyticsClosure {
