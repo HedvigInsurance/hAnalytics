@@ -5,6 +5,7 @@ Object {
   "name": "claims_status_detail_screen_view",
   "variables": Object {
     "claim_id": "id_of_claim",
+    "claim_status": "status_of_claim",
   },
 }
 `;

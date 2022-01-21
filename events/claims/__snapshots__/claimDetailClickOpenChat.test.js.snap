@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`validate claimCardVisible 1`] = `
+exports[`validate claimDetailClickOpenChat 1`] = `
 Object {
-  "name": "claim_card_visible",
+  "name": "claim_status_detail_click_open_chat",
   "variables": Object {
     "claim_id": "id_of_claim",
     "claim_status": "status_of_claim",
