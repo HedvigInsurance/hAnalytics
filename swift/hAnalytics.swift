@@ -24,13 +24,37 @@ public struct AnalyticsClosure {
 
 extension hAnalyticsEvent {
 
-  /// When a claim card has been shown on screen
-  public static func claimCardVisible(claimId: String) -> AnalyticsClosure {
+  /// When a claim card has been clicked on screen
+  public static func claimCardClick(claimId: String, claimStatus: String) -> AnalyticsClosure {
     return AnalyticsClosure {
-      let properties: [String: Any?] = ["claim_id": claimId]
+      let properties: [String: Any?] = ["claim_id": claimId, "claim_status": claimStatus]
+
+      hAnalyticsProviders.sendEvent(
+        hAnalyticsEvent(name: "claim_card_click", properties: properties)
+      )
+    }
+  }
+
+  /// When a claim card has been shown on screen
+  public static func claimCardVisible(claimId: String, claimStatus: String) -> AnalyticsClosure {
+    return AnalyticsClosure {
+      let properties: [String: Any?] = ["claim_id": claimId, "claim_status": claimStatus]
 
       hAnalyticsProviders.sendEvent(
         hAnalyticsEvent(name: "claim_card_visible", properties: properties)
+      )
+    }
+  }
+
+  /// When contact chat is tapped on claim details
+  public static func claimDetailClickOpenChat(claimId: String, claimStatus: String)
+    -> AnalyticsClosure
+  {
+    return AnalyticsClosure {
+      let properties: [String: Any?] = ["claim_id": claimId, "claim_status": claimStatus]
+
+      hAnalyticsProviders.sendEvent(
+        hAnalyticsEvent(name: "claim_status_detail_click_open_chat", properties: properties)
       )
     }
   }
@@ -47,9 +71,11 @@ extension hAnalyticsEvent {
   }
 
   /// When the claims status detail screen is shown
-  public static func claimsStatusDetailScreenView(claimId: String) -> AnalyticsClosure {
+  public static func claimsStatusDetailScreenView(claimId: String, claimStatus: String)
+    -> AnalyticsClosure
+  {
     return AnalyticsClosure {
-      let properties: [String: Any?] = ["claim_id": claimId]
+      let properties: [String: Any?] = ["claim_id": claimId, "claim_status": claimStatus]
 
       hAnalyticsProviders.sendEvent(
         hAnalyticsEvent(name: "claims_status_detail_screen_view", properties: properties)

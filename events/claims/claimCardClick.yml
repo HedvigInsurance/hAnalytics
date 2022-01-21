@@ -1,6 +1,6 @@
-name: claim_card_visible
-description: When a claim card has been shown on screen
-accessor: claimCardVisible
+name: claim_card_click
+description: When a claim card has been clicked on screen
+accessor: claimCardClick
 inputs:
   - name: claim_id
     type: String

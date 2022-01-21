@@ -1,6 +1,6 @@
 const validateEvent = require("../../commons/validateEvent.js")
 
-test('validate claimsStatusDetailScreenView', () => {
+test('validate claimCardClick', () => {
     const event = validateEvent(__filename, {
         claimId: "id_of_claim",
         claimStatus: "status_of_claim"
