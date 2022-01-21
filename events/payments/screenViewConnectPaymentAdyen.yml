@@ -1,0 +1,3 @@
+name: screen_view_connect_payment_adyen
+description: Connecting payment with Adyen screen was shown
+accessor: screenViewConnectPaymentAdyen

@@ -1,0 +1,3 @@
+name: screen_view_moving_flow_intro
+description: When moving flow intro screen is shown
+accessor: screenViewMovingFlowIntro

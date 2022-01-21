@@ -68,6 +68,55 @@ extension hAnalyticsEvent {
     }
   }
 
+  /// When quotes are signed in the offer screen
+  public static func quotesSigned(quoteIds: [String]) -> AnalyticsClosure {
+    return AnalyticsClosure {
+      let properties: [String: Any?] = ["quote_ids": quoteIds]
+
+      let graphQLVariables: [String: Any?] = ["quote_ids": quoteIds]
+
+      hAnalyticsProviders.performGraphQLQuery(
+        """
+        query QuotesSigned($quote_ids: [ID!]!) {
+        	quoteBundle(input: {
+        		ids: $quote_ids
+        	}) {
+        		quotes {
+        			typeOfContract
+        			initiatedFrom
+        		}
+        	}
+        }
+        """,
+        graphQLVariables
+      ) { data in let graphqlProperties: [String: Any?]
+
+        if let data = data {
+          graphqlProperties = [
+            "type_of_contracts": try?
+              (try? JMESExpression.compile(
+                "quoteBundle.quotes[*].typeOfContract | sort(@) | join(', ', @)"
+              ))?.search(object: data),
+            "initiated_from": try?
+              (try? JMESExpression.compile("quoteBundle.quotes[0].initiatedFrom"))?.search(
+                object: data
+              ),
+          ]
+        }
+        else {
+          graphqlProperties = [:]
+        }
+
+        hAnalyticsProviders.sendEvent(
+          hAnalyticsEvent(
+            name: "quotes_signed",
+            properties: properties.merging(graphqlProperties, uniquingKeysWith: { _, rhs in rhs })
+          )
+        )
+      }
+    }
+  }
+
   /// When an embark flow is choosen on the choose screen
   public static func onboardingChooseEmbarkFlow(embarkStoryId: String) -> AnalyticsClosure {
     return AnalyticsClosure {
@@ -94,6 +143,7 @@ extension hAnalyticsEvent {
         	}) {
         		quotes {
         			typeOfContract
+        			initiatedFrom
         		}
         	}
         }
@@ -106,7 +156,11 @@ extension hAnalyticsEvent {
             "type_of_contracts": try?
               (try? JMESExpression.compile(
                 "quoteBundle.quotes[*].typeOfContract | sort(@) | join(', ', @)"
-              ))?.search(object: data)
+              ))?.search(object: data),
+            "initiated_from": try?
+              (try? JMESExpression.compile("quoteBundle.quotes[0].initiatedFrom"))?.search(
+                object: data
+              ),
           ]
         }
         else {
@@ -120,6 +174,61 @@ extension hAnalyticsEvent {
           )
         )
       }
+    }
+  }
+
+  /// A payment card was shown on the home screen
+  public static func homePaymentCardVisible() -> AnalyticsClosure {
+    return AnalyticsClosure {
+      let properties: [String: Any?] = [:]
+
+      hAnalyticsProviders.sendEvent(
+        hAnalyticsEvent(name: "home_payment_card_visible", properties: properties)
+      )
+    }
+  }
+
+  /// Connecting payment with Adyen screen was shown
+  public static func screenViewConnectPaymentAdyen() -> AnalyticsClosure {
+    return AnalyticsClosure {
+      let properties: [String: Any?] = [:]
+
+      hAnalyticsProviders.sendEvent(
+        hAnalyticsEvent(name: "screen_view_connect_payment_adyen", properties: properties)
+      )
+    }
+  }
+
+  /// When payment connection did fail
+  public static func screenViewConnectPaymentFailed() -> AnalyticsClosure {
+    return AnalyticsClosure {
+      let properties: [String: Any?] = [:]
+
+      hAnalyticsProviders.sendEvent(
+        hAnalyticsEvent(name: "screen_view_connect_payment_failed", properties: properties)
+      )
+    }
+  }
+
+  /// When payment was connected successfully
+  public static func screenViewConnectPaymentSuccess() -> AnalyticsClosure {
+    return AnalyticsClosure {
+      let properties: [String: Any?] = [:]
+
+      hAnalyticsProviders.sendEvent(
+        hAnalyticsEvent(name: "screen_view_connect_payment_success", properties: properties)
+      )
+    }
+  }
+
+  /// Connecting payment with Trustly screen was shown
+  public static func screenViewConnectPaymentTrustly() -> AnalyticsClosure {
+    return AnalyticsClosure {
+      let properties: [String: Any?] = [:]
+
+      hAnalyticsProviders.sendEvent(
+        hAnalyticsEvent(name: "screen_view_connect_payment_trustly", properties: properties)
+      )
     }
   }
 
@@ -208,6 +317,17 @@ extension hAnalyticsEvent {
           )
         )
       }
+    }
+  }
+
+  /// When moving flow intro screen is shown
+  public static func screenViewMovingFlowIntro() -> AnalyticsClosure {
+    return AnalyticsClosure {
+      let properties: [String: Any?] = [:]
+
+      hAnalyticsProviders.sendEvent(
+        hAnalyticsEvent(name: "screen_view_moving_flow_intro", properties: properties)
+      )
     }
   }
 

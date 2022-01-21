@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`one SE_ACCIDENT quote 1`] = `
+exports[`signed one SE_ACCIDENT quote 1`] = `
 Object {
-  "name": "screen_view_offer",
+  "name": "quotes_signed",
   "variables": Object {
     "initiated_from": "SELF_CHANGE",
-    "offer_ids": Array [
+    "quote_ids": Array [
       "123",
     ],
     "type_of_contracts": "SE_ACCIDENT",
@@ -13,16 +13,16 @@ Object {
 }
 `;
 
-exports[`two different quotes 1`] = `
+exports[`signed two quotes 1`] = `
 Object {
-  "name": "screen_view_offer",
+  "name": "quotes_signed",
   "variables": Object {
     "initiated_from": "APP",
-    "offer_ids": Array [
+    "quote_ids": Array [
       "123",
-      "12345",
+      "12333",
     ],
-    "type_of_contracts": "SE_ACCIDENT, SE_APARTMENT_BRF",
+    "type_of_contracts": "SE_ACCIDENT, SE_HOUSE",
   },
 }
 `;

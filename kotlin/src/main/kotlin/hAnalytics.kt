@@ -1,321 +1,362 @@
-data class hAnalyticsProviders(
-
-) {
+data class hAnalyticsProviders() {
     companion object {
-        var sendEvent: (hAnalyticsEvent) -> Unit = { }
-        var performGraphQLQuery: (String, Map<String, Any?>?, (ResultMap) -> Unit) -> Unit = { }
+        var sendEvent: (hAnalyticsEvent) -> Unit = {}
+        var performGraphQLQuery: (String, Map<String, Any?>?, (ResultMap) -> Unit) -> Unit = {}
     }
 }
 
-data class hAnalyticsEvent(
-    internal val name: String,
-    internal val properties: Map<String, Any?>
-)
+data class hAnalyticsEvent(internal val name: String, internal val properties: Map<String, Any?>)
 
-data class AnalyticsClosure(
-    internal val send: () -> Unit
-)
+data class AnalyticsClosure(internal val send: () -> Unit)
 
+/** When a claim card has been shown on screen */
+fun hAnalyticsEvent.Companion.claimCardVisible(claimId: String): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> =
+            mapOf(
+                "claim_id" to claimId,
+            )
 
-    /**
-     * When a claim card has been clicked on screen
-     */
-    fun hAnalyticsEvent.Companion.claimCardClick(claimId: String,claimStatus: String): AnalyticsClosure {
-        return AnalyticsClosure {
-        
-                val properties: Map<String, Any?> = mapOf(
-                    
-                            "claim_id" to claimId,
-                    
-                            "claim_status" to claimStatus,
-                    
-                    
-                )
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "claim_card_visible",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
 
-                hAnalyticsProviders.sendEvent(hAnalyticsEvent(
-                        name = "claim_card_click",
+/** When a claims recording has been played in the claims status screen */
+fun hAnalyticsEvent.Companion.claimsDetailRecordingPlayed(claimId: String): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> =
+            mapOf(
+                "claim_id" to claimId,
+            )
+
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "claims_detail_recording_played",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
+
+/** When the claims status detail screen is shown */
+fun hAnalyticsEvent.Companion.claimsStatusDetailScreenView(claimId: String): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> =
+            mapOf(
+                "claim_id" to claimId,
+            )
+
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "claims_status_detail_screen_view",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
+
+/** When quotes are signed in the offer screen */
+fun hAnalyticsEvent.Companion.quotesSigned(quoteIds: Array<String>): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> =
+            mapOf(
+                "quote_ids" to quoteIds,
+            )
+
+        val graphQLVariables: Map<String, Any?> =
+            mapOf(
+                "quote_ids" to quoteIds,
+            )
+
+        hAnalyticsProviders.performGraphQLQuery(
+            """
+                query QuotesSigned($quote_ids: [ID!]!) {
+	quoteBundle(input: {
+		ids: $quote_ids
+	}) {
+		quotes {
+			typeOfContract
+			initiatedFrom
+		}
+	}
+}
+                """,
+            graphQLVariables,
+            { data ->
+                val graphqlProperties: Map<String, Any?> =
+                    mapOf(
+                        "type_of_contracts" to data?.getValue(path = ""),
+                        "initiated_from" to data?.getValue(path = ""),
+                    )
+
+                hAnalyticsProviders.sendEvent(
+                    hAnalyticsEvent(
+                        name = "quotes_signed",
                         properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
-                ))
-        
-        }
-   }
-
-    /**
-     * When a claim card has been shown on screen
-     */
-    fun hAnalyticsEvent.Companion.claimCardVisible(claimId: String): AnalyticsClosure {
-        return AnalyticsClosure {
-        
-                val properties: Map<String, Any?> = mapOf(
-                    
-                            "claim_id" to claimId,
-                    
-                    
+                    )
                 )
+            }
+        )
+    }
+}
 
-                hAnalyticsProviders.sendEvent(hAnalyticsEvent(
-                        name = "claim_card_visible",
-                        properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
-                ))
-        
-        }
-   }
+/** When an embark flow is choosen on the choose screen */
+fun hAnalyticsEvent.Companion.onboardingChooseEmbarkFlow(embarkStoryId: String): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> =
+            mapOf(
+                "embark_story_id" to embarkStoryId,
+            )
 
-    /**
-     * When a claims recording has been played in the claims status screen
-     */
-    fun hAnalyticsEvent.Companion.claimsDetailRecordingPlayed(claimId: String): AnalyticsClosure {
-        return AnalyticsClosure {
-        
-                val properties: Map<String, Any?> = mapOf(
-                    
-                            "claim_id" to claimId,
-                    
-                    
-                )
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "onboarding_choose_embark_flow",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
 
-                hAnalyticsProviders.sendEvent(hAnalyticsEvent(
-                        name = "claims_detail_recording_played",
-                        properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
-                ))
-        
-        }
-   }
+/** When Offer screen is shown */
+fun hAnalyticsEvent.Companion.screenViewOffer(offerIds: Array<String>): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> =
+            mapOf(
+                "offer_ids" to offerIds,
+            )
 
-    /**
-     * When the claims status detail screen is shown
-     */
-    fun hAnalyticsEvent.Companion.claimsStatusDetailScreenView(claimId: String): AnalyticsClosure {
-        return AnalyticsClosure {
-        
-                val properties: Map<String, Any?> = mapOf(
-                    
-                            "claim_id" to claimId,
-                    
-                    
-                )
+        val graphQLVariables: Map<String, Any?> =
+            mapOf(
+                "offer_ids" to offerIds,
+            )
 
-                hAnalyticsProviders.sendEvent(hAnalyticsEvent(
-                        name = "claims_status_detail_screen_view",
-                        properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
-                ))
-        
-        }
-   }
-
-    /**
-     * When an embark flow is choosen on the choose screen
-     */
-    fun hAnalyticsEvent.Companion.onboardingChooseEmbarkFlow(embarkStoryId: String): AnalyticsClosure {
-        return AnalyticsClosure {
-        
-                val properties: Map<String, Any?> = mapOf(
-                    
-                            "embark_story_id" to embarkStoryId,
-                    
-                    
-                )
-
-                hAnalyticsProviders.sendEvent(hAnalyticsEvent(
-                        name = "onboarding_choose_embark_flow",
-                        properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
-                ))
-        
-        }
-   }
-
-    /**
-     * When Offer screen is shown
-     */
-    fun hAnalyticsEvent.Companion.screenViewOffer(offerIds: Array<String>): AnalyticsClosure {
-        return AnalyticsClosure {
-        
-                val properties: Map<String, Any?> = mapOf(
-                    
-                            "offer_ids" to offerIds,
-                    
-                    
-                )
-
-                
-                
-
-                val graphQLVariables: Map<String, Any?> = mapOf(
-                    
-                            "offer_ids" to offerIds,
-                    
-                    
-                )
-
-                hAnalyticsProviders.performGraphQLQuery("""
+        hAnalyticsProviders.performGraphQLQuery(
+            """
                 query ScreenViewOffer($offer_ids: [ID!]!) {
 	quoteBundle(input: {
 		ids: $offer_ids
 	}) {
 		quotes {
 			typeOfContract
+			initiatedFrom
 		}
 	}
 }
                 """,
-                graphQLVariables,
-                { data ->
-                    val graphqlProperties: Map<String, Any?> = mapOf(
-                        
-                            "type_of_contracts" to data?.getValue(path = ""),
-                        
+            graphQLVariables,
+            { data ->
+                val graphqlProperties: Map<String, Any?> =
+                    mapOf(
+                        "type_of_contracts" to data?.getValue(path = ""),
+                        "initiated_from" to data?.getValue(path = ""),
                     )
 
-                    hAnalyticsProviders.sendEvent(hAnalyticsEvent(
+                hAnalyticsProviders.sendEvent(
+                    hAnalyticsEvent(
                         name = "screen_view_offer",
                         properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
-                    ))
-                })
-        
-        }
-   }
-
-    /**
-     * When the detail screen of a cross sell is shown
-     */
-    fun hAnalyticsEvent.Companion.screenViewCrossSellDetail(typeOfContract: String): AnalyticsClosure {
-        return AnalyticsClosure {
-        
-                val properties: Map<String, Any?> = mapOf(
-                    
-                            "type_of_contract" to typeOfContract,
-                    
-                    
+                    )
                 )
+            }
+        )
+    }
+}
 
-                hAnalyticsProviders.sendEvent(hAnalyticsEvent(
-                        name = "screen_view_cross_sell_detail",
-                        properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
-                ))
-        
-        }
-   }
+/** A payment card was shown on the home screen */
+fun hAnalyticsEvent.Companion.homePaymentCardVisible(): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> = mapOf()
 
-    /**
-     * When Hedvig Forever is shown
-     */
-    fun hAnalyticsEvent.Companion.screenViewForever(): AnalyticsClosure {
-        return AnalyticsClosure {
-        
-                val properties: Map<String, Any?> = mapOf(
-                    
-                    
-                )
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "home_payment_card_visible",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
 
-                hAnalyticsProviders.sendEvent(hAnalyticsEvent(
-                        name = "screen_view_forever",
-                        properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
-                ))
-        
-        }
-   }
+/** Connecting payment with Adyen screen was shown */
+fun hAnalyticsEvent.Companion.screenViewConnectPaymentAdyen(): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> = mapOf()
 
-    /**
-     * When Home tab is shown
-     */
-    fun hAnalyticsEvent.Companion.screenViewHome(): AnalyticsClosure {
-        return AnalyticsClosure {
-        
-                val properties: Map<String, Any?> = mapOf(
-                    
-                    
-                )
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "screen_view_connect_payment_adyen",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
 
-                hAnalyticsProviders.sendEvent(hAnalyticsEvent(
-                        name = "screen_view_home",
-                        properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
-                ))
-        
-        }
-   }
+/** When payment connection did fail */
+fun hAnalyticsEvent.Companion.screenViewConnectPaymentFailed(): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> = mapOf()
 
-    /**
-     * When detail screen of an insurance is shown
-     */
-    fun hAnalyticsEvent.Companion.screenViewInsuranceDetail(contractId: String): AnalyticsClosure {
-        return AnalyticsClosure {
-        
-                val properties: Map<String, Any?> = mapOf(
-                    
-                            "contract_id" to contractId,
-                    
-                    
-                )
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "screen_view_connect_payment_failed",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
 
-                hAnalyticsProviders.sendEvent(hAnalyticsEvent(
-                        name = "screen_view_insurance_detail",
-                        properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
-                ))
-        
-        }
-   }
+/** When payment was connected successfully */
+fun hAnalyticsEvent.Companion.screenViewConnectPaymentSuccess(): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> = mapOf()
 
-    /**
-     * When Insurances tab is shown
-     */
-    fun hAnalyticsEvent.Companion.screenViewInsurances(): AnalyticsClosure {
-        return AnalyticsClosure {
-        
-                val properties: Map<String, Any?> = mapOf(
-                    
-                    
-                )
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "screen_view_connect_payment_success",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
 
-                
-                
+/** Connecting payment with Trustly screen was shown */
+fun hAnalyticsEvent.Companion.screenViewConnectPaymentTrustly(): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> = mapOf()
 
-                val graphQLVariables: Map<String, Any?> = mapOf(
-                    
-                    
-                )
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "screen_view_connect_payment_trustly",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
 
-                hAnalyticsProviders.performGraphQLQuery("""
+/** When the detail screen of a cross sell is shown */
+fun hAnalyticsEvent.Companion.screenViewCrossSellDetail(typeOfContract: String): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> =
+            mapOf(
+                "type_of_contract" to typeOfContract,
+            )
+
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "screen_view_cross_sell_detail",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
+
+/** When Hedvig Forever is shown */
+fun hAnalyticsEvent.Companion.screenViewForever(): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> = mapOf()
+
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "screen_view_forever",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
+
+/** When Home tab is shown */
+fun hAnalyticsEvent.Companion.screenViewHome(): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> = mapOf()
+
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "screen_view_home",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
+
+/** When detail screen of an insurance is shown */
+fun hAnalyticsEvent.Companion.screenViewInsuranceDetail(contractId: String): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> =
+            mapOf(
+                "contract_id" to contractId,
+            )
+
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "screen_view_insurance_detail",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
+
+/** When Insurances tab is shown */
+fun hAnalyticsEvent.Companion.screenViewInsurances(): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> = mapOf()
+
+        val graphQLVariables: Map<String, Any?> = mapOf()
+
+        hAnalyticsProviders.performGraphQLQuery(
+            """
                 query ScreenViewInsurances {
 	contracts {
 		typeOfContract
 	}
 }
                 """,
-                graphQLVariables,
-                { data ->
-                    val graphqlProperties: Map<String, Any?> = mapOf(
-                        
-                            "has_accident_insurance" to data?.getValue(path = ""),
-                        
-                            "has_home_insurance" to data?.getValue(path = ""),
-                        
+            graphQLVariables,
+            { data ->
+                val graphqlProperties: Map<String, Any?> =
+                    mapOf(
+                        "has_accident_insurance" to data?.getValue(path = ""),
+                        "has_home_insurance" to data?.getValue(path = ""),
                     )
 
-                    hAnalyticsProviders.sendEvent(hAnalyticsEvent(
+                hAnalyticsProviders.sendEvent(
+                    hAnalyticsEvent(
                         name = "screen_view_insurances",
                         properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
-                    ))
-                })
-        
-        }
-   }
-
-    /**
-     * When Profile tab is shown
-     */
-    fun hAnalyticsEvent.Companion.screenViewProfile(): AnalyticsClosure {
-        return AnalyticsClosure {
-        
-                val properties: Map<String, Any?> = mapOf(
-                    
-                    
+                    )
                 )
+            }
+        )
+    }
+}
 
-                hAnalyticsProviders.sendEvent(hAnalyticsEvent(
-                        name = "screen_view_profile",
-                        properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
-                ))
-        
-        }
-   }
+/** When moving flow intro screen is shown */
+fun hAnalyticsEvent.Companion.screenViewMovingFlowIntro(): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> = mapOf()
 
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "screen_view_moving_flow_intro",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
+
+/** When Profile tab is shown */
+fun hAnalyticsEvent.Companion.screenViewProfile(): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> = mapOf()
+
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "screen_view_profile",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}

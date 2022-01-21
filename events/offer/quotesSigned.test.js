@@ -1,8 +1,8 @@
 const validateEvent = require("../../commons/validateEvent.js")
 
-test('one SE_ACCIDENT quote', () => {
+test('signed one SE_ACCIDENT quote', () => {
     const event = validateEvent(__filename, {
-        offerIds: ["123"]
+        quoteIds: ["123"]
     }, {
         quoteBundle: {
             quotes: [
@@ -17,9 +17,9 @@ test('one SE_ACCIDENT quote', () => {
     expect(event).toMatchSnapshot()
 });
 
-test('two different quotes', () => {
+test('signed two quotes', () => {
     const event = validateEvent(__filename, {
-        offerIds: ["123", "12345"]
+        quoteIds: ["123", "12333"]
     }, {
         quoteBundle: {
             quotes: [
@@ -28,7 +28,7 @@ test('two different quotes', () => {
                     initiatedFrom: "APP"
                 },
                 {
-                    typeOfContract: "SE_APARTMENT_BRF",
+                    typeOfContract: "SE_HOUSE",
                     initiatedFrom: "APP"
                 }
             ]

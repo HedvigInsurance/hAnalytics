@@ -1,15 +1,15 @@
-name: screen_view_offer
-description: When Offer screen is shown
-accessor: screenViewOffer
+name: quotes_signed
+description: When quotes are signed in the offer screen
+accessor: quotesSigned
 inputs:
-  - name: offer_ids
+  - name: quote_ids
     type: Array<String>
-    argument: offerIds
+    argument: quoteIds
 graphql:
   query: |
-    query ScreenViewOffer($offer_ids: [ID!]!) {
+    query QuotesSigned($quote_ids: [ID!]!) {
       quoteBundle(input: {
-        ids: $offer_ids
+        ids: $quote_ids
       }) {
         quotes {
           typeOfContract
@@ -18,7 +18,7 @@ graphql:
       }
     }
   variables:
-    - offer_ids
+    - quote_ids
   selectors:
     - name: type_of_contracts
       path: quoteBundle.quotes[*].typeOfContract | sort(@) | join(', ', @)

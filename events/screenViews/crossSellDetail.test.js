@@ -1,6 +1,6 @@
 const validateEvent = require("../../commons/validateEvent.js")
 
-test('validate cross_sell_detail', () => {
+test('validate crossSellDetail', () => {
     const event = validateEvent(__filename)
     expect(event).toMatchSnapshot()
 });
