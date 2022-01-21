@@ -5,3 +5,4 @@ node_modules
 ktfmt.jar
 # Ignore Gradle project-specific cache directory
 .gradle
+docs/docs/events/**/*.md
