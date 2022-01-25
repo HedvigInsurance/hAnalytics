@@ -6,7 +6,7 @@ struct hAnalyticsNetworking {
   static var endpointURL: String = ""
 
   static func send(_ event: hAnalyticsEvent) {
-    var urlRequest = URLRequest(url: endpointURL)
+    var urlRequest = URLRequest(url: URL(string: endpointURL)!)
     urlRequest.httpMethod = "POST"
     urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
