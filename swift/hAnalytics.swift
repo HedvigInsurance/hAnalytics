@@ -87,7 +87,8 @@ extension hAnalyticsEvent {
   }
 
   /// When embark goes back one passage
-  public static func embarkTrack(storyName: String, passageName: String) -> AnalyticsClosure {
+  public static func embarkPassageGoBack(storyName: String, passageName: String) -> AnalyticsClosure
+  {
     return AnalyticsClosure {
       let properties: [String: Any?] = [
         "originated_from_embark_story": storyName, "passage_name": passageName,
