@@ -323,6 +323,15 @@ extension hAnalyticsEvent {
     }
   }
 
+  /// App was resumed after being in background
+  public static func appResumed() -> AnalyticsClosure {
+    return AnalyticsClosure {
+      let properties: [String: Any?] = [:]
+
+      hAnalyticsNetworking.send(hAnalyticsEvent(name: "app_resumed", properties: properties))
+    }
+  }
+
   /// App was shutdown
   public static func appShutdown() -> AnalyticsClosure {
     return AnalyticsClosure {

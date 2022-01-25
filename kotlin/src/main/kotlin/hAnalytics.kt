@@ -425,6 +425,20 @@ fun hAnalyticsEvent.Companion.appBackground(): AnalyticsClosure {
     }
 }
 
+/** App was resumed after being in background */
+fun hAnalyticsEvent.Companion.appResumed(): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> = mapOf()
+
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "app_resumed",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
+
 /** App was shutdown */
 fun hAnalyticsEvent.Companion.appShutdown(): AnalyticsClosure {
     return AnalyticsClosure {
