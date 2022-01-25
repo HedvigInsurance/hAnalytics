@@ -128,7 +128,7 @@ fun hAnalyticsEvent.Companion.embarkExternalRedirect(location: String): Analytic
 }
 
 /** When embark goes back one passage */
-fun hAnalyticsEvent.Companion.embarkTrack(
+fun hAnalyticsEvent.Companion.embarkPassageGoBack(
     storyName: String,
     passageName: String
 ): AnalyticsClosure {
