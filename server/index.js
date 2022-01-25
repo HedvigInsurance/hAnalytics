@@ -5,7 +5,7 @@ const jmespath = require("jmespath");
 
 const analytics = new Analytics(process.env.SEGMENT_WRITE_KEY);
 const app = express();
-const port = 3034;
+const port = process.env.PORT ?? 3034;
 
 app.use(express.json());
 
