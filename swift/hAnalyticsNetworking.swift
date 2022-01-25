@@ -22,9 +22,8 @@ struct hAnalyticsNetworking {
     let configuration = URLSessionConfiguration.default
     configuration.httpAdditionalHeaders = httpAdditionalHeaders
 
-    let urlSessionClient = URLSessionClient(sessionConfiguration: configuration)
-
-    let task = urlSessionClient.session.dataTask(with: urlRequest) { _, _, _ in }
+    let urlSession = URLSession(configuration: configuration)
+    let task = urlSession.dataTask(with: urlRequest) { _, _, _ in }
 
     task.resume()
   }
