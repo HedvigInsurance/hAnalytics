@@ -85,6 +85,8 @@ app.post("/event", async (req, res) => {
       });
     }
 
+    const traits = await getTraits(forwardedHeaders)
+
     analytics.track({
       userId: trackingId,
       event,
@@ -121,13 +123,16 @@ app.post("/event", async (req, res) => {
           height: screen.height,
           width: screen.width,
         },
-        traits: await getTraits(forwardedHeaders)
+        traits: traits
       },
     });
 
     console.log(`Event from ${ip} was processed: ${event}`);
 
     res.status(200).send("OK");
+
+    analytics.identify(trackingId, traits)
+
   } catch (err) {
     console.log("Failed to process event", err)
     res.status(400).send("BAD REQUEST");
