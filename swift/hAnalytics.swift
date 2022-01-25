@@ -314,4 +314,31 @@ extension hAnalyticsEvent {
     }
   }
 
+  /// App was put into background
+  public static func appBackground() -> AnalyticsClosure {
+    return AnalyticsClosure {
+      let properties: [String: Any?] = [:]
+
+      hAnalyticsNetworking.send(hAnalyticsEvent(name: "app_background", properties: properties))
+    }
+  }
+
+  /// App was shutdown
+  public static func appShutdown() -> AnalyticsClosure {
+    return AnalyticsClosure {
+      let properties: [String: Any?] = [:]
+
+      hAnalyticsNetworking.send(hAnalyticsEvent(name: "app_shutdown", properties: properties))
+    }
+  }
+
+  /// App was started
+  public static func appStarted() -> AnalyticsClosure {
+    return AnalyticsClosure {
+      let properties: [String: Any?] = [:]
+
+      hAnalyticsNetworking.send(hAnalyticsEvent(name: "app_started", properties: properties))
+    }
+  }
+
 }

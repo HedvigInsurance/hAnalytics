@@ -410,3 +410,45 @@ fun hAnalyticsEvent.Companion.screenViewProfile(): AnalyticsClosure {
         )
     }
 }
+
+/** App was put into background */
+fun hAnalyticsEvent.Companion.appBackground(): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> = mapOf()
+
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "app_background",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
+
+/** App was shutdown */
+fun hAnalyticsEvent.Companion.appShutdown(): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> = mapOf()
+
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "app_shutdown",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
+
+/** App was started */
+fun hAnalyticsEvent.Companion.appStarted(): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> = mapOf()
+
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "app_started",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
