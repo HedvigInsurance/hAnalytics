@@ -75,6 +75,15 @@ extension hAnalyticsEvent {
     }
   }
 
+  /// When a deep link was opened
+  public static func deepLinkOpened(type: String) -> AnalyticsClosure {
+    return AnalyticsClosure {
+      let properties: [String: Any?] = ["type": type]
+
+      hAnalyticsNetworking.send(hAnalyticsEvent(name: "deep_link_opened", properties: properties))
+    }
+  }
+
   /// When embark does an external redirect
   public static func embarkExternalRedirect(location: String) -> AnalyticsClosure {
     return AnalyticsClosure {
