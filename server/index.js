@@ -49,7 +49,10 @@ app.post("/identify", async (req, res) => {
     
         const traits = await getTraits(forwardedHeaders)
     
-        analytics.identify(trackingId, traits)
+        analytics.identify({
+            userId: trackingId,
+            traits
+        })
     } catch (err) {
         console.log("Failed to identify", err)
     }
