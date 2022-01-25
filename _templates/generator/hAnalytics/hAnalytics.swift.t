@@ -7,7 +7,13 @@ import JMESPath
 public struct hAnalyticsEvent {
     public let name: String
     public let properties: [String: Any?]
-    public let graphql: [String: Any]? = nil
+    public let graphql: [String: Any]?
+
+    public init(name: String, properties: [String: Any?], graphql: [String: Any]? = nil) {
+        self.name = name
+        self.properties = properties
+        self.graphql = graphql
+    }
 }
 
 public struct AnalyticsClosure {

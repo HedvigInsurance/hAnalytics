@@ -28,7 +28,6 @@ internal class VendorSystem {
   var screenSize: ScreenSize { return ScreenSize(width: 0, height: 0) }
   var userAgent: String? { return "unknown" }
   var connection: ConnectionStatus { return ConnectionStatus.unknown }
-  var requiredPlugins: [PlatformPlugin] { return [] }
   static var current: VendorSystem = {
     #if os(iOS) || os(tvOS) || targetEnvironment(macCatalyst)
       return iOSVendorSystem()

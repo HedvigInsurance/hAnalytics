@@ -55,9 +55,6 @@ import Foundation
       #endif
     }
     override var connection: ConnectionStatus { return connectionStatus() }
-    override var requiredPlugins: [PlatformPlugin] {
-      return [iOSLifecycleMonitor(), DeviceToken()]
-    }
     private func deviceModel() -> String {
       var name: [Int32] = [CTL_HW, HW_MACHINE]
       var size: Int = 2
