@@ -1,9 +1,9 @@
 import Foundation
 
-struct hAnalyticsNetworking {
-  static var httpAdditionalHeaders: [AnyHashable: Any] = [:]
-  static var trackingId: String = ""
-  static var endpointURL: String = ""
+public struct hAnalyticsNetworking {
+  public static var httpAdditionalHeaders: [AnyHashable: Any] = [:]
+  public static var trackingId: String = ""
+  public static var endpointURL: String = ""
 
   static func send(_ event: hAnalyticsEvent) {
     var urlRequest = URLRequest(url: URL(string: endpointURL)!)
