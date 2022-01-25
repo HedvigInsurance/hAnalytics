@@ -1,6 +1,7 @@
 import Foundation
 
 public struct hAnalyticsNetworking {
+  public static var sessionId: String = UUID().uuidString
   public static var httpAdditionalHeaders: () -> [AnyHashable: Any] = { [:] }
   public static var trackingId: () -> String = { "" }
   public static var endpointURL: () -> String = { "" }
@@ -11,7 +12,7 @@ public struct hAnalyticsNetworking {
     urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
     var requestData = getContextProperties().merging(
-      ["event": event.name, "properties": event.properties, "trackingId": trackingId(), "graphql": event.graphql],
+      ["event": event.name, "properties": event.properties, "trackingId": trackingId(), "sessionId": sessionId, "graphql": event.graphql],
       uniquingKeysWith: { lhs, _ in lhs }
     )
 

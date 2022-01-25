@@ -40,6 +40,7 @@ app.post("/event", async (req, res) => {
     const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
     const {
       trackingId,
+      sessionId,
       os,
       device,
       app,
@@ -91,6 +92,7 @@ app.post("/event", async (req, res) => {
       timestamp,
       context: {
         timezone,
+        sessionId,
         os: {
           name: os.name,
           version: os.version,
