@@ -110,6 +110,23 @@ fun hAnalyticsEvent.Companion.claimsStatusDetailScreenView(
     }
 }
 
+/** When a deep link was opened */
+fun hAnalyticsEvent.Companion.deepLinkOpened(type: String): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> =
+            mapOf(
+                "type" to type,
+            )
+
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "deep_link_opened",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
+
 /** When embark does an external redirect */
 fun hAnalyticsEvent.Companion.embarkExternalRedirect(location: String): AnalyticsClosure {
     return AnalyticsClosure {
