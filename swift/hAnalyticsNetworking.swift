@@ -6,12 +6,12 @@ public struct hAnalyticsNetworking {
   public static var endpointURL: () -> String = { "" }
 
   static func send(_ event: hAnalyticsEvent) {
-    var urlRequest = URLRequest(url: URL(string: endpointURL)!)
+    var urlRequest = URLRequest(url: URL(string: endpointURL())!)
     urlRequest.httpMethod = "POST"
     urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
     var requestData = getContextProperties().merging(
-      ["event": event.name, "properties": event.properties, "trackingId": trackingId, "graphql": event.graphql],
+      ["event": event.name, "properties": event.properties, "trackingId": trackingId(), "graphql": event.graphql],
       uniquingKeysWith: { lhs, _ in lhs }
     )
 
@@ -20,7 +20,7 @@ public struct hAnalyticsNetworking {
     urlRequest.httpBody = JSONData
 
     let configuration = URLSessionConfiguration.default
-    configuration.httpAdditionalHeaders = httpAdditionalHeaders
+    configuration.httpAdditionalHeaders = httpAdditionalHeaders()
 
     let urlSession = URLSession(configuration: configuration)
     let task = urlSession.dataTask(with: urlRequest) { _, _, _ in }
