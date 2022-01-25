@@ -2,6 +2,7 @@ import Foundation
 
 struct hAnalyticsNetworking {
   static var httpAdditionalHeaders: [AnyHashable: Any] = [:]
+  static var trackingId: String = ""
   static var endpointURL: String = ""
 
   static func send(_ event: hAnalyticsEvent) {
@@ -10,7 +11,7 @@ struct hAnalyticsNetworking {
     urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
     var requestData = getContextProperties().merging(
-      ["event": event.name, "properties": event.properties],
+      ["event": event.name, "properties": event.properties, "trackingId": trackingId, "graphql": event.graphql],
       uniquingKeysWith: { lhs, _ in lhs }
     )
 
