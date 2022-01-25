@@ -1,0 +1,7 @@
+name: deep_link_opened
+description: When a deep link was opened
+accessor: deepLinkOpened
+inputs:
+  - name: type
+    type: String
+    argument: type

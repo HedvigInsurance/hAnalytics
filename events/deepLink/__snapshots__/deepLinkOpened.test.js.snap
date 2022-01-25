@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`validate 1`] = `
+Object {
+  "name": "deep_link_opened",
+  "variables": Object {
+    "type": "forever",
+  },
+}
+`;
