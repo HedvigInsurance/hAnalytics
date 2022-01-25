@@ -35,6 +35,26 @@ const getTraits = async (headers) => {
   }
 };
 
+app.post("/identify", async (req, res) => {
+    try {
+        const {
+            trackingId
+        } = req.body;
+
+        console.log(`Identifiying ${trackingId}`)
+    
+        const forwardedHeaders = {
+            authorization: req.headers["authorization"],
+        }
+    
+        const traits = await getTraits(forwardedHeaders)
+    
+        analytics.identify(trackingId, traits)
+    } catch (err) {
+        console.log("Failed to identify", err)
+    }
+})
+
 app.post("/event", async (req, res) => {
   try {
     const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
@@ -130,9 +150,6 @@ app.post("/event", async (req, res) => {
     console.log(`Event from ${ip} was processed: ${event}`);
 
     res.status(200).send("OK");
-
-    analytics.identify(trackingId, traits)
-
   } catch (err) {
     console.log("Failed to process event", err)
     res.status(400).send("BAD REQUEST");

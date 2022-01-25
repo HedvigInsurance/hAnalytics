@@ -19,6 +19,8 @@ public struct AnalyticsClosure {
 }
 
 extension hAnalyticsEvent {
+  /// identifies and registers the trackingId
+  public static func identify() { hAnalyticsNetworking.identify() }
 
   /// When a claim card has been clicked on screen
   public static func claimCardClick(claimId: String, claimStatus: String) -> AnalyticsClosure {
