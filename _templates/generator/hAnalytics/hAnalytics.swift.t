@@ -4,18 +4,10 @@ to: swift/hAnalytics.swift
 import Foundation
 import JMESPath
 
-public struct hAnalyticsProviders {
-    /// The function that is called when a tracking event should be sent
-    /// Use this to integrate with analytics provider
-    public static var sendEvent: (_ event: hAnalyticsEvent) -> Void = { _ in }
-
-    /// The function that is called when a tracking event needs to perform a GraphQLQuery to enrich data
-    public static var performGraphQLQuery: (_ query: String, _ variables: [String: Any?], _ onComplete: @escaping (_ data: Any?) -> Void) -> Void = { _, _, _ in }
-}
-
 public struct hAnalyticsEvent {
     public let name: String
     public let properties: [String: Any?]
+    public let graphql: [String: Any]? = nil
 }
 
 public struct AnalyticsClosure {
@@ -52,29 +44,21 @@ extension hAnalyticsEvent {
                     <%= graphQLConstants.length === 0 && graphQLInputs.length === 0 ? ":" : "" %>
                 ]
 
-                hAnalyticsProviders.performGraphQLQuery("""
-                <%- formatGQL(event.graphql.query) %>
-                """, graphQLVariables) { data in
-                    let graphqlProperties: [String: Any?]
-
-                    if let data = data {
-                        graphqlProperties= [
-                        <% event.graphql.selectors.forEach(function(selector) { %>
-                            "<%= selector.name %>": try? (try? JMESExpression.compile("<%- selector.path %>"))?.search(object: data),
-                        <% }); %>
-                        ]
-                    } else {
-                        graphqlProperties = [:]
-                    }
-
-                    hAnalyticsProviders.sendEvent(hAnalyticsEvent(
-                        name: "<%= event.name %>",
-                        properties: properties.merging(
-                            graphqlProperties,
-                            uniquingKeysWith: { _, rhs in rhs}
-                        )
-                    ))
-                }
+                hAnalyticsNetworking.send(hAnalyticsEvent(
+                    name: "<%= event.name %>",
+                    properties: properties,
+                    graphql: [
+                        "query": """
+                        <%- formatGQL(event.graphql.query) %>
+                        """,
+                        "selectors": [
+                            <% event.graphql.selectors.forEach(function(selector) { %>
+                            ["name": "<%= selector.name %>", "path": "<%- selector.path %>"],
+                            <% }); %>
+                        ],
+                        "variables": graphQLVariables
+                    ]
+                ))
         <% } else { %>
                 let properties: [String: Any?] = [
                     <% (event.inputs ?? []).forEach(function(input) { %>
@@ -86,7 +70,7 @@ extension hAnalyticsEvent {
                     <%= !event.inputs && !event.constants ? ":" : "" %>
                 ]
 
-                hAnalyticsProviders.sendEvent(hAnalyticsEvent(
+                hAnalyticsNetworking.send(hAnalyticsEvent(
                     name: "<%= event.name %>",
                     properties: properties
                 ))

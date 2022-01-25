@@ -1,20 +1,10 @@
 import Foundation
 import JMESPath
 
-public struct hAnalyticsProviders {
-  /// The function that is called when a tracking event should be sent
-  /// Use this to integrate with analytics provider
-  public static var sendEvent: (_ event: hAnalyticsEvent) -> Void = { _ in }
-
-  /// The function that is called when a tracking event needs to perform a GraphQLQuery to enrich data
-  public static var performGraphQLQuery:
-    (_ query: String, _ variables: [String: Any?], _ onComplete: @escaping (_ data: Any?) -> Void)
-      -> Void = { _, _, _ in }
-}
-
 public struct hAnalyticsEvent {
   public let name: String
   public let properties: [String: Any?]
+  public let graphql: [String: Any]? = nil
 }
 
 public struct AnalyticsClosure {
@@ -29,9 +19,7 @@ extension hAnalyticsEvent {
     return AnalyticsClosure {
       let properties: [String: Any?] = ["claim_id": claimId, "claim_status": claimStatus]
 
-      hAnalyticsProviders.sendEvent(
-        hAnalyticsEvent(name: "claim_card_click", properties: properties)
-      )
+      hAnalyticsNetworking.send(hAnalyticsEvent(name: "claim_card_click", properties: properties))
     }
   }
 
@@ -40,9 +28,7 @@ extension hAnalyticsEvent {
     return AnalyticsClosure {
       let properties: [String: Any?] = ["claim_id": claimId, "claim_status": claimStatus]
 
-      hAnalyticsProviders.sendEvent(
-        hAnalyticsEvent(name: "claim_card_visible", properties: properties)
-      )
+      hAnalyticsNetworking.send(hAnalyticsEvent(name: "claim_card_visible", properties: properties))
     }
   }
 
@@ -53,7 +39,7 @@ extension hAnalyticsEvent {
     return AnalyticsClosure {
       let properties: [String: Any?] = ["claim_id": claimId, "claim_status": claimStatus]
 
-      hAnalyticsProviders.sendEvent(
+      hAnalyticsNetworking.send(
         hAnalyticsEvent(name: "claim_status_detail_click_open_chat", properties: properties)
       )
     }
@@ -64,7 +50,7 @@ extension hAnalyticsEvent {
     return AnalyticsClosure {
       let properties: [String: Any?] = ["claim_id": claimId]
 
-      hAnalyticsProviders.sendEvent(
+      hAnalyticsNetworking.send(
         hAnalyticsEvent(name: "claims_detail_recording_played", properties: properties)
       )
     }
@@ -77,7 +63,7 @@ extension hAnalyticsEvent {
     return AnalyticsClosure {
       let properties: [String: Any?] = ["claim_id": claimId, "claim_status": claimStatus]
 
-      hAnalyticsProviders.sendEvent(
+      hAnalyticsNetworking.send(
         hAnalyticsEvent(name: "claims_status_detail_screen_view", properties: properties)
       )
     }
@@ -90,45 +76,32 @@ extension hAnalyticsEvent {
 
       let graphQLVariables: [String: Any?] = ["quote_ids": quoteIds]
 
-      hAnalyticsProviders.performGraphQLQuery(
-        """
-        query QuotesSigned($quote_ids: [ID!]!) {
-        	quoteBundle(input: {
-        		ids: $quote_ids
-        	}) {
-        		quotes {
-        			typeOfContract
-        			initiatedFrom
-        		}
-        	}
-        }
-        """,
-        graphQLVariables
-      ) { data in let graphqlProperties: [String: Any?]
-
-        if let data = data {
-          graphqlProperties = [
-            "type_of_contracts": try?
-              (try? JMESExpression.compile(
-                "quoteBundle.quotes[*].typeOfContract | sort(@) | join(', ', @)"
-              ))?.search(object: data),
-            "initiated_from": try?
-              (try? JMESExpression.compile("quoteBundle.quotes[0].initiatedFrom"))?.search(
-                object: data
-              ),
+      hAnalyticsNetworking.send(
+        hAnalyticsEvent(
+          name: "quotes_signed",
+          properties: properties,
+          graphql: [
+            "query": """
+              query QuotesSigned($quote_ids: [ID!]!) {
+              	quoteBundle(input: {
+              		ids: $quote_ids
+              	}) {
+              		quotes {
+              			typeOfContract
+              			initiatedFrom
+              		}
+              	}
+              }
+              """,
+            "selectors": [
+              [
+                "name": "type_of_contracts",
+                "path": "quoteBundle.quotes[*].typeOfContract | sort(@) | join(', ', @)",
+              ], ["name": "initiated_from", "path": "quoteBundle.quotes[0].initiatedFrom"],
+            ], "variables": graphQLVariables,
           ]
-        }
-        else {
-          graphqlProperties = [:]
-        }
-
-        hAnalyticsProviders.sendEvent(
-          hAnalyticsEvent(
-            name: "quotes_signed",
-            properties: properties.merging(graphqlProperties, uniquingKeysWith: { _, rhs in rhs })
-          )
         )
-      }
+      )
     }
   }
 
@@ -137,7 +110,7 @@ extension hAnalyticsEvent {
     return AnalyticsClosure {
       let properties: [String: Any?] = ["embark_story_id": embarkStoryId]
 
-      hAnalyticsProviders.sendEvent(
+      hAnalyticsNetworking.send(
         hAnalyticsEvent(name: "onboarding_choose_embark_flow", properties: properties)
       )
     }
@@ -150,45 +123,32 @@ extension hAnalyticsEvent {
 
       let graphQLVariables: [String: Any?] = ["offer_ids": offerIds]
 
-      hAnalyticsProviders.performGraphQLQuery(
-        """
-        query ScreenViewOffer($offer_ids: [ID!]!) {
-        	quoteBundle(input: {
-        		ids: $offer_ids
-        	}) {
-        		quotes {
-        			typeOfContract
-        			initiatedFrom
-        		}
-        	}
-        }
-        """,
-        graphQLVariables
-      ) { data in let graphqlProperties: [String: Any?]
-
-        if let data = data {
-          graphqlProperties = [
-            "type_of_contracts": try?
-              (try? JMESExpression.compile(
-                "quoteBundle.quotes[*].typeOfContract | sort(@) | join(', ', @)"
-              ))?.search(object: data),
-            "initiated_from": try?
-              (try? JMESExpression.compile("quoteBundle.quotes[0].initiatedFrom"))?.search(
-                object: data
-              ),
+      hAnalyticsNetworking.send(
+        hAnalyticsEvent(
+          name: "screen_view_offer",
+          properties: properties,
+          graphql: [
+            "query": """
+              query ScreenViewOffer($offer_ids: [ID!]!) {
+              	quoteBundle(input: {
+              		ids: $offer_ids
+              	}) {
+              		quotes {
+              			typeOfContract
+              			initiatedFrom
+              		}
+              	}
+              }
+              """,
+            "selectors": [
+              [
+                "name": "type_of_contracts",
+                "path": "quoteBundle.quotes[*].typeOfContract | sort(@) | join(', ', @)",
+              ], ["name": "initiated_from", "path": "quoteBundle.quotes[0].initiatedFrom"],
+            ], "variables": graphQLVariables,
           ]
-        }
-        else {
-          graphqlProperties = [:]
-        }
-
-        hAnalyticsProviders.sendEvent(
-          hAnalyticsEvent(
-            name: "screen_view_offer",
-            properties: properties.merging(graphqlProperties, uniquingKeysWith: { _, rhs in rhs })
-          )
         )
-      }
+      )
     }
   }
 
@@ -197,7 +157,7 @@ extension hAnalyticsEvent {
     return AnalyticsClosure {
       let properties: [String: Any?] = [:]
 
-      hAnalyticsProviders.sendEvent(
+      hAnalyticsNetworking.send(
         hAnalyticsEvent(name: "home_payment_card_visible", properties: properties)
       )
     }
@@ -208,7 +168,7 @@ extension hAnalyticsEvent {
     return AnalyticsClosure {
       let properties: [String: Any?] = [:]
 
-      hAnalyticsProviders.sendEvent(
+      hAnalyticsNetworking.send(
         hAnalyticsEvent(name: "screen_view_connect_payment_adyen", properties: properties)
       )
     }
@@ -219,7 +179,7 @@ extension hAnalyticsEvent {
     return AnalyticsClosure {
       let properties: [String: Any?] = [:]
 
-      hAnalyticsProviders.sendEvent(
+      hAnalyticsNetworking.send(
         hAnalyticsEvent(name: "screen_view_connect_payment_failed", properties: properties)
       )
     }
@@ -230,7 +190,7 @@ extension hAnalyticsEvent {
     return AnalyticsClosure {
       let properties: [String: Any?] = [:]
 
-      hAnalyticsProviders.sendEvent(
+      hAnalyticsNetworking.send(
         hAnalyticsEvent(name: "screen_view_connect_payment_success", properties: properties)
       )
     }
@@ -241,7 +201,7 @@ extension hAnalyticsEvent {
     return AnalyticsClosure {
       let properties: [String: Any?] = [:]
 
-      hAnalyticsProviders.sendEvent(
+      hAnalyticsNetworking.send(
         hAnalyticsEvent(name: "screen_view_connect_payment_trustly", properties: properties)
       )
     }
@@ -252,7 +212,7 @@ extension hAnalyticsEvent {
     return AnalyticsClosure {
       let properties: [String: Any?] = ["type_of_contract": typeOfContract]
 
-      hAnalyticsProviders.sendEvent(
+      hAnalyticsNetworking.send(
         hAnalyticsEvent(name: "screen_view_cross_sell_detail", properties: properties)
       )
     }
@@ -263,7 +223,7 @@ extension hAnalyticsEvent {
     return AnalyticsClosure {
       let properties: [String: Any?] = [:]
 
-      hAnalyticsProviders.sendEvent(
+      hAnalyticsNetworking.send(
         hAnalyticsEvent(name: "screen_view_forever", properties: properties)
       )
     }
@@ -274,9 +234,7 @@ extension hAnalyticsEvent {
     return AnalyticsClosure {
       let properties: [String: Any?] = [:]
 
-      hAnalyticsProviders.sendEvent(
-        hAnalyticsEvent(name: "screen_view_home", properties: properties)
-      )
+      hAnalyticsNetworking.send(hAnalyticsEvent(name: "screen_view_home", properties: properties))
     }
   }
 
@@ -285,7 +243,7 @@ extension hAnalyticsEvent {
     return AnalyticsClosure {
       let properties: [String: Any?] = ["contract_id": contractId]
 
-      hAnalyticsProviders.sendEvent(
+      hAnalyticsNetworking.send(
         hAnalyticsEvent(name: "screen_view_insurance_detail", properties: properties)
       )
     }
@@ -298,40 +256,33 @@ extension hAnalyticsEvent {
 
       let graphQLVariables: [String: Any?] = [:]
 
-      hAnalyticsProviders.performGraphQLQuery(
-        """
-        query ScreenViewInsurances {
-        	contracts {
-        		typeOfContract
-        	}
-        }
-        """,
-        graphQLVariables
-      ) { data in let graphqlProperties: [String: Any?]
-
-        if let data = data {
-          graphqlProperties = [
-            "has_accident_insurance": try?
-              (try? JMESExpression.compile(
-                "(contracts[?contains(typeOfContract, 'ACCIDENT') == `true`] && true) == true"
-              ))?.search(object: data),
-            "has_home_insurance": try?
-              (try? JMESExpression.compile(
-                "((contracts[?contains(typeOfContract, 'HOME') == `true`] || contracts[?contains(typeOfContract, 'APARTMENT') == `true`] || contracts[?contains(typeOfContract, 'HOUSE') == `true`]) && true) == true"
-              ))?.search(object: data),
+      hAnalyticsNetworking.send(
+        hAnalyticsEvent(
+          name: "screen_view_insurances",
+          properties: properties,
+          graphql: [
+            "query": """
+              query ScreenViewInsurances {
+              	contracts {
+              		typeOfContract
+              	}
+              }
+              """,
+            "selectors": [
+              [
+                "name": "has_accident_insurance",
+                "path":
+                  "(contracts[?contains(typeOfContract, 'ACCIDENT') == `true`] && true) == true",
+              ],
+              [
+                "name": "has_home_insurance",
+                "path":
+                  "((contracts[?contains(typeOfContract, 'HOME') == `true`] || contracts[?contains(typeOfContract, 'APARTMENT') == `true`] || contracts[?contains(typeOfContract, 'HOUSE') == `true`]) && true) == true",
+              ],
+            ], "variables": graphQLVariables,
           ]
-        }
-        else {
-          graphqlProperties = [:]
-        }
-
-        hAnalyticsProviders.sendEvent(
-          hAnalyticsEvent(
-            name: "screen_view_insurances",
-            properties: properties.merging(graphqlProperties, uniquingKeysWith: { _, rhs in rhs })
-          )
         )
-      }
+      )
     }
   }
 
@@ -340,7 +291,7 @@ extension hAnalyticsEvent {
     return AnalyticsClosure {
       let properties: [String: Any?] = [:]
 
-      hAnalyticsProviders.sendEvent(
+      hAnalyticsNetworking.send(
         hAnalyticsEvent(name: "screen_view_moving_flow_intro", properties: properties)
       )
     }
@@ -351,7 +302,7 @@ extension hAnalyticsEvent {
     return AnalyticsClosure {
       let properties: [String: Any?] = [:]
 
-      hAnalyticsProviders.sendEvent(
+      hAnalyticsNetworking.send(
         hAnalyticsEvent(name: "screen_view_profile", properties: properties)
       )
     }
