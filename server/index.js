@@ -25,6 +25,10 @@ app.post("/event", async (req, res) => {
       graphql,
     } = req.body;
 
+    const timestamp = new Date()
+
+    console.log(`Processing event from ${ip}: ${event}`)
+
     var allProperties = {
       ...properties,
     };
@@ -56,6 +60,7 @@ app.post("/event", async (req, res) => {
       userId: trackingId,
       event,
       properties: allProperties,
+      timestamp,
       context: {
         timezone,
         os: {
@@ -88,6 +93,8 @@ app.post("/event", async (req, res) => {
         },
       },
     });
+
+    console.log(`Event from ${ip} was processed: ${event}`)
 
     res.status(200).send("OK");
   } catch (err) {
