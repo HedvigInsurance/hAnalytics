@@ -1,0 +1,3 @@
+name: app_resumed
+description: App was resumed after being in background
+accessor: appResumed
