@@ -1,0 +1,10 @@
+name: embark_varianted_offer_redirect
+description: When embark does a varianted offer redirect
+accessor: embarkVariantedOfferRedirect
+inputs:
+  - name: all_ids
+    type: Array<String>
+    argument: allIds
+  - name: selected_ids
+    type: Array<String>
+    argument: selectedIds

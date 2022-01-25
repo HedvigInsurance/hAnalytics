@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`validate 1`] = `
+Object {
+  "name": "embark_passage_go_back",
+  "variables": Object {
+    "originated_from_embark_story": "Test",
+    "passage_name": "Passage",
+  },
+}
+`;

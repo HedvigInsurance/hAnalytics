@@ -1,0 +1,10 @@
+name: embark_passage_go_back
+description: When embark goes back one passage
+accessor: embarkTrack
+inputs:
+  - name: originated_from_embark_story
+    type: String
+    argument: storyName
+  - name: passage_name
+    type: String
+    argument: passageName

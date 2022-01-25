@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`validate 1`] = `
+Object {
+  "name": "embark_track",
+  "variables": Object {
+    "event_name": "tracking",
+    "originated_from_embark_story": "Test",
+    "store": Object {
+      "originatedFromEmbarkStory": "blabla",
+    },
+  },
+}
+`;

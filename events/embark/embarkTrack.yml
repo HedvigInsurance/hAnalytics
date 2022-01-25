@@ -1,0 +1,13 @@
+name: embark_track
+description: When embark sends a tracking event
+accessor: embarkTrack
+inputs:
+  - name: originated_from_embark_story
+    type: String
+    argument: storyName
+  - name: event_name
+    type: String
+    argument: eventName
+  - name: store
+    type: Dictionary<String, Any>
+    argument: store

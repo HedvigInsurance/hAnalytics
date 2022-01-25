@@ -1,0 +1,7 @@
+name: embark_external_redirect
+description: When embark does an external redirect
+accessor: embarkExternalRedirect
+inputs:
+  - name: location
+    type: String
+    argument: location

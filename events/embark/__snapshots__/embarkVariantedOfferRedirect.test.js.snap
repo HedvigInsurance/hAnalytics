@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`validate 1`] = `
+Object {
+  "name": "embark_varianted_offer_redirect",
+  "variables": Object {
+    "all_ids": Array [
+      "1",
+      "2",
+    ],
+    "selected_ids": Array [
+      "1",
+      "2",
+    ],
+  },
+}
+`;

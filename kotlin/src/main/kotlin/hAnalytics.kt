@@ -110,6 +110,88 @@ fun hAnalyticsEvent.Companion.claimsStatusDetailScreenView(
     }
 }
 
+/** When embark does an external redirect */
+fun hAnalyticsEvent.Companion.embarkExternalRedirect(location: String): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> =
+            mapOf(
+                "location" to location,
+            )
+
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "embark_external_redirect",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
+
+/** When embark goes back one passage */
+fun hAnalyticsEvent.Companion.embarkTrack(
+    storyName: String,
+    passageName: String
+): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> =
+            mapOf(
+                "originated_from_embark_story" to storyName,
+                "passage_name" to passageName,
+            )
+
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "embark_passage_go_back",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
+
+/** When embark sends a tracking event */
+fun hAnalyticsEvent.Companion.embarkTrack(
+    storyName: String,
+    eventName: String,
+    store: Map<String, Any>
+): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> =
+            mapOf(
+                "originated_from_embark_story" to storyName,
+                "event_name" to eventName,
+                "store" to store,
+            )
+
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "embark_track",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
+
+/** When embark does a varianted offer redirect */
+fun hAnalyticsEvent.Companion.embarkVariantedOfferRedirect(
+    allIds: Array<String>,
+    selectedIds: Array<String>
+): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> =
+            mapOf(
+                "all_ids" to allIds,
+                "selected_ids" to selectedIds,
+            )
+
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "embark_varianted_offer_redirect",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
+
 /** When quotes are signed in the offer screen */
 fun hAnalyticsEvent.Companion.quotesSigned(quoteIds: Array<String>): AnalyticsClosure {
     return AnalyticsClosure {

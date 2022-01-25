@@ -75,6 +75,56 @@ extension hAnalyticsEvent {
     }
   }
 
+  /// When embark does an external redirect
+  public static func embarkExternalRedirect(location: String) -> AnalyticsClosure {
+    return AnalyticsClosure {
+      let properties: [String: Any?] = ["location": location]
+
+      hAnalyticsNetworking.send(
+        hAnalyticsEvent(name: "embark_external_redirect", properties: properties)
+      )
+    }
+  }
+
+  /// When embark goes back one passage
+  public static func embarkTrack(storyName: String, passageName: String) -> AnalyticsClosure {
+    return AnalyticsClosure {
+      let properties: [String: Any?] = [
+        "originated_from_embark_story": storyName, "passage_name": passageName,
+      ]
+
+      hAnalyticsNetworking.send(
+        hAnalyticsEvent(name: "embark_passage_go_back", properties: properties)
+      )
+    }
+  }
+
+  /// When embark sends a tracking event
+  public static func embarkTrack(storyName: String, eventName: String, store: [String: Any])
+    -> AnalyticsClosure
+  {
+    return AnalyticsClosure {
+      let properties: [String: Any?] = [
+        "originated_from_embark_story": storyName, "event_name": eventName, "store": store,
+      ]
+
+      hAnalyticsNetworking.send(hAnalyticsEvent(name: "embark_track", properties: properties))
+    }
+  }
+
+  /// When embark does a varianted offer redirect
+  public static func embarkVariantedOfferRedirect(allIds: [String], selectedIds: [String])
+    -> AnalyticsClosure
+  {
+    return AnalyticsClosure {
+      let properties: [String: Any?] = ["all_ids": allIds, "selected_ids": selectedIds]
+
+      hAnalyticsNetworking.send(
+        hAnalyticsEvent(name: "embark_varianted_offer_redirect", properties: properties)
+      )
+    }
+  }
+
   /// When quotes are signed in the offer screen
   public static func quotesSigned(quoteIds: [String]) -> AnalyticsClosure {
     return AnalyticsClosure {

@@ -15,7 +15,8 @@ module.exports = {
         "Array<Optional<String>>": "[String?]",
         "Array<Optional<Integer>>": "[Int?]",
         "Array<Optional<Boolean>>": "[Bool?]",
-        "Array<Optional<Double>>": "[Double?]"
+        "Array<Optional<Double>>": "[Double?]",
+        "Dictionary<String, Any>": "[String: Any]"
     },
     kotlinTypeMap: {
         "String": "String",
@@ -33,6 +34,7 @@ module.exports = {
         "Array<Optional<String>>": "Array<String?>",
         "Array<Optional<Integer>>": "Array<Int?>",
         "Array<Optional<Boolean>>": "Array<Boolean?>",
-        "Array<Optional<Double>>": "Array<Double?>"
+        "Array<Optional<Double>>": "Array<Double?>",
+        "Dictionary<String, Any>": "Map<String, Any>"
     },
 }
