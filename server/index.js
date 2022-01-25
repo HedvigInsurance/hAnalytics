@@ -9,6 +9,31 @@ const port = process.env.PORT ?? 3034;
 
 app.use(express.json());
 
+const getTraits = async (headers) => {
+  try {
+    const query = gql`
+      query hAnalyticsTraits {
+        member {
+          id
+        }
+      }
+    `;
+
+    const graphqlData = await request(
+      process.env.GRAPHQL_ENDPOINT,
+      query,
+      {},
+      headers
+    );
+
+    return {
+      memberId: graphqlData.member.id,
+    };
+  } catch (err) {
+    return {};
+  }
+};
+
 app.post("/event", async (req, res) => {
   try {
     const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
@@ -25,13 +50,17 @@ app.post("/event", async (req, res) => {
       graphql,
     } = req.body;
 
-    const timestamp = new Date()
+    const timestamp = new Date();
 
-    console.log(`Processing event from ${ip}: ${event}`)
+    console.log(`Processing event from ${ip}: ${event}`);
 
     var allProperties = {
       ...properties,
     };
+
+    const forwardedHeaders = {
+        authorization: req.headers["authorization"],
+    }
 
     if (graphql) {
       const query = gql`
@@ -43,9 +72,7 @@ app.post("/event", async (req, res) => {
         process.env.GRAPHQL_ENDPOINT,
         query,
         graphql.variables,
-        {
-          authorization: req.headers["authorization"],
-        }
+        forwardedHeaders
       );
 
       selectors.forEach((selector) => {
@@ -76,7 +103,7 @@ app.post("/event", async (req, res) => {
           namespace: app.namespace,
         },
         library: {
-            name: "hAnalytics"
+          name: "hAnalytics",
         },
         device: {
           manufacturer: device.manufacturer,
@@ -84,17 +111,18 @@ app.post("/event", async (req, res) => {
           name: device.name,
           type: device.type,
           version: device.version,
-          id: device.id
+          id: device.id,
         },
         screen: {
           density: screen.density,
           height: screen.height,
           width: screen.width,
         },
+        traits: await getTraits(forwardedHeaders)
       },
     });
 
-    console.log(`Event from ${ip} was processed: ${event}`)
+    console.log(`Event from ${ip} was processed: ${event}`);
 
     res.status(200).send("OK");
   } catch (err) {
