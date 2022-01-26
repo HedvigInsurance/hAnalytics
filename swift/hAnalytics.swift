@@ -1,5 +1,4 @@
 import Foundation
-import JMESPath
 
 public struct hAnalyticsEvent {
   public let name: String
