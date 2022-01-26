@@ -209,6 +209,20 @@ fun hAnalyticsEvent.Companion.embarkVariantedOfferRedirect(
     }
 }
 
+/** When embark is shown */
+fun hAnalyticsEvent.Companion.screenViewEmbark(): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> = mapOf()
+
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "screen_view_embark",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
+
 /** When quotes are signed in the offer screen */
 fun hAnalyticsEvent.Companion.quotesSigned(quoteIds: Array<String>): AnalyticsClosure {
     return AnalyticsClosure {
@@ -293,6 +307,114 @@ fun hAnalyticsEvent.Companion.onboardingChooseEmbarkFlow(embarkStoryId: String):
         hAnalyticsProviders.sendEvent(
             hAnalyticsEvent(
                 name = "onboarding_choose_embark_flow",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
+
+/** When the user decided to skip data collection */
+fun hAnalyticsEvent.Companion.dataCollectionSkipped(providerId: String): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> =
+            mapOf(
+                "provider_id" to providerId,
+            )
+
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "data_collection_skipped",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
+
+/** When data collection waiting for authentication screen is shown */
+fun hAnalyticsEvent.Companion.screenViewDataCollectionAuthenticating(
+    providerId: String
+): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> =
+            mapOf(
+                "provider_id" to providerId,
+            )
+
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "screen_view_data_collection_authenticating",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
+
+/** When data collection credentials screen is shown (Insurely) */
+fun hAnalyticsEvent.Companion.screenViewDataCollectionCredentials(
+    providerId: String
+): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> =
+            mapOf(
+                "provider_id" to providerId,
+            )
+
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "screen_view_data_collection_credentials",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
+
+/** When data collection failed */
+fun hAnalyticsEvent.Companion.screenViewDataCollectionFail(providerId: String): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> =
+            mapOf(
+                "provider_id" to providerId,
+            )
+
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "screen_view_data_collection_fail",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
+
+/** When data collection intro screen is shown (Insurely) */
+fun hAnalyticsEvent.Companion.screenViewDataCollectionIntro(providerId: String): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> =
+            mapOf(
+                "provider_id" to providerId,
+            )
+
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "screen_view_data_collection_intro",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
+
+/** When data collection succeeded */
+fun hAnalyticsEvent.Companion.screenViewDataCollectionSuccess(
+    providerId: String
+): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> =
+            mapOf(
+                "provider_id" to providerId,
+            )
+
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "screen_view_data_collection_success",
                 properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
             )
         )
