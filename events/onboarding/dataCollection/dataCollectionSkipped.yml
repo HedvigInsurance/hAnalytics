@@ -1,0 +1,7 @@
+name: data_collection_skipped
+description: When the user decided to skip data collection
+accessor: dataCollectionSkipped
+inputs:
+  - name: provider_id
+    type: String
+    argument: providerId
