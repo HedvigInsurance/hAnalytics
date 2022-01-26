@@ -1,0 +1,7 @@
+name: screen_view_data_collection_success
+description: When data collection succeeded
+accessor: screenViewDataCollectionSuccess
+inputs:
+  - name: provider_id
+    type: String
+    argument: providerId

@@ -1,0 +1,7 @@
+name: screen_view_data_collection_authenticating
+description: When data collection waiting for authentication screen is shown
+accessor: screenViewDataCollectionAuthenticating
+inputs:
+  - name: provider_id
+    type: String
+    argument: providerId
