@@ -16,9 +16,17 @@ public struct hAnalyticsEvent {
     }
 }
 
-public struct AnalyticsClosure {
+public struct hAnalyticsParcel {
+    var sender: () -> Void
+
+    init(_ sender: () -> Void) {
+        self.sender = sender
+    }
+
     /// sends the event instantly
-    public let send: () -> Void
+    public func send() {
+        sender()
+    }
 }
 
 extension hAnalyticsEvent {
@@ -29,8 +37,8 @@ extension hAnalyticsEvent {
 
 <% events.forEach(function(event) { %>
     /// <%= event.description || "no description given" %>
-    public static func <%= event.accessor %>(<%= (event.inputs ?? []).map((input) => `${input.argument}: ${swiftTypeMap[input.type]}`).join(",") %>) -> AnalyticsClosure {
-        return AnalyticsClosure {
+    public static func <%= event.accessor %>(<%= (event.inputs ?? []).map((input) => `${input.argument}: ${swiftTypeMap[input.type]}`).join(",") %>) -> hAnalyticsParcel {
+        return hAnalyticsParcel {
         <% if(event.graphql) { %>
                 let properties: [String: Any?] = [
                     <% (event.inputs ?? []).forEach(function(input) { %>

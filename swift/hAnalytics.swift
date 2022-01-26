@@ -13,9 +13,13 @@ public struct hAnalyticsEvent {
   }
 }
 
-public struct AnalyticsClosure {
+public struct hAnalyticsParcel {
+  var sender: () -> Void
+
+  init(_ sender: () -> Void) { self.sender = sender }
+
   /// sends the event instantly
-  public let send: () -> Void
+  public func send() { sender() }
 }
 
 extension hAnalyticsEvent {
@@ -23,8 +27,8 @@ extension hAnalyticsEvent {
   public static func identify() { hAnalyticsNetworking.identify() }
 
   /// When a claim card has been clicked on screen
-  public static func claimCardClick(claimId: String, claimStatus: String) -> AnalyticsClosure {
-    return AnalyticsClosure {
+  public static func claimCardClick(claimId: String, claimStatus: String) -> hAnalyticsParcel {
+    return hAnalyticsParcel {
       let properties: [String: Any?] = ["claim_id": claimId, "claim_status": claimStatus]
 
       hAnalyticsNetworking.send(hAnalyticsEvent(name: "claim_card_click", properties: properties))
@@ -32,8 +36,8 @@ extension hAnalyticsEvent {
   }
 
   /// When a claim card has been shown on screen
-  public static func claimCardVisible(claimId: String, claimStatus: String) -> AnalyticsClosure {
-    return AnalyticsClosure {
+  public static func claimCardVisible(claimId: String, claimStatus: String) -> hAnalyticsParcel {
+    return hAnalyticsParcel {
       let properties: [String: Any?] = ["claim_id": claimId, "claim_status": claimStatus]
 
       hAnalyticsNetworking.send(hAnalyticsEvent(name: "claim_card_visible", properties: properties))
@@ -42,9 +46,9 @@ extension hAnalyticsEvent {
 
   /// When contact chat is tapped on claim details
   public static func claimDetailClickOpenChat(claimId: String, claimStatus: String)
-    -> AnalyticsClosure
+    -> hAnalyticsParcel
   {
-    return AnalyticsClosure {
+    return hAnalyticsParcel {
       let properties: [String: Any?] = ["claim_id": claimId, "claim_status": claimStatus]
 
       hAnalyticsNetworking.send(
@@ -54,8 +58,8 @@ extension hAnalyticsEvent {
   }
 
   /// When a claims recording has been played in the claims status screen
-  public static func claimsDetailRecordingPlayed(claimId: String) -> AnalyticsClosure {
-    return AnalyticsClosure {
+  public static func claimsDetailRecordingPlayed(claimId: String) -> hAnalyticsParcel {
+    return hAnalyticsParcel {
       let properties: [String: Any?] = ["claim_id": claimId]
 
       hAnalyticsNetworking.send(
@@ -66,9 +70,9 @@ extension hAnalyticsEvent {
 
   /// When the claims status detail screen is shown
   public static func claimsStatusDetailScreenView(claimId: String, claimStatus: String)
-    -> AnalyticsClosure
+    -> hAnalyticsParcel
   {
-    return AnalyticsClosure {
+    return hAnalyticsParcel {
       let properties: [String: Any?] = ["claim_id": claimId, "claim_status": claimStatus]
 
       hAnalyticsNetworking.send(
@@ -78,8 +82,8 @@ extension hAnalyticsEvent {
   }
 
   /// When a deep link was opened
-  public static func deepLinkOpened(type: String) -> AnalyticsClosure {
-    return AnalyticsClosure {
+  public static func deepLinkOpened(type: String) -> hAnalyticsParcel {
+    return hAnalyticsParcel {
       let properties: [String: Any?] = ["type": type]
 
       hAnalyticsNetworking.send(hAnalyticsEvent(name: "deep_link_opened", properties: properties))
@@ -87,8 +91,8 @@ extension hAnalyticsEvent {
   }
 
   /// When embark does an external redirect
-  public static func embarkExternalRedirect(location: String) -> AnalyticsClosure {
-    return AnalyticsClosure {
+  public static func embarkExternalRedirect(location: String) -> hAnalyticsParcel {
+    return hAnalyticsParcel {
       let properties: [String: Any?] = ["location": location]
 
       hAnalyticsNetworking.send(
@@ -98,9 +102,9 @@ extension hAnalyticsEvent {
   }
 
   /// When embark goes back one passage
-  public static func embarkPassageGoBack(storyName: String, passageName: String) -> AnalyticsClosure
+  public static func embarkPassageGoBack(storyName: String, passageName: String) -> hAnalyticsParcel
   {
-    return AnalyticsClosure {
+    return hAnalyticsParcel {
       let properties: [String: Any?] = [
         "originated_from_embark_story": storyName, "passage_name": passageName,
       ]
@@ -113,9 +117,9 @@ extension hAnalyticsEvent {
 
   /// When embark sends a tracking event
   public static func embarkTrack(storyName: String, eventName: String, store: [String: Any])
-    -> AnalyticsClosure
+    -> hAnalyticsParcel
   {
-    return AnalyticsClosure {
+    return hAnalyticsParcel {
       let properties: [String: Any?] = [
         "originated_from_embark_story": storyName, "event_name": eventName, "store": store,
       ]
@@ -126,9 +130,9 @@ extension hAnalyticsEvent {
 
   /// When embark does a varianted offer redirect
   public static func embarkVariantedOfferRedirect(allIds: [String], selectedIds: [String])
-    -> AnalyticsClosure
+    -> hAnalyticsParcel
   {
-    return AnalyticsClosure {
+    return hAnalyticsParcel {
       let properties: [String: Any?] = ["all_ids": allIds, "selected_ids": selectedIds]
 
       hAnalyticsNetworking.send(
@@ -138,8 +142,8 @@ extension hAnalyticsEvent {
   }
 
   /// When quotes are signed in the offer screen
-  public static func quotesSigned(quoteIds: [String]) -> AnalyticsClosure {
-    return AnalyticsClosure {
+  public static func quotesSigned(quoteIds: [String]) -> hAnalyticsParcel {
+    return hAnalyticsParcel {
       let properties: [String: Any?] = ["quote_ids": quoteIds]
 
       let graphQLVariables: [String: Any?] = ["quote_ids": quoteIds]
@@ -174,8 +178,8 @@ extension hAnalyticsEvent {
   }
 
   /// When an embark flow is choosen on the choose screen
-  public static func onboardingChooseEmbarkFlow(embarkStoryId: String) -> AnalyticsClosure {
-    return AnalyticsClosure {
+  public static func onboardingChooseEmbarkFlow(embarkStoryId: String) -> hAnalyticsParcel {
+    return hAnalyticsParcel {
       let properties: [String: Any?] = ["embark_story_id": embarkStoryId]
 
       hAnalyticsNetworking.send(
@@ -185,8 +189,8 @@ extension hAnalyticsEvent {
   }
 
   /// When Offer screen is shown
-  public static func screenViewOffer(offerIds: [String]) -> AnalyticsClosure {
-    return AnalyticsClosure {
+  public static func screenViewOffer(offerIds: [String]) -> hAnalyticsParcel {
+    return hAnalyticsParcel {
       let properties: [String: Any?] = ["offer_ids": offerIds]
 
       let graphQLVariables: [String: Any?] = ["offer_ids": offerIds]
@@ -221,8 +225,8 @@ extension hAnalyticsEvent {
   }
 
   /// A payment card was shown on the home screen
-  public static func homePaymentCardVisible() -> AnalyticsClosure {
-    return AnalyticsClosure {
+  public static func homePaymentCardVisible() -> hAnalyticsParcel {
+    return hAnalyticsParcel {
       let properties: [String: Any?] = [:]
 
       hAnalyticsNetworking.send(
@@ -232,8 +236,8 @@ extension hAnalyticsEvent {
   }
 
   /// Connecting payment with Adyen screen was shown
-  public static func screenViewConnectPaymentAdyen() -> AnalyticsClosure {
-    return AnalyticsClosure {
+  public static func screenViewConnectPaymentAdyen() -> hAnalyticsParcel {
+    return hAnalyticsParcel {
       let properties: [String: Any?] = [:]
 
       hAnalyticsNetworking.send(
@@ -243,8 +247,8 @@ extension hAnalyticsEvent {
   }
 
   /// When payment connection did fail
-  public static func screenViewConnectPaymentFailed() -> AnalyticsClosure {
-    return AnalyticsClosure {
+  public static func screenViewConnectPaymentFailed() -> hAnalyticsParcel {
+    return hAnalyticsParcel {
       let properties: [String: Any?] = [:]
 
       hAnalyticsNetworking.send(
@@ -254,8 +258,8 @@ extension hAnalyticsEvent {
   }
 
   /// When payment was connected successfully
-  public static func screenViewConnectPaymentSuccess() -> AnalyticsClosure {
-    return AnalyticsClosure {
+  public static func screenViewConnectPaymentSuccess() -> hAnalyticsParcel {
+    return hAnalyticsParcel {
       let properties: [String: Any?] = [:]
 
       hAnalyticsNetworking.send(
@@ -265,8 +269,8 @@ extension hAnalyticsEvent {
   }
 
   /// Connecting payment with Trustly screen was shown
-  public static func screenViewConnectPaymentTrustly() -> AnalyticsClosure {
-    return AnalyticsClosure {
+  public static func screenViewConnectPaymentTrustly() -> hAnalyticsParcel {
+    return hAnalyticsParcel {
       let properties: [String: Any?] = [:]
 
       hAnalyticsNetworking.send(
@@ -276,8 +280,8 @@ extension hAnalyticsEvent {
   }
 
   /// When the detail screen of a cross sell is shown
-  public static func screenViewCrossSellDetail(typeOfContract: String) -> AnalyticsClosure {
-    return AnalyticsClosure {
+  public static func screenViewCrossSellDetail(typeOfContract: String) -> hAnalyticsParcel {
+    return hAnalyticsParcel {
       let properties: [String: Any?] = ["type_of_contract": typeOfContract]
 
       hAnalyticsNetworking.send(
@@ -287,8 +291,8 @@ extension hAnalyticsEvent {
   }
 
   /// When Hedvig Forever is shown
-  public static func screenViewForever() -> AnalyticsClosure {
-    return AnalyticsClosure {
+  public static func screenViewForever() -> hAnalyticsParcel {
+    return hAnalyticsParcel {
       let properties: [String: Any?] = [:]
 
       hAnalyticsNetworking.send(
@@ -298,8 +302,8 @@ extension hAnalyticsEvent {
   }
 
   /// When Home tab is shown
-  public static func screenViewHome() -> AnalyticsClosure {
-    return AnalyticsClosure {
+  public static func screenViewHome() -> hAnalyticsParcel {
+    return hAnalyticsParcel {
       let properties: [String: Any?] = [:]
 
       hAnalyticsNetworking.send(hAnalyticsEvent(name: "screen_view_home", properties: properties))
@@ -307,8 +311,8 @@ extension hAnalyticsEvent {
   }
 
   /// When detail screen of an insurance is shown
-  public static func screenViewInsuranceDetail(contractId: String) -> AnalyticsClosure {
-    return AnalyticsClosure {
+  public static func screenViewInsuranceDetail(contractId: String) -> hAnalyticsParcel {
+    return hAnalyticsParcel {
       let properties: [String: Any?] = ["contract_id": contractId]
 
       hAnalyticsNetworking.send(
@@ -318,8 +322,8 @@ extension hAnalyticsEvent {
   }
 
   /// When Insurances tab is shown
-  public static func screenViewInsurances() -> AnalyticsClosure {
-    return AnalyticsClosure {
+  public static func screenViewInsurances() -> hAnalyticsParcel {
+    return hAnalyticsParcel {
       let properties: [String: Any?] = [:]
 
       let graphQLVariables: [String: Any?] = [:]
@@ -355,8 +359,8 @@ extension hAnalyticsEvent {
   }
 
   /// When moving flow intro screen is shown
-  public static func screenViewMovingFlowIntro() -> AnalyticsClosure {
-    return AnalyticsClosure {
+  public static func screenViewMovingFlowIntro() -> hAnalyticsParcel {
+    return hAnalyticsParcel {
       let properties: [String: Any?] = [:]
 
       hAnalyticsNetworking.send(
@@ -366,8 +370,8 @@ extension hAnalyticsEvent {
   }
 
   /// When Profile tab is shown
-  public static func screenViewProfile() -> AnalyticsClosure {
-    return AnalyticsClosure {
+  public static func screenViewProfile() -> hAnalyticsParcel {
+    return hAnalyticsParcel {
       let properties: [String: Any?] = [:]
 
       hAnalyticsNetworking.send(
@@ -377,8 +381,8 @@ extension hAnalyticsEvent {
   }
 
   /// App was put into background
-  public static func appBackground() -> AnalyticsClosure {
-    return AnalyticsClosure {
+  public static func appBackground() -> hAnalyticsParcel {
+    return hAnalyticsParcel {
       let properties: [String: Any?] = [:]
 
       hAnalyticsNetworking.send(hAnalyticsEvent(name: "app_background", properties: properties))
@@ -386,8 +390,8 @@ extension hAnalyticsEvent {
   }
 
   /// App was resumed after being in background
-  public static func appResumed() -> AnalyticsClosure {
-    return AnalyticsClosure {
+  public static func appResumed() -> hAnalyticsParcel {
+    return hAnalyticsParcel {
       let properties: [String: Any?] = [:]
 
       hAnalyticsNetworking.send(hAnalyticsEvent(name: "app_resumed", properties: properties))
@@ -395,8 +399,8 @@ extension hAnalyticsEvent {
   }
 
   /// App was shutdown
-  public static func appShutdown() -> AnalyticsClosure {
-    return AnalyticsClosure {
+  public static func appShutdown() -> hAnalyticsParcel {
+    return hAnalyticsParcel {
       let properties: [String: Any?] = [:]
 
       hAnalyticsNetworking.send(hAnalyticsEvent(name: "app_shutdown", properties: properties))
@@ -404,8 +408,8 @@ extension hAnalyticsEvent {
   }
 
   /// App was started
-  public static func appStarted() -> AnalyticsClosure {
-    return AnalyticsClosure {
+  public static func appStarted() -> hAnalyticsParcel {
+    return hAnalyticsParcel {
       let properties: [String: Any?] = [:]
 
       hAnalyticsNetworking.send(hAnalyticsEvent(name: "app_started", properties: properties))
