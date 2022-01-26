@@ -223,6 +223,20 @@ fun hAnalyticsEvent.Companion.screenViewEmbark(): AnalyticsClosure {
     }
 }
 
+/** When embark tooltip screen is shown */
+fun hAnalyticsEvent.Companion.screenViewEmbarkTooltip(): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> = mapOf()
+
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "screen_view_embark_tooltip",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
+
 /** When quotes are signed in the offer screen */
 fun hAnalyticsEvent.Companion.quotesSigned(quoteIds: Array<String>): AnalyticsClosure {
     return AnalyticsClosure {
