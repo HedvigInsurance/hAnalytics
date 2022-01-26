@@ -149,6 +149,17 @@ extension hAnalyticsEvent {
     }
   }
 
+  /// When embark tooltip screen is shown
+  public static func screenViewEmbarkTooltip() -> hAnalyticsParcel {
+    return hAnalyticsParcel {
+      let properties: [String: Any?] = [:]
+
+      hAnalyticsNetworking.send(
+        hAnalyticsEvent(name: "screen_view_embark_tooltip", properties: properties)
+      )
+    }
+  }
+
   /// When quotes are signed in the offer screen
   public static func quotesSigned(quoteIds: [String]) -> hAnalyticsParcel {
     return hAnalyticsParcel {
