@@ -3,18 +3,18 @@ import SwiftUI
 
 extension View {
     /// sends a tracking event onAppear
-    public func trackOnAppear(_ track: hAnalyticsParce) -> some View {
+    public func trackOnAppear(_ parcel: hAnalyticsParcel) -> some View {
         self.onAppear {
-            track.send()
+            parcel.send()
         }
     }
 
     /// sends a tracking event when tapping
-    public func trackOnTap(_ track: hAnalyticsParce) -> some View {
+    public func trackOnTap(_ parcel: hAnalyticsParcel) -> some View {
         self.simultaneousGesture(
             TapGesture()
                 .onEnded { _ in
-                    track.send()
+                    parcel.send()
                 }
         )
     }
