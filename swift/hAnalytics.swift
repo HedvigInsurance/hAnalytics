@@ -123,9 +123,9 @@ extension hAnalyticsEvent {
   }
 
   /// When a common claim detail screen is shown
-  public static func screenViewCommonClaimDetail(iconName: String) -> hAnalyticsParcel {
+  public static func screenViewCommonClaimDetail(id: String) -> hAnalyticsParcel {
     return hAnalyticsParcel {
-      let properties: [String: Any?] = ["icon_name": iconName]
+      let properties: [String: Any?] = ["id": id]
 
       hAnalyticsNetworking.send(
         hAnalyticsEvent(name: "screen_view_common_claim_detail", properties: properties)
