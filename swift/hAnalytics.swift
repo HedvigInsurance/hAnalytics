@@ -25,6 +25,37 @@ extension hAnalyticsEvent {
   /// identifies and registers the trackingId
   public static func identify() { hAnalyticsNetworking.identify() }
 
+  /// When a file, video, image, gif is sent in the chat
+  public static func chatRichMessageSent() -> hAnalyticsParcel {
+    return hAnalyticsParcel {
+      let properties: [String: Any?] = [:]
+
+      hAnalyticsNetworking.send(
+        hAnalyticsEvent(name: "chat_rich_message_sent", properties: properties)
+      )
+    }
+  }
+
+  /// When a text message is sent in the chat
+  public static func chatTextMessageSent() -> hAnalyticsParcel {
+    return hAnalyticsParcel {
+      let properties: [String: Any?] = [:]
+
+      hAnalyticsNetworking.send(
+        hAnalyticsEvent(name: "chat_text_message_sent", properties: properties)
+      )
+    }
+  }
+
+  /// When the chat is shown
+  public static func screenViewChat() -> hAnalyticsParcel {
+    return hAnalyticsParcel {
+      let properties: [String: Any?] = [:]
+
+      hAnalyticsNetworking.send(hAnalyticsEvent(name: "screen_view_chat", properties: properties))
+    }
+  }
+
   /// When a claim card has been clicked on screen
   public static func claimCardClick(claimId: String, claimStatus: String) -> hAnalyticsParcel {
     return hAnalyticsParcel {
@@ -76,6 +107,28 @@ extension hAnalyticsEvent {
 
       hAnalyticsNetworking.send(
         hAnalyticsEvent(name: "claims_status_detail_screen_view", properties: properties)
+      )
+    }
+  }
+
+  /// When the honor pledge screen is shown
+  public static func screenViewClaimHonorPledge() -> hAnalyticsParcel {
+    return hAnalyticsParcel {
+      let properties: [String: Any?] = [:]
+
+      hAnalyticsNetworking.send(
+        hAnalyticsEvent(name: "screen_view_claim_honor_pledge", properties: properties)
+      )
+    }
+  }
+
+  /// When a common claim detail screen is shown
+  public static func screenViewCommonClaimDetail(iconName: String) -> hAnalyticsParcel {
+    return hAnalyticsParcel {
+      let properties: [String: Any?] = ["icon_name": iconName]
+
+      hAnalyticsNetworking.send(
+        hAnalyticsEvent(name: "screen_view_common_claim_detail", properties: properties)
       )
     }
   }
@@ -432,6 +485,39 @@ extension hAnalyticsEvent {
 
       hAnalyticsNetworking.send(
         hAnalyticsEvent(name: "screen_view_connect_payment_trustly", properties: properties)
+      )
+    }
+  }
+
+  /// Payments screen was shown
+  public static func screenViewPayments() -> hAnalyticsParcel {
+    return hAnalyticsParcel {
+      let properties: [String: Any?] = [:]
+
+      hAnalyticsNetworking.send(
+        hAnalyticsEvent(name: "screen_view_payments", properties: properties)
+      )
+    }
+  }
+
+  /// When the charity screen is shown
+  public static func screenViewCharity() -> hAnalyticsParcel {
+    return hAnalyticsParcel {
+      let properties: [String: Any?] = [:]
+
+      hAnalyticsNetworking.send(
+        hAnalyticsEvent(name: "screen_view_charity", properties: properties)
+      )
+    }
+  }
+
+  /// When the contact info screen is shown
+  public static func screenViewContactInfo() -> hAnalyticsParcel {
+    return hAnalyticsParcel {
+      let properties: [String: Any?] = [:]
+
+      hAnalyticsNetworking.send(
+        hAnalyticsEvent(name: "screen_view_contact_info", properties: properties)
       )
     }
   }
