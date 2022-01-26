@@ -167,11 +167,11 @@ fun hAnalyticsEvent.Companion.screenViewClaimHonorPledge(): AnalyticsClosure {
 }
 
 /** When a common claim detail screen is shown */
-fun hAnalyticsEvent.Companion.screenViewCommonClaimDetail(iconName: String): AnalyticsClosure {
+fun hAnalyticsEvent.Companion.screenViewCommonClaimDetail(id: String): AnalyticsClosure {
     return AnalyticsClosure {
         val properties: Map<String, Any?> =
             mapOf(
-                "icon_name" to iconName,
+                "id" to id,
             )
 
         hAnalyticsProviders.sendEvent(
