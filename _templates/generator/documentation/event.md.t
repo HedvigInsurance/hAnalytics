@@ -1,7 +1,8 @@
 ---
 to: docs/docs/<%= file %>.md
 ---
-# <%= event.name %>
+# <%= event.accessor %>
+## <%= event.name %>
 <%= event.description %>
 
 ## Attributes
