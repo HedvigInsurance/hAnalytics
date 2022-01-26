@@ -1,0 +1,3 @@
+name: screen_view_marketing
+description: When marketing screen is shown
+accessor: screenViewMarketing

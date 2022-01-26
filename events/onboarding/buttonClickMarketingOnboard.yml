@@ -1,0 +1,3 @@
+name: button_click_marketing_onboard
+description: When a user clicks "Get a price quote" on the marketing screen
+accessor: buttonClickMarketingOnboard
