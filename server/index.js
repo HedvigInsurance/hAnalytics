@@ -51,7 +51,12 @@ app.post("/identify", async (req, res) => {
     
         analytics.identify({
             userId: trackingId,
-            traits
+            traits,
+            context: {
+                library: {
+                    name: "hAnalytics"
+                }
+            }
         })
     } catch (err) {
         console.log("Failed to identify", err)
