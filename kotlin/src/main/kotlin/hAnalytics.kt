@@ -237,6 +237,34 @@ fun hAnalyticsEvent.Companion.screenViewEmbarkTooltip(): AnalyticsClosure {
     }
 }
 
+/** User just logged in */
+fun hAnalyticsEvent.Companion.loggedIn(): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> = mapOf()
+
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "logged_in",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
+
+/** User just logged out */
+fun hAnalyticsEvent.Companion.loggedOut(): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> = mapOf()
+
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "logged_out",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
+
 /** When quotes are signed in the offer screen */
 fun hAnalyticsEvent.Companion.quotesSigned(quoteIds: Array<String>): AnalyticsClosure {
     return AnalyticsClosure {
@@ -769,6 +797,34 @@ fun hAnalyticsEvent.Companion.appStarted(): AnalyticsClosure {
         hAnalyticsProviders.sendEvent(
             hAnalyticsEvent(
                 name = "app_started",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
+
+/** When app information screen was shown */
+fun hAnalyticsEvent.Companion.screenViewAppInformation(): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> = mapOf()
+
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "screen_view_app_information",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
+
+/** When app settings screen was shown */
+fun hAnalyticsEvent.Companion.screenViewAppSettings(): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> = mapOf()
+
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "screen_view_app_settings",
                 properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
             )
         )
