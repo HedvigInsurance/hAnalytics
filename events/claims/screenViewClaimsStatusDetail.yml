@@ -1,6 +1,6 @@
-name: claims_status_detail_screen_view
+name: screen_view_claims_status_detail
 description: When the claims status detail screen is shown
-accessor: claimsStatusDetailScreenView
+accessor: screenViewClaimsStatusDetail
 inputs:
   - name: claim_id
     type: String
