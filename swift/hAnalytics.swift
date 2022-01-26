@@ -15,7 +15,7 @@ public struct hAnalyticsEvent {
 public struct hAnalyticsParcel {
   var sender: () -> Void
 
-  init(_ sender: () -> Void) { self.sender = sender }
+  init(_ sender: @escaping () -> Void) { self.sender = sender }
 
   /// sends the event instantly
   public func send() { sender() }
