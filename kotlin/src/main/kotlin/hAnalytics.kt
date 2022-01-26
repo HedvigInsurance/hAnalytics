@@ -254,6 +254,34 @@ fun hAnalyticsEvent.Companion.quotesSigned(quoteIds: Array<String>): AnalyticsCl
     }
 }
 
+/** When a user clicks &#34;Already a member? Log in&#34; on the marketing screen */
+fun hAnalyticsEvent.Companion.buttonClickMarketingLogin(): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> = mapOf()
+
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "button_click_marketing_login",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
+
+/** When a user clicks &#34;Get a price quote&#34; on the marketing screen */
+fun hAnalyticsEvent.Companion.buttonClickMarketingOnboard(): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> = mapOf()
+
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "button_click_marketing_onboard",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
+
 /** When an embark flow is choosen on the choose screen */
 fun hAnalyticsEvent.Companion.onboardingChooseEmbarkFlow(embarkStoryId: String): AnalyticsClosure {
     return AnalyticsClosure {
@@ -265,6 +293,37 @@ fun hAnalyticsEvent.Companion.onboardingChooseEmbarkFlow(embarkStoryId: String):
         hAnalyticsProviders.sendEvent(
             hAnalyticsEvent(
                 name = "onboarding_choose_embark_flow",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
+
+/** When market picker is shown */
+fun hAnalyticsEvent.Companion.screenViewMarketPicker(): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> = mapOf()
+
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "screen_view_market_picker",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
+
+/** When a market was selected on the market picker screen */
+fun hAnalyticsEvent.Companion.marketSelected(locale: String): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> =
+            mapOf(
+                "locale" to locale,
+            )
+
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "market_selected",
                 properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
             )
         )
@@ -312,6 +371,20 @@ fun hAnalyticsEvent.Companion.screenViewOffer(offerIds: Array<String>): Analytic
                     )
                 )
             }
+        )
+    }
+}
+
+/** When marketing screen is shown */
+fun hAnalyticsEvent.Companion.screenViewMarketing(): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> = mapOf()
+
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "screen_view_marketing",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
         )
     }
 }

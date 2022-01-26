@@ -176,6 +176,28 @@ extension hAnalyticsEvent {
     }
   }
 
+  /// When a user clicks &#34;Already a member? Log in&#34; on the marketing screen
+  public static func buttonClickMarketingLogin() -> hAnalyticsParcel {
+    return hAnalyticsParcel {
+      let properties: [String: Any?] = [:]
+
+      hAnalyticsNetworking.send(
+        hAnalyticsEvent(name: "button_click_marketing_login", properties: properties)
+      )
+    }
+  }
+
+  /// When a user clicks &#34;Get a price quote&#34; on the marketing screen
+  public static func buttonClickMarketingOnboard() -> hAnalyticsParcel {
+    return hAnalyticsParcel {
+      let properties: [String: Any?] = [:]
+
+      hAnalyticsNetworking.send(
+        hAnalyticsEvent(name: "button_click_marketing_onboard", properties: properties)
+      )
+    }
+  }
+
   /// When an embark flow is choosen on the choose screen
   public static func onboardingChooseEmbarkFlow(embarkStoryId: String) -> hAnalyticsParcel {
     return hAnalyticsParcel {
@@ -184,6 +206,26 @@ extension hAnalyticsEvent {
       hAnalyticsNetworking.send(
         hAnalyticsEvent(name: "onboarding_choose_embark_flow", properties: properties)
       )
+    }
+  }
+
+  /// When market picker is shown
+  public static func screenViewMarketPicker() -> hAnalyticsParcel {
+    return hAnalyticsParcel {
+      let properties: [String: Any?] = [:]
+
+      hAnalyticsNetworking.send(
+        hAnalyticsEvent(name: "screen_view_market_picker", properties: properties)
+      )
+    }
+  }
+
+  /// When a market was selected on the market picker screen
+  public static func marketSelected(locale: String) -> hAnalyticsParcel {
+    return hAnalyticsParcel {
+      let properties: [String: Any?] = ["locale": locale]
+
+      hAnalyticsNetworking.send(hAnalyticsEvent(name: "market_selected", properties: properties))
     }
   }
 
@@ -219,6 +261,17 @@ extension hAnalyticsEvent {
             ], "variables": graphQLVariables,
           ]
         )
+      )
+    }
+  }
+
+  /// When marketing screen is shown
+  public static func screenViewMarketing() -> hAnalyticsParcel {
+    return hAnalyticsParcel {
+      let properties: [String: Any?] = [:]
+
+      hAnalyticsNetworking.send(
+        hAnalyticsEvent(name: "screen_view_marketing", properties: properties)
       )
     }
   }
