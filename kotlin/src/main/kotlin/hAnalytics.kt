@@ -9,6 +9,48 @@ data class hAnalyticsEvent(internal val name: String, internal val properties: M
 
 data class AnalyticsClosure(internal val send: () -> Unit)
 
+/** When a file, video, image, gif is sent in the chat */
+fun hAnalyticsEvent.Companion.chatRichMessageSent(): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> = mapOf()
+
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "chat_rich_message_sent",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
+
+/** When a text message is sent in the chat */
+fun hAnalyticsEvent.Companion.chatTextMessageSent(): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> = mapOf()
+
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "chat_text_message_sent",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
+
+/** When the chat is shown */
+fun hAnalyticsEvent.Companion.screenViewChat(): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> = mapOf()
+
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "screen_view_chat",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
+
 /** When a claim card has been clicked on screen */
 fun hAnalyticsEvent.Companion.claimCardClick(
     claimId: String,
@@ -104,6 +146,37 @@ fun hAnalyticsEvent.Companion.claimsStatusDetailScreenView(
         hAnalyticsProviders.sendEvent(
             hAnalyticsEvent(
                 name = "claims_status_detail_screen_view",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
+
+/** When the honor pledge screen is shown */
+fun hAnalyticsEvent.Companion.screenViewClaimHonorPledge(): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> = mapOf()
+
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "screen_view_claim_honor_pledge",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
+
+/** When a common claim detail screen is shown */
+fun hAnalyticsEvent.Companion.screenViewCommonClaimDetail(iconName: String): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> =
+            mapOf(
+                "icon_name" to iconName,
+            )
+
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "screen_view_common_claim_detail",
                 properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
             )
         )
@@ -617,6 +690,48 @@ fun hAnalyticsEvent.Companion.screenViewConnectPaymentTrustly(): AnalyticsClosur
         hAnalyticsProviders.sendEvent(
             hAnalyticsEvent(
                 name = "screen_view_connect_payment_trustly",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
+
+/** Payments screen was shown */
+fun hAnalyticsEvent.Companion.screenViewPayments(): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> = mapOf()
+
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "screen_view_payments",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
+
+/** When the charity screen is shown */
+fun hAnalyticsEvent.Companion.screenViewCharity(): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> = mapOf()
+
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "screen_view_charity",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
+
+/** When the contact info screen is shown */
+fun hAnalyticsEvent.Companion.screenViewContactInfo(): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> = mapOf()
+
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "screen_view_contact_info",
                 properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
             )
         )
