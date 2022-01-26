@@ -1,0 +1,7 @@
+name: market_selected
+description: When a market was selected on the market picker screen
+accessor: marketSelected
+inputs:
+  - name: locale
+    type: String
+    argument: locale
