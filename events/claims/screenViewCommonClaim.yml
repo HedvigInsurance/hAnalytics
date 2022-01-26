@@ -2,6 +2,6 @@ name: screen_view_common_claim_detail
 description: When a common claim detail screen is shown
 accessor: screenViewCommonClaimDetail
 inputs:
-  - name: icon_name
+  - name: id
     type: String
-    argument: iconName
+    argument: id

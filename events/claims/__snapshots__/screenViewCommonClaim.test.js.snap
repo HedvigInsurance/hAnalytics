@@ -4,7 +4,7 @@ exports[`validate 1`] = `
 Object {
   "name": "screen_view_common_claim_detail",
   "variables": Object {
-    "icon_name": "theft",
+    "id": "the_id",
   },
 }
 `;
