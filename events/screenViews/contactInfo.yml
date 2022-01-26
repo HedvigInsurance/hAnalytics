@@ -1,0 +1,3 @@
+name: screen_view_contact_info
+description: When the contact info screen is shown
+accessor: screenViewContactInfo

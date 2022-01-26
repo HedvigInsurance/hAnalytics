@@ -1,0 +1,3 @@
+name: chat_text_message_sent
+description: When a text message is sent in the chat
+accessor: chatTextMessageSent
