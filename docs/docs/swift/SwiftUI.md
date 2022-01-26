@@ -1,6 +1,5 @@
 
 # SwiftUI
-
 hAnalytics defines a set of extensions to SwiftUI to make tracking easier
 
 ## View.trackOnAppear
