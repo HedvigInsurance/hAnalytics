@@ -140,6 +140,15 @@ extension hAnalyticsEvent {
     }
   }
 
+  /// When embark is shown
+  public static func screenViewEmbark() -> hAnalyticsParcel {
+    return hAnalyticsParcel {
+      let properties: [String: Any?] = [:]
+
+      hAnalyticsNetworking.send(hAnalyticsEvent(name: "screen_view_embark", properties: properties))
+    }
+  }
+
   /// When quotes are signed in the offer screen
   public static func quotesSigned(quoteIds: [String]) -> hAnalyticsParcel {
     return hAnalyticsParcel {
@@ -205,6 +214,73 @@ extension hAnalyticsEvent {
 
       hAnalyticsNetworking.send(
         hAnalyticsEvent(name: "onboarding_choose_embark_flow", properties: properties)
+      )
+    }
+  }
+
+  /// When the user decided to skip data collection
+  public static func dataCollectionSkipped(providerId: String) -> hAnalyticsParcel {
+    return hAnalyticsParcel {
+      let properties: [String: Any?] = ["provider_id": providerId]
+
+      hAnalyticsNetworking.send(
+        hAnalyticsEvent(name: "data_collection_skipped", properties: properties)
+      )
+    }
+  }
+
+  /// When data collection waiting for authentication screen is shown
+  public static func screenViewDataCollectionAuthenticating(providerId: String) -> hAnalyticsParcel
+  {
+    return hAnalyticsParcel {
+      let properties: [String: Any?] = ["provider_id": providerId]
+
+      hAnalyticsNetworking.send(
+        hAnalyticsEvent(name: "screen_view_data_collection_authenticating", properties: properties)
+      )
+    }
+  }
+
+  /// When data collection credentials screen is shown (Insurely)
+  public static func screenViewDataCollectionCredentials(providerId: String) -> hAnalyticsParcel {
+    return hAnalyticsParcel {
+      let properties: [String: Any?] = ["provider_id": providerId]
+
+      hAnalyticsNetworking.send(
+        hAnalyticsEvent(name: "screen_view_data_collection_credentials", properties: properties)
+      )
+    }
+  }
+
+  /// When data collection failed
+  public static func screenViewDataCollectionFail(providerId: String) -> hAnalyticsParcel {
+    return hAnalyticsParcel {
+      let properties: [String: Any?] = ["provider_id": providerId]
+
+      hAnalyticsNetworking.send(
+        hAnalyticsEvent(name: "screen_view_data_collection_fail", properties: properties)
+      )
+    }
+  }
+
+  /// When data collection intro screen is shown (Insurely)
+  public static func screenViewDataCollectionIntro(providerId: String) -> hAnalyticsParcel {
+    return hAnalyticsParcel {
+      let properties: [String: Any?] = ["provider_id": providerId]
+
+      hAnalyticsNetworking.send(
+        hAnalyticsEvent(name: "screen_view_data_collection_intro", properties: properties)
+      )
+    }
+  }
+
+  /// When data collection succeeded
+  public static func screenViewDataCollectionSuccess(providerId: String) -> hAnalyticsParcel {
+    return hAnalyticsParcel {
+      let properties: [String: Any?] = ["provider_id": providerId]
+
+      hAnalyticsNetworking.send(
+        hAnalyticsEvent(name: "screen_view_data_collection_success", properties: properties)
       )
     }
   }
