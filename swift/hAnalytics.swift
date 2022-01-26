@@ -160,6 +160,24 @@ extension hAnalyticsEvent {
     }
   }
 
+  /// User just logged in
+  public static func loggedIn() -> hAnalyticsParcel {
+    return hAnalyticsParcel {
+      let properties: [String: Any?] = [:]
+
+      hAnalyticsNetworking.send(hAnalyticsEvent(name: "logged_in", properties: properties))
+    }
+  }
+
+  /// User just logged out
+  public static func loggedOut() -> hAnalyticsParcel {
+    return hAnalyticsParcel {
+      let properties: [String: Any?] = [:]
+
+      hAnalyticsNetworking.send(hAnalyticsEvent(name: "logged_out", properties: properties))
+    }
+  }
+
   /// When quotes are signed in the offer screen
   public static func quotesSigned(quoteIds: [String]) -> hAnalyticsParcel {
     return hAnalyticsParcel {
@@ -552,6 +570,28 @@ extension hAnalyticsEvent {
       let properties: [String: Any?] = [:]
 
       hAnalyticsNetworking.send(hAnalyticsEvent(name: "app_started", properties: properties))
+    }
+  }
+
+  /// When app information screen was shown
+  public static func screenViewAppInformation() -> hAnalyticsParcel {
+    return hAnalyticsParcel {
+      let properties: [String: Any?] = [:]
+
+      hAnalyticsNetworking.send(
+        hAnalyticsEvent(name: "screen_view_app_information", properties: properties)
+      )
+    }
+  }
+
+  /// When app settings screen was shown
+  public static func screenViewAppSettings() -> hAnalyticsParcel {
+    return hAnalyticsParcel {
+      let properties: [String: Any?] = [:]
+
+      hAnalyticsNetworking.send(
+        hAnalyticsEvent(name: "screen_view_app_settings", properties: properties)
+      )
     }
   }
 
