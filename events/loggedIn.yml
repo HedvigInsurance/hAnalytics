@@ -1,0 +1,3 @@
+name: logged_in
+description: User just logged in
+accessor: loggedIn
