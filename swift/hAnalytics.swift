@@ -98,19 +98,6 @@ extension hAnalyticsEvent {
     }
   }
 
-  /// When the claims status detail screen is shown
-  public static func claimsStatusDetailScreenView(claimId: String, claimStatus: String)
-    -> hAnalyticsParcel
-  {
-    return hAnalyticsParcel {
-      let properties: [String: Any?] = ["claim_id": claimId, "claim_status": claimStatus]
-
-      hAnalyticsNetworking.send(
-        hAnalyticsEvent(name: "claims_status_detail_screen_view", properties: properties)
-      )
-    }
-  }
-
   /// When the honor pledge screen is shown
   public static func screenViewClaimHonorPledge() -> hAnalyticsParcel {
     return hAnalyticsParcel {
@@ -118,6 +105,19 @@ extension hAnalyticsEvent {
 
       hAnalyticsNetworking.send(
         hAnalyticsEvent(name: "screen_view_claim_honor_pledge", properties: properties)
+      )
+    }
+  }
+
+  /// When the claims status detail screen is shown
+  public static func screenViewClaimsStatusDetail(claimId: String, claimStatus: String)
+    -> hAnalyticsParcel
+  {
+    return hAnalyticsParcel {
+      let properties: [String: Any?] = ["claim_id": claimId, "claim_status": claimStatus]
+
+      hAnalyticsNetworking.send(
+        hAnalyticsEvent(name: "screen_view_claims_status_detail", properties: properties)
       )
     }
   }

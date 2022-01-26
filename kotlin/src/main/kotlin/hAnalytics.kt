@@ -131,8 +131,22 @@ fun hAnalyticsEvent.Companion.claimsDetailRecordingPlayed(claimId: String): Anal
     }
 }
 
+/** When the honor pledge screen is shown */
+fun hAnalyticsEvent.Companion.screenViewClaimHonorPledge(): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> = mapOf()
+
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "screen_view_claim_honor_pledge",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
+
 /** When the claims status detail screen is shown */
-fun hAnalyticsEvent.Companion.claimsStatusDetailScreenView(
+fun hAnalyticsEvent.Companion.screenViewClaimsStatusDetail(
     claimId: String,
     claimStatus: String
 ): AnalyticsClosure {
@@ -145,21 +159,7 @@ fun hAnalyticsEvent.Companion.claimsStatusDetailScreenView(
 
         hAnalyticsProviders.sendEvent(
             hAnalyticsEvent(
-                name = "claims_status_detail_screen_view",
-                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
-            )
-        )
-    }
-}
-
-/** When the honor pledge screen is shown */
-fun hAnalyticsEvent.Companion.screenViewClaimHonorPledge(): AnalyticsClosure {
-    return AnalyticsClosure {
-        val properties: Map<String, Any?> = mapOf()
-
-        hAnalyticsProviders.sendEvent(
-            hAnalyticsEvent(
-                name = "screen_view_claim_honor_pledge",
+                name = "screen_view_claims_status_detail",
                 properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
             )
         )
