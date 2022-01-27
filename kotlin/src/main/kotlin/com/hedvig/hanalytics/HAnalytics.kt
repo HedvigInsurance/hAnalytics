@@ -279,7 +279,7 @@ query QuotesSigned(${"\$"}quote_ids: [ID!]!) {
         )
     }
     /**
-     * When a user clicks &#34;Already a member? Log in&#34; on the marketing screen
+     * When a user clicks "Already a member? Log in" on the marketing screen
      */
     fun buttonClickMarketingLogin() {
         send(
@@ -290,7 +290,7 @@ query QuotesSigned(${"\$"}quote_ids: [ID!]!) {
         )
     }
     /**
-     * When a user clicks &#34;Get a price quote&#34; on the marketing screen
+     * When a user clicks "Get a price quote" on the marketing screen
      */
     fun buttonClickMarketingOnboard() {
         send(
