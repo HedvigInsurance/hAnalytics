@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`validate 1`] = `
+Object {
+  "name": "notification_opened",
+  "variables": Object {
+    "type": "OPEN_FOREVER_TAB",
+  },
+}
+`;

@@ -1,0 +1,7 @@
+name: notification_opened
+description: A push notification was opened
+accessor: notificationOpened
+inputs:
+  - name: type
+    type: String
+    argument: type

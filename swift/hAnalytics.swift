@@ -231,6 +231,17 @@ extension hAnalyticsEvent {
     }
   }
 
+  /// A push notification was opened
+  public static func notificationOpened(type: String) -> hAnalyticsParcel {
+    return hAnalyticsParcel {
+      let properties: [String: Any?] = ["type": type]
+
+      hAnalyticsNetworking.send(
+        hAnalyticsEvent(name: "notification_opened", properties: properties)
+      )
+    }
+  }
+
   /// The state of notification permission, on Android granted is always set to true
   public static func notificationPermission(granted: Bool) -> hAnalyticsParcel {
     return hAnalyticsParcel {

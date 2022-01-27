@@ -338,6 +338,23 @@ fun hAnalyticsEvent.Companion.loggedOut(): AnalyticsClosure {
     }
 }
 
+/** A push notification was opened */
+fun hAnalyticsEvent.Companion.notificationOpened(type: String): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> =
+            mapOf(
+                "type" to type,
+            )
+
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "notification_opened",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
+
 /** The state of notification permission, on Android granted is always set to true */
 fun hAnalyticsEvent.Companion.notificationPermission(granted: Boolean): AnalyticsClosure {
     return AnalyticsClosure {
