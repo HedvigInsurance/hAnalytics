@@ -32,7 +32,7 @@ const getTraits = async (headers) => {
       memberId: graphqlData.member.id,
     };
   } catch (err) {
-    console.log("Failed to fetch traits", err)
+    console.error("Failed to fetch traits", err)
     return {};
   }
 };
@@ -161,7 +161,7 @@ app.post("/event", async (req, res) => {
 
     res.status(200).send("OK");
   } catch (err) {
-    console.log("Failed to process event", err)
+    console.error("Failed to process event", err)
     res.status(400).send("BAD REQUEST");
   }
 });
