@@ -262,8 +262,7 @@ query QuotesSigned(${"\$"}quote_ids: [ID!]!) {
 			initiatedFrom
 		}
 	}
-}                            
-                    """.trimIndent(),
+}                            """.trimIndent(),
                     "selectors" to listOf(
                         mapOf(
                             "name" to "type_of_contracts",
@@ -437,8 +436,7 @@ query ScreenViewOffer(${"\$"}offer_ids: [ID!]!) {
 			initiatedFrom
 		}
 	}
-}                            
-                    """.trimIndent(),
+}                            """.trimIndent(),
                     "selectors" to listOf(
                         mapOf(
                             "name" to "type_of_contracts",
@@ -615,8 +613,7 @@ query ScreenViewInsurances {
 	contracts {
 		typeOfContract
 	}
-}                            
-                    """.trimIndent(),
+}                            """.trimIndent(),
                     "selectors" to listOf(
                         mapOf(
                             "name" to "has_accident_insurance",

@@ -2,6 +2,7 @@ plugins {
     `maven-publish`
     id("org.jetbrains.kotlin.jvm") version "1.5.31"
     `java-library`
+    id("org.jlleitschuh.gradle.ktlint") version "10.2.1"
 }
 
 java {
