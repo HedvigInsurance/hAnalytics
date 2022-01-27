@@ -1,3 +1,5 @@
+require('dd-trace').init();
+
 const Analytics = require("analytics-node");
 const express = require("express");
 const { request, gql } = require("graphql-request");
