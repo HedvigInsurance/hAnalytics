@@ -220,6 +220,33 @@ abstract class HAnalytics {
         )
     }
     /**
+     * Experiment where shown on screen
+     */
+    fun experimentShown(name: String, variation: String) {
+        send(
+            HAnalyticsEvent(
+                name = "experiment_shown",
+                properties = mapOf(
+                    "name" to name,
+                    "variation" to variation,
+                ),
+            )
+        )
+    }
+    /**
+     * Experiments where loaded from server
+     */
+    fun experimentsLoaded(experiments: undefined) {
+        send(
+            HAnalyticsEvent(
+                name = "experiments_loaded",
+                properties = mapOf(
+                    "experiments" to experiments,
+                ),
+            )
+        )
+    }
+    /**
      * User just logged in
      */
     fun loggedIn() {
