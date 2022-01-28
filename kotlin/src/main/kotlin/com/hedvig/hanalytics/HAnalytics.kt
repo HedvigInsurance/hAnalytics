@@ -236,7 +236,7 @@ abstract class HAnalytics {
     /**
      * Experiments where loaded from server
      */
-    fun experimentsLoaded(experiments: undefined) {
+    fun experimentsLoaded(experiments: Array<Map<String, Any>>) {
         send(
             HAnalyticsEvent(
                 name = "experiments_loaded",
