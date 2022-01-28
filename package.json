@@ -28,6 +28,7 @@
     "validate-graphql": "^1.0.9"
   },
   "devDependencies": {
+    "hygen": "^6.1.0",
     "jest": "^27.4.7"
   }
 }
