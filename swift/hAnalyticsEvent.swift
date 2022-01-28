@@ -213,6 +213,24 @@ extension hAnalyticsEvent {
     }
   }
 
+  /// Experiment where shown on screen
+  public static func experimentShown(name: String, variation: String) -> hAnalyticsParcel {
+    return hAnalyticsParcel {
+      let properties: [String: Any?] = ["name": name, "variation": variation]
+
+      hAnalyticsNetworking.send(hAnalyticsEvent(name: "experiment_shown", properties: properties))
+    }
+  }
+
+  /// Experiments where loaded from server
+  public static func experimentsLoaded(experiments: [[String: Any]]) -> hAnalyticsParcel {
+    return hAnalyticsParcel {
+      let properties: [String: Any?] = ["experiments": experiments]
+
+      hAnalyticsNetworking.send(hAnalyticsEvent(name: "experiments_loaded", properties: properties))
+    }
+  }
+
   /// User just logged in
   public static func loggedIn() -> hAnalyticsParcel {
     return hAnalyticsParcel {

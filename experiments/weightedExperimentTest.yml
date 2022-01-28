@@ -1,0 +1,11 @@
+name: weighted_experiment_test
+description: A weighted experiment
+accessor: weightedExperiment
+defaultVariation: disabled
+variations:
+  - name: enabled
+    case: enabled
+    weight: 0.5
+  - name: disabled
+    case: disabled
+    weight: 0.5

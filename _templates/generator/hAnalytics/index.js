@@ -3,14 +3,14 @@ const fs = require('fs');
 const { format } = require("graphql-formatter")
 const glob = require('glob')
 const typeMaps = require('../../../commons/typeMaps')
-const mockRunGraphQLQuery = require('../../../commons/mockRunGraphqlEvent')
+const mockRunGraphQLQuery = require('../../../commons/mockRunGraphqlEvent');
 
-const basename = __dirname + '/../../../'
+const capitalizeFirstLetter = (s) => `${s[0].toUpperCase()}${s.slice(1)}`
 
 module.exports = {
     params: async () => {
         const importEvent = async importPath => {
-            const event = yaml.load(fs.readFileSync(basename + importPath, 'utf8'))
+            const event = yaml.load(fs.readFileSync(importPath, 'utf8'))
 
             const graphqlResults = await mockRunGraphQLQuery(event)
 
@@ -28,8 +28,25 @@ module.exports = {
             })
         })
 
+        const importExperiment = async importPath => {
+            const experiment = yaml.load(fs.readFileSync(importPath, 'utf8'))
+            return {
+                ...experiment,
+                enumName: capitalizeFirstLetter(experiment.accessor),
+                defaultVariation: experiment.variations.find(variation => variation.name == experiment.defaultVariation)
+            }
+        }
+
+        const experiments = await new Promise((resolve) => {
+            glob("experiments/**/*.yml", {}, async (_, files) => {
+                const experiments = await Promise.all(files.map(importExperiment))
+                resolve(experiments)
+            })
+        })
+
         return {
             events: events,
+            experiments: experiments,
             ...typeMaps,
             formatGQL: (string) => format(string)
         }

@@ -310,6 +310,41 @@ fun hAnalyticsEvent.Companion.screenViewEmbarkTooltip(): AnalyticsClosure {
     }
 }
 
+/** Experiment where shown on screen */
+fun hAnalyticsEvent.Companion.experimentShown(name: String, variation: String): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> =
+            mapOf(
+                "name" to name,
+                "variation" to variation,
+            )
+
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "experiment_shown",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
+
+/** Experiments where loaded from server */
+fun hAnalyticsEvent.Companion.experimentsLoaded(experiments: undefined): AnalyticsClosure {
+    return AnalyticsClosure {
+        val properties: Map<String, Any?> =
+            mapOf(
+                "experiments" to experiments,
+            )
+
+        hAnalyticsProviders.sendEvent(
+            hAnalyticsEvent(
+                name = "experiments_loaded",
+                properties = properties.merging(graphqlProperties, { _, rhs -> rhs })
+            )
+        )
+    }
+}
+
 /** User just logged in */
 fun hAnalyticsEvent.Companion.loggedIn(): AnalyticsClosure {
     return AnalyticsClosure {

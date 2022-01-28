@@ -18,7 +18,7 @@ to: docs/docs/<%= file %>.md
 ## Swift
 
 ```swift
-hAnalyticsEvent.<%= event.accessor %>(<%= (event.inputs ?? []).map((input) => `${input.argument}: ${swiftTypeMap[input.type]}`).join(",") %>)
+hAnalyticsEvent.<%= event.accessor %>(<%= (event.inputs ?? []).map((input) => `${input.argument}: ${swiftTypeMap(input.type)}`).join(",") %>)
 ```
 
 ## Kotlin

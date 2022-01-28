@@ -38,7 +38,8 @@ else
     cd ../../
 fi
 
-swift-format format -i swift/hAnalytics.swift
+swift-format format -i swift/hAnalyticsEvent.swift
+swift-format format -i swift/hAnalyticsExperiment.swift
 
 if [ -f ktfmt.jar ]
 then

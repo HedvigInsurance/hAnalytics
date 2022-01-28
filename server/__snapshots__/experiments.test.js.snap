@@ -1,0 +1,379 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`returns a deterministic variation based on trackingId 1`] = `
+Object {
+  "name": "disabled",
+  "weight": 0.5,
+}
+`;
+
+exports[`returns a deterministic variation based on trackingId 2`] = `
+Object {
+  "name": "enabled",
+  "weight": 0.5,
+}
+`;
+
+exports[`returns a deterministic variation based on trackingId 3`] = `
+Object {
+  "name": "enabled",
+  "weight": 0.5,
+}
+`;
+
+exports[`returns a deterministic variation based on trackingId 4`] = `
+Object {
+  "name": "B",
+  "weight": 0.3,
+}
+`;
+
+exports[`returns a deterministic variation based on trackingId 5`] = `
+Object {
+  "name": "A",
+  "weight": 0.3,
+}
+`;
+
+exports[`returns a deterministic variation based on trackingId 6`] = `
+Object {
+  "name": "B",
+  "weight": 0.3,
+}
+`;
+
+exports[`returns a deterministic variation based on trackingId 7`] = `
+Object {
+  "name": "C",
+  "weight": 0.3,
+}
+`;
+
+exports[`returns a deterministic variation based on trackingId 8`] = `
+Object {
+  "name": "B",
+  "weight": 0.3,
+}
+`;
+
+exports[`returns a deterministic variation based on trackingId 9`] = `
+Object {
+  "name": "B",
+  "weight": 0.3,
+}
+`;
+
+exports[`returns a deterministic variation based on trackingId 10`] = `
+Object {
+  "name": "A",
+  "weight": 0.3,
+}
+`;
+
+exports[`returns a deterministic variation based on trackingId 11`] = `
+Object {
+  "name": "C",
+  "weight": 0.3,
+}
+`;
+
+exports[`returns a deterministic variation based on trackingId 12`] = `
+Object {
+  "name": "C",
+  "weight": 0.3,
+}
+`;
+
+exports[`returns a deterministic variation based on trackingId 13`] = `
+Object {
+  "name": "B",
+  "weight": 0.3,
+}
+`;
+
+exports[`returns a deterministic variation based on trackingId 14`] = `
+Object {
+  "name": "A",
+  "weight": 0.3,
+}
+`;
+
+exports[`returns a deterministic variation based on trackingId 15`] = `
+Object {
+  "name": "A",
+  "weight": 0.3,
+}
+`;
+
+exports[`returns a deterministic variation based on trackingId 16`] = `
+Object {
+  "name": "B",
+  "weight": 0.3,
+}
+`;
+
+exports[`returns a deterministic variation based on trackingId 17`] = `
+Object {
+  "name": "B",
+  "weight": 0.3,
+}
+`;
+
+exports[`returns a deterministic variation based on trackingId 18`] = `
+Object {
+  "name": "A",
+  "weight": 0.3,
+}
+`;
+
+exports[`returns a deterministic variation based on trackingId 19`] = `
+Object {
+  "name": "C",
+  "weight": 0.3,
+}
+`;
+
+exports[`returns a deterministic variation based on trackingId 20`] = `
+Object {
+  "name": "C",
+  "weight": 0.3,
+}
+`;
+
+exports[`returns a deterministic variation based on trackingId 21`] = `
+Object {
+  "name": "A",
+  "weight": 0.3,
+}
+`;
+
+exports[`returns a deterministic variation based on trackingId 22`] = `
+Object {
+  "name": "B",
+  "weight": 0.3,
+}
+`;
+
+exports[`returns a deterministic variation based on trackingId 23`] = `
+Object {
+  "name": "C",
+  "weight": 0.3,
+}
+`;
+
+exports[`returns a deterministic variation based on trackingId 24`] = `
+Object {
+  "name": "C",
+  "weight": 0.3,
+}
+`;
+
+exports[`returns a deterministic variation based on trackingId 25`] = `
+Object {
+  "name": "C",
+  "weight": 0.3,
+}
+`;
+
+exports[`returns a deterministic variation based on trackingId 26`] = `
+Object {
+  "name": "C",
+  "weight": 0.3,
+}
+`;
+
+exports[`returns a deterministic variation based on trackingId 27`] = `
+Object {
+  "name": "A",
+  "weight": 0.3,
+}
+`;
+
+exports[`returns a deterministic variation based on trackingId 28`] = `
+Object {
+  "name": "A",
+  "weight": 0.3,
+}
+`;
+
+exports[`returns a deterministic variation based on trackingId 29`] = `
+Object {
+  "name": "C",
+  "weight": 0.3,
+}
+`;
+
+exports[`returns a deterministic variation based on trackingId 30`] = `
+Object {
+  "name": "C",
+  "weight": 0.3,
+}
+`;
+
+exports[`returns a deterministic variation based on trackingId 31`] = `
+Object {
+  "name": "A",
+  "weight": 0.3,
+}
+`;
+
+exports[`returns a deterministic variation based on trackingId 32`] = `
+Object {
+  "name": "B",
+  "weight": 0.3,
+}
+`;
+
+exports[`returns a deterministic variation based on trackingId 33`] = `
+Object {
+  "name": "A",
+  "weight": 0.3,
+}
+`;
+
+exports[`returns a deterministic variation based on trackingId 34`] = `
+Object {
+  "name": "C",
+  "weight": 0.3,
+}
+`;
+
+exports[`returns a deterministic variation based on trackingId 35`] = `
+Object {
+  "name": "B",
+  "weight": 0.3,
+}
+`;
+
+exports[`returns a deterministic variation based on trackingId 36`] = `
+Object {
+  "name": "A",
+  "weight": 0.3,
+}
+`;
+
+exports[`returns a deterministic variation based on trackingId 37`] = `
+Object {
+  "name": "A",
+  "weight": 0.3,
+}
+`;
+
+exports[`returns a deterministic variation based on trackingId 38`] = `
+Object {
+  "name": "A",
+  "weight": 0.3,
+}
+`;
+
+exports[`returns a deterministic variation based on trackingId 39`] = `
+Object {
+  "name": "C",
+  "weight": 0.3,
+}
+`;
+
+exports[`returns a deterministic variation based on trackingId 40`] = `
+Object {
+  "name": "C",
+  "weight": 0.3,
+}
+`;
+
+exports[`returns a deterministic variation based on trackingId 41`] = `
+Object {
+  "name": "B",
+  "weight": 0.3,
+}
+`;
+
+exports[`returns a deterministic variation based on trackingId 42`] = `
+Object {
+  "name": "B",
+  "weight": 0.3,
+}
+`;
+
+exports[`returns a deterministic variation based on trackingId 43`] = `
+Object {
+  "name": "C",
+  "weight": 0.3,
+}
+`;
+
+exports[`returns a deterministic variation based on trackingId 44`] = `
+Object {
+  "name": "A",
+  "weight": 0.3,
+}
+`;
+
+exports[`returns a deterministic variation based on trackingId 45`] = `
+Object {
+  "name": "B",
+  "weight": 0.3,
+}
+`;
+
+exports[`returns a deterministic variation based on trackingId 46`] = `
+Object {
+  "name": "C",
+  "weight": 0.3,
+}
+`;
+
+exports[`returns a deterministic variation based on trackingId 47`] = `
+Object {
+  "name": "A",
+  "weight": 0.3,
+}
+`;
+
+exports[`returns a deterministic variation based on trackingId 48`] = `
+Object {
+  "name": "B",
+  "weight": 0.3,
+}
+`;
+
+exports[`returns a deterministic variation based on trackingId 49`] = `
+Object {
+  "name": "C",
+  "weight": 0.3,
+}
+`;
+
+exports[`returns a deterministic variation based on trackingId 50`] = `
+Object {
+  "name": "C",
+  "weight": 0.3,
+}
+`;
+
+exports[`returns a deterministic variation based on trackingId 51`] = `
+Object {
+  "name": "C",
+  "weight": 0.3,
+}
+`;
+
+exports[`returns a deterministic variation based on trackingId 52`] = `
+Object {
+  "name": "C",
+  "weight": 0.3,
+}
+`;
+
+exports[`returns a deterministic variation based on trackingId 53`] = `
+Object {
+  "name": "C",
+  "weight": 0.3,
+}
+`;
+
+exports[`returns a variation based on criterias 1`] = `
+Object {
+  "criteria": "\`true\`",
+  "name": "enabled",
+}
+`;

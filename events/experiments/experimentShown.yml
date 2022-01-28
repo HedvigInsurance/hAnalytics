@@ -1,0 +1,10 @@
+name: experiment_shown
+description: Experiment where shown on screen
+accessor: experimentShown
+inputs:
+  - name: name
+    type: String
+    argument: name
+  - name: variation
+    type: String
+    argument: variation

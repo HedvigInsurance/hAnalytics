@@ -166,6 +166,8 @@ app.post("/event", async (req, res) => {
   }
 });
 
+require("./experiments")(app)
+
 app.listen(port, () => {
   console.log(`hAnalytics app listening on port ${port}`);
 });
