@@ -12,7 +12,7 @@ const getSwiftType = (type) => {
 
     return type.split("<").reverse().reduce(
         (acc, curr) => {
-            const currWithoutBrackets = curr.replaceAll(">", "")
+            const currWithoutBrackets = curr.replace(/>/g, "")
             const primitive = primitives[currWithoutBrackets]
 
             if (typeof primitive === 'function') {
@@ -38,7 +38,7 @@ const getKotlinType = (type) => {
 
     return type.split("<").reverse().reduce(
         (acc, curr) => {
-            const currWithoutBrackets = curr.replaceAll(">", "")
+            const currWithoutBrackets = curr.replace(/>/g, "")
             const primitive = primitives[currWithoutBrackets]
 
             if (typeof primitive === 'function') {
