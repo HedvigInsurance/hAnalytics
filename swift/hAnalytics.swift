@@ -242,7 +242,7 @@ extension hAnalyticsEvent {
     }
   }
 
-  /// The state of notification permission, on Android granted is always set to true
+  /// The state of notification permission
   public static func notificationPermission(granted: Bool) -> hAnalyticsParcel {
     return hAnalyticsParcel {
       let properties: [String: Any?] = ["granted": granted]

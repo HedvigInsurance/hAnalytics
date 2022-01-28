@@ -24,7 +24,8 @@ jobs:
           /usr/local/bin/swift-format
           ktfmt.jar
         key: ${{ runner.os }}
-    - run: sh compile.sh
+    - run: npm install
+    - run: npm run compile
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - uses: EndBug/add-and-commit@v7

@@ -1,5 +1,5 @@
 name: notification_permission
-description: The state of notification permission, on Android granted is always set to true
+description: The state of notification permission
 accessor: notificationPermission
 inputs:
   - name: granted
