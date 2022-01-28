@@ -40,13 +40,6 @@ fi
 
 swift-format format -i swift/hAnalytics.swift
 
-if [ -f ktfmt.jar ]
-then
-    echo "Skipping downloading ktfmt"
-else
-    curl https://repo1.maven.org/maven2/com/facebook/ktfmt/0.30/ktfmt-0.30-jar-with-dependencies.jar --output ktfmt.jar
-fi
-
-java -jar ktfmt.jar --kotlinlang-style kotlin/src/main/kotlin/hAnalytics.kt
+./gradlew ktlintFormat
 
 npm run test -- --ci
