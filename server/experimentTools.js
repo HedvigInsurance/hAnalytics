@@ -1,17 +1,15 @@
 const jmespath = require("jmespath");
 const seedrandom = require("seedrandom");
-const weighted = require('weighted')
+const weighted = require("weighted");
 
 const getVariationByTrackingIdAndWeight = (experiment, trackingId) => {
-  const weights = experiment.variations.map(
-    (variation) => variation.weight
-  );
+  const weights = experiment.variations.map((variation) => variation.weight);
 
   return weighted.select(
-      experiment.variations,
-      weights,
-      seedrandom(experiment.name + trackingId)
-    )
+    experiment.variations,
+    weights,
+    seedrandom(experiment.name + trackingId)
+  );
 };
 
 const getVariation = (experiment, trackingId) => {
