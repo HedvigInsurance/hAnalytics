@@ -26,7 +26,8 @@
     "nodemon": "^2.0.15",
     "seedrandom": "^3.0.5",
     "uuid": "^8.3.2",
-    "validate-graphql": "^1.0.9"
+    "validate-graphql": "^1.0.9",
+    "weighted": "^1.0.0"
   },
   "devDependencies": {
     "hygen": "^6.1.0",
