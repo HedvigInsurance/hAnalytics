@@ -1,11 +1,9 @@
 const jmespath = require("jmespath");
-const md5 = require("md5");
+const seedrandom = require("seedrandom");
 
 const getVariationByTrackingIdAndWeight = (experiment, trackingId) => {
-  const hash = md5(experiment.name + trackingId).substr(0, 8);
-  const parseHashToInt = parseInt("0x" + hash, 16);
-  const maxInt = parseInt("0xffffffff", 16);
-  const deterministicRandom = parseHashToInt / maxInt;
+  const myrng = seedrandom(experiment.name + trackingId);
+  const deterministicRandom = myrng();
 
   let variations = [];
   let weights = experiment.variations.map(

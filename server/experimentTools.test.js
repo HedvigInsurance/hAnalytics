@@ -1,3 +1,4 @@
+const uuid = require("uuid")
 const {
     getVariation
 } = require("./experimentTools")
@@ -29,18 +30,19 @@ test('returns a deterministic variation based on trackingId', () => {
     const randomRunExperiment = (experiment, numberOfItems) => {
         const variations = []
     
-        Array.from(Array(numberOfItems)).forEach((_, i) => {
-            const variation = getVariation(experiment, `${i / 30 * 10000}`)
+        Array.from(Array(numberOfItems)).forEach(() => {
+            const id = uuid.v4()
+            const variation = getVariation(experiment, id)
             variations.push(variation)
 
             // check that variation is deterministic
-            expect(getVariation(experiment, `${i / 30 * 10000}`)).toEqual(variation)
+            expect(getVariation(experiment, id)).toEqual(variation)
         });
     
         experiment.variations.forEach(variation => {
             expect(
                 variations.filter(innerVariation => innerVariation.name == variation.name).length / numberOfItems
-            ).toBeCloseTo((numberOfItems * variation.weight) / numberOfItems, 1)
+            ).toBeCloseTo((numberOfItems * variation.weight) / numberOfItems, 0.9)
         })
     }
 

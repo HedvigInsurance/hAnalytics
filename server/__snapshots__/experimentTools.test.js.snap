@@ -9,7 +9,7 @@ Object {
 
 exports[`returns a deterministic variation based on trackingId 2`] = `
 Object {
-  "name": "enabled",
+  "name": "disabled",
   "weight": 0.5,
 }
 `;
