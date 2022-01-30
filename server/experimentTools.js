@@ -6,8 +6,16 @@ const getVariationByTrackingIdAndWeight = (experiment, trackingId) => {
     const parseHashToInt = parseInt("0x" + hash, 16);
     const maxInt = parseInt("0xffffffff", 16);
     const deterministicRandom = parseHashToInt / maxInt;
-    const arrayIndex = Math.floor(deterministicRandom * experiment.variations.length)
-    return experiment.variations[arrayIndex]
+
+    let variations = [];
+    let weights = experiment.variations.map(variation => variation.weight * 100)
+
+    experiment.variations.forEach((item, index) => {
+        var clone = Array(weights[index]).fill(item);
+        variations.push(...clone);
+    });
+
+    return variations[~~(deterministicRandom * variations.length)]
 }
 
 const getVariation = (experiment, trackingId) => {

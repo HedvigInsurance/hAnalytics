@@ -26,7 +26,25 @@ test('returns a deterministic variation based on trackingId', () => {
     const variationThree = getVariation(experimentA, "an_owl_yay")
     expect(variationThree).toMatchSnapshot()
 
-    const experimentB = {
+    const randomRunExperiment = (experiment, numberOfItems) => {
+        const variations = []
+    
+        Array.from(Array(numberOfItems)).forEach((_, i) => {
+            const variation = getVariation(experiment, `${i / 30 * 10000}`)
+            variations.push(variation)
+
+            // check that variation is deterministic
+            expect(getVariation(experiment, `${i / 30 * 10000}`)).toEqual(variation)
+        });
+    
+        experiment.variations.forEach(variation => {
+            expect(
+                variations.filter(innerVariation => innerVariation.name == variation.name).length / numberOfItems
+            ).toBeCloseTo((numberOfItems * variation.weight) / numberOfItems, 1)
+        })
+    }
+
+    randomRunExperiment({
         name: "experimentB",
         variations: [
             {
@@ -35,18 +53,102 @@ test('returns a deterministic variation based on trackingId', () => {
             },
             {
                 name: "B",
-                weight: 0.3
+                weight: 0.2
             },
             {
                 name: "C",
                 weight: 0.3
+            },
+            {
+                name: "D",
+                weight: 0.2
             }
         ]
-    }
+    }, 99999)
 
-    Array.from(Array(50)).forEach((_, i) => {
-        expect(getVariation(experimentB, `${i / 30 * 10000}`)).toMatchSnapshot()
-    });
+    randomRunExperiment({
+        name: "experimentC",
+        variations: [
+            {
+                name: "A",
+                weight: 0.7
+            },
+            {
+                name: "B",
+                weight: 0.3
+            },
+        ]
+    }, 99999)
+
+    randomRunExperiment({
+        name: "experimentD",
+        variations: [
+            {
+                name: "A",
+                weight: 0.5
+            },
+            {
+                name: "B",
+                weight: 0.5
+            },
+        ]
+    }, 500)
+
+    randomRunExperiment({
+        name: "experimentE",
+        variations: [
+            {
+                name: "A",
+                weight: 0.5
+            },
+            {
+                name: "B",
+                weight: 0.5
+            },
+        ]
+    }, 50)
+
+    randomRunExperiment({
+        name: "experimentF",
+        variations: [
+            {
+                name: "A",
+                weight: 0.11
+            },
+            {
+                name: "B",
+                weight: 0.11
+            },
+            {
+                name: "C",
+                weight: 0.11
+            },
+            {
+                name: "D",
+                weight: 0.11
+            },
+            {
+                name: "E",
+                weight: 0.11
+            },
+            {
+                name: "F",
+                weight: 0.11
+            },
+            {
+                name: "G",
+                weight: 0.11
+            },
+            {
+                name: "H",
+                weight: 0.11
+            },
+            {
+                name: "J",
+                weight: 0.11
+            },
+        ]
+    }, 5000)
 });
 
 test('returns a variation based on criterias', () => {
