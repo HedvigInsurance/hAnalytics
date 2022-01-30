@@ -27,7 +27,7 @@ test('returns a deterministic variation based on trackingId', () => {
     const variationThree = getVariation(experimentA, "an_owl_yay")
     expect(variationThree).toMatchSnapshot()
 
-    const randomRunExperiment = (experiment, numberOfItems) => {
+    const bruteForceRunExperiment = (experiment, numberOfItems) => {
         const variations = []
     
         Array.from(Array(numberOfItems)).forEach(() => {
@@ -52,7 +52,7 @@ test('returns a deterministic variation based on trackingId', () => {
         })
     }
 
-    randomRunExperiment({
+    bruteForceRunExperiment({
         name: "experimentB",
         variations: [
             {
@@ -74,7 +74,7 @@ test('returns a deterministic variation based on trackingId', () => {
         ]
     }, 99999)
 
-    randomRunExperiment({
+    bruteForceRunExperiment({
         name: "experimentC",
         variations: [
             {
@@ -88,7 +88,7 @@ test('returns a deterministic variation based on trackingId', () => {
         ]
     }, 99999)
 
-    randomRunExperiment({
+    bruteForceRunExperiment({
         name: "experimentD",
         variations: [
             {
@@ -102,7 +102,7 @@ test('returns a deterministic variation based on trackingId', () => {
         ]
     }, 500)
 
-    randomRunExperiment({
+    bruteForceRunExperiment({
         name: "experimentE",
         variations: [
             {
@@ -116,7 +116,7 @@ test('returns a deterministic variation based on trackingId', () => {
         ]
     }, 50)
 
-    randomRunExperiment({
+    bruteForceRunExperiment({
         name: "experimentF",
         variations: [
             {
