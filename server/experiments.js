@@ -21,14 +21,10 @@ module.exports = (app) => {
             const experiment = yaml.load(fileData)
 
             const activeVariation = getVariation(experiment, trackingId)
-
-            if (!activeVariation) {
-                return null
-            }
             
             return {
                 name: experiment.name,
-                variation: activeVariation.name
+                variation: activeVariation?.name || experiment.defaultVariation
             }
         }
 
