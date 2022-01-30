@@ -40,8 +40,9 @@ test('returns a deterministic variation based on trackingId', () => {
         });
     
         experiment.variations.forEach(variation => {
+            const numberOfVariations = variations.filter(innerVariation => innerVariation.name == variation.name).length
             expect(
-                variations.filter(innerVariation => innerVariation.name == variation.name).length / numberOfItems
+                numberOfVariations / numberOfItems
             ).toBeCloseTo((numberOfItems * variation.weight) / numberOfItems, 0.9)
         })
     }
