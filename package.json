@@ -24,11 +24,8 @@
     "js-yaml": "^4.1.0",
     "node-fetch": "^3.1.0",
     "nodemon": "^2.0.15",
-    "seedrandom": "^3.0.5",
     "unleash-client": "^3.11.0",
-    "uuid": "^8.3.2",
-    "validate-graphql": "^1.0.9",
-    "weighted": "^1.0.0"
+    "validate-graphql": "^1.0.9"
   },
   "devDependencies": {
     "hygen": "^6.1.0",
