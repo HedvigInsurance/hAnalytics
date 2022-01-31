@@ -4,7 +4,7 @@ const glob = require('glob')
 const { initialize } = require('unleash-client');
 
 const unleash = initialize({
-    url: 'https://hedvig-unleash.herokuapp.com/api/',
+    url: process.env.UNLEASH_API_URL,
     appName: 'hanalytics',
     customHeaders: {
       Authorization: process.env.UNLEASH_API_KEY,
