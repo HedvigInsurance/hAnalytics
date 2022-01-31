@@ -1,0 +1,9 @@
+name: key_gear
+description: Key gear feature available in app
+accessor: keyGear
+defaultVariation: disabled
+variations:
+  - name: enabled
+    case: enabled
+  - name: disabled
+    case: disabled
