@@ -11,31 +11,7 @@ const port = process.env.PORT ?? 3034;
 
 app.use(express.json());
 
-const getTraits = async (headers) => {
-  try {
-    const query = gql`
-      query hAnalyticsTraits {
-        member {
-          id
-        }
-      }
-    `;
-
-    const graphqlData = await request(
-      process.env.GRAPHQL_ENDPOINT,
-      query,
-      {},
-      headers
-    );
-
-    return {
-      memberId: graphqlData.member.id,
-    };
-  } catch (err) {
-    console.error("Failed to fetch traits", err)
-    return {};
-  }
-};
+const { getTraits } = require("./traits")
 
 app.post("/identify", async (req, res) => {
     try {
