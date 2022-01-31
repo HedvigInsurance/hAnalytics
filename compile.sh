@@ -1,15 +1,6 @@
 #!/usr/bin/env bash
 set -e
 
-if [ -x /usr/local/bin/hygen ] 
-then
-    echo "Skipping installing hygen"
-else
-    sudo npm i -g hygen
-fi
-
-npm install
-
 HYGEN_OVERWRITE=1 hygen generator hAnalytics
 
 rm -rf docs/docs/events
@@ -38,7 +29,8 @@ else
     cd ../../
 fi
 
-swift-format format -i swift/hAnalytics.swift
+swift-format format -i swift/hAnalyticsEvent.swift
+swift-format format -i swift/hAnalyticsExperiment.swift
 
 ./gradlew ktlintFormat
 

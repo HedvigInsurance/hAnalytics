@@ -222,6 +222,33 @@ abstract class HAnalytics {
         )
     }
     /**
+     * Experiment where evaluated, typically means it was shown on screen or similar
+     */
+    fun experimentEvaluated(name: String, variant: String) {
+        send(
+            HAnalyticsEvent(
+                name = "experiment_evaluated",
+                properties = mapOf(
+                    "name" to name,
+                    "variant" to variant,
+                ),
+            )
+        )
+    }
+    /**
+     * Experiments where loaded from server
+     */
+    fun experimentsLoaded(experiments: Array<String>) {
+        send(
+            HAnalyticsEvent(
+                name = "experiments_loaded",
+                properties = mapOf(
+                    "experiments" to experiments,
+                ),
+            )
+        )
+    }
+    /**
      * User just logged in
      */
     fun loggedIn() {

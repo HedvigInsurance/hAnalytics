@@ -1,0 +1,7 @@
+name: experiments_loaded
+description: Experiments where loaded from server
+accessor: experimentsLoaded
+inputs:
+  - name: experiments
+    type: Array<String>
+    argument: experiments

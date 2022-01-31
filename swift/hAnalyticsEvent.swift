@@ -213,6 +213,26 @@ extension hAnalyticsEvent {
     }
   }
 
+  /// Experiment where evaluated, typically means it was shown on screen or similar
+  public static func experimentEvaluated(name: String, variant: String) -> hAnalyticsParcel {
+    return hAnalyticsParcel {
+      let properties: [String: Any?] = ["name": name, "variant": variant]
+
+      hAnalyticsNetworking.send(
+        hAnalyticsEvent(name: "experiment_evaluated", properties: properties)
+      )
+    }
+  }
+
+  /// Experiments where loaded from server
+  public static func experimentsLoaded(experiments: [String]) -> hAnalyticsParcel {
+    return hAnalyticsParcel {
+      let properties: [String: Any?] = ["experiments": experiments]
+
+      hAnalyticsNetworking.send(hAnalyticsEvent(name: "experiments_loaded", properties: properties))
+    }
+  }
+
   /// User just logged in
   public static func loggedIn() -> hAnalyticsParcel {
     return hAnalyticsParcel {

@@ -5,13 +5,14 @@ public struct hAnalyticsNetworking {
   public static var httpAdditionalHeaders: () -> [AnyHashable: Any] = { [:] }
   public static var trackingId: () -> String = { "" }
   public static var endpointURL: () -> String = { "" }
+  static var experimentsPayload: [[String: String]] = []
 
   static func send(_ event: hAnalyticsEvent) {
     var urlRequest = URLRequest(url: URL(string: endpointURL() + "/event")!)
     urlRequest.httpMethod = "POST"
     urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
-    var requestData = getContextProperties().merging(
+    let requestData = getContextProperties().merging(
       ["event": event.name, "properties": event.properties, "trackingId": trackingId(), "sessionId": sessionId, "graphql": event.graphql],
       uniquingKeysWith: { lhs, _ in lhs }
     )
@@ -45,6 +46,44 @@ public struct hAnalyticsNetworking {
 
     let urlSession = URLSession(configuration: configuration)
     let task = urlSession.dataTask(with: urlRequest) { _, _, _ in }
+
+    task.resume()
+  }
+
+  static func loadExperiments(onComplete: @escaping (_ success: Bool) -> Void) {
+    var urlRequest = URLRequest(url: URL(string: endpointURL() + "/experiments")!)
+    urlRequest.httpMethod = "POST"
+    urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+    let requestData = getContextProperties().merging(
+      ["trackingId": trackingId(), "sessionId": sessionId, "appName": "ios"],
+      uniquingKeysWith: { lhs, _ in lhs }
+    )
+
+    guard let JSONData = try? JSONSerialization.data(withJSONObject: requestData, options: [])
+    else { return }
+    urlRequest.httpBody = JSONData
+
+    let configuration = URLSessionConfiguration.default
+    configuration.httpAdditionalHeaders = httpAdditionalHeaders()
+
+    let urlSession = URLSession(configuration: configuration)
+    let task = urlSession.dataTask(with: urlRequest) { data, _, _ in
+        if let data = data, let experimentsPayload =
+                try? JSONSerialization.jsonObject(
+                    with: data,
+                    options: .mutableContainers
+                ) as? [[String: String]] {
+            hAnalyticsEvent.experimentsLoaded(experiments: experimentsPayload.map { "\($0["name"] ?? ""):\($0["variant"] ?? "")" }).send()
+            
+            self.experimentsPayload = experimentsPayload
+
+            onComplete(true)
+            return
+        }
+
+        onComplete(false)
+    }
 
     task.resume()
   }

@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`validate another variant 1`] = `
+Object {
+  "name": "experiment_evaluated",
+  "variables": Object {
+    "name": "is_something_active",
+    "variant": "enabled",
+  },
+}
+`;
+
+exports[`validate variant 1`] = `
+Object {
+  "name": "experiment_evaluated",
+  "variables": Object {
+    "name": "chat_provider",
+    "variant": "bot-service",
+  },
+}
+`;
