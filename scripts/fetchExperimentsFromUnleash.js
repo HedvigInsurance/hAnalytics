@@ -19,6 +19,7 @@ const populateExperimentsFolder = async () => {
             name: definition.name,
             description: definition.description ?? "",
             accessor: camelCase(definition.name),
+            defaultFallback: unleash.getVariant(definition.name),
             variants: definition.variants.map(variant => ({
                 name: variant.name,
                 case: camelCase(variant.name)

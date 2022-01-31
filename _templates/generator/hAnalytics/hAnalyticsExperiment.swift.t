@@ -21,7 +21,7 @@ public static func load(onComplete: @escaping () -> Void) {
 <% experiments.forEach(function(experiment) { %>
     <% if (experiment.variants.length > 0) { %>
     /// <%- experiment.description || "no description given" %>
-    public static var <%= experiment.accessor %>: <%= experiment.enumName %>? {
+    public static var <%= experiment.accessor %>: <%= experiment.enumName %> {
        if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
             experiment["name"] == "<%= experiment.name %>"
        }), let variant = <%= experiment.enumName %>(rawValue: experiment["variant"] ?? "") {
@@ -33,7 +33,7 @@ public static func load(onComplete: @escaping () -> Void) {
            return variant
        }
 
-        return nil
+        return .<%= experiment.defaultFallback.name %>
     }
     <% } else { %>
     /// <%- experiment.description || "no description given" %>
@@ -49,7 +49,7 @@ public static func load(onComplete: @escaping () -> Void) {
            return isEnabled
        }
 
-       return false
+       return <%= experiment.defaultFallback.enabled %>
     }
     <% } %>
 <% }) %>

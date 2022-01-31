@@ -1,4 +1,7 @@
 name: key_gear
 description: Is the key gear feature activated
 accessor: keyGear
+defaultFallback:
+  name: disabled
+  enabled: false
 variants: []

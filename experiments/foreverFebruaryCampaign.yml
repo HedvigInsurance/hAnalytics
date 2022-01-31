@@ -1,4 +1,7 @@
 name: forever_february_campaign
 description: Is the forever february campaign activated
 accessor: foreverFebruaryCampaign
+defaultFallback:
+  name: disabled
+  enabled: false
 variants: []
