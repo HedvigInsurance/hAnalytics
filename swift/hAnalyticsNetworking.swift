@@ -56,7 +56,7 @@ public struct hAnalyticsNetworking {
     urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
     let requestData = getContextProperties().merging(
-      ["trackingId": trackingId(), "sessionId": sessionId],
+      ["trackingId": trackingId(), "sessionId": sessionId, "appName": "ios"],
       uniquingKeysWith: { lhs, _ in lhs }
     )
 

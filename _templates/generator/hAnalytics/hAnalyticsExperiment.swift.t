@@ -9,6 +9,7 @@ import Foundation
        <% experiment.variants.forEach(function(variant) { %>
         case <%= variant.case %> = "<%= variant.name %>"
        <% }) %>
+       case disabled = "disabled"
     }
 <% }) %>
 

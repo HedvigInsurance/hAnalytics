@@ -2,24 +2,24 @@ const { startUnleash } = require("unleash-client")
 const yaml = require('js-yaml');
 const camelCase = require('camelcase');
 const fs = require("fs")
+const unleashConfig = require("../commons/unleashConfig")
 
 const populateExperimentsFolder = async () => {
-    const unleash = await startUnleash({
-        appName: 'hanalytics',
-        url: process.env.UNLEASH_API_URL,
-        customHeaders: {
-          Authorization: process.env.UNLEASH_API_KEY,
-        },
-    });
+    const unleash = await startUnleash(unleashConfig);
     
     const definitions = unleash.getFeatureToggleDefinitions()
 
     definitions.forEach(definition => {
+        const defaultFallback = unleash.getVariant(definition.name)
+
         const mappedObject = {
             name: definition.name,
             description: definition.description ?? "",
             accessor: camelCase(definition.name),
-            defaultFallback: unleash.getVariant(definition.name),
+            defaultFallback: {
+                name: defaultFallback.name,
+                enabled: defaultFallback.enabled
+            },
             variants: definition.variants.map(variant => ({
                 name: variant.name,
                 case: camelCase(variant.name)

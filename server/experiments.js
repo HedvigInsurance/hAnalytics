@@ -3,29 +3,13 @@ const fs = require("fs");
 const glob = require("glob");
 const { initialize, Strategy } = require("unleash-client");
 const { getTraits } = require("./traits");
+const unleashConfig = require("../commons/unleashConfig")
 
-class MemberIdsStrategy extends Strategy {
-  constructor() {
-    super("MemberIds");
-  }
-
-  isEnabled(parameters, context) {
-    return parameters.memberIds.includes(context.memberId);
-  }
-}
-
-const unleash = initialize({
-  url: process.env.UNLEASH_API_URL,
-  appName: "hanalytics",
-  customHeaders: {
-    Authorization: process.env.UNLEASH_API_KEY,
-  },
-  strategies: [new MemberIdsStrategy()],
-});
+const unleash = initialize(unleashConfig);
 
 module.exports = (app) => {
   app.get("/experiments", async (req, res) => {
-    const { trackingId } = req.body;
+    const { trackingId, appName } = req.body;
     const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
 
     const forwardedHeaders = {
@@ -49,6 +33,7 @@ module.exports = (app) => {
       const unleashContext = {
         userId: trackingId,
         remoteAddress: ip,
+        appName,
         ...traits,
       }
 
