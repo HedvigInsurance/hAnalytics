@@ -7,7 +7,6 @@ public struct hAnalyticsExperiment {
   }
 
   /// Is the forever february campaign activated
-
   public static var foreverFebruaryCampaign: Bool {
     if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
       experiment["name"] == "forever_february_campaign"
@@ -23,7 +22,6 @@ public struct hAnalyticsExperiment {
   }
 
   /// Is the key gear feature activated
-
   public static var keyGear: Bool {
     if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
       experiment["name"] == "key_gear"

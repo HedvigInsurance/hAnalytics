@@ -19,8 +19,8 @@ public static func load(onComplete: @escaping () -> Void) {
 }
 
 <% experiments.forEach(function(experiment) { %>
-    /// <%- experiment.description || "no description given" %>
     <% if (experiment.variants.length > 0) { %>
+    /// <%- experiment.description || "no description given" %>
     public static var <%= experiment.accessor %>: <%= experiment.enumName %>? {
        if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
             experiment["name"] == "<%= experiment.name %>"
@@ -36,6 +36,7 @@ public static func load(onComplete: @escaping () -> Void) {
         return nil
     }
     <% } else { %>
+    /// <%- experiment.description || "no description given" %>
     public static var <%= experiment.accessor %>: Bool {
        if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
             experiment["name"] == "<%= experiment.name %>"
