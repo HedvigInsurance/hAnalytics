@@ -6,8 +6,8 @@ public enum ForeverFebruaryCampaign: String {
   case disabled = "disabled"
 }
 
-/// A weighted experiment
-public enum WeightedExperiment: String {
+/// Key gear feature available in app
+public enum KeyGear: String {
   case enabled = "enabled"
   case disabled = "disabled"
 }
@@ -30,33 +30,29 @@ public struct hAnalyticsExperiment {
       return variation
     }
 
-    let variation = ForeverFebruaryCampaign.enabled
+    let variation = ForeverFebruaryCampaign.disabled
 
     hAnalyticsEvent.experimentShown(
       name: "forever_february_campaign",
       variation: variation.rawValue
     ).send()
 
-    // fall back to default: enabled
+    // fall back to default: disabled
     return variation
   }
 
-  /// A weighted experiment
-  public static func weightedExperiment() -> WeightedExperiment {
+  /// Key gear feature available in app
+  public static func keyGear() -> KeyGear {
     if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
-      experiment["name"] == "weighted_experiment_test"
-    }), let variation = WeightedExperiment(rawValue: experiment["variation"] ?? "") {
-      hAnalyticsEvent.experimentShown(
-        name: "weighted_experiment_test",
-        variation: variation.rawValue
-      ).send()
+      experiment["name"] == "key_gear"
+    }), let variation = KeyGear(rawValue: experiment["variation"] ?? "") {
+      hAnalyticsEvent.experimentShown(name: "key_gear", variation: variation.rawValue).send()
       return variation
     }
 
-    let variation = WeightedExperiment.disabled
+    let variation = KeyGear.disabled
 
-    hAnalyticsEvent.experimentShown(name: "weighted_experiment_test", variation: variation.rawValue)
-      .send()
+    hAnalyticsEvent.experimentShown(name: "key_gear", variation: variation.rawValue).send()
 
     // fall back to default: disabled
     return variation
