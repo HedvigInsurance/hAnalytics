@@ -1,61 +1,38 @@
 import Foundation
 
-/// Forever extra compensation february 2022 campaign
-public enum ForeverFebruaryCampaign: String {
-  case enabled = "enabled"
-  case disabled = "disabled"
-}
-
-/// Key gear feature available in app
-public enum KeyGear: String {
-  case enabled = "enabled"
-  case disabled = "disabled"
-}
-
 public struct hAnalyticsExperiment {
   // loads all experiments from server
   public static func load(onComplete: @escaping () -> Void) {
     hAnalyticsNetworking.loadExperiments(onComplete: onComplete)
   }
 
-  /// Forever extra compensation february 2022 campaign
-  public static func foreverFebruaryCampaign() -> ForeverFebruaryCampaign {
+  /// Is the forever february campaign activated
+
+  public static var foreverFebruaryCampaign: Bool {
     if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
       experiment["name"] == "forever_february_campaign"
-    }), let variation = ForeverFebruaryCampaign(rawValue: experiment["variation"] ?? "") {
-      hAnalyticsEvent.experimentShown(
+    }), let isEnabled = experiment["enabled"] as? Bool {
+      hAnalyticsEvent.experimentEnabledEvaluated(
         name: "forever_february_campaign",
-        variation: variation.rawValue
+        isEnabled: isEnabled
       ).send()
-      return variation
+      return isEnabled
     }
 
-    let variation = ForeverFebruaryCampaign.disabled
-
-    hAnalyticsEvent.experimentShown(
-      name: "forever_february_campaign",
-      variation: variation.rawValue
-    ).send()
-
-    // fall back to default: disabled
-    return variation
+    return false
   }
 
-  /// Key gear feature available in app
-  public static func keyGear() -> KeyGear {
+  /// Is the key gear feature activated
+
+  public static var keyGear: Bool {
     if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
       experiment["name"] == "key_gear"
-    }), let variation = KeyGear(rawValue: experiment["variation"] ?? "") {
-      hAnalyticsEvent.experimentShown(name: "key_gear", variation: variation.rawValue).send()
-      return variation
+    }), let isEnabled = experiment["enabled"] as? Bool {
+      hAnalyticsEvent.experimentEnabledEvaluated(name: "key_gear", isEnabled: isEnabled).send()
+      return isEnabled
     }
 
-    let variation = KeyGear.disabled
-
-    hAnalyticsEvent.experimentShown(name: "key_gear", variation: variation.rawValue).send()
-
-    // fall back to default: disabled
-    return variation
+    return false
   }
 
 }

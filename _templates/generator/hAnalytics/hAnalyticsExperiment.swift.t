@@ -3,11 +3,11 @@ to: swift/hAnalyticsExperiment.swift
 ---
 import Foundation
 
-<% experiments.forEach(function(experiment) { %>
+<% experiments.filter(experiment => experiment.variants.length > 0).forEach(function(experiment) { %>
     /// <%= experiment.description || "no description given" %>
     public enum <%= experiment.enumName %>: String {
-       <% experiment.variations.forEach(function(variation) { %>
-        case <%= variation.case %> = "<%= variation.name %>"
+       <% experiment.variants.forEach(function(variant) { %>
+        case <%= variant.case %> = "<%= variant.name %>"
        <% }) %>
     }
 <% }) %>
@@ -20,27 +20,36 @@ public static func load(onComplete: @escaping () -> Void) {
 
 <% experiments.forEach(function(experiment) { %>
     /// <%- experiment.description || "no description given" %>
-    public static func <%= experiment.accessor %>() -> <%= experiment.enumName %> {
+    <% if (experiment.variants.length > 0) { %>
+    public static var <%= experiment.accessor %>: <%= experiment.enumName %>? {
        if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
             experiment["name"] == "<%= experiment.name %>"
-       }), let variation = <%= experiment.enumName %>(rawValue: experiment["variation"] ?? "") {
-           hAnalyticsEvent.experimentShown(
+       }), let variant = <%= experiment.enumName %>(rawValue: experiment["variant"] ?? "") {
+           hAnalyticsEvent.experimentVariantEvaluated(
                name: "<%= experiment.name %>",
-               variation: variation.rawValue
+               variant: variant.rawValue
             ).send()
            
-           return variation
+           return variant
        }
 
-       let variation = <%= experiment.enumName %>.<%= experiment.defaultVariation.case %>
-
-        hAnalyticsEvent.experimentShown(
-            name: "<%= experiment.name %>",
-            variation: variation.rawValue
-        ).send()
-
-        // fall back to default: <%= experiment.defaultVariation.case %>
-       return variation
+        return nil
     }
+    <% } else { %>
+    public static var <%= experiment.accessor %>: Bool {
+       if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
+            experiment["name"] == "<%= experiment.name %>"
+       }), let isEnabled = experiment["enabled"] as? Bool {
+           hAnalyticsEvent.experimentEnabledEvaluated(
+               name: "<%= experiment.name %>",
+               isEnabled: isEnabled
+            ).send()
+           
+           return isEnabled
+       }
+
+       return false
+    }
+    <% } %>
 <% }) %>
 }

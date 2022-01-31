@@ -1,0 +1,10 @@
+name: experiment_enabled_evaluated
+description: Experiment which was either enabled or disabled was evaluated
+accessor: experimentEnabledEvaluated
+inputs:
+  - name: name
+    type: String
+    argument: name
+  - name: is_enabled
+    type: Boolean
+    argument: isEnabled

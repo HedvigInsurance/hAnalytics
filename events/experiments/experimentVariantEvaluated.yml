@@ -1,0 +1,10 @@
+name: experiment_variant_evaluated
+description: Experiment where there are multiple variants where evaluated
+accessor: experimentVariantEvaluated
+inputs:
+  - name: name
+    type: String
+    argument: name
+  - name: variant
+    type: String
+    argument: variant

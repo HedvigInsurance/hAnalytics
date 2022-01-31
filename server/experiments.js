@@ -46,18 +46,26 @@ module.exports = (app) => {
       });
 
       const experiment = yaml.load(fileData);
-
-      const activeVariation = unleash.getVariant(experiment.name, {
+      const unleashContext = {
         userId: trackingId,
         remoteAddress: ip,
         ...traits,
-      });
+      }
+
+      if (experiment.variants.length == 0) {
+        const isEnabled = unleash.isEnabled(experiment.name, unleashContext)
+
+        return {
+            name: experiment.name,
+            enabled: isEnabled
+          };
+      }
+
+      const activeVariant = unleash.getVariant(experiment.name, unleashContext);
 
       return {
         name: experiment.name,
-        variation: activeVariation?.enabled
-          ? activeVariation?.name
-          : experiment.defaultVariation,
+        variant: activeVariant.name
       };
     };
 

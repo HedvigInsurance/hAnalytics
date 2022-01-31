@@ -32,8 +32,7 @@ module.exports = {
             const experiment = yaml.load(fs.readFileSync(importPath, 'utf8'))
             return {
                 ...experiment,
-                enumName: capitalizeFirstLetter(experiment.accessor),
-                defaultVariation: experiment.variations.find(variation => variation.name == experiment.defaultVariation)
+                enumName: capitalizeFirstLetter(experiment.accessor)
             }
         }
 
