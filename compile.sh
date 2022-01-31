@@ -1,15 +1,6 @@
 #!/usr/bin/env bash
 set -e
 
-if [ -x /usr/local/bin/hygen ] 
-then
-    echo "Skipping installing hygen"
-else
-    sudo npm i -g hygen
-fi
-
-npm install
-
 HYGEN_OVERWRITE=1 hygen generator hAnalytics
 
 rm -rf docs/docs/events
