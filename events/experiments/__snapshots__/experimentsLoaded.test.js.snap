@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`validate 1`] = `
+Object {
+  "name": "experiments_loaded",
+  "variables": Object {
+    "experiments": Array [
+      Object {
+        "enabled": true,
+        "name": "test",
+      },
+      Object {
+        "name": "test2",
+        "variant": "name",
+      },
+    ],
+  },
+}
+`;

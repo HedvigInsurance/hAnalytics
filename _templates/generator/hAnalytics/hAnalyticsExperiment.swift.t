@@ -26,13 +26,20 @@ public static func load(onComplete: @escaping () -> Void) {
        if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
             experiment["name"] == "<%= experiment.name %>"
        }), let variant = <%= experiment.enumName %>(rawValue: experiment["variant"] ?? "") {
-           hAnalyticsEvent.experimentVariantEvaluated(
+           hAnalyticsEvent.experimentEvaluated(
                name: "<%= experiment.name %>",
+               enabled: experiment["variant"] == "disabled" ? false : true,
                variant: variant.rawValue
             ).send()
            
            return variant
        }
+
+       hAnalyticsEvent.experimentEvaluated(
+            name: "<%= experiment.name %>",
+            enabled: <%= experiment.defaultFallback.name == 'disabled' ? "false" : "true" %>,
+            variant: <%= experiment.enumName %>.<%= experiment.defaultFallback.name %>.rawValue
+       ).send()
 
         return .<%= experiment.defaultFallback.name %>
     }
@@ -41,14 +48,21 @@ public static func load(onComplete: @escaping () -> Void) {
     public static var <%= experiment.accessor %>: Bool {
        if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
             experiment["name"] == "<%= experiment.name %>"
-       }), let isEnabled = experiment["enabled"] as? Bool {
-           hAnalyticsEvent.experimentEnabledEvaluated(
-               name: "<%= experiment.name %>",
-               isEnabled: isEnabled
+       }), let enabled = experiment["enabled"] as? Bool {
+            hAnalyticsEvent.experimentEvaluated(
+                name: "<%= experiment.name %>",
+                enabled: enabled,
+                variant: nil
             ).send()
            
-           return isEnabled
+           return enabled
        }
+
+       hAnalyticsEvent.experimentEvaluated(
+            name: "<%= experiment.name %>",
+            enabled: <%= experiment.defaultFallback.enabled %>,
+            variant: nil
+        ).send()
 
        return <%= experiment.defaultFallback.enabled %>
     }

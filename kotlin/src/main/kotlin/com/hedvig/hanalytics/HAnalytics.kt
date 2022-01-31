@@ -222,15 +222,16 @@ abstract class HAnalytics {
         )
     }
     /**
-     * Experiment which was either enabled or disabled was evaluated
+     * Experiment where evaluated, typically means it was shown on screen or similar
      */
-    fun experimentEnabledEvaluated(name: String, isEnabled: Boolean) {
+    fun experimentEvaluated(name: String, enabled: Bool?, variant: String?) {
         send(
             HAnalyticsEvent(
-                name = "experiment_enabled_evaluated",
+                name = "experiment_evaluated",
                 properties = mapOf(
                     "name" to name,
-                    "is_enabled" to isEnabled,
+                    "enabled" to enabled,
+                    "variant" to variant,
                 ),
             )
         )
@@ -244,20 +245,6 @@ abstract class HAnalytics {
                 name = "experiments_loaded",
                 properties = mapOf(
                     "experiments" to experiments,
-                ),
-            )
-        )
-    }
-    /**
-     * Experiment where there are multiple variants where evaluated
-     */
-    fun experimentVariantEvaluated(name: String, variant: String) {
-        send(
-            HAnalyticsEvent(
-                name = "experiment_variant_evaluated",
-                properties = mapOf(
-                    "name" to name,
-                    "variant" to variant,
                 ),
             )
         )

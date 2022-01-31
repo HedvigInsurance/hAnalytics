@@ -10,13 +10,20 @@ public struct hAnalyticsExperiment {
   public static var foreverFebruaryCampaign: Bool {
     if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
       experiment["name"] == "forever_february_campaign"
-    }), let isEnabled = experiment["enabled"] as? Bool {
-      hAnalyticsEvent.experimentEnabledEvaluated(
+    }), let enabled = experiment["enabled"] as? Bool {
+      hAnalyticsEvent.experimentEvaluated(
         name: "forever_february_campaign",
-        isEnabled: isEnabled
+        enabled: enabled,
+        variant: nil
       ).send()
-      return isEnabled
+      return enabled
     }
+
+    hAnalyticsEvent.experimentEvaluated(
+      name: "forever_february_campaign",
+      enabled: false,
+      variant: nil
+    ).send()
 
     return false
   }
@@ -25,10 +32,12 @@ public struct hAnalyticsExperiment {
   public static var keyGear: Bool {
     if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
       experiment["name"] == "key_gear"
-    }), let isEnabled = experiment["enabled"] as? Bool {
-      hAnalyticsEvent.experimentEnabledEvaluated(name: "key_gear", isEnabled: isEnabled).send()
-      return isEnabled
+    }), let enabled = experiment["enabled"] as? Bool {
+      hAnalyticsEvent.experimentEvaluated(name: "key_gear", enabled: enabled, variant: nil).send()
+      return enabled
     }
+
+    hAnalyticsEvent.experimentEvaluated(name: "key_gear", enabled: false, variant: nil).send()
 
     return false
   }

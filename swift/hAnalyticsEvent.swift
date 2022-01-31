@@ -213,13 +213,15 @@ extension hAnalyticsEvent {
     }
   }
 
-  /// Experiment which was either enabled or disabled was evaluated
-  public static func experimentEnabledEvaluated(name: String, isEnabled: Bool) -> hAnalyticsParcel {
+  /// Experiment where evaluated, typically means it was shown on screen or similar
+  public static func experimentEvaluated(name: String, enabled: Bool?, variant: String?)
+    -> hAnalyticsParcel
+  {
     return hAnalyticsParcel {
-      let properties: [String: Any?] = ["name": name, "is_enabled": isEnabled]
+      let properties: [String: Any?] = ["name": name, "enabled": enabled, "variant": variant]
 
       hAnalyticsNetworking.send(
-        hAnalyticsEvent(name: "experiment_enabled_evaluated", properties: properties)
+        hAnalyticsEvent(name: "experiment_evaluated", properties: properties)
       )
     }
   }
@@ -230,17 +232,6 @@ extension hAnalyticsEvent {
       let properties: [String: Any?] = ["experiments": experiments]
 
       hAnalyticsNetworking.send(hAnalyticsEvent(name: "experiments_loaded", properties: properties))
-    }
-  }
-
-  /// Experiment where there are multiple variants where evaluated
-  public static func experimentVariantEvaluated(name: String, variant: String) -> hAnalyticsParcel {
-    return hAnalyticsParcel {
-      let properties: [String: Any?] = ["name": name, "variant": variant]
-
-      hAnalyticsNetworking.send(
-        hAnalyticsEvent(name: "experiment_variant_evaluated", properties: properties)
-      )
     }
   }
 

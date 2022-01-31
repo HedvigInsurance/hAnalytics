@@ -1,0 +1,13 @@
+name: experiment_evaluated
+description: Experiment where evaluated, typically means it was shown on screen or similar
+accessor: experimentEvaluated
+inputs:
+  - name: name
+    type: String
+    argument: name
+  - name: enabled
+    type: Optional<Bool>
+    argument: enabled
+  - name: variant
+    type: Optional<String>
+    argument: variant
