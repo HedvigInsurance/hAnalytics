@@ -12,7 +12,7 @@ public struct hAnalyticsNetworking {
     urlRequest.httpMethod = "POST"
     urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
-    var requestData = getContextProperties().merging(
+    let requestData = getContextProperties().merging(
       ["event": event.name, "properties": event.properties, "trackingId": trackingId(), "sessionId": sessionId, "graphql": event.graphql],
       uniquingKeysWith: { lhs, _ in lhs }
     )
@@ -50,7 +50,7 @@ public struct hAnalyticsNetworking {
     task.resume()
   }
 
-  static func loadExperiments(onComplete: @escaping () -> Void) {
+  static func loadExperiments(onComplete: @escaping (_ success: Bool) -> Void) {
     var urlRequest = URLRequest(url: URL(string: endpointURL() + "/experiments")!)
     urlRequest.httpMethod = "POST"
     urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -74,12 +74,15 @@ public struct hAnalyticsNetworking {
                     with: data,
                     options: .mutableContainers
                 ) as? [[String: String]] {
-            hAnalyticsEvent.experimentsLoaded(experimentsPayload)
+            hAnalyticsEvent.experimentsLoaded(experiments: experimentsPayload.map { "\($0["name"] ?? ""):\($0["variant"] ?? "")" }).send()
             
             self.experimentsPayload = experimentsPayload
+
+            onComplete(true)
+            return
         }
 
-        onComplete()
+        onComplete(false)
     }
 
     task.resume()

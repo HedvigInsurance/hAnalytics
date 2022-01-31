@@ -214,11 +214,9 @@ extension hAnalyticsEvent {
   }
 
   /// Experiment where evaluated, typically means it was shown on screen or similar
-  public static func experimentEvaluated(name: String, enabled: Bool?, variant: String?)
-    -> hAnalyticsParcel
-  {
+  public static func experimentEvaluated(name: String, variant: String) -> hAnalyticsParcel {
     return hAnalyticsParcel {
-      let properties: [String: Any?] = ["name": name, "enabled": enabled, "variant": variant]
+      let properties: [String: Any?] = ["name": name, "variant": variant]
 
       hAnalyticsNetworking.send(
         hAnalyticsEvent(name: "experiment_evaluated", properties: properties)
@@ -227,7 +225,7 @@ extension hAnalyticsEvent {
   }
 
   /// Experiments where loaded from server
-  public static func experimentsLoaded(experiments: [[String: Any]]) -> hAnalyticsParcel {
+  public static func experimentsLoaded(experiments: [String]) -> hAnalyticsParcel {
     return hAnalyticsParcel {
       let properties: [String: Any?] = ["experiments": experiments]
 

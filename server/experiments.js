@@ -42,7 +42,7 @@ module.exports = (app) => {
 
         return {
             name: experiment.name,
-            enabled: isEnabled
+            variant: isEnabled ? "enabled" : "disabled",
           };
       }
 

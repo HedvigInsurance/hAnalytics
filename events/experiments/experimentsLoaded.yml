@@ -3,5 +3,5 @@ description: Experiments where loaded from server
 accessor: experimentsLoaded
 inputs:
   - name: experiments
-    type: Array<Dictionary<String, Any>>
+    type: Array<String>
     argument: experiments

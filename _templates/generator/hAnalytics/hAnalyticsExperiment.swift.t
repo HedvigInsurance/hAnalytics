@@ -28,7 +28,6 @@ public static func load(onComplete: @escaping () -> Void) {
        }), let variant = <%= experiment.enumName %>(rawValue: experiment["variant"] ?? "") {
            hAnalyticsEvent.experimentEvaluated(
                name: "<%= experiment.name %>",
-               enabled: experiment["variant"] == "disabled" ? false : true,
                variant: variant.rawValue
             ).send()
            
@@ -37,34 +36,31 @@ public static func load(onComplete: @escaping () -> Void) {
 
        hAnalyticsEvent.experimentEvaluated(
             name: "<%= experiment.name %>",
-            enabled: <%= experiment.defaultFallback.name == 'disabled' ? "false" : "true" %>,
-            variant: <%= experiment.enumName %>.<%= experiment.defaultFallback.name %>.rawValue
+            variant: <%= experiment.enumName %>.<%= experiment.defaultFallback %>.rawValue
        ).send()
 
-        return .<%= experiment.defaultFallback.name %>
+        return .<%= experiment.defaultFallback %>
     }
     <% } else { %>
     /// <%- experiment.description || "no description given" %>
     public static var <%= experiment.accessor %>: Bool {
        if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
             experiment["name"] == "<%= experiment.name %>"
-       }), let enabled = experiment["enabled"] as? Bool {
+       }) {
             hAnalyticsEvent.experimentEvaluated(
                 name: "<%= experiment.name %>",
-                enabled: enabled,
-                variant: nil
+                variant: experiment["variant"]
             ).send()
            
-           return enabled
+           return experiment["variant"] == "enabled"
        }
 
        hAnalyticsEvent.experimentEvaluated(
             name: "<%= experiment.name %>",
-            enabled: <%= experiment.defaultFallback.enabled %>,
-            variant: nil
+            variant: "<%= experiment.defaultFallback %>"
         ).send()
 
-       return <%= experiment.defaultFallback.enabled %>
+       return <%= experiment.defaultFallback == "enabled" ? "true" : "false" %>
     }
     <% } %>
 <% }) %>

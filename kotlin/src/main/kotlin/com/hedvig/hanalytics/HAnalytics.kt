@@ -224,13 +224,12 @@ abstract class HAnalytics {
     /**
      * Experiment where evaluated, typically means it was shown on screen or similar
      */
-    fun experimentEvaluated(name: String, enabled: Bool?, variant: String?) {
+    fun experimentEvaluated(name: String, variant: String) {
         send(
             HAnalyticsEvent(
                 name = "experiment_evaluated",
                 properties = mapOf(
                     "name" to name,
-                    "enabled" to enabled,
                     "variant" to variant,
                 ),
             )
@@ -239,7 +238,7 @@ abstract class HAnalytics {
     /**
      * Experiments where loaded from server
      */
-    fun experimentsLoaded(experiments: Array<Map<String, Any>>) {
+    fun experimentsLoaded(experiments: Array<String>) {
         send(
             HAnalyticsEvent(
                 name = "experiments_loaded",
