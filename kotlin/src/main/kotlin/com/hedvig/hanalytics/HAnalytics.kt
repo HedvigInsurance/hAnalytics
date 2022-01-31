@@ -200,11 +200,13 @@ abstract class HAnalytics {
     /**
      * When embark is shown
      */
-    fun screenViewEmbark() {
+    fun screenViewEmbark(storyName: String) {
         send(
             HAnalyticsEvent(
                 name = "screen_view_embark",
-                properties = mapOf(),
+                properties = mapOf(
+                    "story_name" to storyName,
+                ),
             )
         )
     }

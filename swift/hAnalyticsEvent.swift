@@ -194,9 +194,9 @@ extension hAnalyticsEvent {
   }
 
   /// When embark is shown
-  public static func screenViewEmbark() -> hAnalyticsParcel {
+  public static func screenViewEmbark(storyName: String) -> hAnalyticsParcel {
     return hAnalyticsParcel {
-      let properties: [String: Any?] = [:]
+      let properties: [String: Any?] = ["story_name": storyName]
 
       hAnalyticsNetworking.send(hAnalyticsEvent(name: "screen_view_embark", properties: properties))
     }

@@ -3,6 +3,8 @@
 exports[`validate 1`] = `
 Object {
   "name": "screen_view_embark",
-  "variables": Object {},
+  "variables": Object {
+    "story_name": "moving-flow-DK",
+  },
 }
 `;
