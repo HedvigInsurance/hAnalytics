@@ -1,11 +1,9 @@
 name: forever_february_campaign
 description: Forever extra compensation february 2022 campaign
 accessor: foreverFebruaryCampaign
-defaultVariation: enabled
+defaultVariation: disabled
 variations:
   - name: enabled
     case: enabled
-    criteria: '`true`'
   - name: disabled
     case: disabled
-    criteria: '`false`'
