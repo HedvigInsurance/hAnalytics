@@ -9,6 +9,11 @@ const populateExperimentsFolder = async () => {
     
     const definitions = unleash.getFeatureToggleDefinitions()
 
+    const DIR = "experiments"
+
+    fs.rmdirSync(DIR)
+    fs.mkdirSync(DIR)
+
     definitions.forEach(definition => {
         const defaultFallback = unleash.getVariant(definition.name)
         const defaultIsEnabled = unleash.isEnabled(definition.name)
@@ -24,7 +29,7 @@ const populateExperimentsFolder = async () => {
             }))
         }
 
-        fs.writeFileSync(`experiments/${camelCase(definition.name)}.yml`, yaml.dump(mappedObject))
+        fs.writeFileSync(`${DIR}/${camelCase(definition.name)}.yml`, yaml.dump(mappedObject))
     })
 }
 
