@@ -24,7 +24,7 @@ jobs:
           /usr/local/bin/swift-format
           ktfmt.jar
         key: ${{ runner.os }}
-    - run: npm run install
+    - run: npm install
     - run: npm run fetch-experiments
       env:
         UNLEASH_API_URL: ${{ secrets.UNLEASH_API_URL }}
