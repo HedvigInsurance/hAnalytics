@@ -52,7 +52,7 @@ public struct hAnalyticsNetworking {
 
   static func loadExperiments(onComplete: @escaping (_ success: Bool) -> Void) {
     var urlRequest = URLRequest(url: URL(string: endpointURL() + "/experiments")!)
-    urlRequest.httpMethod = "POST"
+    urlRequest.httpMethod = "GET"
     urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
     let requestData = getContextProperties().merging(
