@@ -8,7 +8,7 @@ const unleashConfig = require("../commons/unleashConfig")
 const unleash = initialize(unleashConfig);
 
 module.exports = (app) => {
-  app.get("/experiments", async (req, res) => {
+  app.post("/experiments", async (req, res) => {
     const { trackingId, appName } = req.body;
     const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
 
