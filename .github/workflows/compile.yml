@@ -25,7 +25,11 @@ jobs:
           ktfmt.jar
         key: ${{ runner.os }}
     - run: npm install
-    - run: npm run compile
+    - run: npm run fetch-experiments
+      env:
+        UNLEASH_API_URL: ${{ secrets.UNLEASH_API_URL }}
+        UNLEASH_API_KEY: ${{ secrets.UNLEASH_API_KEY }}
+    - run: sh compile.sh
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - uses: EndBug/add-and-commit@v7

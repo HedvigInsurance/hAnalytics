@@ -200,11 +200,13 @@ abstract class HAnalytics {
     /**
      * When embark is shown
      */
-    fun screenViewEmbark() {
+    fun screenViewEmbark(storyName: String) {
         send(
             HAnalyticsEvent(
                 name = "screen_view_embark",
-                properties = mapOf(),
+                properties = mapOf(
+                    "story_name" to storyName,
+                ),
             )
         )
     }
@@ -216,6 +218,33 @@ abstract class HAnalytics {
             HAnalyticsEvent(
                 name = "screen_view_embark_tooltip",
                 properties = mapOf(),
+            )
+        )
+    }
+    /**
+     * Experiment where evaluated, typically means it was shown on screen or similar
+     */
+    fun experimentEvaluated(name: String, variant: String) {
+        send(
+            HAnalyticsEvent(
+                name = "experiment_evaluated",
+                properties = mapOf(
+                    "name" to name,
+                    "variant" to variant,
+                ),
+            )
+        )
+    }
+    /**
+     * Experiments where loaded from server
+     */
+    fun experimentsLoaded(experiments: Array<String>) {
+        send(
+            HAnalyticsEvent(
+                name = "experiments_loaded",
+                properties = mapOf(
+                    "experiments" to experiments,
+                ),
             )
         )
     }

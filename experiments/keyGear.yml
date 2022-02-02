@@ -1,0 +1,5 @@
+name: key_gear
+description: Is the key gear feature activated
+accessor: keyGear
+defaultFallback: disabled
+variants: []

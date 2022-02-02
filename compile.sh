@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 set -e
 
-HYGEN_OVERWRITE=1 hygen generator hAnalytics
+HYGEN_OVERWRITE=1 npx hygen generator hAnalytics
 
 rm -rf docs/docs/events
 
 for file in $( find events -type f -name '*.yml' );
-    do HYGEN_OVERWRITE=1 hygen generator documentation --path $file
+    do HYGEN_OVERWRITE=1 npx hygen generator documentation --path $file
 done
 
 if [ -x /usr/local/bin/swift-format ] 
@@ -29,7 +29,8 @@ else
     cd ../../
 fi
 
-swift-format format -i swift/hAnalytics.swift
+swift-format format -i swift/hAnalyticsEvent.swift
+swift-format format -i swift/hAnalyticsExperiment.swift
 
 ./gradlew ktlintFormat
 

@@ -1,40 +1,57 @@
-module.exports = {
-    swiftTypeMap: {
+
+const getSwiftType = (type) => {
+    const primitives = {
         "String": "String",
         "Integer": "Int",
         "Boolean": "Bool",
         "Double": "Double",
-        "Optional<String>": "String?",
-        "Optional<Integer>": "Int?",
-        "Optional<Boolean>": "Bool?",
-        "Optional<Double>": "Double?",
-        "Array<String>": "[String]",
-        "Array<Integer>": "[Int]",
-        "Array<Boolean>": "[Bool]",
-        "Array<Double>": "[Double]",
-        "Array<Optional<String>>": "[String?]",
-        "Array<Optional<Integer>>": "[Int?]",
-        "Array<Optional<Boolean>>": "[Bool?]",
-        "Array<Optional<Double>>": "[Double?]",
-        "Dictionary<String, Any>": "[String: Any]"
-    },
-    kotlinTypeMap: {
+        "Optional": (s) => `${s}?`,
+        "Array": (s) => `[${s}]`,
+        "Dictionary": (s) => `[${s.replace(",", ":")}]`
+    }
+
+    return type.split("<").reverse().reduce(
+        (acc, curr) => {
+            const currWithoutBrackets = curr.replace(/>/g, "")
+            const primitive = primitives[currWithoutBrackets]
+
+            if (typeof primitive === 'function') {
+                return primitive(acc ?? "")
+            }
+
+            return primitive ? primitive : currWithoutBrackets
+        },
+        ""
+    );
+}
+
+const getKotlinType = (type) => {
+    const primitives = {
         "String": "String",
         "Integer": "Int",
         "Boolean": "Boolean",
         "Double": "Double",
-        "Optional<String>": "String?",
-        "Optional<Integer>": "Int?",
-        "Optional<Boolean>": "Boolean?",
-        "Optional<Double>": "Double?",
-        "Array<String>": "Array<String>",
-        "Array<Integer>": "Array<Int>",
-        "Array<Boolean>": "Array<Boolean>",
-        "Array<Double>": "Array<Double>",
-        "Array<Optional<String>>": "Array<String?>",
-        "Array<Optional<Integer>>": "Array<Int?>",
-        "Array<Optional<Boolean>>": "Array<Boolean?>",
-        "Array<Optional<Double>>": "Array<Double?>",
-        "Dictionary<String, Any>": "Map<String, Any>"
-    },
+        "Optional": (s) => `${s}?`,
+        "Array": (s) => `Array<${s}>`,
+        "Dictionary": (s) => `Map<${s}>`
+    }
+
+    return type.split("<").reverse().reduce(
+        (acc, curr) => {
+            const currWithoutBrackets = curr.replace(/>/g, "")
+            const primitive = primitives[currWithoutBrackets]
+
+            if (typeof primitive === 'function') {
+                return primitive(acc ?? "")
+            }
+
+            return primitive ? primitive : currWithoutBrackets
+        },
+        ""
+    );
+}
+
+module.exports = {
+    swiftTypeMap: getSwiftType,
+    kotlinTypeMap: getKotlinType
 }

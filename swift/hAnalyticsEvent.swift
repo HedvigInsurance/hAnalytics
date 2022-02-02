@@ -194,9 +194,9 @@ extension hAnalyticsEvent {
   }
 
   /// When embark is shown
-  public static func screenViewEmbark() -> hAnalyticsParcel {
+  public static func screenViewEmbark(storyName: String) -> hAnalyticsParcel {
     return hAnalyticsParcel {
-      let properties: [String: Any?] = [:]
+      let properties: [String: Any?] = ["story_name": storyName]
 
       hAnalyticsNetworking.send(hAnalyticsEvent(name: "screen_view_embark", properties: properties))
     }
@@ -210,6 +210,26 @@ extension hAnalyticsEvent {
       hAnalyticsNetworking.send(
         hAnalyticsEvent(name: "screen_view_embark_tooltip", properties: properties)
       )
+    }
+  }
+
+  /// Experiment where evaluated, typically means it was shown on screen or similar
+  public static func experimentEvaluated(name: String, variant: String) -> hAnalyticsParcel {
+    return hAnalyticsParcel {
+      let properties: [String: Any?] = ["name": name, "variant": variant]
+
+      hAnalyticsNetworking.send(
+        hAnalyticsEvent(name: "experiment_evaluated", properties: properties)
+      )
+    }
+  }
+
+  /// Experiments where loaded from server
+  public static func experimentsLoaded(experiments: [String]) -> hAnalyticsParcel {
+    return hAnalyticsParcel {
+      let properties: [String: Any?] = ["experiments": experiments]
+
+      hAnalyticsNetworking.send(hAnalyticsEvent(name: "experiments_loaded", properties: properties))
     }
   }
 
