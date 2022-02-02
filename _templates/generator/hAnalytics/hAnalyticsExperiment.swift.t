@@ -15,7 +15,7 @@ import Foundation
 
 public struct hAnalyticsExperiment {
 // loads all experiments from server
-public static func load(onComplete: @escaping () -> Void) {
+public static func load(onComplete: @escaping (_ success: Bool) -> Void) {
     hAnalyticsNetworking.loadExperiments(onComplete: onComplete)
 }
 
@@ -46,13 +46,13 @@ public static func load(onComplete: @escaping () -> Void) {
     public static var <%= experiment.accessor %>: Bool {
        if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
             experiment["name"] == "<%= experiment.name %>"
-       }) {
+       }), let variant = experiment["variant"] {
             hAnalyticsEvent.experimentEvaluated(
                 name: "<%= experiment.name %>",
-                variant: experiment["variant"]
+                variant: variant
             ).send()
            
-           return experiment["variant"] == "enabled"
+           return variant == "enabled"
        }
 
        hAnalyticsEvent.experimentEvaluated(
