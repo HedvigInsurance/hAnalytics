@@ -271,6 +271,45 @@ abstract class HAnalytics {
         )
     }
     /**
+     * A push notification was opened
+     */
+    fun notificationOpened(type: String) {
+        send(
+            HAnalyticsEvent(
+                name = "notification_opened",
+                properties = mapOf(
+                    "type" to type,
+                ),
+            )
+        )
+    }
+    /**
+     * The state of notification permission
+     */
+    fun notificationPermission(granted: Boolean) {
+        send(
+            HAnalyticsEvent(
+                name = "notification_permission",
+                properties = mapOf(
+                    "granted" to granted,
+                ),
+            )
+        )
+    }
+    /**
+     * The application received a push notification
+     */
+    fun notificationReceived(type: String) {
+        send(
+            HAnalyticsEvent(
+                name = "notification_received",
+                properties = mapOf(
+                    "type" to type,
+                ),
+            )
+        )
+    }
+    /**
      * When quotes are signed in the offer screen
      */
     fun quotesSigned(quoteIds: Array<String>) {

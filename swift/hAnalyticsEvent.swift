@@ -251,6 +251,39 @@ extension hAnalyticsEvent {
     }
   }
 
+  /// A push notification was opened
+  public static func notificationOpened(type: String) -> hAnalyticsParcel {
+    return hAnalyticsParcel {
+      let properties: [String: Any?] = ["type": type]
+
+      hAnalyticsNetworking.send(
+        hAnalyticsEvent(name: "notification_opened", properties: properties)
+      )
+    }
+  }
+
+  /// The state of notification permission
+  public static func notificationPermission(granted: Bool) -> hAnalyticsParcel {
+    return hAnalyticsParcel {
+      let properties: [String: Any?] = ["granted": granted]
+
+      hAnalyticsNetworking.send(
+        hAnalyticsEvent(name: "notification_permission", properties: properties)
+      )
+    }
+  }
+
+  /// The application received a push notification
+  public static func notificationReceived(type: String) -> hAnalyticsParcel {
+    return hAnalyticsParcel {
+      let properties: [String: Any?] = ["type": type]
+
+      hAnalyticsNetworking.send(
+        hAnalyticsEvent(name: "notification_received", properties: properties)
+      )
+    }
+  }
+
   /// When quotes are signed in the offer screen
   public static func quotesSigned(quoteIds: [String]) -> hAnalyticsParcel {
     return hAnalyticsParcel {
