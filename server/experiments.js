@@ -18,7 +18,7 @@ module.exports = (app) => {
       authorization: req.headers["authorization"],
     };
 
-    const traits = await getTraits(forwardedHeaders);
+    const traits = await getTraits(forwardedHeaders, true);
 
     const evaluateExperiment = async (importPath) => {
       const fileData = await new Promise((resolve, reject) => {

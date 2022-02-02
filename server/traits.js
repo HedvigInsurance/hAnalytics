@@ -1,25 +1,48 @@
 const { request, gql } = require("graphql-request");
+const jwt_decode = require('jwt-decode');
 
-const getTraits = async (headers) => {
+const getMemberIdFromGraphQL = async (headers) => {
+  const query = gql`
+    query hAnalyticsTraits {
+      member {
+        id
+      }
+    }
+  `;
+
+  const graphqlData = await request(
+    process.env.GRAPHQL_ENDPOINT,
+    query,
+    {},
+    headers
+  );
+
+  return graphqlData.member.id
+}
+
+const getTraits = async (headers, allowJWTMemberId = false) => {
     try {
-      const query = gql`
-        query hAnalyticsTraits {
-          member {
-            id
+      var memberId = null
+
+      if (allowJWTMemberId) {
+        try {
+          const sub = jwt_decode(headers["authorization"])?.sub
+
+          if (sub && sub.includes("member_")) {
+            memberId = sub.replace("member_", "")
           }
+        } catch (err) {
+          console.error("Non valid JWT, probably old hedvig.token")
         }
-      `;
-  
-      const graphqlData = await request(
-        process.env.GRAPHQL_ENDPOINT,
-        query,
-        {},
-        headers
-      );
-  
+      }
+
+      if (memberId === null) {
+        memberId = await getMemberIdFromGraphQL(headers)
+      }
+
       return {
-        memberId: graphqlData.member.id,
-      };
+        memberId
+      }
     } catch (err) {
       console.error("Failed to fetch traits", err)
       return {};
