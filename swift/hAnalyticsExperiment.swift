@@ -24,6 +24,21 @@ public struct hAnalyticsExperiment {
     return false
   }
 
+  /// Should the french market be shown
+  public static var frenchMarket: Bool {
+    if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
+      experiment["name"] == "french_market"
+    }) {
+      hAnalyticsEvent.experimentEvaluated(name: "french_market", variant: experiment["variant"])
+        .send()
+      return experiment["variant"] == "enabled"
+    }
+
+    hAnalyticsEvent.experimentEvaluated(name: "french_market", variant: "disabled").send()
+
+    return false
+  }
+
   /// Is the key gear feature activated
   public static var keyGear: Bool {
     if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in

@@ -1,0 +1,5 @@
+name: french_market
+description: Should the french market be shown
+accessor: frenchMarket
+defaultFallback: disabled
+variants: []
