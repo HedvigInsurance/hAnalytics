@@ -11,7 +11,7 @@ const populateExperimentsFolder = async () => {
 
     const DIR = "experiments"
 
-    fs.rmdirSync(DIR)
+    fs.rmdirSync(DIR, { recursive: true })
     fs.mkdirSync(DIR)
 
     definitions.forEach(definition => {
