@@ -12,6 +12,8 @@ module.exports = (app) => {
     const { trackingId, appName } = req.body;
     const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
 
+    const acceptsLanguage = req.acceptsLanguages()[0]
+
     const forwardedHeaders = {
       authorization: req.headers["authorization"],
     };
@@ -34,7 +36,10 @@ module.exports = (app) => {
         userId: trackingId,
         remoteAddress: ip,
         appName,
-        ...traits,
+        memberId: traits.memberId || null,
+        memberOrTrackingId: traits.memberId || trackingId,
+        locale: acceptsLanguage ?? null,
+        market: acceptsLanguage.split("-")[1] ?? null
       }
 
       if (experiment.variants.length == 0) {
