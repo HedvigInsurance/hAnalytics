@@ -6,6 +6,22 @@ public struct hAnalyticsExperiment {
     hAnalyticsNetworking.loadExperiments(onComplete: onComplete)
   }
 
+  /// Is the forever february campaign activated
+  public static var foreverFebruaryCampaign: Bool {
+    if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
+      experiment["name"] == "forever_february_campaign"
+    }), let variant = experiment["variant"] {
+      hAnalyticsEvent.experimentEvaluated(name: "forever_february_campaign", variant: variant)
+        .send()
+      return variant == "enabled"
+    }
+
+    hAnalyticsEvent.experimentEvaluated(name: "forever_february_campaign", variant: "disabled")
+      .send()
+
+    return false
+  }
+
   /// Should the french market be shown
   public static var frenchMarket: Bool {
     if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
