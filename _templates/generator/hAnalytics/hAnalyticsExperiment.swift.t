@@ -3,7 +3,7 @@ to: swift/hAnalyticsExperiment.swift
 ---
 import Foundation
 
-<% experiments.filter(experiment => experiment.variants.length > 0).forEach(function(experiment) { %>
+<% experiments.filter(experiment => experiment.variants.length > 0).filter(experiment => experiment.targets.includes("Swift")).forEach(function(experiment) { %>
     /// <%= experiment.description || "no description given" %>
     public enum <%= experiment.enumName %>: String {
        <% experiment.variants.forEach(function(variant) { %>
@@ -19,7 +19,7 @@ public static func load(onComplete: @escaping (_ success: Bool) -> Void) {
     hAnalyticsNetworking.loadExperiments(onComplete: onComplete)
 }
 
-<% experiments.forEach(function(experiment) { %>
+<% experiments.filter(experiment => experiment.targets.includes("Swift")).forEach(function(experiment) { %>
     <% if (experiment.variants.length > 0) { %>
     /// <%- experiment.description || "no description given" %>
     public static var <%= experiment.accessor %>: <%= experiment.enumName %> {

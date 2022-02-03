@@ -1,0 +1,7 @@
+name: moving_flow
+description: Is moving flow activated
+accessor: movingFlow
+defaultFallback: disabled
+variants: []
+targets:
+  - Swift

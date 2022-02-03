@@ -11,12 +11,21 @@ const populateExperimentsFolder = async () => {
 
     const DIR = "experiments"
 
-    fs.rmdirSync(DIR, { recursive: true })
+    fs.rmSync(DIR, { recursive: true })
     fs.mkdirSync(DIR)
 
     definitions.forEach(definition => {
         const defaultFallback = unleash.getVariant(definition.name)
         const defaultIsEnabled = unleash.isEnabled(definition.name)
+
+        const codegenStrategy = definition.strategies.find(strategy => 
+            strategy.name === 'Codegen'
+        )
+
+        if (!codegenStrategy) {
+            console.log(`Skipping ${definition.name} as no Codegen strategy was defined`)
+            return
+        }
 
         const mappedObject = {
             name: definition.name,
@@ -26,7 +35,10 @@ const populateExperimentsFolder = async () => {
             variants: definition.variants.map(variant => ({
                 name: variant.name,
                 case: camelCase(variant.name)
-            }))
+            })),
+            targets: [
+                "Swift", "Kotlin"
+            ].filter(target => codegenStrategy.parameters[target] === 'true')
         }
 
         fs.writeFileSync(`${DIR}/${camelCase(definition.name)}.yml`, yaml.dump(mappedObject))
