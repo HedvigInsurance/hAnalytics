@@ -10,7 +10,7 @@ const unleash = initialize(unleashConfig);
 
 module.exports = (app) => {
   app.post("/experiments", async (req, res) => {
-    const { trackingId, appName } = req.body;
+    const { trackingId, appName, appVersion } = req.body;
     const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
 
     const acceptsLanguage = req.acceptsLanguages()[0]
@@ -35,6 +35,7 @@ module.exports = (app) => {
         userId: trackingId,
         remoteAddress: ip,
         appName,
+        appVersion,
         memberId: traits.memberId || null,
         memberOrTrackingId: traits.memberId || trackingId,
         locale: acceptsLanguage ?? null,
