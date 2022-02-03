@@ -3,6 +3,7 @@ const fs = require("fs");
 const glob = require("glob");
 const { initialize, Strategy } = require("unleash-client");
 const { getTraits } = require("./traits");
+const { transformHeaders } = require("./tools")
 const unleashConfig = require("../commons/unleashConfig")
 
 const unleash = initialize(unleashConfig);
@@ -14,9 +15,7 @@ module.exports = (app) => {
 
     const acceptsLanguage = req.acceptsLanguages()[0]
 
-    const forwardedHeaders = {
-      authorization: req.headers["authorization"],
-    };
+    const forwardedHeaders = transformHeaders(req.headers);
 
     const traits = await getTraits(forwardedHeaders, true);
 

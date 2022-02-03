@@ -12,6 +12,7 @@ const port = process.env.PORT ?? 3034;
 app.use(express.json());
 
 const { getTraits } = require("./traits")
+const { transformHeaders } = require("./tools")
 
 app.post("/identify", async (req, res) => {
     try {
@@ -20,12 +21,7 @@ app.post("/identify", async (req, res) => {
         } = req.body;
 
         console.log(`Identifiying ${trackingId}`)
-    
-        const forwardedHeaders = {
-            authorization: req.headers["authorization"],
-        }
-    
-        const traits = await getTraits(forwardedHeaders)
+        const traits = await getTraits(transformHeaders(req.headers))
     
         analytics.identify({
             userId: trackingId,
@@ -66,9 +62,7 @@ app.post("/event", async (req, res) => {
       ...properties,
     };
 
-    const forwardedHeaders = {
-        authorization: req.headers["authorization"],
-    }
+    const forwardedHeaders = transformHeaders(req.headers)
 
     if (graphql) {
       const query = gql`
