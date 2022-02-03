@@ -1,7 +1,7 @@
 const yaml = require("js-yaml");
 const fs = require("fs");
 const glob = require("glob");
-const { initialize, Strategy } = require("unleash-client");
+const { initialize } = require("unleash-client");
 const { getTraits } = require("./traits");
 const { transformHeaders } = require("./tools")
 const unleashConfig = require("../commons/unleashConfig")
