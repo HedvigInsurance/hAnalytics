@@ -1,23 +1,13 @@
-const { request, gql } = require("graphql-request");
 const jwt_decode = require('jwt-decode');
+const fetch = require('cross-fetch');
 
-const getMemberIdFromGraphQL = async (headers) => {
-  const query = gql`
-    query hAnalyticsTraits {
-      member {
-        id
-      }
-    }
-  `;
-
-  const graphqlData = await request(
-    process.env.GRAPHQL_ENDPOINT,
-    query,
-    {},
+const getMemberIdFromMemberService = async (headers) => {
+  const memberResponse = await fetch(process.env.API_GATEWAY_ENDPOINT + "/member/me", {
+    method: "GET",
     headers
-  );
+  }).then(res => res.json())
 
-  return graphqlData.member.id
+  return memberResponse.memberId
 }
 
 const getTraits = async (headers, allowJWTMemberId = false) => {
@@ -37,7 +27,7 @@ const getTraits = async (headers, allowJWTMemberId = false) => {
       }
 
       if (memberId === null) {
-        memberId = await getMemberIdFromGraphQL(headers)
+        memberId = await getMemberIdFromMemberService(headers)
       }
 
       return {
