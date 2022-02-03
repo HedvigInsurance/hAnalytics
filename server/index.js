@@ -62,7 +62,9 @@ app.post("/event", async (req, res) => {
       ...properties,
     };
 
-    const forwardedHeaders = transformHeaders(req.headers)
+    const forwardedHeaders = {
+      "authorization": req.headers["authorization"]
+    }
 
     if (graphql) {
       const query = gql`
