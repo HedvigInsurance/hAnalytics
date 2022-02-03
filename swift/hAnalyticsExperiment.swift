@@ -50,4 +50,18 @@ public struct hAnalyticsExperiment {
     return false
   }
 
+  /// Is moving flow activated
+  public static var movingFlow: Bool {
+    if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
+      experiment["name"] == "moving_flow"
+    }), let variant = experiment["variant"] {
+      hAnalyticsEvent.experimentEvaluated(name: "moving_flow", variant: variant).send()
+      return variant == "enabled"
+    }
+
+    hAnalyticsEvent.experimentEvaluated(name: "moving_flow", variant: "disabled").send()
+
+    return false
+  }
+
 }
