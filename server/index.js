@@ -62,11 +62,11 @@ app.post("/event", async (req, res) => {
       ...properties,
     };
 
-    const forwardedHeaders = {
-      "authorization": req.headers["authorization"]
-    }
-
     if (graphql) {
+      const forwardedHeaders = {
+        "authorization": req.headers["authorization"]
+      }
+
       const query = gql`
         ${graphql.query}
       `;
@@ -87,7 +87,7 @@ app.post("/event", async (req, res) => {
       });
     }
 
-    const traits = await getTraits(forwardedHeaders)
+    const traits = await getTraits(transformHeaders(req.headers))
 
     analytics.track({
       userId: trackingId,
