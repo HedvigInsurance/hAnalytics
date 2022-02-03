@@ -16,7 +16,7 @@ const getTraits = async (headers, allowJWTMemberId = false) => {
 
       if (allowJWTMemberId) {
         try {
-          const sub = jwt_decode(headers["authorization"])?.sub
+          const sub = jwt_decode(headers["authorization"].replace("Bearer ", ""))?.sub
 
           if (sub && sub.includes("member_")) {
             memberId = sub.replace("member_", "")
