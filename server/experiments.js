@@ -39,7 +39,8 @@ module.exports = (app) => {
         memberId: traits.memberId || null,
         memberOrTrackingId: traits.memberId || trackingId,
         locale: acceptsLanguage ?? null,
-        market: acceptsLanguage.split("-")[1] ?? null
+        market: acceptsLanguage.split("-")[1] ?? null,
+        environment: unleashConfig.environment,
       }
 
       if (experiment.variants.length == 0) {
