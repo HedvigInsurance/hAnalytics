@@ -20,6 +20,22 @@ public struct hAnalyticsExperiment {
     hAnalyticsNetworking.loadExperiments(onComplete: onComplete)
   }
 
+  /// Allow fetching data with external data providers (for example insurely)
+  public static var allowExternalDataCollection: Bool {
+    if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
+      experiment["name"] == "allow_external_data_collection"
+    }), let variant = experiment["variant"] {
+      hAnalyticsEvent.experimentEvaluated(name: "allow_external_data_collection", variant: variant)
+        .send()
+      return variant == "enabled"
+    }
+
+    hAnalyticsEvent.experimentEvaluated(name: "allow_external_data_collection", variant: "disabled")
+      .send()
+
+    return false
+  }
+
   /// Is the forever february campaign activated
   public static var foreverFebruaryCampaign: Bool {
     if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
@@ -75,10 +91,10 @@ public struct hAnalyticsExperiment {
 
     hAnalyticsEvent.experimentEvaluated(
       name: "login_method",
-      variant: LoginMethod.bank_id_sweden.rawValue
+      variant: LoginMethod.bankIdSweden.rawValue
     ).send()
 
-    return .bank_id_sweden
+    return .bankIdSweden
   }
 
   /// Is moving flow activated
@@ -104,10 +120,10 @@ public struct hAnalyticsExperiment {
       return variant
     }
 
-    hAnalyticsEvent.experimentEvaluated(name: "payment_type", variant: PaymentType.trustly.rawValue)
+    hAnalyticsEvent.experimentEvaluated(name: "payment_type", variant: PaymentType.adyen.rawValue)
       .send()
 
-    return .trustly
+    return .adyen
   }
 
   /// Show payment step in PostOnboarding
