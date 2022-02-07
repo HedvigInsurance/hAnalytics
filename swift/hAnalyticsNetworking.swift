@@ -50,7 +50,7 @@ public struct hAnalyticsNetworking {
     task.resume()
   }
 
-  static func loadExperiments(onComplete: @escaping (_ success: Bool) -> Void) {
+  static func loadExperiments(filter: [String], onComplete: @escaping (_ success: Bool) -> Void) {
     var urlRequest = URLRequest(url: URL(string: endpointURL() + "/experiments")!)
     urlRequest.httpMethod = "POST"
     urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -60,6 +60,7 @@ public struct hAnalyticsNetworking {
         "trackingId": trackingId(),
         "sessionId": sessionId,
         "appName": "ios",
+        "filter": filter,
         "appVersion": (getContextProperties()["app"] as? [String: Any])?["version"] ?? ""
       ],
       uniquingKeysWith: { lhs, _ in lhs }

@@ -10,7 +10,7 @@ const unleash = initialize(unleashConfig);
 
 module.exports = (app) => {
   app.post("/experiments", async (req, res) => {
-    const { trackingId, appName, appVersion } = req.body;
+    const { trackingId, appName, appVersion, filter } = req.body;
     const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
 
     const acceptsLanguage = req.acceptsLanguages()[0]
@@ -31,6 +31,12 @@ module.exports = (app) => {
       });
 
       const experiment = yaml.load(fileData);
+
+      // if a filter was specified and experiment wasn't requested, don't resolve it
+      if (filter && !filter.includes(experiment.name)) {
+        return null
+      }
+
       const unleashContext = {
         userId: trackingId,
         remoteAddress: ip,
@@ -63,7 +69,7 @@ module.exports = (app) => {
     const experiments = await new Promise((resolve) => {
       glob("experiments/**/*.yml", {}, async (_, files) => {
         const experiments = await Promise.all(files.map(evaluateExperiment));
-        resolve(experiments);
+        resolve(experiments.filter(i => i));
       });
     });
 

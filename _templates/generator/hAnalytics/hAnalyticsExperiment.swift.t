@@ -15,7 +15,7 @@ import Foundation
 public struct hAnalyticsExperiment {
 // loads all experiments from server
 public static func load(onComplete: @escaping (_ success: Bool) -> Void) {
-    hAnalyticsNetworking.loadExperiments(onComplete: onComplete)
+    hAnalyticsNetworking.loadExperiments(filter: [<%- experiments.map(experiment => `"${experiment.name}"`).join(",") %>], onComplete: onComplete)
 }
 
 <% experiments.filter(experiment => experiment.targets.includes("Swift")).forEach(function(experiment) { %>

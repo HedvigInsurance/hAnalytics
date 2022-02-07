@@ -17,7 +17,13 @@ public enum PaymentType: String {
 public struct hAnalyticsExperiment {
   // loads all experiments from server
   public static func load(onComplete: @escaping (_ success: Bool) -> Void) {
-    hAnalyticsNetworking.loadExperiments(onComplete: onComplete)
+    hAnalyticsNetworking.loadExperiments(
+      filter: [
+        "allow_external_data_collection", "forever_february_campaign", "french_market", "key_gear",
+        "login_method", "moving_flow", "payment_type", "post_onboarding_show_payment_step",
+      ],
+      onComplete: onComplete
+    )
   }
 
   /// Allow fetching data with external data providers (for example insurely)
