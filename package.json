@@ -27,6 +27,7 @@
     "jwt-decode": "^3.1.2",
     "node-fetch": "^3.1.0",
     "nodemon": "^2.0.15",
+    "redis": "^4.0.3",
     "unleash-client": "^3.11.0",
     "validate-graphql": "^1.0.9"
   },
