@@ -32,8 +32,10 @@ app.post("/identify", async (req, res) => {
                 }
             }
         })
+        res.status(200).send("OK")
     } catch (err) {
         console.log("Failed to identify", err)
+        res.status(500).send("SERVER ERROR")
     }
 })
 
