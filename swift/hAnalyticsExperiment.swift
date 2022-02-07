@@ -3,8 +3,9 @@ import Foundation
 /// Which login method to use
 public enum LoginMethod: String {
   case bankIdSweden = "bank_id_sweden"
+  case nemId = "nem_id"
   case otp = "otp"
-  case simpleSign = "simple_sign"
+  case bankIdNorway = "bank_id_norway"
   case disabled = "disabled"
 }
 
@@ -74,10 +75,12 @@ public struct hAnalyticsExperiment {
       return variant
     }
 
-    hAnalyticsEvent.experimentEvaluated(name: "login_method", variant: LoginMethod.otp.rawValue)
-      .send()
+    hAnalyticsEvent.experimentEvaluated(
+      name: "login_method",
+      variant: LoginMethod.bank_id_sweden.rawValue
+    ).send()
 
-    return .otp
+    return .bank_id_sweden
   }
 
   /// Is moving flow activated
@@ -107,6 +110,26 @@ public struct hAnalyticsExperiment {
       .send()
 
     return .adyen
+  }
+
+  /// Show payment step in PostOnboarding
+  public static var postOnboardingShowPaymentStep: Bool {
+    if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
+      experiment["name"] == "post_onboarding_show_payment_step"
+    }), let variant = experiment["variant"] {
+      hAnalyticsEvent.experimentEvaluated(
+        name: "post_onboarding_show_payment_step",
+        variant: variant
+      ).send()
+      return variant == "enabled"
+    }
+
+    hAnalyticsEvent.experimentEvaluated(
+      name: "post_onboarding_show_payment_step",
+      variant: "disabled"
+    ).send()
+
+    return false
   }
 
 }

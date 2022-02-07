@@ -1,0 +1,7 @@
+name: post_onboarding_show_payment_step
+description: Show payment step in PostOnboarding
+accessor: postOnboardingShowPaymentStep
+defaultFallback: disabled
+variants: []
+targets:
+  - Swift
