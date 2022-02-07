@@ -1,5 +1,5 @@
 ---
-to: docs/experiments/<%= file %>.md
+to: docs/docs/experiments/<%= file %>.md
 ---
 # <%= experiment.accessor %>
 ## <%= experiment.name %>

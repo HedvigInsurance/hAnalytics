@@ -1,5 +1,22 @@
 import Foundation
 
+/// Which login method to use
+public enum LoginMethod: String {
+  case bankIdSweden = "bank_id_sweden"
+  case none = "none"
+  case otp = "otp"
+  case simpleSign = "simple_sign"
+  case disabled = "disabled"
+}
+
+/// Which payment provider to use
+public enum PaymentType: String {
+  case adyen = "adyen"
+  case none = "none"
+  case trustly = "trustly"
+  case disabled = "disabled"
+}
+
 public struct hAnalyticsExperiment {
   // loads all experiments from server
   public static func load(onComplete: @escaping (_ success: Bool) -> Void) {
@@ -50,6 +67,21 @@ public struct hAnalyticsExperiment {
     return false
   }
 
+  /// Which login method to use
+  public static var loginMethod: LoginMethod {
+    if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
+      experiment["name"] == "login_method"
+    }), let variant = LoginMethod(rawValue: experiment["variant"] ?? "") {
+      hAnalyticsEvent.experimentEvaluated(name: "login_method", variant: variant.rawValue).send()
+      return variant
+    }
+
+    hAnalyticsEvent.experimentEvaluated(name: "login_method", variant: LoginMethod.none.rawValue)
+      .send()
+
+    return .none
+  }
+
   /// Is moving flow activated
   public static var movingFlow: Bool {
     if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
@@ -62,6 +94,21 @@ public struct hAnalyticsExperiment {
     hAnalyticsEvent.experimentEvaluated(name: "moving_flow", variant: "disabled").send()
 
     return false
+  }
+
+  /// Which payment provider to use
+  public static var paymentType: PaymentType {
+    if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
+      experiment["name"] == "payment_type"
+    }), let variant = PaymentType(rawValue: experiment["variant"] ?? "") {
+      hAnalyticsEvent.experimentEvaluated(name: "payment_type", variant: variant.rawValue).send()
+      return variant
+    }
+
+    hAnalyticsEvent.experimentEvaluated(name: "payment_type", variant: PaymentType.none.rawValue)
+      .send()
+
+    return .none
   }
 
 }

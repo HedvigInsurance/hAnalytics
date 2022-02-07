@@ -1,0 +1,13 @@
+name: payment_type
+description: Which payment provider to use
+accessor: paymentType
+defaultFallback: none
+variants:
+  - name: adyen
+    case: adyen
+  - name: none
+    case: none
+  - name: trustly
+    case: trustly
+targets:
+  - Swift
