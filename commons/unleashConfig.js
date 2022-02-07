@@ -6,8 +6,14 @@ class RedisStorageProvider {
   client = null;
 
   constructor() {
+      const redisUrl = process.env.REDIS_URL
     this.client = createClient({
-      url: process.env.REDIS_URL,
+      url: redisUrl,
+      socket: {
+        // Heroku uses self-signed certificate, which will cause error in connection, unless check is disabled
+        tls: redisUrl.startsWith("rediss://"),
+        rejectUnauthorized: false,
+      },
     });
     this.client.connect();
   }
