@@ -6,14 +6,12 @@ public enum LoginMethod: String {
   case nemId = "nem_id"
   case otp = "otp"
   case bankIdNorway = "bank_id_norway"
-  case disabled = "disabled"
 }
 
 /// Which payment provider to use
 public enum PaymentType: String {
   case adyen = "adyen"
   case trustly = "trustly"
-  case disabled = "disabled"
 }
 
 public struct hAnalyticsExperiment {
@@ -75,10 +73,12 @@ public struct hAnalyticsExperiment {
       return variant
     }
 
-    hAnalyticsEvent.experimentEvaluated(name: "login_method", variant: LoginMethod.otp.rawValue)
-      .send()
+    hAnalyticsEvent.experimentEvaluated(
+      name: "login_method",
+      variant: LoginMethod.bank_id_sweden.rawValue
+    ).send()
 
-    return .otp
+    return .bank_id_sweden
   }
 
   /// Is moving flow activated
