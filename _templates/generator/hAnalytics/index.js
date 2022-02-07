@@ -45,7 +45,10 @@ module.exports = {
 
         return {
             events: events,
-            experiments: experiments,
+            experiments: {
+                swift: experiments.filter(experiment => experiment.targets.includes("Swift")),
+                kotlin: experiments.filter(experiment => experiment.targets.includes("Kotlin"))
+            },
             ...typeMaps,
             formatGQL: (string) => format(string)
         }
