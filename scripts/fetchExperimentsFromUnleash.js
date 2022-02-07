@@ -27,11 +27,21 @@ const populateExperimentsFolder = async () => {
             return
         }
 
+        const hasVariants = definition.variants.length > 0
+
+        const getDefaultFallback = () => {
+            if (hasVariants) {
+                return defaultFallback.name
+            }
+
+            return defaultIsEnabled ? "enabled" : "disabled"
+        }
+
         const mappedObject = {
             name: definition.name,
             description: definition.description ?? "",
             accessor: camelCase(definition.name),
-            defaultFallback: (defaultIsEnabled && defaultFallback.name == "disabled") ? "enabled" : defaultFallback.name,
+            defaultFallback: getDefaultFallback(),
             variants: definition.variants.map(variant => ({
                 name: variant.name,
                 case: camelCase(variant.name)

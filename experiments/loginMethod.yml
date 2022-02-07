@@ -1,12 +1,12 @@
 name: login_method
 description: Which login method to use
 accessor: loginMethod
-defaultFallback: none
+defaultFallback: disabled
 variants:
   - name: bank_id_sweden
     case: bankIdSweden
-  - name: none
-    case: none
+  - name: disabled
+    case: disabled
   - name: otp
     case: otp
   - name: simple_sign
