@@ -6,7 +6,7 @@ on:
       - webhook
 
 jobs:
-  test:
+  fetch:
     runs-on: ubuntu-latest
 
     steps:
