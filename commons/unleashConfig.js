@@ -3,11 +3,9 @@ const { Strategy, InMemStorageProvider } = require("unleash-client");
 const { createClient } = require("redis");
 
 class RedisStorageProvider {
-  client = null;
-
-  constructor() {
-      const redisUrl = process.env.REDIS_URL
-    this.client = createClient({
+  async getClient() {
+    const redisUrl = process.env.REDIS_URL;
+    const client = createClient({
       url: redisUrl,
       socket: {
         // Heroku uses self-signed certificate, which will cause error in connection, unless check is disabled
@@ -15,16 +13,29 @@ class RedisStorageProvider {
         rejectUnauthorized: false,
       },
     });
-    this.client.connect();
+    
+    await client.connect();
+
+    return client;
   }
 
   async set(key, data) {
-    await this.client.set(key, JSON.stringify(data));
+    try {
+        const client = await this.getClient();
+        await client.set(key, JSON.stringify(data));
+    } catch (err) {
+        console.error("Redis error", err)
+    }
   }
 
   async get(key) {
-    const data = await this.client.get(key);
-    return JSON.parse(data);
+    try {
+        const data = await client.get(key);
+        return JSON.parse(data);
+    } catch (err) {
+        console.error("Redis error", err)
+        return null
+    }
   }
 }
 
