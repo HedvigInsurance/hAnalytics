@@ -112,4 +112,24 @@ public struct hAnalyticsExperiment {
     return .adyen
   }
 
+  /// Show payment step in PostOnboarding
+  public static var postOnboardingShowPaymentStep: Bool {
+    if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
+      experiment["name"] == "post_onboarding_show_payment_step"
+    }), let variant = experiment["variant"] {
+      hAnalyticsEvent.experimentEvaluated(
+        name: "post_onboarding_show_payment_step",
+        variant: variant
+      ).send()
+      return variant == "enabled"
+    }
+
+    hAnalyticsEvent.experimentEvaluated(
+      name: "post_onboarding_show_payment_step",
+      variant: "disabled"
+    ).send()
+
+    return false
+  }
+
 }
