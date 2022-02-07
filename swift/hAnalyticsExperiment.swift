@@ -3,16 +3,16 @@ import Foundation
 /// Which login method to use
 public enum LoginMethod: String {
   case bankIdSweden = "bank_id_sweden"
-  case disabled = "disabled"
   case otp = "otp"
   case simpleSign = "simple_sign"
+  case disabled = "disabled"
 }
 
 /// Which payment provider to use
 public enum PaymentType: String {
   case adyen = "adyen"
-  case disabled = "disabled"
   case trustly = "trustly"
+  case disabled = "disabled"
 }
 
 public struct hAnalyticsExperiment {
@@ -74,10 +74,12 @@ public struct hAnalyticsExperiment {
       return variant
     }
 
-    hAnalyticsEvent.experimentEvaluated(name: "login_method", variant: LoginMethod.otp.rawValue)
-      .send()
+    hAnalyticsEvent.experimentEvaluated(
+      name: "login_method",
+      variant: LoginMethod.simple_sign.rawValue
+    ).send()
 
-    return .otp
+    return .simple_sign
   }
 
   /// Is moving flow activated
