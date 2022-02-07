@@ -12,7 +12,7 @@ import Foundation
        
         case simpleSign = "simple_sign"
        
-       false
+       
     }
 
     /// Which payment provider to use
@@ -24,7 +24,7 @@ import Foundation
        
         case trustly = "trustly"
        
-       false
+       
     }
 
 
