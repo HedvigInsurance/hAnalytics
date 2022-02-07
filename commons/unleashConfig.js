@@ -7,7 +7,7 @@ class RedisStorageProvider {
 
   constructor() {
     this.client = createClient({
-      url: process.env.REDIS,
+      url: process.env.REDIS_URL,
     });
     this.client.connect();
   }
@@ -40,7 +40,7 @@ module.exports = {
   },
   environment: process.env.UNLEASH_API_KEY.replace("*:").split(".")[0],
   strategies: [new MemberIdsStrategy()],
-  storageProvider: process.env.REDIS
+  storageProvider: process.env.REDIS_URL
     ? new RedisStorageProvider()
     : new InMemStorageProvider(),
 };
