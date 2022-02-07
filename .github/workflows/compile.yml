@@ -3,6 +3,9 @@ name: Compile and release
 on:
   push:
     branches: [ master ]
+  repository_dispatch:
+    types:
+      - webhook
 
 jobs:
   build:
