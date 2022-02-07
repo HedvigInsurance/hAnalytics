@@ -31,7 +31,7 @@ const populateExperimentsFolder = async () => {
 
         const getDefaultFallback = () => {
             if (hasVariants) {
-                return defaultFallback.name
+                return camelCase(defaultFallback.name)
             }
 
             return defaultIsEnabled ? "enabled" : "disabled"
