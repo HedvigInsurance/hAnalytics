@@ -13,7 +13,7 @@ class RedisStorageProvider {
         rejectUnauthorized: false,
       },
     });
-    
+
     await client.connect();
 
     return client;
@@ -57,7 +57,5 @@ module.exports = {
   },
   environment: process.env.UNLEASH_API_KEY.replace("*:").split(".")[0],
   strategies: [new MemberIdsStrategy()],
-  storageProvider: process.env.REDIS_URL
-    ? new RedisStorageProvider()
-    : new InMemStorageProvider(),
+  storageProvider: new InMemStorageProvider(),
 };
