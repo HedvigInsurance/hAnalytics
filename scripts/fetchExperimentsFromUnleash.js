@@ -3,6 +3,37 @@ const yaml = require('js-yaml');
 const camelCase = require('camelcase');
 const fs = require("fs")
 const unleashConfig = require("../commons/unleashConfig")
+const typeMaps = require("../commons/typeMaps")
+
+const getAssociatedValues = (variant, replaceValues) => {
+    if (variant.payload?.type == 'json') {
+        const parsedJSON = JSON.parse(variant.payload.value)
+        const keys = Object.keys(parsedJSON)
+
+        return keys.reduce((obj, key) => {
+            const type = typeMaps.primitiveTypeMap(typeof parsedJSON[key])
+
+            if (type) {
+                if (replaceValues) {
+                    obj[camelCase(key)] = {
+                        name: key,
+                        type: type
+                    }
+                } else {
+                    obj[camelCase(key)] = {
+                        name: key,
+                        type: type,
+                        value: parsedJSON[key]
+                    }
+                }
+            }
+            
+            return obj
+        }, {})
+    }
+
+    return null
+}
 
 const populateExperimentsFolder = async () => {
     const unleash = await startUnleash(unleashConfig);
@@ -15,8 +46,12 @@ const populateExperimentsFolder = async () => {
     fs.mkdirSync(DIR)
 
     definitions.forEach(definition => {
-        const defaultFallback = unleash.getVariant(definition.name)
-        const defaultIsEnabled = unleash.isEnabled(definition.name)
+        const defaultFallback = unleash.getVariant(definition.name, {
+            environment: "default"
+        })
+        const defaultIsEnabled = unleash.isEnabled(definition.name, {
+            environment: "default"
+        })
 
         const codegenStrategy = definition.strategies.find(strategy => 
             strategy.name === 'Codegen'
@@ -31,10 +66,24 @@ const populateExperimentsFolder = async () => {
 
         const getDefaultFallback = () => {
             if (hasVariants) {
-                return camelCase(defaultFallback.name)
+                return {
+                    name: camelCase(defaultFallback.name),
+                    case: camelCase(defaultFallback.name),
+                    associatedValues: getAssociatedValues(defaultFallback, false)
+                }
             }
 
-            return defaultIsEnabled ? "enabled" : "disabled"
+            return {
+                name: defaultIsEnabled ? "enabled" : "disabled"
+            }
+        }
+
+        if (hasVariants) {
+            // make sure variants contain fallback
+            if (!definition.variants.find(variant => variant.name == defaultFallback.name)) {
+                console.log(`Fallback resolved to ${defaultFallback.name} but no variant with that name existed, check your setup.`)
+                return
+            }
         }
 
         const mappedObject = {
@@ -44,7 +93,8 @@ const populateExperimentsFolder = async () => {
             defaultFallback: getDefaultFallback(),
             variants: definition.variants.map(variant => ({
                 name: variant.name,
-                case: camelCase(variant.name)
+                case: camelCase(variant.name),
+                associatedValues: getAssociatedValues(variant, true)
             })),
             targets: [
                 "Swift", "Kotlin"

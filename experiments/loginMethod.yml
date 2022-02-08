@@ -1,15 +1,22 @@
 name: login_method
 description: Which login method to use
 accessor: loginMethod
-defaultFallback: nemId
+defaultFallback:
+  name: otp
+  case: otp
+  associatedValues: null
 variants:
   - name: bank_id_sweden
     case: bankIdSweden
+    associatedValues: null
   - name: nem_id
     case: nemId
+    associatedValues: null
   - name: otp
     case: otp
+    associatedValues: null
   - name: bank_id_norway
     case: bankIdNorway
+    associatedValues: null
 targets:
   - Swift

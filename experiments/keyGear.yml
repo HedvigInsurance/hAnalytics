@@ -1,7 +1,8 @@
 name: key_gear
 description: Is the key gear feature activated
 accessor: keyGear
-defaultFallback: disabled
+defaultFallback:
+  name: disabled
 variants: []
 targets:
   - Swift

@@ -51,7 +51,18 @@ const getKotlinType = (type) => {
     );
 }
 
+const getPrimitiveType = (type) => {
+    const primitives = {
+        "string": "String",
+        "number": "Double",
+        "boolean": "Bool"
+    }
+
+    return primitives[type]
+}
+
 module.exports = {
     swiftTypeMap: getSwiftType,
-    kotlinTypeMap: getKotlinType
+    kotlinTypeMap: getKotlinType,
+    primitiveTypeMap: getPrimitiveType
 }

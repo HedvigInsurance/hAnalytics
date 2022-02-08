@@ -60,9 +60,22 @@ module.exports = (app) => {
 
       const activeVariant = unleash.getVariant(experiment.name, unleashContext);
 
+      const getAssociatedValues = () => {
+        if (activeVariant.payload?.type == 'json') {
+          try {
+            return JSON.parse(activeVariant.payload.value)
+          } catch (err) {
+            return {}
+          }
+        }
+
+        return {}
+      }
+
       return {
         name: experiment.name,
-        variant: activeVariant.name
+        variant: activeVariant.name,
+        associated_values: getAssociatedValues()
       };
     };
 
