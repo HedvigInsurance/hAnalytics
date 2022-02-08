@@ -1,0 +1,30 @@
+name: test
+description: ''
+accessor: test
+defaultFallback:
+  name: rsds
+  case: rsds
+  associatedValues:
+    amount:
+      name: amount
+      type: Double
+      value: 200
+    shouldDoSomething:
+      name: should_do_something
+      type: Bool
+      value: true
+variants:
+  - name: rsds
+    case: rsds
+    associatedValues:
+      amount:
+        name: amount
+        type: Double
+      shouldDoSomething:
+        name: should_do_something
+        type: Bool
+  - name: test
+    case: test
+    associatedValues: null
+targets:
+  - Swift
