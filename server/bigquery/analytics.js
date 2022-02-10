@@ -101,18 +101,14 @@ const processQueue = async () => {
         console.log(
           "Ignoring PartialFailureError we should be eventually consistent"
         );
-        return;
-      }
-
-      if (entry.currentRetries > 5) {
+      } else if (entry.currentRetries > 5) {
         console.error("Dropping event as retries was too high");
-        return;
+      } else {
+        insertQueue.push({
+          ...entry,
+          currentRetries: (entry.currentRetries ?? 0) + 1,
+        });
       }
-
-      insertQueue.push({
-        ...entry,
-        currentRetries: (entry.currentRetries ?? 0) + 1,
-      });
     }
   }
 
