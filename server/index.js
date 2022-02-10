@@ -3,8 +3,9 @@ require('dd-trace').init();
 const express = require("express");
 const { request, gql } = require("graphql-request");
 const jmespath = require("jmespath");
-
-const analytics = require("./analytics");
+const Segment = require("analytics-node");
+const segmentAnalytics = new Segment(process.env.SEGMENT_WRITE_KEY);
+const bqAnalytics = require("./analytics");
 const app = express();
 const port = process.env.PORT ?? 3034;
 
@@ -22,10 +23,21 @@ app.post("/identify", async (req, res) => {
         console.log(`Identifiying ${trackingId}`)
         const traits = await getTraits(transformHeaders(req.headers))
     
-        analytics.identify({
-            userId: trackingId,
+        bqAnalytics.identify({
+            trackingId,
             memberId: traits?.memberId || null
         })
+
+        segmentAnalytics.identify({
+          userId: trackingId,
+          traits,
+            context: {
+                library: {
+                    name: "hAnalytics"
+                }
+            }
+        })
+
         res.status(200).send("OK")
     } catch (err) {
         console.log("Failed to identify", err)
@@ -85,9 +97,45 @@ app.post("/event", async (req, res) => {
 
     const traits = await getTraits(transformHeaders(req.headers))
 
-    analytics.track(event, {
+    bqAnalytics.track(event, {
       trackingId,
       property: allProperties,
+      timestamp,
+      context: {
+        timezone,
+        sessionId,
+        os: {
+          name: os.name,
+          version: os.version,
+        },
+        locale,
+        ip,
+        app: {
+          name: app.name,
+          version: app.version,
+          build: app.build,
+          namespace: app.namespace,
+        },
+        device: {
+          manufacturer: device.manufacturer,
+          model: device.model,
+          name: device.name,
+          type: device.type,
+          version: device.version,
+          id: device.id,
+        },
+        screen: {
+          density: screen.density,
+          height: screen.height,
+          width: screen.width,
+        },
+        traits: traits
+      },
+    });
+
+    segmentAnalytics.track(event, {
+      userId: trackingId,
+      properties: allProperties,
       timestamp,
       context: {
         timezone,
