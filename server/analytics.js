@@ -1,7 +1,7 @@
 const uuid = require("uuid");
-const { dataset, bigquery } = require("./bigQuery/config");
-const { setupSchema, insertDynamicFields } = require("./bigQuery/setupSchema");
-const flattenObj = require("./bigQuery/flattenObj")
+const { dataset, bigquery } = require("./bigquery/config");
+const { setupSchema, insertDynamicFields } = require("./bigquery/setupSchema");
+const flattenObj = require("./bigquery/flattenObj")
 
 var insertQueue = [];
 var schemaLoaded = false;
