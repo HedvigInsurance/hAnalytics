@@ -117,7 +117,7 @@ const processQueue = async () => {
 
 processQueue();
 
-process.on("beforeExit", async () => {
+process.on("SIGTERM", async () => {
   console.log("Processing before exiting");
   await processQueue();
 });
