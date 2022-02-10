@@ -284,27 +284,18 @@ abstract class HAnalytics {
         )
     }
     /**
-     * The state of notification permission
+     * The state of notification permission:
+     *   granted == true: push notifications permissions are approved
+     *   granted == false: push notifications permissions are denied
+     *   granted == null: push notifications permissions are not determined yet / unknown
+     *
      */
-    fun notificationPermission(granted: Boolean) {
+    fun notificationPermission(granted: Boolean?) {
         send(
             HAnalyticsEvent(
                 name = "notification_permission",
                 properties = mapOf(
                     "granted" to granted,
-                ),
-            )
-        )
-    }
-    /**
-     * The application received a push notification
-     */
-    fun notificationReceived(type: String) {
-        send(
-            HAnalyticsEvent(
-                name = "notification_received",
-                properties = mapOf(
-                    "type" to type,
                 ),
             )
         )

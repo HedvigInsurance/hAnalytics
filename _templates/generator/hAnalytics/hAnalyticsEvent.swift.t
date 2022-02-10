@@ -35,7 +35,7 @@ extension hAnalyticsEvent {
     }
 
 <% events.forEach(function(event) { %>
-    /// <%= event.description || "no description given" %>
+    <%- stringToSwiftComment(event.description) || "no description given" %>
     public static func <%= event.accessor %>(<%= (event.inputs ?? []).map((input) => `${input.argument}: ${swiftTypeMap(input.type)}`).join(",") %>) -> hAnalyticsParcel {
         return hAnalyticsParcel {
         <% if(event.graphql) { %>
