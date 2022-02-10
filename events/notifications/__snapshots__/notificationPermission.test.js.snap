@@ -9,6 +9,15 @@ Object {
 }
 `;
 
+exports[`validate not determined yet 1`] = `
+Object {
+  "name": "notification_permission",
+  "variables": Object {
+    "granted": null,
+  },
+}
+`;
+
 exports[`validate not granted 1`] = `
 Object {
   "name": "notification_permission",

@@ -8,8 +8,8 @@ test('swiftTypeMap', () => {
 });
 
 test('kotlinTypeMap', () => {
-    expect(typeMaps.kotlinTypeMap("Array<String>")).toEqual("Array<String>")
-    expect(typeMaps.kotlinTypeMap("Array<Boolean>")).toEqual("Array<Boolean>")
-    expect(typeMaps.kotlinTypeMap("Array<Dictionary<String, String>>")).toEqual("Array<Map<String, String>>")
+    expect(typeMaps.kotlinTypeMap("Array<String>")).toEqual("List<String>")
+    expect(typeMaps.kotlinTypeMap("Array<Boolean>")).toEqual("List<Boolean>")
+    expect(typeMaps.kotlinTypeMap("Array<Dictionary<String, String>>")).toEqual("List<Map<String, String>>")
     expect(typeMaps.kotlinTypeMap("Optional<String>")).toEqual("String?")
 });

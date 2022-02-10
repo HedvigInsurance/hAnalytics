@@ -1,7 +1,0 @@
-name: notification_received
-description: The application received a push notification
-accessor: notificationReceived
-inputs:
-  - name: type
-    type: String
-    argument: type

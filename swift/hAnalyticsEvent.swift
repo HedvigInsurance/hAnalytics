@@ -168,7 +168,7 @@ extension hAnalyticsEvent {
   }
 
   /// When embark sends a tracking event
-  public static func embarkTrack(storyName: String, eventName: String, store: [String: Any])
+  public static func embarkTrack(storyName: String, eventName: String, store: [String: Any?])
     -> hAnalyticsParcel
   {
     return hAnalyticsParcel {
@@ -262,24 +262,17 @@ extension hAnalyticsEvent {
     }
   }
 
-  /// The state of notification permission
-  public static func notificationPermission(granted: Bool) -> hAnalyticsParcel {
+  /// The state of notification permission:
+  ///   granted == true: push notifications permissions are approved
+  ///   granted == false: push notifications permissions are denied
+  ///   granted == null: push notifications permissions are not determined yet / unknown
+  ///
+  public static func notificationPermission(granted: Bool?) -> hAnalyticsParcel {
     return hAnalyticsParcel {
       let properties: [String: Any?] = ["granted": granted]
 
       hAnalyticsNetworking.send(
         hAnalyticsEvent(name: "notification_permission", properties: properties)
-      )
-    }
-  }
-
-  /// The application received a push notification
-  public static func notificationReceived(type: String) -> hAnalyticsParcel {
-    return hAnalyticsParcel {
-      let properties: [String: Any?] = ["type": type]
-
-      hAnalyticsNetworking.send(
-        hAnalyticsEvent(name: "notification_received", properties: properties)
       )
     }
   }
@@ -320,7 +313,7 @@ extension hAnalyticsEvent {
     }
   }
 
-  /// When a user clicks &#34;Already a member? Log in&#34; on the marketing screen
+  /// When a user clicks "Already a member? Log in" on the marketing screen
   public static func buttonClickMarketingLogin() -> hAnalyticsParcel {
     return hAnalyticsParcel {
       let properties: [String: Any?] = [:]
@@ -331,7 +324,7 @@ extension hAnalyticsEvent {
     }
   }
 
-  /// When a user clicks &#34;Get a price quote&#34; on the marketing screen
+  /// When a user clicks "Get a price quote" on the marketing screen
   public static func buttonClickMarketingOnboard() -> hAnalyticsParcel {
     return hAnalyticsParcel {
       let properties: [String: Any?] = [:]

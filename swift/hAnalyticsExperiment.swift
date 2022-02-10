@@ -86,7 +86,7 @@ public struct hAnalyticsExperiment {
     return false
   }
 
-  /// Which login method to use
+  /// no description given
   public static var loginMethod: LoginMethod {
     if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
       experiment["name"] == "login_method"
@@ -95,10 +95,12 @@ public struct hAnalyticsExperiment {
       return variant
     }
 
-    hAnalyticsEvent.experimentEvaluated(name: "login_method", variant: LoginMethod.otp.rawValue)
-      .send()
+    hAnalyticsEvent.experimentEvaluated(
+      name: "login_method",
+      variant: LoginMethod.bankIdSweden.rawValue
+    ).send()
 
-    return .otp
+    return .bankIdSweden
   }
 
   /// Is moving flow activated
@@ -115,7 +117,7 @@ public struct hAnalyticsExperiment {
     return false
   }
 
-  /// Which payment provider to use
+  /// no description given
   public static var paymentType: PaymentType {
     if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
       experiment["name"] == "payment_type"

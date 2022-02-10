@@ -4,7 +4,7 @@ to: swift/hAnalyticsExperiment.swift
 import Foundation
 
 <% experiments.swift.filter(experiment => experiment.variants.length > 0).forEach(function(experiment) { %>
-    /// <%= experiment.description || "no description given" %>
+    <%- stringToSwiftComment(experiment.description) || "/// no description given" %>
     public enum <%= experiment.enumName %>: String {
        <% experiment.variants.forEach(function(variant) { %>
         case <%= variant.case %> = "<%= variant.name %>"
@@ -20,7 +20,7 @@ public static func load(onComplete: @escaping (_ success: Bool) -> Void) {
 
 <% experiments.swift.forEach(function(experiment) { %>
     <% if (experiment.variants.length > 0) { %>
-    /// <%- experiment.description || "no description given" %>
+    <%- - stringToSwiftComment(experiment.description) || "/// no description given" %>
     public static var <%= experiment.accessor %>: <%= experiment.enumName %> {
        if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
             experiment["name"] == "<%= experiment.name %>"

@@ -171,7 +171,7 @@ abstract class HAnalytics {
     /**
      * When embark sends a tracking event
      */
-    fun embarkTrack(storyName: String, eventName: String, store: Map<String, Any>) {
+    fun embarkTrack(storyName: String, eventName: String, store: Map<String, Any?>) {
         send(
             HAnalyticsEvent(
                 name = "embark_track",
@@ -186,7 +186,7 @@ abstract class HAnalytics {
     /**
      * When embark does a varianted offer redirect
      */
-    fun embarkVariantedOfferRedirect(allIds: Array<String>, selectedIds: Array<String>) {
+    fun embarkVariantedOfferRedirect(allIds: List<String>, selectedIds: List<String>) {
         send(
             HAnalyticsEvent(
                 name = "embark_varianted_offer_redirect",
@@ -238,7 +238,7 @@ abstract class HAnalytics {
     /**
      * Experiments where loaded from server
      */
-    fun experimentsLoaded(experiments: Array<String>) {
+    fun experimentsLoaded(experiments: List<String>) {
         send(
             HAnalyticsEvent(
                 name = "experiments_loaded",
@@ -284,9 +284,13 @@ abstract class HAnalytics {
         )
     }
     /**
-     * The state of notification permission
+     * The state of notification permission:
+     *   granted == true: push notifications permissions are approved
+     *   granted == false: push notifications permissions are denied
+     *   granted == null: push notifications permissions are not determined yet / unknown
+     *
      */
-    fun notificationPermission(granted: Boolean) {
+    fun notificationPermission(granted: Boolean?) {
         send(
             HAnalyticsEvent(
                 name = "notification_permission",
@@ -297,22 +301,9 @@ abstract class HAnalytics {
         )
     }
     /**
-     * The application received a push notification
-     */
-    fun notificationReceived(type: String) {
-        send(
-            HAnalyticsEvent(
-                name = "notification_received",
-                properties = mapOf(
-                    "type" to type,
-                ),
-            )
-        )
-    }
-    /**
      * When quotes are signed in the offer screen
      */
-    fun quotesSigned(quoteIds: Array<String>) {
+    fun quotesSigned(quoteIds: List<String>) {
         send(
             HAnalyticsEvent(
                 name = "quotes_signed",
@@ -486,7 +477,7 @@ query QuotesSigned(${"\$"}quote_ids: [ID!]!) {
     /**
      * When Offer screen is shown
      */
-    fun screenViewOffer(offerIds: Array<String>) {
+    fun screenViewOffer(offerIds: List<String>) {
         send(
             HAnalyticsEvent(
                 name = "screen_view_offer",

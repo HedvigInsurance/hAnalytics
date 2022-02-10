@@ -32,7 +32,7 @@ const getKotlinType = (type) => {
         "Boolean": "Boolean",
         "Double": "Double",
         "Optional": (s) => `${s}?`,
-        "Array": (s) => `Array<${s}>`,
+        "Array": (s) => `List<${s}>`,
         "Dictionary": (s) => `Map<${s}>`
     }
 

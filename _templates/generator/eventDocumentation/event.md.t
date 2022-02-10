@@ -24,7 +24,7 @@ hAnalyticsEvent.<%= event.accessor %>(<%= (event.inputs ?? []).map((input) => `$
 ## Kotlin
 
 ```kotlin
-hAnalyticsEvent.Companion.<%= event.accessor %>(<%= (event.inputs ?? []).map((input) => `${input.argument}: ${kotlinTypeMap(input.type)}`).join(",") %>)
+hAnalytics.<%= event.accessor %>(<%= (event.inputs ?? []).map((input) => `${input.argument}: ${kotlinTypeMap(input.type)}`).join(",") %>)
 ```
 
 ## Integration status
