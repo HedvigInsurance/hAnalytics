@@ -8,4 +8,5 @@ const dataset = process.env.BQ_DATASET;
 module.exports = {
   dataset,
   bigquery,
+  projectId: process.env.GCLOUD_PROJECT
 };

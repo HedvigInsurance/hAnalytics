@@ -2,7 +2,7 @@ const yaml = require("js-yaml");
 const fs = require("fs");
 const glob = require("glob");
 const typeMaps = require("../../commons/typeMaps");
-const { dataset, bigquery } = require("./config");
+const { dataset, projectId, bigquery } = require("./config");
 
 const loadEvent = async (importPath) => {
   const fileData = await new Promise((resolve, reject) => {
@@ -36,6 +36,7 @@ const insertDynamicFields = async (name, row) => {
   const event = (await getEvents()).find((event) => event.name == name);
 
   if (!event) {
+    console.log(`No matching event with ${name}`);
     return;
   }
 
@@ -83,6 +84,48 @@ const insertDynamicFields = async (name, row) => {
   metadata.schema = new_schema;
 
   await table.setMetadata(metadata);
+};
+
+const validateAgainstSchema = async (name, row) => {
+  const metadata = await getMetadata(name);
+
+  const schema = metadata.schema ?? {
+    fields: [],
+  };
+
+  return !Object.keys(row).find((key) => {
+    if (!schema.fields.find((field) => field.name == key)) {
+      console.log(`missing property ${key} on ${name}`);
+      return true;
+    }
+
+    return false;
+  });
+};
+
+const createView = async (name) => {
+  const viewQuery = `
+  SELECT * EXCEPT (__row_number) FROM (
+    SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`${projectId}.${dataset}.${name}\`
+  )
+  WHERE __row_number = 1
+`
+    
+const viewName = `${name}_view`
+
+  try {
+    await bigquery.dataset(dataset).createTable(viewName, {
+      view: viewQuery,
+    });
+  } catch (err) {
+    const [view] = await bigquery.dataset(dataset).table(viewName).get();
+
+    const [metadata] = await view.getMetadata();
+
+    metadata.view = viewQuery;
+
+    await view.setMetadata(metadata);
+  }
 };
 
 const setupTable = async (name, fields) => {
@@ -299,6 +342,8 @@ const setupSchema = async (onLoad) => {
           (i) => i
         )
       );
+
+      await createView(event.name);
     })
   );
 
@@ -306,6 +351,8 @@ const setupSchema = async (onLoad) => {
     "tracks",
     [eventFields, contextFields, generalFields].flatMap((i) => i)
   );
+
+  await createView("tracks");
 
   await setupTable(
     "identifies",
@@ -325,5 +372,6 @@ const setupSchema = async (onLoad) => {
 
 module.exports = {
   setupSchema,
+  validateAgainstSchema,
   insertDynamicFields,
 };

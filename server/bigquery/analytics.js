@@ -1,7 +1,12 @@
 const uuid = require("uuid");
+const timersPromises = require("timers/promises");
 const { dataset, bigquery } = require("./config");
-const { setupSchema, insertDynamicFields } = require("./setupSchema");
-const flattenObj = require("./flattenObj")
+const {
+  setupSchema,
+  validateAgainstSchema,
+  insertDynamicFields,
+} = require("./schema");
+const flattenObj = require("./flattenObj");
 
 var insertQueue = [];
 var schemaLoaded = false;
@@ -72,24 +77,36 @@ const processQueue = async () => {
   for (const entry of queue) {
     console.log(`inserting row into BQ ${entry.table}`);
 
+    const valid = await validateAgainstSchema(entry.table, entry.row);
+
+    if (!valid) {
+      console.log(
+        "Not valid event against schema, trying to insert dynamic fields"
+      );
+
+      try {
+        await insertDynamicFields(entry.table, entry.row);
+        await timersPromises.setTimeout(5000);
+      } catch (err) {
+        console.error("Failed to create dynamic fields", err);
+      }
+    }
+
     try {
-      await bigquery.dataset(dataset).table(entry.table).insert([
-          entry.row
-      ], {
-        skipInvalidRows: true
-      });
+      await bigquery.dataset(dataset).table(entry.table).insert([entry.row]);
     } catch (err) {
-      console.error("Failed to insert into BQ", err);
-      
-      if (entry.currentRetries > 5) {
-        console.error("Dropping event as retries was too high");
+      console.error("Failed to insert into BQ", JSON.stringify(err, null, 2));
+
+      if (err.name == "PartialFailureError") {
+        console.log(
+          "Ignoring PartialFailureError we should be eventually consistent"
+        );
         return;
       }
 
-      try {
-        await insertDynamicFields(entry.table, entry.row)
-      } catch (err) {
-          console.error("Failed to create dynamic fields", err);
+      if (entry.currentRetries > 5) {
+        console.error("Dropping event as retries was too high");
+        return;
       }
 
       insertQueue.push({
@@ -104,10 +121,10 @@ const processQueue = async () => {
 
 processQueue();
 
-process.on('beforeExit', async () => {
-    console.log("Processing before exiting")
-    await processQueue()
-})
+process.on("beforeExit", async () => {
+  console.log("Processing before exiting");
+  await processQueue();
+});
 
 module.exports = {
   track,
