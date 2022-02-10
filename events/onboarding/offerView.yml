@@ -21,6 +21,8 @@ graphql:
     - offer_ids
   selectors:
     - name: type_of_contracts
+      type: String
       path: quoteBundle.quotes[*].typeOfContract | sort(@) | join(', ', @)
     - name: initiated_from
+      type: String
       path: quoteBundle.quotes[0].initiatedFrom

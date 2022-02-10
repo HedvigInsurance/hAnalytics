@@ -7,3 +7,4 @@ ktfmt.jar
 .gradle
 docs/docs/events/**/*.md
 docs/docs/experiments/**/*.md
+google-credentials.json

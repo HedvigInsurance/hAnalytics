@@ -1,11 +1,10 @@
 require('dd-trace').init();
 
-const Analytics = require("analytics-node");
 const express = require("express");
 const { request, gql } = require("graphql-request");
 const jmespath = require("jmespath");
 
-const analytics = new Analytics(process.env.SEGMENT_WRITE_KEY);
+const analytics = require("./analytics");
 const app = express();
 const port = process.env.PORT ?? 3034;
 
@@ -25,12 +24,7 @@ app.post("/identify", async (req, res) => {
     
         analytics.identify({
             userId: trackingId,
-            traits,
-            context: {
-                library: {
-                    name: "hAnalytics"
-                }
-            }
+            memberId: traits?.memberId || null
         })
         res.status(200).send("OK")
     } catch (err) {
@@ -91,10 +85,9 @@ app.post("/event", async (req, res) => {
 
     const traits = await getTraits(transformHeaders(req.headers))
 
-    analytics.track({
-      userId: trackingId,
-      event,
-      properties: allProperties,
+    analytics.track(event, {
+      trackingId,
+      property: allProperties,
       timestamp,
       context: {
         timezone,
@@ -110,9 +103,6 @@ app.post("/event", async (req, res) => {
           version: app.version,
           build: app.build,
           namespace: app.namespace,
-        },
-        library: {
-          name: "hAnalytics",
         },
         device: {
           manufacturer: device.manufacturer,

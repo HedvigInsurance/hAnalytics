@@ -51,7 +51,48 @@ const getKotlinType = (type) => {
     );
 }
 
+const getBigQuerySchemaType = (type) => {
+    const primitives = {
+        "String": {
+            type: "STRING"
+        },
+        "Integer": {
+            type: "INTEGER"
+        },
+        "Boolean": {
+            type: "BOOLEAN"
+        },
+        "Double": {
+            type: "INTEGER"
+        },
+        "Optional": (inner) => ({
+            type: inner.type,
+            mode: "NULLABLE"
+        }),
+        "Array": (inner) => ({
+            type: inner.type,
+            mode: "REPEATED"
+        }),
+        "Dictionary": () => null
+    }
+
+    return type.split("<").reverse().reduce(
+        (acc, curr) => {
+            const currWithoutBrackets = curr?.type ? curr.type : curr.replace(/>/g, "")
+            const primitive = primitives[currWithoutBrackets]
+
+            if (typeof primitive === 'function') {
+                return primitive(acc ?? "")
+            }
+
+            return primitive ? primitive : currWithoutBrackets
+        },
+        ""
+    );
+}
+
 module.exports = {
     swiftTypeMap: getSwiftType,
-    kotlinTypeMap: getKotlinType
+    kotlinTypeMap: getKotlinType,
+    bigQuerySchemaTypeMap: getBigQuerySchemaType
 }
