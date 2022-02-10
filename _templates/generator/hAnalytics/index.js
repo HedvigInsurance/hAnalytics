@@ -50,6 +50,10 @@ module.exports = {
                 kotlin: experiments.filter(experiment => experiment.targets.includes("Kotlin"))
             },
             ...typeMaps,
+            stringToSwiftComment: (s) =>
+                s.split('\n').map((line) => `/// ${line}`).join('\n'),
+            stringToKotlinComment: (s) =>
+                s.split('\n').map((line) => `   * ${line}`).join('\n'),
             formatGQL: (string) => format(string)
         }
     }

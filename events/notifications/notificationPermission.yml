@@ -1,7 +1,11 @@
 name: notification_permission
-description: The state of notification permission
+description: |
+  The state of notification permission:
+    granted == true: push notifications permissions are approved
+    granted == false: push notifications permissions are denied
+    granted == null: push notifications permissions are not determined yet / unknown
 accessor: notificationPermission
 inputs:
   - name: granted
-    type: Boolean
+    type: Optional<Boolean>
     argument: granted

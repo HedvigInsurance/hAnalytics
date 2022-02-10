@@ -13,3 +13,10 @@ test('validate not granted', () => {
     })
     expect(event).toMatchSnapshot()
 });
+
+test('validate not determined yet', () => {
+    const event = validateEvent(__filename, {
+        granted: null
+    })
+    expect(event).toMatchSnapshot()
+});

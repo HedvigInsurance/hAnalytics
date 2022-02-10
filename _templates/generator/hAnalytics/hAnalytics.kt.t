@@ -7,7 +7,7 @@ abstract class HAnalytics {
     abstract protected fun send(event: HAnalyticsEvent)
     <%_ events.forEach(function(event) { -%>
         /**
-         * <%- event.description || "No description given" %>
+         <%- stringToKotlinComment(event.description) || "* No description given" %>
          */
         fun <%= event.accessor %>(<%- (event.inputs ?? []).map(input => `${input.argument}: ${kotlinTypeMap(input.type)}`).join(",") %>) {
             <%_ if (event.graphql) { -%>
