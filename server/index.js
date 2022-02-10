@@ -5,7 +5,7 @@ const { request, gql } = require("graphql-request");
 const jmespath = require("jmespath");
 const Segment = require("analytics-node");
 const segmentAnalytics = new Segment(process.env.SEGMENT_WRITE_KEY);
-const bqAnalytics = require("./analytics");
+const bqAnalytics = require("./bigQuery/analytics");
 const app = express();
 const port = process.env.PORT ?? 3034;
 

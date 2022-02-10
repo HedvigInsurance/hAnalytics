@@ -1,7 +1,7 @@
 const uuid = require("uuid");
-const { dataset, bigquery } = require("./bigquery/config");
-const { setupSchema, insertDynamicFields } = require("./bigquery/setupSchema");
-const flattenObj = require("./bigquery/flattenObj")
+const { dataset, bigquery } = require("./config");
+const { setupSchema, insertDynamicFields } = require("./setupSchema");
+const flattenObj = require("./flattenObj")
 
 var insertQueue = [];
 var schemaLoaded = false;
@@ -80,14 +80,14 @@ const processQueue = async () => {
       });
     } catch (err) {
       console.error("Failed to insert into BQ", err);
-
+      
       if (entry.currentRetries > 5) {
         console.error("Dropping event as retries was too high");
         return;
       }
 
       try {
-          await insertDynamicFields(entry.table, entry.row)
+        await insertDynamicFields(entry.table, entry.row)
       } catch (err) {
           console.error("Failed to create dynamic fields", err);
       }
