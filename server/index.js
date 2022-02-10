@@ -133,8 +133,9 @@ app.post("/event", async (req, res) => {
       },
     });
 
-    segmentAnalytics.track(event, {
+    segmentAnalytics.track({
       userId: trackingId,
+      event,
       properties: allProperties,
       timestamp,
       context: {
