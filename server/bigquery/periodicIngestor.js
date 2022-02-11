@@ -83,11 +83,6 @@ const ingest = async (config, nextTick = 10000) => {
   }, nextTick);
 };
 
-process.on("SIGTERM", async () => {
-  console.log("Processing before exiting");
-  await ingest();
-});
-
 module.exports = {
   addToQueue: (entry) => {
     insertQueue.push(entry);
@@ -97,6 +92,11 @@ module.exports = {
     setupSchema(() => {
       schemaLoaded = true;
     }, config);
+
+    process.on("SIGTERM", async () => {
+      console.log("Processing before exiting");
+      await ingest(config, nextTick);
+    });
 
     ingest(config, nextTick);
   },
