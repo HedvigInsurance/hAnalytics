@@ -49,7 +49,7 @@ const identify = async (identity) => {
   addToQueue(insertEntry);
 };
 
-start(bigQueryConfig);
+start(bigQueryConfig, process.env.BQ_INGESTION_INTERVAL);
 
 module.exports = {
   track,
