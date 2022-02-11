@@ -54,12 +54,14 @@ app.post("/event", async (req, res) => {
       device,
       app,
       screen,
-      locale,
+      locale: fallbackLocale,
       timezone,
       event,
       properties,
       graphql,
     } = req.body;
+
+    const locale = req.acceptsLanguages()[0] ?? fallbackLocale;
 
     const timestamp = new Date();
 
