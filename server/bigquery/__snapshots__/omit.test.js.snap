@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`omits correctly 1`] = `Object {}`;
+
+exports[`omits correctly 2`] = `
+Object {
+  "otherValue": "hello",
+}
+`;

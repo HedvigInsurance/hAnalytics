@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`validate against schema 1`] = `
+Array [
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.mock_table\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "mock_table_view",
+    "rows": Array [],
+  },
+]
+`;

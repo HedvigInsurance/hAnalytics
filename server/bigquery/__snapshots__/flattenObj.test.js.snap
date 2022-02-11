@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`flattens correctly 1`] = `
+Object {
+  "property_member_id": "hello",
+}
+`;
+
+exports[`flattens correctly 2`] = `
+Object {
+  "property_store_fisk": "mock",
+  "property_store_other": "two",
+}
+`;
+
+exports[`flattens correctly 3`] = `
+Object {
+  "property_store_fisk": Array [
+    Object {
+      "member_id": 123,
+    },
+  ],
+  "property_store_other": "two",
+}
+`;
+
+exports[`flattens correctly 4`] = `
+Object {
+  "property_store_fisk": Array [
+    123,
+  ],
+  "property_store_other": "two",
+}
+`;
+
+exports[`flattens correctly 5`] = `
+Object {
+  "property_store_fisk": Array [
+    Object {
+      "member_id": Array [
+        Object {
+          "some_property": "hello",
+        },
+      ],
+    },
+  ],
+  "property_store_other": "two",
+}
+`;

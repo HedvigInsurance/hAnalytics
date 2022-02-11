@@ -1,9 +1,10 @@
-require('dd-trace').init();
+require("dd-trace").init();
 
 const express = require("express");
 const { request, gql } = require("graphql-request");
 const jmespath = require("jmespath");
 const Segment = require("analytics-node");
+const uuid = require("uuid");
 const segmentAnalytics = new Segment(process.env.SEGMENT_WRITE_KEY);
 const bqAnalytics = require("./bigquery/analytics");
 const app = express();
@@ -11,39 +12,37 @@ const port = process.env.PORT ?? 3034;
 
 app.use(express.json());
 
-const { getTraits } = require("./traits")
-const { transformHeaders } = require("./tools")
+const { getTraits } = require("./traits");
+const { transformHeaders } = require("./tools");
 
 app.post("/identify", async (req, res) => {
-    try {
-        const {
-            trackingId
-        } = req.body;
+  try {
+    const { trackingId } = req.body;
 
-        console.log(`Identifiying ${trackingId}`)
-        const traits = await getTraits(transformHeaders(req.headers))
-    
-        bqAnalytics.identify({
-            trackingId,
-            memberId: traits?.memberId || null
-        })
+    console.log(`Identifiying ${trackingId}`);
+    const traits = await getTraits(transformHeaders(req.headers));
 
-        segmentAnalytics.identify({
-          userId: trackingId,
-          traits,
-            context: {
-                library: {
-                    name: "hAnalytics"
-                }
-            }
-        })
+    bqAnalytics.identify({
+      trackingId,
+      memberId: traits?.memberId || null,
+    });
 
-        res.status(200).send("OK")
-    } catch (err) {
-        console.log("Failed to identify", err)
-        res.status(500).send("SERVER ERROR")
-    }
-})
+    segmentAnalytics.identify({
+      userId: trackingId,
+      traits,
+      context: {
+        library: {
+          name: "hAnalytics",
+        },
+      },
+    });
+
+    res.status(200).send("OK");
+  } catch (err) {
+    console.log("Failed to identify", err);
+    res.status(500).send("SERVER ERROR");
+  }
+});
 
 app.post("/event", async (req, res) => {
   try {
@@ -72,8 +71,8 @@ app.post("/event", async (req, res) => {
 
     if (graphql) {
       const forwardedHeaders = {
-        "authorization": req.headers["authorization"]
-      }
+        authorization: req.headers["authorization"],
+      };
 
       const query = gql`
         ${graphql.query}
@@ -95,12 +94,14 @@ app.post("/event", async (req, res) => {
       });
     }
 
-    const traits = await getTraits(transformHeaders(req.headers))
+    const traits = await getTraits(transformHeaders(req.headers));
+    const hanalyticsEventId = uuid.v1();
 
     bqAnalytics.track(event, {
       trackingId,
       property: allProperties,
       timestamp,
+      eventId: hanalyticsEventId,
       context: {
         timezone,
         sessionId,
@@ -129,7 +130,7 @@ app.post("/event", async (req, res) => {
           height: screen.height,
           width: screen.width,
         },
-        traits: traits
+        traits: traits,
       },
     });
 
@@ -166,7 +167,8 @@ app.post("/event", async (req, res) => {
           height: screen.height,
           width: screen.width,
         },
-        traits: traits
+        hanalyticsEventId,
+        traits: traits,
       },
     });
 
@@ -174,12 +176,12 @@ app.post("/event", async (req, res) => {
 
     res.status(200).send("OK");
   } catch (err) {
-    console.error("Failed to process event", err)
+    console.error("Failed to process event", err);
     res.status(400).send("BAD REQUEST");
   }
 });
 
-require("./experiments")(app)
+require("./experiments")(app);
 
 app.listen(port, () => {
   console.log(`hAnalytics app listening on port ${port}`);

@@ -1,6 +1,10 @@
 const { snakeCase } = require("snake-case");
 
 const flattenObj = (ob) => {
+  if (typeof ob !== "object") {
+    return ob;
+  }
+
   let result = {};
 
   for (const i in ob) {
@@ -12,6 +16,8 @@ const flattenObj = (ob) => {
       for (const j in temp) {
         result[snakeCase(i) + "_" + snakeCase(j)] = temp[j];
       }
+    } else if (Array.isArray(ob[i])) {
+      result[snakeCase(i)] = ob[i].map(flattenObj);
     } else {
       result[snakeCase(i)] = ob[i];
     }

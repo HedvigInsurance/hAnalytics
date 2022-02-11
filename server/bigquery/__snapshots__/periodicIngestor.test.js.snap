@@ -1,0 +1,2889 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ingests correctly 1`] = `Array []`;
+
+exports[`ingests correctly 2`] = `
+Array [
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "chat_rich_message_sent",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "chat_text_message_sent",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "screen_view_chat",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_claim_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_claim_status",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "claim_card_click",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_claim_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_claim_status",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "claim_card_visible",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_claim_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_claim_status",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "claim_status_detail_click_open_chat",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_claim_id",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "claims_detail_recording_played",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "screen_view_claim_honor_pledge",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_claim_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_claim_status",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "screen_view_claims_status_detail",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_id",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "screen_view_common_claim_detail",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_type",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "deep_link_opened",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_location",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "embark_external_redirect",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_originated_from_embark_story",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_passage_name",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "embark_passage_go_back",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_originated_from_embark_story",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_event_name",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "embark_track",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_all_ids",
+            "type": "STRING",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_selected_ids",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "embark_varianted_offer_redirect",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_story_name",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "screen_view_embark",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "screen_view_embark_tooltip",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_name",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_variant",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "experiment_evaluated",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_experiments",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "experiments_loaded",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "mode": "NULLABLE",
+            "name": "context_app_build",
+            "type": "STRING",
+          },
+          Object {
+            "mode": "NULLABLE",
+            "name": "context_app_name",
+            "type": "STRING",
+          },
+          Object {
+            "mode": "NULLABLE",
+            "name": "context_app_namespace",
+            "type": "STRING",
+          },
+          Object {
+            "mode": "NULLABLE",
+            "name": "context_app_version",
+            "type": "STRING",
+          },
+          Object {
+            "mode": "NULLABLE",
+            "name": "context_device_id",
+            "type": "STRING",
+          },
+          Object {
+            "mode": "NULLABLE",
+            "name": "context_device_version",
+            "type": "STRING",
+          },
+          Object {
+            "mode": "NULLABLE",
+            "name": "context_device_manufacturer",
+            "type": "STRING",
+          },
+          Object {
+            "mode": "NULLABLE",
+            "name": "context_device_model",
+            "type": "STRING",
+          },
+          Object {
+            "mode": "NULLABLE",
+            "name": "context_device_type",
+            "type": "STRING",
+          },
+          Object {
+            "mode": "NULLABLE",
+            "name": "context_device_name",
+            "type": "STRING",
+          },
+          Object {
+            "mode": "NULLABLE",
+            "name": "context_ip",
+            "type": "STRING",
+          },
+          Object {
+            "mode": "NULLABLE",
+            "name": "context_locale",
+            "type": "STRING",
+          },
+          Object {
+            "mode": "NULLABLE",
+            "name": "context_os_name",
+            "type": "STRING",
+          },
+          Object {
+            "mode": "NULLABLE",
+            "name": "context_os_version",
+            "type": "STRING",
+          },
+          Object {
+            "mode": "NULLABLE",
+            "name": "context_screen_height",
+            "type": "INTEGER",
+          },
+          Object {
+            "mode": "NULLABLE",
+            "name": "context_screen_width",
+            "type": "INTEGER",
+          },
+          Object {
+            "mode": "NULLABLE",
+            "name": "context_screen_density",
+            "type": "INTEGER",
+          },
+          Object {
+            "mode": "NULLABLE",
+            "name": "context_session_id",
+            "type": "STRING",
+          },
+          Object {
+            "mode": "NULLABLE",
+            "name": "context_timezone",
+            "type": "STRING",
+          },
+          Object {
+            "mode": "NULLABLE",
+            "name": "context_traits_member_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_member_id",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "identifies",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "logged_in",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "logged_out",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_type",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "notification_opened",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+          Object {
+            "mode": "NULLABLE",
+            "name": "property_granted",
+            "type": "BOOLEAN",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "notification_permission",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_quote_ids",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_type_of_contracts",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_initiated_from",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "quotes_signed",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "button_click_marketing_login",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "button_click_marketing_onboard",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_embark_story_id",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "onboarding_choose_embark_flow",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_provider_id",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "data_collection_skipped",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_provider_id",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "screen_view_data_collection_authenticating",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_provider_id",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "screen_view_data_collection_credentials",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_provider_id",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "screen_view_data_collection_fail",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_provider_id",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "screen_view_data_collection_intro",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_provider_id",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "screen_view_data_collection_success",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "screen_view_market_picker",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_locale",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "market_selected",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_offer_ids",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_type_of_contracts",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_initiated_from",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "screen_view_offer",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "screen_view_marketing",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "home_payment_card_visible",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "screen_view_connect_payment_adyen",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "screen_view_connect_payment_failed",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "screen_view_connect_payment_success",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "screen_view_connect_payment_trustly",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "screen_view_payments",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "screen_view_charity",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "screen_view_contact_info",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_type_of_contract",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "screen_view_cross_sell_detail",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "screen_view_forever",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "screen_view_home",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_contract_id",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "screen_view_insurance_detail",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_has_accident_insurance",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "name": "property_has_home_insurance",
+            "type": "BOOLEAN",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "screen_view_insurances",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "screen_view_moving_flow_intro",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "screen_view_profile",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "app_background",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "app_resumed",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "app_shutdown",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "app_started",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "screen_view_app_information",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "screen_view_app_settings",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "event",
+            "type": "STRING",
+          },
+          Object {
+            "name": "event_id",
+            "type": "STRING",
+          },
+          Object {
+            "name": "timestamp",
+            "type": "TIMESTAMP",
+          },
+          Object {
+            "name": "tracking_id",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "tracks",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.chat_rich_message_sent\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "chat_rich_message_sent_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.chat_text_message_sent\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "chat_text_message_sent_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_chat\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "screen_view_chat_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.claim_card_click\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "claim_card_click_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.claim_card_visible\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "claim_card_visible_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.claim_status_detail_click_open_chat\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "claim_status_detail_click_open_chat_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.claims_detail_recording_played\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "claims_detail_recording_played_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_claim_honor_pledge\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "screen_view_claim_honor_pledge_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_claims_status_detail\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "screen_view_claims_status_detail_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_common_claim_detail\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "screen_view_common_claim_detail_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.deep_link_opened\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "deep_link_opened_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.embark_external_redirect\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "embark_external_redirect_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.embark_passage_go_back\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "embark_passage_go_back_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.embark_track\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "embark_track_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.embark_varianted_offer_redirect\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "embark_varianted_offer_redirect_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_embark\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "screen_view_embark_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_embark_tooltip\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "screen_view_embark_tooltip_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.experiment_evaluated\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "experiment_evaluated_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.experiments_loaded\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "experiments_loaded_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.identifies\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "identifies_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.logged_in\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "logged_in_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.logged_out\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "logged_out_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.notification_opened\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "notification_opened_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.notification_permission\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "notification_permission_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.quotes_signed\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "quotes_signed_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.button_click_marketing_login\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "button_click_marketing_login_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.button_click_marketing_onboard\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "button_click_marketing_onboard_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.onboarding_choose_embark_flow\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "onboarding_choose_embark_flow_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.data_collection_skipped\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "data_collection_skipped_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_data_collection_authenticating\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "screen_view_data_collection_authenticating_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_data_collection_credentials\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "screen_view_data_collection_credentials_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_data_collection_fail\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "screen_view_data_collection_fail_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_data_collection_intro\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "screen_view_data_collection_intro_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_data_collection_success\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "screen_view_data_collection_success_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_market_picker\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "screen_view_market_picker_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.market_selected\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "market_selected_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_offer\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "screen_view_offer_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_marketing\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "screen_view_marketing_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.home_payment_card_visible\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "home_payment_card_visible_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_connect_payment_adyen\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "screen_view_connect_payment_adyen_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_connect_payment_failed\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "screen_view_connect_payment_failed_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_connect_payment_success\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "screen_view_connect_payment_success_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_connect_payment_trustly\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "screen_view_connect_payment_trustly_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_payments\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "screen_view_payments_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_charity\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "screen_view_charity_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_contact_info\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "screen_view_contact_info_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_cross_sell_detail\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "screen_view_cross_sell_detail_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_forever\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "screen_view_forever_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_home\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "screen_view_home_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_insurance_detail\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "screen_view_insurance_detail_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_insurances\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "screen_view_insurances_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_moving_flow_intro\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "screen_view_moving_flow_intro_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_profile\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "screen_view_profile_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.app_background\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "app_background_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.app_resumed\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "app_resumed_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.app_shutdown\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "app_shutdown_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.app_started\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "app_started_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_app_information\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "screen_view_app_information_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_app_settings\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "screen_view_app_settings_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "view": "
+    SELECT * EXCEPT (__row_number) FROM (
+      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.tracks\`
+    )
+    WHERE __row_number = 1
+  ",
+    },
+    "name": "tracks_view",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "property",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "mock_table",
+    "rows": Array [
+      Object {
+        "property": "HELLO",
+      },
+    ],
+  },
+]
+`;

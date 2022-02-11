@@ -1,0 +1,1539 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`creates schemas according to events: app_background 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: app_resumed 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: app_shutdown 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: app_started 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: button_click_marketing_login 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: button_click_marketing_onboard 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: chat_rich_message_sent 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: chat_text_message_sent 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: claim_card_click 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "property_claim_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "property_claim_status",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: claim_card_visible 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "property_claim_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "property_claim_status",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: claim_status_detail_click_open_chat 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "property_claim_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "property_claim_status",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: claims_detail_recording_played 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "property_claim_id",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: data_collection_skipped 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "property_provider_id",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: deep_link_opened 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "property_type",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: embark_external_redirect 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "property_location",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: embark_passage_go_back 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "property_originated_from_embark_story",
+    "type": "STRING",
+  },
+  Object {
+    "name": "property_passage_name",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: embark_track 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "property_originated_from_embark_story",
+    "type": "STRING",
+  },
+  Object {
+    "name": "property_event_name",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: embark_varianted_offer_redirect 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+  Object {
+    "mode": "REPEATED",
+    "name": "property_all_ids",
+    "type": "STRING",
+  },
+  Object {
+    "mode": "REPEATED",
+    "name": "property_selected_ids",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: experiment_evaluated 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "property_name",
+    "type": "STRING",
+  },
+  Object {
+    "name": "property_variant",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: experiments_loaded 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+  Object {
+    "mode": "REPEATED",
+    "name": "property_experiments",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: home_payment_card_visible 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: identifies 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "mode": "NULLABLE",
+    "name": "context_app_build",
+    "type": "STRING",
+  },
+  Object {
+    "mode": "NULLABLE",
+    "name": "context_app_name",
+    "type": "STRING",
+  },
+  Object {
+    "mode": "NULLABLE",
+    "name": "context_app_namespace",
+    "type": "STRING",
+  },
+  Object {
+    "mode": "NULLABLE",
+    "name": "context_app_version",
+    "type": "STRING",
+  },
+  Object {
+    "mode": "NULLABLE",
+    "name": "context_device_id",
+    "type": "STRING",
+  },
+  Object {
+    "mode": "NULLABLE",
+    "name": "context_device_version",
+    "type": "STRING",
+  },
+  Object {
+    "mode": "NULLABLE",
+    "name": "context_device_manufacturer",
+    "type": "STRING",
+  },
+  Object {
+    "mode": "NULLABLE",
+    "name": "context_device_model",
+    "type": "STRING",
+  },
+  Object {
+    "mode": "NULLABLE",
+    "name": "context_device_type",
+    "type": "STRING",
+  },
+  Object {
+    "mode": "NULLABLE",
+    "name": "context_device_name",
+    "type": "STRING",
+  },
+  Object {
+    "mode": "NULLABLE",
+    "name": "context_ip",
+    "type": "STRING",
+  },
+  Object {
+    "mode": "NULLABLE",
+    "name": "context_locale",
+    "type": "STRING",
+  },
+  Object {
+    "mode": "NULLABLE",
+    "name": "context_os_name",
+    "type": "STRING",
+  },
+  Object {
+    "mode": "NULLABLE",
+    "name": "context_os_version",
+    "type": "STRING",
+  },
+  Object {
+    "mode": "NULLABLE",
+    "name": "context_screen_height",
+    "type": "INTEGER",
+  },
+  Object {
+    "mode": "NULLABLE",
+    "name": "context_screen_width",
+    "type": "INTEGER",
+  },
+  Object {
+    "mode": "NULLABLE",
+    "name": "context_screen_density",
+    "type": "INTEGER",
+  },
+  Object {
+    "mode": "NULLABLE",
+    "name": "context_session_id",
+    "type": "STRING",
+  },
+  Object {
+    "mode": "NULLABLE",
+    "name": "context_timezone",
+    "type": "STRING",
+  },
+  Object {
+    "mode": "NULLABLE",
+    "name": "context_traits_member_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "property_member_id",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: logged_in 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: logged_out 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: market_selected 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "property_locale",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: notification_opened 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "property_type",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: notification_permission 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+  Object {
+    "mode": "NULLABLE",
+    "name": "property_granted",
+    "type": "BOOLEAN",
+  },
+]
+`;
+
+exports[`creates schemas according to events: onboarding_choose_embark_flow 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "property_embark_story_id",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: quotes_signed 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+  Object {
+    "mode": "REPEATED",
+    "name": "property_quote_ids",
+    "type": "STRING",
+  },
+  Object {
+    "name": "property_type_of_contracts",
+    "type": "STRING",
+  },
+  Object {
+    "name": "property_initiated_from",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: screen_view_app_information 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: screen_view_app_settings 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: screen_view_charity 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: screen_view_chat 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: screen_view_claim_honor_pledge 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: screen_view_claims_status_detail 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "property_claim_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "property_claim_status",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: screen_view_common_claim_detail 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "property_id",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: screen_view_connect_payment_adyen 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: screen_view_connect_payment_failed 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: screen_view_connect_payment_success 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: screen_view_connect_payment_trustly 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: screen_view_contact_info 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: screen_view_cross_sell_detail 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "property_type_of_contract",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: screen_view_data_collection_authenticating 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "property_provider_id",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: screen_view_data_collection_credentials 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "property_provider_id",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: screen_view_data_collection_fail 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "property_provider_id",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: screen_view_data_collection_intro 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "property_provider_id",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: screen_view_data_collection_success 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "property_provider_id",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: screen_view_embark 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "property_story_name",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: screen_view_embark_tooltip 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: screen_view_forever 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: screen_view_home 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: screen_view_insurance_detail 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "property_contract_id",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: screen_view_insurances 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "property_has_accident_insurance",
+    "type": "BOOLEAN",
+  },
+  Object {
+    "name": "property_has_home_insurance",
+    "type": "BOOLEAN",
+  },
+]
+`;
+
+exports[`creates schemas according to events: screen_view_market_picker 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: screen_view_marketing 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: screen_view_moving_flow_intro 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: screen_view_offer 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+  Object {
+    "mode": "REPEATED",
+    "name": "property_offer_ids",
+    "type": "STRING",
+  },
+  Object {
+    "name": "property_type_of_contracts",
+    "type": "STRING",
+  },
+  Object {
+    "name": "property_initiated_from",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: screen_view_payments 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: screen_view_profile 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: tracks 1`] = `
+Array [
+  Object {
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+]
+`;

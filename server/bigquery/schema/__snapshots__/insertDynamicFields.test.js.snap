@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`insert dynamic fields 1`] = `
+Array [
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "property_store_hello",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "embark_track",
+    "rows": Array [],
+  },
+]
+`;
+
+exports[`insert dynamic fields 2`] = `
+Array [
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "property_store_hello",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "embark_track",
+    "rows": Array [],
+  },
+]
+`;

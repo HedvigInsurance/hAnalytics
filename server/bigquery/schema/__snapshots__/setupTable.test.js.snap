@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`sets up a table correctly 1`] = `
+Array [
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "property",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "mock_table",
+    "rows": Array [],
+  },
+]
+`;
+
+exports[`updates a table correctly 1`] = `
+Array [
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "property",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_2",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "mock_table",
+    "rows": Array [],
+  },
+]
+`;

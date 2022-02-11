@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`can get schema 1`] = `
+Array [
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "property_store_hello",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "embark_track",
+    "rows": Array [],
+  },
+]
+`;
+
+exports[`can get schema 2`] = `
+Object {
+  "schema": Object {
+    "fields": Array [
+      Object {
+        "name": "property_store_hello",
+        "type": "STRING",
+      },
+    ],
+  },
+  "timePartitioning": Object {
+    "expirationMS": "7776000000",
+    "field": "timestamp",
+    "type": "DAY",
+  },
+}
+`;

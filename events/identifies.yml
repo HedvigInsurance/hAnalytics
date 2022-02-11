@@ -1,0 +1,9 @@
+name: identifies
+description: Automatically created by hAnalytics when identifiying
+accessor: null
+bigQuery:
+  noContext: true
+inputs:
+  - name: member_id
+    type: String
+    argument: memberId
