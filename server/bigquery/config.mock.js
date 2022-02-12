@@ -26,29 +26,24 @@ module.exports = () => {
           return [table.config];
         },
         setMetadata: async (config) => {
-          var table = tables.find((table) => table.name == name);
+          var tableIndex = tables.findIndex((table) => table.name == name);
 
-          if (!table) {
+          if (!tables[tableIndex]) {
             throw new Error("Table not found");
           }
 
-          table.config = config;
-
-          tables = [
-            ...tables.filter((table) => table.name != name),
-            ...[table],
-          ];
+          tables[tableIndex].config = config;
         },
         insert: async (rows) => {
-          var table = tables.find((table) => table.name == name);
+          var tableIndex = tables.findIndex((table) => table.name == name);
 
-          if (!table) {
+          if (!tables[tableIndex]) {
             throw new Error("Table not found");
           }
 
-          table.rows = [...table.rows, ...rows];
-
-          tables = [...tables.filter((table) => table.name != name), table];
+          rows.forEach((row) => {
+            tables[tableIndex].rows.push(row);
+          });
         },
         get: async () => {
           var table = tables.find((table) => table.name == name);

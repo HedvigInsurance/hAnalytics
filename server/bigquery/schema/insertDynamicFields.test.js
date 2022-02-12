@@ -36,4 +36,20 @@ test("insert dynamic fields", async () => {
   );
 
   expect(bigquery.getTables()).toMatchSnapshot();
+
+  await insertDynamicFields(
+    "embark_track",
+    {
+      property_store_hello: "mock",
+      property_store_personal_number: "93202320",
+      some_rouge_field_that_should_be_gone: "asss",
+      property_random_personal_number: "nsisks",
+    },
+    {
+      bigquery,
+      dataset,
+    }
+  );
+
+  expect(bigquery.getTables()).toMatchSnapshot();
 });

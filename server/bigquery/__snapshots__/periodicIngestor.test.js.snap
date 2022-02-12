@@ -1,494 +1,1713 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ingests correctly 1`] = `Array []`;
-
-exports[`ingests correctly 2`] = `
+exports[`does ingest if schema updates 1`] = `
 Array [
   Object {
     "config": Object {
       "schema": Object {
         "fields": Array [
           Object {
-            "name": "event",
-            "type": "STRING",
-          },
-          Object {
             "name": "event_id",
             "type": "STRING",
           },
           Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
-            "type": "STRING",
-          },
-        ],
-      },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "chat_rich_message_sent",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
+            "name": "property_store_0",
             "type": "STRING",
           },
           Object {
-            "name": "event_id",
+            "name": "property_store_0_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_0_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_0_array",
             "type": "STRING",
           },
           Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
-            "type": "STRING",
-          },
-        ],
-      },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "chat_text_message_sent",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
+            "name": "property_store_1000",
             "type": "STRING",
           },
           Object {
-            "name": "event_id",
+            "name": "property_store_1000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_1000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_1000_array",
             "type": "STRING",
           },
           Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
-            "type": "STRING",
-          },
-        ],
-      },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "screen_view_chat",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
+            "name": "property_store_2000",
             "type": "STRING",
           },
           Object {
-            "name": "event_id",
+            "name": "property_store_2000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_2000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_2000_array",
             "type": "STRING",
           },
           Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
+            "name": "property_store_3000",
             "type": "STRING",
           },
           Object {
-            "name": "property_claim_id",
+            "name": "property_store_3000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_3000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_3000_array",
             "type": "STRING",
           },
           Object {
-            "name": "property_claim_status",
-            "type": "STRING",
-          },
-        ],
-      },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "claim_card_click",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
+            "name": "property_store_4000",
             "type": "STRING",
           },
           Object {
-            "name": "event_id",
+            "name": "property_store_4000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_4000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_4000_array",
             "type": "STRING",
           },
           Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
+            "name": "property_store_5000",
             "type": "STRING",
           },
           Object {
-            "name": "property_claim_id",
+            "name": "property_store_5000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_5000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_5000_array",
             "type": "STRING",
           },
           Object {
-            "name": "property_claim_status",
-            "type": "STRING",
-          },
-        ],
-      },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "claim_card_visible",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
+            "name": "property_store_6000",
             "type": "STRING",
           },
           Object {
-            "name": "event_id",
+            "name": "property_store_6000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_6000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_6000_array",
             "type": "STRING",
           },
           Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
+            "name": "property_store_7000",
             "type": "STRING",
           },
           Object {
-            "name": "property_claim_id",
+            "name": "property_store_7000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_7000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_7000_array",
             "type": "STRING",
           },
           Object {
-            "name": "property_claim_status",
-            "type": "STRING",
-          },
-        ],
-      },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "claim_status_detail_click_open_chat",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
+            "name": "property_store_8000",
             "type": "STRING",
           },
           Object {
-            "name": "event_id",
+            "name": "property_store_8000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_8000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_8000_array",
             "type": "STRING",
           },
           Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
+            "name": "property_store_9000",
             "type": "STRING",
           },
           Object {
-            "name": "property_claim_id",
-            "type": "STRING",
+            "name": "property_store_9000_double",
+            "type": "INTEGER",
           },
-        ],
-      },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "claims_detail_recording_played",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
           Object {
-            "name": "event",
+            "name": "property_store_9000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_9000_array",
             "type": "STRING",
           },
           Object {
-            "name": "event_id",
+            "name": "property_store_10000",
             "type": "STRING",
           },
           Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
+            "name": "property_store_10000_double",
+            "type": "INTEGER",
           },
           Object {
-            "name": "tracking_id",
-            "type": "STRING",
+            "name": "property_store_10000_bool",
+            "type": "BOOLEAN",
           },
-        ],
-      },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "screen_view_claim_honor_pledge",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
           Object {
-            "name": "event",
+            "mode": "REPEATED",
+            "name": "property_store_10000_array",
             "type": "STRING",
           },
           Object {
-            "name": "event_id",
+            "name": "property_store_11000",
             "type": "STRING",
           },
           Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
+            "name": "property_store_11000_double",
+            "type": "INTEGER",
           },
           Object {
-            "name": "tracking_id",
+            "name": "property_store_11000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_11000_array",
             "type": "STRING",
           },
           Object {
-            "name": "property_claim_id",
+            "name": "property_store_12000",
             "type": "STRING",
           },
           Object {
-            "name": "property_claim_status",
-            "type": "STRING",
+            "name": "property_store_12000_double",
+            "type": "INTEGER",
           },
-        ],
-      },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "screen_view_claims_status_detail",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
           Object {
-            "name": "event",
+            "name": "property_store_12000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_12000_array",
             "type": "STRING",
           },
           Object {
-            "name": "event_id",
+            "name": "property_store_13000",
             "type": "STRING",
           },
           Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
+            "name": "property_store_13000_double",
+            "type": "INTEGER",
           },
           Object {
-            "name": "tracking_id",
+            "name": "property_store_13000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_13000_array",
             "type": "STRING",
           },
           Object {
-            "name": "property_id",
-            "type": "STRING",
-          },
-        ],
-      },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "screen_view_common_claim_detail",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
+            "name": "property_store_14000",
             "type": "STRING",
           },
           Object {
-            "name": "event_id",
+            "name": "property_store_14000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_14000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_14000_array",
             "type": "STRING",
           },
           Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
+            "name": "property_store_15000",
             "type": "STRING",
           },
           Object {
-            "name": "property_type",
-            "type": "STRING",
+            "name": "property_store_15000_double",
+            "type": "INTEGER",
           },
-        ],
-      },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "deep_link_opened",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
           Object {
-            "name": "event",
+            "name": "property_store_15000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_15000_array",
             "type": "STRING",
           },
           Object {
-            "name": "event_id",
+            "name": "property_store_16000",
             "type": "STRING",
           },
           Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
+            "name": "property_store_16000_double",
+            "type": "INTEGER",
           },
           Object {
-            "name": "tracking_id",
+            "name": "property_store_16000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_16000_array",
             "type": "STRING",
           },
           Object {
-            "name": "property_location",
-            "type": "STRING",
-          },
-        ],
-      },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "embark_external_redirect",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
+            "name": "property_store_17000",
             "type": "STRING",
           },
           Object {
-            "name": "event_id",
+            "name": "property_store_17000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_17000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_17000_array",
             "type": "STRING",
           },
           Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
+            "name": "property_store_18000",
             "type": "STRING",
           },
           Object {
-            "name": "property_originated_from_embark_story",
+            "name": "property_store_18000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_18000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_18000_array",
             "type": "STRING",
           },
           Object {
-            "name": "property_passage_name",
-            "type": "STRING",
-          },
-        ],
-      },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "embark_passage_go_back",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
+            "name": "property_store_19000",
             "type": "STRING",
           },
           Object {
-            "name": "event_id",
+            "name": "property_store_19000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_19000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_19000_array",
             "type": "STRING",
           },
           Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
+            "name": "property_store_20000",
             "type": "STRING",
           },
           Object {
-            "name": "property_originated_from_embark_story",
+            "name": "property_store_20000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_20000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_20000_array",
             "type": "STRING",
           },
           Object {
-            "name": "property_event_name",
+            "name": "property_store_21000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_21000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_21000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_21000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_22000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_22000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_22000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_22000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_23000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_23000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_23000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_23000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_24000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_24000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_24000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_24000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_25000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_25000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_25000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_25000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_26000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_26000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_26000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_26000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_27000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_27000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_27000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_27000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_28000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_28000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_28000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_28000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_29000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_29000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_29000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_29000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_30000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_30000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_30000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_30000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_31000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_31000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_31000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_31000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_32000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_32000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_32000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_32000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_33000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_33000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_33000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_33000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_34000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_34000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_34000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_34000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_35000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_35000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_35000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_35000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_36000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_36000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_36000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_36000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_37000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_37000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_37000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_37000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_38000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_38000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_38000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_38000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_39000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_39000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_39000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_39000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_40000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_40000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_40000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_40000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_41000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_41000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_41000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_41000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_42000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_42000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_42000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_42000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_43000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_43000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_43000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_43000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_44000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_44000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_44000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_44000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_45000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_45000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_45000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_45000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_46000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_46000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_46000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_46000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_47000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_47000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_47000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_47000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_48000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_48000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_48000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_48000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_49000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_49000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_49000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_49000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_50000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_50000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_50000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_50000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_51000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_51000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_51000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_51000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_52000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_52000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_52000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_52000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_53000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_53000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_53000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_53000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_54000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_54000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_54000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_54000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_55000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_55000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_55000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_55000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_56000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_56000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_56000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_56000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_57000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_57000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_57000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_57000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_58000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_58000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_58000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_58000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_59000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_59000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_59000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_59000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_60000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_60000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_60000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_60000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_61000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_61000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_61000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_61000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_62000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_62000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_62000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_62000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_63000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_63000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_63000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_63000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_64000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_64000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_64000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_64000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_65000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_65000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_65000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_65000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_66000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_66000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_66000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_66000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_67000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_67000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_67000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_67000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_68000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_68000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_68000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_68000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_69000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_69000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_69000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_69000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_70000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_70000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_70000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_70000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_71000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_71000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_71000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_71000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_72000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_72000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_72000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_72000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_73000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_73000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_73000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_73000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_74000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_74000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_74000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_74000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_75000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_75000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_75000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_75000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_76000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_76000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_76000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_76000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_77000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_77000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_77000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_77000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_78000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_78000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_78000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_78000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_79000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_79000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_79000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_79000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_80000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_80000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_80000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_80000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_81000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_81000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_81000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_81000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_82000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_82000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_82000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_82000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_83000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_83000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_83000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_83000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_84000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_84000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_84000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_84000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_85000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_85000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_85000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_85000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_86000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_86000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_86000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_86000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_87000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_87000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_87000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_87000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_88000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_88000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_88000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_88000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_89000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_89000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_89000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_89000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_90000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_90000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_90000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_90000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_91000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_91000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_91000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_91000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_92000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_92000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_92000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_92000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_93000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_93000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_93000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_93000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_94000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_94000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_94000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_94000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_95000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_95000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_95000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_95000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_96000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_96000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_96000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_96000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_97000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_97000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_97000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_97000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_98000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_98000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_98000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_98000_array",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_99000",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_99000_double",
+            "type": "INTEGER",
+          },
+          Object {
+            "name": "property_store_99000_bool",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "mode": "REPEATED",
+            "name": "property_store_99000_array",
             "type": "STRING",
           },
         ],
@@ -500,2368 +1719,1416 @@ Array [
       },
     },
     "name": "embark_track",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
-            "type": "STRING",
-          },
-          Object {
-            "name": "event_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REPEATED",
-            "name": "property_all_ids",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REPEATED",
-            "name": "property_selected_ids",
-            "type": "STRING",
-          },
+    "rows": Array [
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
+        "property_store_0": "HELLO",
+        "property_store_0_array": Array [
+          "string",
+          "string2",
         ],
+        "property_store_0_bool": true,
+        "property_store_0_double": 150,
+        "property_store_0_null": null,
       },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "embark_varianted_offer_redirect",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
-            "type": "STRING",
-          },
-          Object {
-            "name": "event_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "property_story_name",
-            "type": "STRING",
-          },
+      Object {
+        "event_id": "mock_id",
+        "property_store_1000": "HELLO",
+        "property_store_1000_array": Array [
+          "string",
+          "string2",
         ],
+        "property_store_1000_bool": true,
+        "property_store_1000_double": 150,
+        "property_store_1000_null": null,
       },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "screen_view_embark",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
-            "type": "STRING",
-          },
-          Object {
-            "name": "event_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
-            "type": "STRING",
-          },
+      Object {
+        "event_id": "mock_id",
+        "property_store_2000": "HELLO",
+        "property_store_2000_array": Array [
+          "string",
+          "string2",
         ],
+        "property_store_2000_bool": true,
+        "property_store_2000_double": 150,
+        "property_store_2000_null": null,
       },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "screen_view_embark_tooltip",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
-            "type": "STRING",
-          },
-          Object {
-            "name": "event_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "property_name",
-            "type": "STRING",
-          },
-          Object {
-            "name": "property_variant",
-            "type": "STRING",
-          },
+      Object {
+        "event_id": "mock_id",
+        "property_store_3000": "HELLO",
+        "property_store_3000_array": Array [
+          "string",
+          "string2",
         ],
+        "property_store_3000_bool": true,
+        "property_store_3000_double": 150,
+        "property_store_3000_null": null,
       },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "experiment_evaluated",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
-            "type": "STRING",
-          },
-          Object {
-            "name": "event_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REPEATED",
-            "name": "property_experiments",
-            "type": "STRING",
-          },
+      Object {
+        "event_id": "mock_id",
+        "property_store_4000": "HELLO",
+        "property_store_4000_array": Array [
+          "string",
+          "string2",
         ],
+        "property_store_4000_bool": true,
+        "property_store_4000_double": 150,
+        "property_store_4000_null": null,
       },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "experiments_loaded",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
-            "type": "STRING",
-          },
-          Object {
-            "name": "event_id",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "NULLABLE",
-            "name": "context_app_build",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "NULLABLE",
-            "name": "context_app_name",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "NULLABLE",
-            "name": "context_app_namespace",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "NULLABLE",
-            "name": "context_app_version",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "NULLABLE",
-            "name": "context_device_id",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "NULLABLE",
-            "name": "context_device_version",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "NULLABLE",
-            "name": "context_device_manufacturer",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "NULLABLE",
-            "name": "context_device_model",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "NULLABLE",
-            "name": "context_device_type",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "NULLABLE",
-            "name": "context_device_name",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "NULLABLE",
-            "name": "context_ip",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "NULLABLE",
-            "name": "context_locale",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "NULLABLE",
-            "name": "context_os_name",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "NULLABLE",
-            "name": "context_os_version",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "NULLABLE",
-            "name": "context_screen_height",
-            "type": "INTEGER",
-          },
-          Object {
-            "mode": "NULLABLE",
-            "name": "context_screen_width",
-            "type": "INTEGER",
-          },
-          Object {
-            "mode": "NULLABLE",
-            "name": "context_screen_density",
-            "type": "INTEGER",
-          },
-          Object {
-            "mode": "NULLABLE",
-            "name": "context_session_id",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "NULLABLE",
-            "name": "context_timezone",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "NULLABLE",
-            "name": "context_traits_member_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "property_member_id",
-            "type": "STRING",
-          },
+      Object {
+        "event_id": "mock_id",
+        "property_store_5000": "HELLO",
+        "property_store_5000_array": Array [
+          "string",
+          "string2",
         ],
+        "property_store_5000_bool": true,
+        "property_store_5000_double": 150,
+        "property_store_5000_null": null,
       },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "identifies",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
-            "type": "STRING",
-          },
-          Object {
-            "name": "event_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
-            "type": "STRING",
-          },
+      Object {
+        "event_id": "mock_id",
+        "property_store_6000": "HELLO",
+        "property_store_6000_array": Array [
+          "string",
+          "string2",
         ],
+        "property_store_6000_bool": true,
+        "property_store_6000_double": 150,
+        "property_store_6000_null": null,
       },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "logged_in",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
-            "type": "STRING",
-          },
-          Object {
-            "name": "event_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
-            "type": "STRING",
-          },
+      Object {
+        "event_id": "mock_id",
+        "property_store_7000": "HELLO",
+        "property_store_7000_array": Array [
+          "string",
+          "string2",
         ],
+        "property_store_7000_bool": true,
+        "property_store_7000_double": 150,
+        "property_store_7000_null": null,
       },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "logged_out",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
-            "type": "STRING",
-          },
-          Object {
-            "name": "event_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "property_type",
-            "type": "STRING",
-          },
+      Object {
+        "event_id": "mock_id",
+        "property_store_8000": "HELLO",
+        "property_store_8000_array": Array [
+          "string",
+          "string2",
         ],
+        "property_store_8000_bool": true,
+        "property_store_8000_double": 150,
+        "property_store_8000_null": null,
       },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "notification_opened",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
-            "type": "STRING",
-          },
-          Object {
-            "name": "event_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "NULLABLE",
-            "name": "property_granted",
-            "type": "BOOLEAN",
-          },
+      Object {
+        "event_id": "mock_id",
+        "property_store_9000": "HELLO",
+        "property_store_9000_array": Array [
+          "string",
+          "string2",
         ],
+        "property_store_9000_bool": true,
+        "property_store_9000_double": 150,
+        "property_store_9000_null": null,
       },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "notification_permission",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
-            "type": "STRING",
-          },
-          Object {
-            "name": "event_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REPEATED",
-            "name": "property_quote_ids",
-            "type": "STRING",
-          },
-          Object {
-            "name": "property_type_of_contracts",
-            "type": "STRING",
-          },
-          Object {
-            "name": "property_initiated_from",
-            "type": "STRING",
-          },
+      Object {
+        "event_id": "mock_id",
+        "property_store_10000": "HELLO",
+        "property_store_10000_array": Array [
+          "string",
+          "string2",
         ],
+        "property_store_10000_bool": true,
+        "property_store_10000_double": 150,
+        "property_store_10000_null": null,
       },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "quotes_signed",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
-            "type": "STRING",
-          },
-          Object {
-            "name": "event_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
-            "type": "STRING",
-          },
+      Object {
+        "event_id": "mock_id",
+        "property_store_11000": "HELLO",
+        "property_store_11000_array": Array [
+          "string",
+          "string2",
         ],
+        "property_store_11000_bool": true,
+        "property_store_11000_double": 150,
+        "property_store_11000_null": null,
       },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "button_click_marketing_login",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
-            "type": "STRING",
-          },
-          Object {
-            "name": "event_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
-            "type": "STRING",
-          },
+      Object {
+        "event_id": "mock_id",
+        "property_store_12000": "HELLO",
+        "property_store_12000_array": Array [
+          "string",
+          "string2",
         ],
+        "property_store_12000_bool": true,
+        "property_store_12000_double": 150,
+        "property_store_12000_null": null,
       },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "button_click_marketing_onboard",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
-            "type": "STRING",
-          },
-          Object {
-            "name": "event_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "property_embark_story_id",
-            "type": "STRING",
-          },
+      Object {
+        "event_id": "mock_id",
+        "property_store_13000": "HELLO",
+        "property_store_13000_array": Array [
+          "string",
+          "string2",
         ],
+        "property_store_13000_bool": true,
+        "property_store_13000_double": 150,
+        "property_store_13000_null": null,
       },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "onboarding_choose_embark_flow",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
-            "type": "STRING",
-          },
-          Object {
-            "name": "event_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "property_provider_id",
-            "type": "STRING",
-          },
+      Object {
+        "event_id": "mock_id",
+        "property_store_14000": "HELLO",
+        "property_store_14000_array": Array [
+          "string",
+          "string2",
         ],
+        "property_store_14000_bool": true,
+        "property_store_14000_double": 150,
+        "property_store_14000_null": null,
       },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "data_collection_skipped",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
-            "type": "STRING",
-          },
-          Object {
-            "name": "event_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "property_provider_id",
-            "type": "STRING",
-          },
+      Object {
+        "event_id": "mock_id",
+        "property_store_15000": "HELLO",
+        "property_store_15000_array": Array [
+          "string",
+          "string2",
         ],
+        "property_store_15000_bool": true,
+        "property_store_15000_double": 150,
+        "property_store_15000_null": null,
       },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "screen_view_data_collection_authenticating",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
-            "type": "STRING",
-          },
-          Object {
-            "name": "event_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "property_provider_id",
-            "type": "STRING",
-          },
+      Object {
+        "event_id": "mock_id",
+        "property_store_16000": "HELLO",
+        "property_store_16000_array": Array [
+          "string",
+          "string2",
         ],
+        "property_store_16000_bool": true,
+        "property_store_16000_double": 150,
+        "property_store_16000_null": null,
       },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "screen_view_data_collection_credentials",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
-            "type": "STRING",
-          },
-          Object {
-            "name": "event_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "property_provider_id",
-            "type": "STRING",
-          },
+      Object {
+        "event_id": "mock_id",
+        "property_store_17000": "HELLO",
+        "property_store_17000_array": Array [
+          "string",
+          "string2",
         ],
+        "property_store_17000_bool": true,
+        "property_store_17000_double": 150,
+        "property_store_17000_null": null,
       },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "screen_view_data_collection_fail",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
-            "type": "STRING",
-          },
-          Object {
-            "name": "event_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "property_provider_id",
-            "type": "STRING",
-          },
+      Object {
+        "event_id": "mock_id",
+        "property_store_18000": "HELLO",
+        "property_store_18000_array": Array [
+          "string",
+          "string2",
         ],
+        "property_store_18000_bool": true,
+        "property_store_18000_double": 150,
+        "property_store_18000_null": null,
       },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "screen_view_data_collection_intro",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
-            "type": "STRING",
-          },
-          Object {
-            "name": "event_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "property_provider_id",
-            "type": "STRING",
-          },
+      Object {
+        "event_id": "mock_id",
+        "property_store_19000": "HELLO",
+        "property_store_19000_array": Array [
+          "string",
+          "string2",
         ],
+        "property_store_19000_bool": true,
+        "property_store_19000_double": 150,
+        "property_store_19000_null": null,
       },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "screen_view_data_collection_success",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
-            "type": "STRING",
-          },
-          Object {
-            "name": "event_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
-            "type": "STRING",
-          },
+      Object {
+        "event_id": "mock_id",
+        "property_store_20000": "HELLO",
+        "property_store_20000_array": Array [
+          "string",
+          "string2",
         ],
+        "property_store_20000_bool": true,
+        "property_store_20000_double": 150,
+        "property_store_20000_null": null,
       },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "screen_view_market_picker",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
-            "type": "STRING",
-          },
-          Object {
-            "name": "event_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "property_locale",
-            "type": "STRING",
-          },
+      Object {
+        "event_id": "mock_id",
+        "property_store_21000": "HELLO",
+        "property_store_21000_array": Array [
+          "string",
+          "string2",
         ],
+        "property_store_21000_bool": true,
+        "property_store_21000_double": 150,
+        "property_store_21000_null": null,
       },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "market_selected",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
-            "type": "STRING",
-          },
-          Object {
-            "name": "event_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REPEATED",
-            "name": "property_offer_ids",
-            "type": "STRING",
-          },
-          Object {
-            "name": "property_type_of_contracts",
-            "type": "STRING",
-          },
-          Object {
-            "name": "property_initiated_from",
-            "type": "STRING",
-          },
+      Object {
+        "event_id": "mock_id",
+        "property_store_22000": "HELLO",
+        "property_store_22000_array": Array [
+          "string",
+          "string2",
         ],
+        "property_store_22000_bool": true,
+        "property_store_22000_double": 150,
+        "property_store_22000_null": null,
       },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "screen_view_offer",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
-            "type": "STRING",
-          },
-          Object {
-            "name": "event_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
-            "type": "STRING",
-          },
+      Object {
+        "event_id": "mock_id",
+        "property_store_23000": "HELLO",
+        "property_store_23000_array": Array [
+          "string",
+          "string2",
         ],
+        "property_store_23000_bool": true,
+        "property_store_23000_double": 150,
+        "property_store_23000_null": null,
       },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "screen_view_marketing",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
-            "type": "STRING",
-          },
-          Object {
-            "name": "event_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
-            "type": "STRING",
-          },
+      Object {
+        "event_id": "mock_id",
+        "property_store_24000": "HELLO",
+        "property_store_24000_array": Array [
+          "string",
+          "string2",
         ],
+        "property_store_24000_bool": true,
+        "property_store_24000_double": 150,
+        "property_store_24000_null": null,
       },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "home_payment_card_visible",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
-            "type": "STRING",
-          },
-          Object {
-            "name": "event_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
-            "type": "STRING",
-          },
+      Object {
+        "event_id": "mock_id",
+        "property_store_25000": "HELLO",
+        "property_store_25000_array": Array [
+          "string",
+          "string2",
         ],
+        "property_store_25000_bool": true,
+        "property_store_25000_double": 150,
+        "property_store_25000_null": null,
       },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "screen_view_connect_payment_adyen",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
-            "type": "STRING",
-          },
-          Object {
-            "name": "event_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
-            "type": "STRING",
-          },
+      Object {
+        "event_id": "mock_id",
+        "property_store_26000": "HELLO",
+        "property_store_26000_array": Array [
+          "string",
+          "string2",
         ],
+        "property_store_26000_bool": true,
+        "property_store_26000_double": 150,
+        "property_store_26000_null": null,
       },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "screen_view_connect_payment_failed",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
-            "type": "STRING",
-          },
-          Object {
-            "name": "event_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
-            "type": "STRING",
-          },
+      Object {
+        "event_id": "mock_id",
+        "property_store_27000": "HELLO",
+        "property_store_27000_array": Array [
+          "string",
+          "string2",
         ],
+        "property_store_27000_bool": true,
+        "property_store_27000_double": 150,
+        "property_store_27000_null": null,
       },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "screen_view_connect_payment_success",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
-            "type": "STRING",
-          },
-          Object {
-            "name": "event_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
-            "type": "STRING",
-          },
+      Object {
+        "event_id": "mock_id",
+        "property_store_28000": "HELLO",
+        "property_store_28000_array": Array [
+          "string",
+          "string2",
         ],
+        "property_store_28000_bool": true,
+        "property_store_28000_double": 150,
+        "property_store_28000_null": null,
       },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "screen_view_connect_payment_trustly",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
-            "type": "STRING",
-          },
-          Object {
-            "name": "event_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
-            "type": "STRING",
-          },
+      Object {
+        "event_id": "mock_id",
+        "property_store_29000": "HELLO",
+        "property_store_29000_array": Array [
+          "string",
+          "string2",
         ],
+        "property_store_29000_bool": true,
+        "property_store_29000_double": 150,
+        "property_store_29000_null": null,
       },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "screen_view_payments",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
-            "type": "STRING",
-          },
-          Object {
-            "name": "event_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
-            "type": "STRING",
-          },
+      Object {
+        "event_id": "mock_id",
+        "property_store_30000": "HELLO",
+        "property_store_30000_array": Array [
+          "string",
+          "string2",
         ],
+        "property_store_30000_bool": true,
+        "property_store_30000_double": 150,
+        "property_store_30000_null": null,
       },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "screen_view_charity",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
-            "type": "STRING",
-          },
-          Object {
-            "name": "event_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
-            "type": "STRING",
-          },
+      Object {
+        "event_id": "mock_id",
+        "property_store_31000": "HELLO",
+        "property_store_31000_array": Array [
+          "string",
+          "string2",
         ],
+        "property_store_31000_bool": true,
+        "property_store_31000_double": 150,
+        "property_store_31000_null": null,
       },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "screen_view_contact_info",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
-            "type": "STRING",
-          },
-          Object {
-            "name": "event_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "property_type_of_contract",
-            "type": "STRING",
-          },
+      Object {
+        "event_id": "mock_id",
+        "property_store_32000": "HELLO",
+        "property_store_32000_array": Array [
+          "string",
+          "string2",
         ],
+        "property_store_32000_bool": true,
+        "property_store_32000_double": 150,
+        "property_store_32000_null": null,
       },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "screen_view_cross_sell_detail",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
-            "type": "STRING",
-          },
-          Object {
-            "name": "event_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
-            "type": "STRING",
-          },
+      Object {
+        "event_id": "mock_id",
+        "property_store_33000": "HELLO",
+        "property_store_33000_array": Array [
+          "string",
+          "string2",
         ],
+        "property_store_33000_bool": true,
+        "property_store_33000_double": 150,
+        "property_store_33000_null": null,
       },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "screen_view_forever",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
-            "type": "STRING",
-          },
-          Object {
-            "name": "event_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
-            "type": "STRING",
-          },
+      Object {
+        "event_id": "mock_id",
+        "property_store_34000": "HELLO",
+        "property_store_34000_array": Array [
+          "string",
+          "string2",
         ],
+        "property_store_34000_bool": true,
+        "property_store_34000_double": 150,
+        "property_store_34000_null": null,
       },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "screen_view_home",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
-            "type": "STRING",
-          },
-          Object {
-            "name": "event_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "property_contract_id",
-            "type": "STRING",
-          },
+      Object {
+        "event_id": "mock_id",
+        "property_store_35000": "HELLO",
+        "property_store_35000_array": Array [
+          "string",
+          "string2",
         ],
+        "property_store_35000_bool": true,
+        "property_store_35000_double": 150,
+        "property_store_35000_null": null,
       },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "screen_view_insurance_detail",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
-            "type": "STRING",
-          },
-          Object {
-            "name": "event_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "property_has_accident_insurance",
-            "type": "BOOLEAN",
-          },
-          Object {
-            "name": "property_has_home_insurance",
-            "type": "BOOLEAN",
-          },
+      Object {
+        "event_id": "mock_id",
+        "property_store_36000": "HELLO",
+        "property_store_36000_array": Array [
+          "string",
+          "string2",
         ],
+        "property_store_36000_bool": true,
+        "property_store_36000_double": 150,
+        "property_store_36000_null": null,
       },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "screen_view_insurances",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
-            "type": "STRING",
-          },
-          Object {
-            "name": "event_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
-            "type": "STRING",
-          },
+      Object {
+        "event_id": "mock_id",
+        "property_store_37000": "HELLO",
+        "property_store_37000_array": Array [
+          "string",
+          "string2",
         ],
+        "property_store_37000_bool": true,
+        "property_store_37000_double": 150,
+        "property_store_37000_null": null,
       },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "screen_view_moving_flow_intro",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
-            "type": "STRING",
-          },
-          Object {
-            "name": "event_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
-            "type": "STRING",
-          },
+      Object {
+        "event_id": "mock_id",
+        "property_store_38000": "HELLO",
+        "property_store_38000_array": Array [
+          "string",
+          "string2",
         ],
+        "property_store_38000_bool": true,
+        "property_store_38000_double": 150,
+        "property_store_38000_null": null,
       },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "screen_view_profile",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
-            "type": "STRING",
-          },
-          Object {
-            "name": "event_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
-            "type": "STRING",
-          },
+      Object {
+        "event_id": "mock_id",
+        "property_store_39000": "HELLO",
+        "property_store_39000_array": Array [
+          "string",
+          "string2",
         ],
+        "property_store_39000_bool": true,
+        "property_store_39000_double": 150,
+        "property_store_39000_null": null,
       },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "app_background",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
-            "type": "STRING",
-          },
-          Object {
-            "name": "event_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
-            "type": "STRING",
-          },
+      Object {
+        "event_id": "mock_id",
+        "property_store_40000": "HELLO",
+        "property_store_40000_array": Array [
+          "string",
+          "string2",
         ],
+        "property_store_40000_bool": true,
+        "property_store_40000_double": 150,
+        "property_store_40000_null": null,
       },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "app_resumed",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
-            "type": "STRING",
-          },
-          Object {
-            "name": "event_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
-            "type": "STRING",
-          },
+      Object {
+        "event_id": "mock_id",
+        "property_store_41000": "HELLO",
+        "property_store_41000_array": Array [
+          "string",
+          "string2",
         ],
+        "property_store_41000_bool": true,
+        "property_store_41000_double": 150,
+        "property_store_41000_null": null,
       },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "app_shutdown",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
-            "type": "STRING",
-          },
-          Object {
-            "name": "event_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
-            "type": "STRING",
-          },
+      Object {
+        "event_id": "mock_id",
+        "property_store_42000": "HELLO",
+        "property_store_42000_array": Array [
+          "string",
+          "string2",
         ],
+        "property_store_42000_bool": true,
+        "property_store_42000_double": 150,
+        "property_store_42000_null": null,
       },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "app_started",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
-            "type": "STRING",
-          },
-          Object {
-            "name": "event_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
-            "type": "STRING",
-          },
+      Object {
+        "event_id": "mock_id",
+        "property_store_43000": "HELLO",
+        "property_store_43000_array": Array [
+          "string",
+          "string2",
         ],
+        "property_store_43000_bool": true,
+        "property_store_43000_double": 150,
+        "property_store_43000_null": null,
       },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "screen_view_app_information",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
-            "type": "STRING",
-          },
-          Object {
-            "name": "event_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
-            "type": "STRING",
-          },
+      Object {
+        "event_id": "mock_id",
+        "property_store_44000": "HELLO",
+        "property_store_44000_array": Array [
+          "string",
+          "string2",
         ],
+        "property_store_44000_bool": true,
+        "property_store_44000_double": 150,
+        "property_store_44000_null": null,
       },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
-      },
-    },
-    "name": "screen_view_app_settings",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "schema": Object {
-        "fields": Array [
-          Object {
-            "name": "event",
-            "type": "STRING",
-          },
-          Object {
-            "name": "event_id",
-            "type": "STRING",
-          },
-          Object {
-            "name": "timestamp",
-            "type": "TIMESTAMP",
-          },
-          Object {
-            "name": "tracking_id",
-            "type": "STRING",
-          },
+      Object {
+        "event_id": "mock_id",
+        "property_store_45000": "HELLO",
+        "property_store_45000_array": Array [
+          "string",
+          "string2",
         ],
+        "property_store_45000_bool": true,
+        "property_store_45000_double": 150,
+        "property_store_45000_null": null,
       },
-      "timePartitioning": Object {
-        "expirationMS": "7776000000",
-        "field": "timestamp",
-        "type": "DAY",
+      Object {
+        "event_id": "mock_id",
+        "property_store_46000": "HELLO",
+        "property_store_46000_array": Array [
+          "string",
+          "string2",
+        ],
+        "property_store_46000_bool": true,
+        "property_store_46000_double": 150,
+        "property_store_46000_null": null,
       },
-    },
-    "name": "tracks",
-    "rows": Array [],
+      Object {
+        "event_id": "mock_id",
+        "property_store_47000": "HELLO",
+        "property_store_47000_array": Array [
+          "string",
+          "string2",
+        ],
+        "property_store_47000_bool": true,
+        "property_store_47000_double": 150,
+        "property_store_47000_null": null,
+      },
+      Object {
+        "event_id": "mock_id",
+        "property_store_48000": "HELLO",
+        "property_store_48000_array": Array [
+          "string",
+          "string2",
+        ],
+        "property_store_48000_bool": true,
+        "property_store_48000_double": 150,
+        "property_store_48000_null": null,
+      },
+      Object {
+        "event_id": "mock_id",
+        "property_store_49000": "HELLO",
+        "property_store_49000_array": Array [
+          "string",
+          "string2",
+        ],
+        "property_store_49000_bool": true,
+        "property_store_49000_double": 150,
+        "property_store_49000_null": null,
+      },
+      Object {
+        "event_id": "mock_id",
+        "property_store_50000": "HELLO",
+        "property_store_50000_array": Array [
+          "string",
+          "string2",
+        ],
+        "property_store_50000_bool": true,
+        "property_store_50000_double": 150,
+        "property_store_50000_null": null,
+      },
+      Object {
+        "event_id": "mock_id",
+        "property_store_51000": "HELLO",
+        "property_store_51000_array": Array [
+          "string",
+          "string2",
+        ],
+        "property_store_51000_bool": true,
+        "property_store_51000_double": 150,
+        "property_store_51000_null": null,
+      },
+      Object {
+        "event_id": "mock_id",
+        "property_store_52000": "HELLO",
+        "property_store_52000_array": Array [
+          "string",
+          "string2",
+        ],
+        "property_store_52000_bool": true,
+        "property_store_52000_double": 150,
+        "property_store_52000_null": null,
+      },
+      Object {
+        "event_id": "mock_id",
+        "property_store_53000": "HELLO",
+        "property_store_53000_array": Array [
+          "string",
+          "string2",
+        ],
+        "property_store_53000_bool": true,
+        "property_store_53000_double": 150,
+        "property_store_53000_null": null,
+      },
+      Object {
+        "event_id": "mock_id",
+        "property_store_54000": "HELLO",
+        "property_store_54000_array": Array [
+          "string",
+          "string2",
+        ],
+        "property_store_54000_bool": true,
+        "property_store_54000_double": 150,
+        "property_store_54000_null": null,
+      },
+      Object {
+        "event_id": "mock_id",
+        "property_store_55000": "HELLO",
+        "property_store_55000_array": Array [
+          "string",
+          "string2",
+        ],
+        "property_store_55000_bool": true,
+        "property_store_55000_double": 150,
+        "property_store_55000_null": null,
+      },
+      Object {
+        "event_id": "mock_id",
+        "property_store_56000": "HELLO",
+        "property_store_56000_array": Array [
+          "string",
+          "string2",
+        ],
+        "property_store_56000_bool": true,
+        "property_store_56000_double": 150,
+        "property_store_56000_null": null,
+      },
+      Object {
+        "event_id": "mock_id",
+        "property_store_57000": "HELLO",
+        "property_store_57000_array": Array [
+          "string",
+          "string2",
+        ],
+        "property_store_57000_bool": true,
+        "property_store_57000_double": 150,
+        "property_store_57000_null": null,
+      },
+      Object {
+        "event_id": "mock_id",
+        "property_store_58000": "HELLO",
+        "property_store_58000_array": Array [
+          "string",
+          "string2",
+        ],
+        "property_store_58000_bool": true,
+        "property_store_58000_double": 150,
+        "property_store_58000_null": null,
+      },
+      Object {
+        "event_id": "mock_id",
+        "property_store_59000": "HELLO",
+        "property_store_59000_array": Array [
+          "string",
+          "string2",
+        ],
+        "property_store_59000_bool": true,
+        "property_store_59000_double": 150,
+        "property_store_59000_null": null,
+      },
+      Object {
+        "event_id": "mock_id",
+        "property_store_60000": "HELLO",
+        "property_store_60000_array": Array [
+          "string",
+          "string2",
+        ],
+        "property_store_60000_bool": true,
+        "property_store_60000_double": 150,
+        "property_store_60000_null": null,
+      },
+      Object {
+        "event_id": "mock_id",
+        "property_store_61000": "HELLO",
+        "property_store_61000_array": Array [
+          "string",
+          "string2",
+        ],
+        "property_store_61000_bool": true,
+        "property_store_61000_double": 150,
+        "property_store_61000_null": null,
+      },
+      Object {
+        "event_id": "mock_id",
+        "property_store_62000": "HELLO",
+        "property_store_62000_array": Array [
+          "string",
+          "string2",
+        ],
+        "property_store_62000_bool": true,
+        "property_store_62000_double": 150,
+        "property_store_62000_null": null,
+      },
+      Object {
+        "event_id": "mock_id",
+        "property_store_63000": "HELLO",
+        "property_store_63000_array": Array [
+          "string",
+          "string2",
+        ],
+        "property_store_63000_bool": true,
+        "property_store_63000_double": 150,
+        "property_store_63000_null": null,
+      },
+      Object {
+        "event_id": "mock_id",
+        "property_store_64000": "HELLO",
+        "property_store_64000_array": Array [
+          "string",
+          "string2",
+        ],
+        "property_store_64000_bool": true,
+        "property_store_64000_double": 150,
+        "property_store_64000_null": null,
+      },
+      Object {
+        "event_id": "mock_id",
+        "property_store_65000": "HELLO",
+        "property_store_65000_array": Array [
+          "string",
+          "string2",
+        ],
+        "property_store_65000_bool": true,
+        "property_store_65000_double": 150,
+        "property_store_65000_null": null,
+      },
+      Object {
+        "event_id": "mock_id",
+        "property_store_66000": "HELLO",
+        "property_store_66000_array": Array [
+          "string",
+          "string2",
+        ],
+        "property_store_66000_bool": true,
+        "property_store_66000_double": 150,
+        "property_store_66000_null": null,
+      },
+      Object {
+        "event_id": "mock_id",
+        "property_store_67000": "HELLO",
+        "property_store_67000_array": Array [
+          "string",
+          "string2",
+        ],
+        "property_store_67000_bool": true,
+        "property_store_67000_double": 150,
+        "property_store_67000_null": null,
+      },
+      Object {
+        "event_id": "mock_id",
+        "property_store_68000": "HELLO",
+        "property_store_68000_array": Array [
+          "string",
+          "string2",
+        ],
+        "property_store_68000_bool": true,
+        "property_store_68000_double": 150,
+        "property_store_68000_null": null,
+      },
+      Object {
+        "event_id": "mock_id",
+        "property_store_69000": "HELLO",
+        "property_store_69000_array": Array [
+          "string",
+          "string2",
+        ],
+        "property_store_69000_bool": true,
+        "property_store_69000_double": 150,
+        "property_store_69000_null": null,
+      },
+      Object {
+        "event_id": "mock_id",
+        "property_store_70000": "HELLO",
+        "property_store_70000_array": Array [
+          "string",
+          "string2",
+        ],
+        "property_store_70000_bool": true,
+        "property_store_70000_double": 150,
+        "property_store_70000_null": null,
+      },
+      Object {
+        "event_id": "mock_id",
+        "property_store_71000": "HELLO",
+        "property_store_71000_array": Array [
+          "string",
+          "string2",
+        ],
+        "property_store_71000_bool": true,
+        "property_store_71000_double": 150,
+        "property_store_71000_null": null,
+      },
+      Object {
+        "event_id": "mock_id",
+        "property_store_72000": "HELLO",
+        "property_store_72000_array": Array [
+          "string",
+          "string2",
+        ],
+        "property_store_72000_bool": true,
+        "property_store_72000_double": 150,
+        "property_store_72000_null": null,
+      },
+      Object {
+        "event_id": "mock_id",
+        "property_store_73000": "HELLO",
+        "property_store_73000_array": Array [
+          "string",
+          "string2",
+        ],
+        "property_store_73000_bool": true,
+        "property_store_73000_double": 150,
+        "property_store_73000_null": null,
+      },
+      Object {
+        "event_id": "mock_id",
+        "property_store_74000": "HELLO",
+        "property_store_74000_array": Array [
+          "string",
+          "string2",
+        ],
+        "property_store_74000_bool": true,
+        "property_store_74000_double": 150,
+        "property_store_74000_null": null,
+      },
+      Object {
+        "event_id": "mock_id",
+        "property_store_75000": "HELLO",
+        "property_store_75000_array": Array [
+          "string",
+          "string2",
+        ],
+        "property_store_75000_bool": true,
+        "property_store_75000_double": 150,
+        "property_store_75000_null": null,
+      },
+      Object {
+        "event_id": "mock_id",
+        "property_store_76000": "HELLO",
+        "property_store_76000_array": Array [
+          "string",
+          "string2",
+        ],
+        "property_store_76000_bool": true,
+        "property_store_76000_double": 150,
+        "property_store_76000_null": null,
+      },
+      Object {
+        "event_id": "mock_id",
+        "property_store_77000": "HELLO",
+        "property_store_77000_array": Array [
+          "string",
+          "string2",
+        ],
+        "property_store_77000_bool": true,
+        "property_store_77000_double": 150,
+        "property_store_77000_null": null,
+      },
+      Object {
+        "event_id": "mock_id",
+        "property_store_78000": "HELLO",
+        "property_store_78000_array": Array [
+          "string",
+          "string2",
+        ],
+        "property_store_78000_bool": true,
+        "property_store_78000_double": 150,
+        "property_store_78000_null": null,
+      },
+      Object {
+        "event_id": "mock_id",
+        "property_store_79000": "HELLO",
+        "property_store_79000_array": Array [
+          "string",
+          "string2",
+        ],
+        "property_store_79000_bool": true,
+        "property_store_79000_double": 150,
+        "property_store_79000_null": null,
+      },
+      Object {
+        "event_id": "mock_id",
+        "property_store_80000": "HELLO",
+        "property_store_80000_array": Array [
+          "string",
+          "string2",
+        ],
+        "property_store_80000_bool": true,
+        "property_store_80000_double": 150,
+        "property_store_80000_null": null,
+      },
+      Object {
+        "event_id": "mock_id",
+        "property_store_81000": "HELLO",
+        "property_store_81000_array": Array [
+          "string",
+          "string2",
+        ],
+        "property_store_81000_bool": true,
+        "property_store_81000_double": 150,
+        "property_store_81000_null": null,
+      },
+      Object {
+        "event_id": "mock_id",
+        "property_store_82000": "HELLO",
+        "property_store_82000_array": Array [
+          "string",
+          "string2",
+        ],
+        "property_store_82000_bool": true,
+        "property_store_82000_double": 150,
+        "property_store_82000_null": null,
+      },
+      Object {
+        "event_id": "mock_id",
+        "property_store_83000": "HELLO",
+        "property_store_83000_array": Array [
+          "string",
+          "string2",
+        ],
+        "property_store_83000_bool": true,
+        "property_store_83000_double": 150,
+        "property_store_83000_null": null,
+      },
+      Object {
+        "event_id": "mock_id",
+        "property_store_84000": "HELLO",
+        "property_store_84000_array": Array [
+          "string",
+          "string2",
+        ],
+        "property_store_84000_bool": true,
+        "property_store_84000_double": 150,
+        "property_store_84000_null": null,
+      },
+      Object {
+        "event_id": "mock_id",
+        "property_store_85000": "HELLO",
+        "property_store_85000_array": Array [
+          "string",
+          "string2",
+        ],
+        "property_store_85000_bool": true,
+        "property_store_85000_double": 150,
+        "property_store_85000_null": null,
+      },
+      Object {
+        "event_id": "mock_id",
+        "property_store_86000": "HELLO",
+        "property_store_86000_array": Array [
+          "string",
+          "string2",
+        ],
+        "property_store_86000_bool": true,
+        "property_store_86000_double": 150,
+        "property_store_86000_null": null,
+      },
+      Object {
+        "event_id": "mock_id",
+        "property_store_87000": "HELLO",
+        "property_store_87000_array": Array [
+          "string",
+          "string2",
+        ],
+        "property_store_87000_bool": true,
+        "property_store_87000_double": 150,
+        "property_store_87000_null": null,
+      },
+      Object {
+        "event_id": "mock_id",
+        "property_store_88000": "HELLO",
+        "property_store_88000_array": Array [
+          "string",
+          "string2",
+        ],
+        "property_store_88000_bool": true,
+        "property_store_88000_double": 150,
+        "property_store_88000_null": null,
+      },
+      Object {
+        "event_id": "mock_id",
+        "property_store_89000": "HELLO",
+        "property_store_89000_array": Array [
+          "string",
+          "string2",
+        ],
+        "property_store_89000_bool": true,
+        "property_store_89000_double": 150,
+        "property_store_89000_null": null,
+      },
+      Object {
+        "event_id": "mock_id",
+        "property_store_90000": "HELLO",
+        "property_store_90000_array": Array [
+          "string",
+          "string2",
+        ],
+        "property_store_90000_bool": true,
+        "property_store_90000_double": 150,
+        "property_store_90000_null": null,
+      },
+      Object {
+        "event_id": "mock_id",
+        "property_store_91000": "HELLO",
+        "property_store_91000_array": Array [
+          "string",
+          "string2",
+        ],
+        "property_store_91000_bool": true,
+        "property_store_91000_double": 150,
+        "property_store_91000_null": null,
+      },
+      Object {
+        "event_id": "mock_id",
+        "property_store_92000": "HELLO",
+        "property_store_92000_array": Array [
+          "string",
+          "string2",
+        ],
+        "property_store_92000_bool": true,
+        "property_store_92000_double": 150,
+        "property_store_92000_null": null,
+      },
+      Object {
+        "event_id": "mock_id",
+        "property_store_93000": "HELLO",
+        "property_store_93000_array": Array [
+          "string",
+          "string2",
+        ],
+        "property_store_93000_bool": true,
+        "property_store_93000_double": 150,
+        "property_store_93000_null": null,
+      },
+      Object {
+        "event_id": "mock_id",
+        "property_store_94000": "HELLO",
+        "property_store_94000_array": Array [
+          "string",
+          "string2",
+        ],
+        "property_store_94000_bool": true,
+        "property_store_94000_double": 150,
+        "property_store_94000_null": null,
+      },
+      Object {
+        "event_id": "mock_id",
+        "property_store_95000": "HELLO",
+        "property_store_95000_array": Array [
+          "string",
+          "string2",
+        ],
+        "property_store_95000_bool": true,
+        "property_store_95000_double": 150,
+        "property_store_95000_null": null,
+      },
+      Object {
+        "event_id": "mock_id",
+        "property_store_96000": "HELLO",
+        "property_store_96000_array": Array [
+          "string",
+          "string2",
+        ],
+        "property_store_96000_bool": true,
+        "property_store_96000_double": 150,
+        "property_store_96000_null": null,
+      },
+      Object {
+        "event_id": "mock_id",
+        "property_store_97000": "HELLO",
+        "property_store_97000_array": Array [
+          "string",
+          "string2",
+        ],
+        "property_store_97000_bool": true,
+        "property_store_97000_double": 150,
+        "property_store_97000_null": null,
+      },
+      Object {
+        "event_id": "mock_id",
+        "property_store_98000": "HELLO",
+        "property_store_98000_array": Array [
+          "string",
+          "string2",
+        ],
+        "property_store_98000_bool": true,
+        "property_store_98000_double": 150,
+        "property_store_98000_null": null,
+      },
+      Object {
+        "event_id": "mock_id",
+        "property_store_99000": "HELLO",
+        "property_store_99000_array": Array [
+          "string",
+          "string2",
+        ],
+        "property_store_99000_bool": true,
+        "property_store_99000_double": 150,
+        "property_store_99000_null": null,
+      },
+    ],
   },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.chat_rich_message_sent\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "chat_rich_message_sent_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.chat_text_message_sent\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "chat_text_message_sent_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_chat\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "screen_view_chat_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.claim_card_click\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "claim_card_click_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.claim_card_visible\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "claim_card_visible_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.claim_status_detail_click_open_chat\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "claim_status_detail_click_open_chat_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.claims_detail_recording_played\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "claims_detail_recording_played_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_claim_honor_pledge\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "screen_view_claim_honor_pledge_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_claims_status_detail\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "screen_view_claims_status_detail_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_common_claim_detail\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "screen_view_common_claim_detail_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.deep_link_opened\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "deep_link_opened_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.embark_external_redirect\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "embark_external_redirect_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.embark_passage_go_back\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "embark_passage_go_back_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.embark_track\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "embark_track_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.embark_varianted_offer_redirect\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "embark_varianted_offer_redirect_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_embark\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "screen_view_embark_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_embark_tooltip\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "screen_view_embark_tooltip_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.experiment_evaluated\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "experiment_evaluated_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.experiments_loaded\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "experiments_loaded_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.identifies\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "identifies_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.logged_in\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "logged_in_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.logged_out\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "logged_out_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.notification_opened\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "notification_opened_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.notification_permission\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "notification_permission_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.quotes_signed\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "quotes_signed_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.button_click_marketing_login\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "button_click_marketing_login_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.button_click_marketing_onboard\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "button_click_marketing_onboard_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.onboarding_choose_embark_flow\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "onboarding_choose_embark_flow_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.data_collection_skipped\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "data_collection_skipped_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_data_collection_authenticating\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "screen_view_data_collection_authenticating_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_data_collection_credentials\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "screen_view_data_collection_credentials_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_data_collection_fail\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "screen_view_data_collection_fail_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_data_collection_intro\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "screen_view_data_collection_intro_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_data_collection_success\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "screen_view_data_collection_success_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_market_picker\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "screen_view_market_picker_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.market_selected\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "market_selected_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_offer\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "screen_view_offer_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_marketing\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "screen_view_marketing_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.home_payment_card_visible\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "home_payment_card_visible_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_connect_payment_adyen\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "screen_view_connect_payment_adyen_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_connect_payment_failed\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "screen_view_connect_payment_failed_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_connect_payment_success\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "screen_view_connect_payment_success_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_connect_payment_trustly\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "screen_view_connect_payment_trustly_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_payments\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "screen_view_payments_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_charity\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "screen_view_charity_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_contact_info\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "screen_view_contact_info_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_cross_sell_detail\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "screen_view_cross_sell_detail_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_forever\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "screen_view_forever_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_home\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "screen_view_home_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_insurance_detail\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "screen_view_insurance_detail_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_insurances\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "screen_view_insurances_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_moving_flow_intro\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "screen_view_moving_flow_intro_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_profile\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "screen_view_profile_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.app_background\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "app_background_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.app_resumed\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "app_resumed_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.app_shutdown\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "app_shutdown_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.app_started\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "app_started_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_app_information\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "screen_view_app_information_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.screen_view_app_settings\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "screen_view_app_settings_view",
-    "rows": Array [],
-  },
-  Object {
-    "config": Object {
-      "view": "
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.tracks\`
-    )
-    WHERE __row_number = 1
-  ",
-    },
-    "name": "tracks_view",
-    "rows": Array [],
-  },
+]
+`;
+
+exports[`ingests correctly 1`] = `Array []`;
+
+exports[`ingests correctly 2`] = `
+Array [
   Object {
     "config": Object {
       "schema": Object {

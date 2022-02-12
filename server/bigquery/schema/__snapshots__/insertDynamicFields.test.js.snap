@@ -34,6 +34,38 @@ Array [
             "name": "property_store_hello",
             "type": "STRING",
           },
+          Object {
+            "name": "property_store_personal_number",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "embark_track",
+    "rows": Array [],
+  },
+]
+`;
+
+exports[`insert dynamic fields 3`] = `
+Array [
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "name": "property_store_hello",
+            "type": "STRING",
+          },
+          Object {
+            "name": "property_store_personal_number",
+            "type": "STRING",
+          },
         ],
       },
       "timePartitioning": Object {

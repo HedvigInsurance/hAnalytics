@@ -1,6 +1,7 @@
 const getEvents = require("../../../commons/getEvents");
 const typeMaps = require("../../../commons/typeMaps");
 const getSchema = require("./getSchema");
+const cacher = require("./cacher");
 
 const insertDynamicFields = async (name, row, { bigquery, dataset }) => {
   const event = (await getEvents()).find((event) => event.name == name);
@@ -17,20 +18,24 @@ const insertDynamicFields = async (name, row, { bigquery, dataset }) => {
           key.startsWith(`property_${input.name}`)
         )
       ) {
+        console.log(`Key ${key} not in inputs or constants`);
         return null;
       }
 
-      const type = typeMaps.bigQuerySchemaTypeMap(
-        typeMaps.jsTypeMap[typeof row[key]]
-      )?.type;
+      const type = typeMaps.bigQuerySchemaTypeMap(typeMaps.jsTypeMap(row[key]));
 
       if (!type) {
+        console.log(`No matching type for ${key}`);
         return null;
       }
+
+      console.log(
+        `Matching key ${key} to type ${JSON.stringify(type, null, 2)}`
+      );
 
       return {
         name: key,
-        type,
+        ...type,
       };
     })
     .filter((i) => i);
@@ -52,6 +57,8 @@ const insertDynamicFields = async (name, row, { bigquery, dataset }) => {
   metadata.schema = new_schema;
 
   await table.setMetadata(metadata);
+
+  cacher.set(`schema-${name}`, metadata);
 };
 
 module.exports = insertDynamicFields;

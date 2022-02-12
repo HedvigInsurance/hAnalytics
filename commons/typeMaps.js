@@ -62,6 +62,7 @@ const getBigQuerySchemaType = (type) => {
   if (!type) {
     return null;
   }
+
   const primitives = {
     String: {
       type: "STRING",
