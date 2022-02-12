@@ -71,6 +71,7 @@ test("ingests exact amount of rows", async () => {
 });
 
 test("doesnt ingest invalid rows", async () => {
+  jest.setTimeout(20000);
   const mockConfig = createBigQueryConfigMock();
   start(mockConfig, inMemoryBackend, 5, false, false);
 
@@ -111,6 +112,7 @@ test("doesnt ingest invalid rows", async () => {
 });
 
 test("does ingest if tables update", async () => {
+  jest.setTimeout(20000);
   const mockConfig = createBigQueryConfigMock();
   start(mockConfig, inMemoryBackend, 10, false, false);
 
@@ -162,6 +164,7 @@ test("does ingest if tables update", async () => {
 });
 
 test("does ingest if schema updates", async () => {
+  jest.setTimeout(20000);
   const mockConfig = createBigQueryConfigMock();
   start(mockConfig, inMemoryBackend, 10, false, false);
 
