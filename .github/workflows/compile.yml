@@ -2,7 +2,7 @@ name: Compile and release
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   repository_dispatch:
     types:
       - webhook
@@ -10,50 +10,49 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    concurrency: 
+    concurrency:
       group: build
       cancel-in-progress: false
 
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v2
-      with:
-        node-version: '14'
-    - uses: actions/setup-java@v2
-      with:
-        distribution: 'temurin'
-        java-version: '17'
-    - name: Cache multiple paths
-      uses: actions/cache@v2
-      with:
-        path: |
-          /usr/local/bin/swift-format
-          ktfmt.jar
-        key: ${{ runner.os }}
-    - run: npm install
-    - run: npm run fetch-experiments
-      env:
-        UNLEASH_API_URL: ${{ secrets.UNLEASH_API_URL }}
-        UNLEASH_API_KEY: ${{ secrets.UNLEASH_API_KEY }}
-    - run: sh compile.sh
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    - uses: EndBug/add-and-commit@v7
-      with:
-        add: '.'
-    - name: Bump version and push tag
-      uses: anothrNick/github-tag-action@1.36.0
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        WITH_V: true
-    - name: Install and Build gh-pages 🔧
-      run: |
-        cd docs
-        npm ci
-        npm run build
-    - name: Deploy gh-pages 🚀
-      uses: JamesIves/github-pages-deploy-action@v4.2.2
-      with:
-        branch: gh-pages
-        folder: docs/build
-    
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "15"
+      - uses: actions/setup-java@v2
+        with:
+          distribution: "temurin"
+          java-version: "17"
+      - name: Cache multiple paths
+        uses: actions/cache@v2
+        with:
+          path: |
+            /usr/local/bin/swift-format
+            ktfmt.jar
+          key: ${{ runner.os }}
+      - run: npm install
+      - run: npm run fetch-experiments
+        env:
+          UNLEASH_API_URL: ${{ secrets.UNLEASH_API_URL }}
+          UNLEASH_API_KEY: ${{ secrets.UNLEASH_API_KEY }}
+      - run: sh compile.sh
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: EndBug/add-and-commit@v7
+        with:
+          add: "."
+      - name: Bump version and push tag
+        uses: anothrNick/github-tag-action@1.36.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WITH_V: true
+      - name: Install and Build gh-pages 🔧
+        run: |
+          cd docs
+          npm ci
+          npm run build
+      - name: Deploy gh-pages 🚀
+        uses: JamesIves/github-pages-deploy-action@v4.2.2
+        with:
+          branch: gh-pages
+          folder: docs/build
