@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`stores and consumes correctly 1`] = `
+Array [
+  Object {
+    "mock": "mock",
+  },
+]
+`;
+
+exports[`stores and consumes correctly 2`] = `Array []`;

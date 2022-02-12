@@ -49,7 +49,15 @@ const identify = async (identity) => {
   addToQueue(insertEntry);
 };
 
-start(bigQueryConfig, process.env.BQ_INGESTION_INTERVAL);
+const getBackend = () => {
+  if (process.env.REDIS_QUEUE) {
+    return require("./periodicIngestorRedisBackend");
+  }
+
+  return require("./periodicIngestorInMemoryBackend");
+};
+
+start(bigQueryConfig, getBackend(), process.env.BQ_INGESTION_INTERVAL);
 
 module.exports = {
   track,

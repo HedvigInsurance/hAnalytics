@@ -2,15 +2,16 @@ const {
   start,
   stop,
   addToQueue,
-  getQueue,
   waitUntilIdle,
+  consumeQueue,
 } = require("./periodicIngestor");
+const inMemoryBackend = require("./periodicIngestorInMemoryBackend");
 const setupTable = require("./schema/setupTable");
 const createBigQueryConfigMock = require("./config.mock");
 
 test("ingests correctly", async () => {
   const mockConfig = createBigQueryConfigMock();
-  start(mockConfig, 100, false, false);
+  start(mockConfig, inMemoryBackend, 100, false, false);
 
   setupTable(
     "mock_table",
@@ -33,13 +34,13 @@ test("ingests correctly", async () => {
   await waitUntilIdle();
   await stop();
 
-  expect(getQueue()).toMatchSnapshot();
+  expect(await consumeQueue()).toMatchSnapshot();
   expect(mockConfig.bigquery.getTables()).toMatchSnapshot();
 });
 
 test("ingests exact amount of rows", async () => {
   const mockConfig = createBigQueryConfigMock();
-  start(mockConfig, 25, false, false);
+  start(mockConfig, inMemoryBackend, 25, false, false);
 
   setupTable(
     "mock_table",
@@ -71,7 +72,7 @@ test("ingests exact amount of rows", async () => {
 
 test("doesnt ingest invalid rows", async () => {
   const mockConfig = createBigQueryConfigMock();
-  start(mockConfig, 5, false, false);
+  start(mockConfig, inMemoryBackend, 5, false, false);
 
   setupTable(
     "mock_table",
@@ -111,7 +112,7 @@ test("doesnt ingest invalid rows", async () => {
 
 test("does ingest if tables update", async () => {
   const mockConfig = createBigQueryConfigMock();
-  start(mockConfig, 10, false, false);
+  start(mockConfig, inMemoryBackend, 10, false, false);
 
   await setupTable(
     "mock_table",
@@ -162,7 +163,7 @@ test("does ingest if tables update", async () => {
 
 test("does ingest if schema updates", async () => {
   const mockConfig = createBigQueryConfigMock();
-  start(mockConfig, 10, false, false);
+  start(mockConfig, inMemoryBackend, 10, false, false);
 
   await setupTable(
     "embark_track",
