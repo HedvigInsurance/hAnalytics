@@ -51,9 +51,11 @@ const identify = async (identity) => {
 
 const getBackend = () => {
   if (process.env.REDIS_QUEUE) {
+    console.log("using redis queue");
     return require("./periodicIngestorRedisBackend");
   }
 
+  console.log("using in memory queue");
   return require("./periodicIngestorInMemoryBackend");
 };
 
