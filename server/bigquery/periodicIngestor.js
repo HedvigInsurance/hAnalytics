@@ -42,7 +42,6 @@ const ingest = async (config) => {
 
   if (queue.length == 0) {
     isIdle = true;
-    console.log(`Queue empty, checking again in ${currentInterval}`);
   }
 
   for (const entry of queue) {
