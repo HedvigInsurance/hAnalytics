@@ -3,7 +3,12 @@ const redisUrlParse = require("redis-url-parse");
 
 const redisTaskQueue = new RedisTaskQueue(
   process.env.REDIS_URL
-    ? redisUrlParse(process.env.REDIS_URL)
+    ? {
+        ...redisUrlParse(process.env.REDIS_URL),
+        tls: {
+          rejectUnauthorized: false,
+        },
+      }
     : {
         port: 6379,
         host: "127.0.0.1",
