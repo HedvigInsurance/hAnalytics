@@ -147,7 +147,7 @@ module.exports = {
             resolve();
           }, 100);
         }
-      }, currentInterval * 1.5);
+      }, currentInterval * 5);
     });
   },
   waitUntilIdle: async () => {
@@ -159,7 +159,7 @@ module.exports = {
           clearInterval(interval);
           resolve();
         }
-      }, currentInterval * 1.5);
+      }, currentInterval * 5);
     });
   },
   consumeQueue: async () => insertQueueBackend.consume(),
