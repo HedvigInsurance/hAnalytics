@@ -31,8 +31,15 @@ module.exports = {
     var list = [];
 
     for (var i = 0; i < numberOfItems; i++) {
-      const job = await redisTaskQueue.get(queue);
-      list.push(job);
+      try {
+        const job = await redisTaskQueue.get(queue);
+        list.push(job);
+      } catch (err) {
+        console.log(
+          "[REDIS] encountered error when trying to fetch from queue",
+          err
+        );
+      }
     }
 
     return list;
