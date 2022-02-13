@@ -58,7 +58,8 @@ const ingest = async (config) => {
     const putBackIntoQueue = async (err) => {
       if (entry.currentRetries > 5) {
         console.log(
-          "Dropping event as retries was too high, adding SOURCE_VERSION to potentially fix in future release"
+          "Dropping event as retries was too high, adding SOURCE_VERSION to potentially fix in future release",
+          JSON.stringify(entry.row, null, 2)
         );
         droppedRowsErrors.push(err);
 
@@ -108,8 +109,6 @@ const ingest = async (config) => {
           .table(entry.table)
           .insert([entry.row]);
       } catch (err) {
-        console.error("Failed to insert into BQ", err);
-
         if (err.name == "PartialFailureError") {
           console.log(
             "Ignoring PartialFailureError we should be eventually consistent"
