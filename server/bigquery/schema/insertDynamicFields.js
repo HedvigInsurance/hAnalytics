@@ -1,9 +1,8 @@
 const getEvents = require("../../../commons/getEvents");
 const typeMaps = require("../../../commons/typeMaps");
 const getSchema = require("./getSchema");
-const cacher = require("./cacher");
 
-const insertDynamicFields = async (name, row, { bigquery, dataset }) => {
+const insertDynamicFields = async (name, row, bigQueryConfig) => {
   const event = (await getEvents()).find((event) => event.name == name);
 
   if (!event) {
@@ -40,8 +39,10 @@ const insertDynamicFields = async (name, row, { bigquery, dataset }) => {
     })
     .filter((i) => i);
 
-  const table = bigquery.dataset(dataset).table(name);
-  const metadata = await getSchema(name, { bigquery, dataset });
+  const table = bigQueryConfig.bigquery
+    .dataset(bigQueryConfig.dataset)
+    .table(name);
+  const metadata = await getSchema(name, bigQueryConfig);
 
   const schema = metadata.schema ?? {
     fields: [],
@@ -58,7 +59,7 @@ const insertDynamicFields = async (name, row, { bigquery, dataset }) => {
 
   await table.setMetadata(metadata);
 
-  cacher.set(`schema-${name}`, metadata);
+  bigQueryConfig.cacher.set(`schema-${name}`, metadata);
 };
 
 module.exports = insertDynamicFields;

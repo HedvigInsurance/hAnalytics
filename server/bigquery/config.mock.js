@@ -64,6 +64,7 @@ module.exports = () => {
   };
 
   return {
+    cacher: require("./cacher")(),
     dataset: "mock_dataset",
     bigquery: bigquery,
     projectId: "mock_project_id",

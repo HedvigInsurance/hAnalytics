@@ -3,7 +3,7 @@ const setupTable = require("./setupTable");
 const createBigQueryConfigMock = require("../config.mock");
 
 test("can get schema", async () => {
-  const { bigquery, dataset } = createBigQueryConfigMock();
+  const bigQueryConfig = createBigQueryConfigMock();
 
   await setupTable(
     "embark_track",
@@ -13,18 +13,12 @@ test("can get schema", async () => {
         type: "STRING",
       },
     ],
-    {
-      bigquery,
-      dataset,
-    }
+    bigQueryConfig
   );
 
-  expect(bigquery.getTables()).toMatchSnapshot();
+  expect(bigQueryConfig.bigquery.getTables()).toMatchSnapshot();
 
-  const schema = await getSchema("embark_track", {
-    bigquery,
-    dataset,
-  });
+  const schema = await getSchema("embark_track", bigQueryConfig);
 
   expect(schema).toMatchSnapshot();
 });

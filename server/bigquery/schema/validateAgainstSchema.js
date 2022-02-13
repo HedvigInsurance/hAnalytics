@@ -1,21 +1,16 @@
 const getSchema = require("./getSchema");
 const typeMaps = require("../../../commons/typeMaps");
-const cacher = require("./cacher");
 
-const validateAgainstSchema = async (name, row, { bigquery, dataset }) => {
+const validateAgainstSchema = async (name, row, bigQueryConfig) => {
   const metadata =
-    cacher.get(`schema-${name}`) ||
-    (await getSchema(name, { bigquery, dataset }));
+    bigQueryConfig.cacher.get(`schema-${name}`) ||
+    (await getSchema(name, bigQueryConfig));
 
   const schema = metadata.schema ?? {
     fields: [],
   };
 
   return !Object.keys(row).find((key) => {
-    if (row[key] == null) {
-      return false;
-    }
-
     const field = schema.fields.find((field) => field.name == key);
 
     if (!field) {
@@ -23,7 +18,15 @@ const validateAgainstSchema = async (name, row, { bigquery, dataset }) => {
       return true;
     }
 
-    if (Array.isArray(row[key]) && row[key].length == 0) {
+    if (row[key] == null && field.mode === "NULLABLE") {
+      return false;
+    }
+
+    if (
+      Array.isArray(row[key]) &&
+      row[key].length == 0 &&
+      field.mode === "REPEATABLE"
+    ) {
       return false;
     }
 

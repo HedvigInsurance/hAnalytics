@@ -75,12 +75,6 @@ const ingest = async (config) => {
       }
     } else {
       try {
-        if (entry.row.timestamp?.value) {
-          entry.row.timestamp = config.bigquery.datetime(
-            entry.row.timestamp.value
-          );
-        }
-
         await config.bigquery
           .dataset(config.dataset)
           .table(entry.table)

@@ -1,5 +1,6 @@
 const RedisTaskQueue = require("redis-task-queue");
 const redisUrlParse = require("redis-url-parse");
+const { BigQueryDatetime } = require("@google-cloud/bigquery");
 
 const redisTaskQueue = new RedisTaskQueue(
   process.env.REDIS_URL
@@ -18,22 +19,50 @@ const redisTaskQueue = new RedisTaskQueue(
 
 const queue = "periodicIngestor";
 
+const cleanObj = (obj) => {
+  if (!obj) {
+    return obj;
+  }
+
+  if (typeof obj !== "object") {
+    return obj;
+  }
+
+  var copy = {};
+  Object.keys(obj).forEach((key) => {
+    const possibleTimestampValue = obj[key]?.value;
+
+    if (typeof possibleTimestampValue === "string") {
+      copy[key] = new BigQueryDatetime(possibleTimestampValue);
+    } else {
+      copy[key] = cleanObj(obj[key]);
+    }
+  });
+
+  return copy;
+};
+
 module.exports = {
-  append: async (item) => {
+  append: async (entry) => {
     redisTaskQueue.add({
       queue,
-      data: item,
+      data: {
+        entry,
+      },
     });
   },
-  consume: async () => {
-    const numberOfItems = Math.min(await redisTaskQueue.has(queue), 100);
+  consume: async (maxNumberOfItems = 100) => {
+    const numberOfItems = Math.min(
+      await redisTaskQueue.has(queue),
+      maxNumberOfItems
+    );
 
     var list = [];
 
     for (var i = 0; i < numberOfItems; i++) {
       try {
         const job = await redisTaskQueue.get(queue);
-        list.push(job);
+        list.push(job.entry);
       } catch (err) {
         console.log(
           "[REDIS] encountered error when trying to fetch from queue",
@@ -42,6 +71,6 @@ module.exports = {
       }
     }
 
-    return list;
+    return list.map(cleanObj);
   },
 };

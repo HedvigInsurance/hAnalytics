@@ -1,20 +1,24 @@
 const getSchema = require("./getSchema");
 
-const setupTable = async (name, fields, { bigquery, dataset }) => {
+const setupTable = async (name, fields, bigQueryConfig) => {
   try {
-    await bigquery.dataset(dataset).createTable(name, {
-      schema: {
-        fields,
-      },
-      timePartitioning: {
-        type: "DAY",
-        expirationMS: "7776000000",
-        field: "timestamp",
-      },
-    });
+    await bigQueryConfig.bigquery
+      .dataset(bigQueryConfig.dataset)
+      .createTable(name, {
+        schema: {
+          fields,
+        },
+        timePartitioning: {
+          type: "DAY",
+          expirationMS: "7776000000",
+          field: "timestamp",
+        },
+      });
   } catch (err) {
-    const table = bigquery.dataset(dataset).table(name);
-    const metadata = await getSchema(name, { bigquery, dataset });
+    const table = bigQueryConfig.bigquery
+      .dataset(bigQueryConfig.dataset)
+      .table(name);
+    const metadata = await getSchema(name, bigQueryConfig);
 
     const schema = metadata.schema ?? {};
 

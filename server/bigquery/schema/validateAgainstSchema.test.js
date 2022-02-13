@@ -1,51 +1,129 @@
 const validateAgainstSchema = require("./validateAgainstSchema");
 const setupTable = require("./setupTable");
 const createBigQueryConfigMock = require("../config.mock");
+const { bigQuerySchemaTypeMap } = require("../../../commons/typeMaps");
 
-test("validate against schema", async () => {
-  const { bigquery, dataset } = createBigQueryConfigMock();
+test("validate String", async () => {
+  const bigQueryConfig = createBigQueryConfigMock();
 
   await setupTable(
     "mock_table",
     [
       {
         name: "property_hello",
-        type: "STRING",
+        ...bigQuerySchemaTypeMap("String"),
       },
     ],
-    {
-      bigquery,
-      dataset,
-    }
+    bigQueryConfig
   );
 
-  const validateOne = await validateAgainstSchema(
+  const validate = await validateAgainstSchema(
     "mock_table",
     {
       property_hello: "hello",
     },
-    { bigquery, dataset }
+    bigQueryConfig
   );
 
-  expect(validateOne).toEqual(true);
+  expect(validate).toEqual(true);
+});
 
-  const validateTwo = await validateAgainstSchema(
+test("validate should fail with unknown properites", async () => {
+  const bigQueryConfig = createBigQueryConfigMock();
+
+  await setupTable(
+    "mock_table",
+    [
+      {
+        name: "property_hello",
+        ...bigQuerySchemaTypeMap("String"),
+      },
+    ],
+    bigQueryConfig
+  );
+
+  const validate = await validateAgainstSchema(
     "mock_table",
     {
       property_not_in_schema: "mock",
     },
-    { bigquery, dataset }
+    bigQueryConfig
   );
 
-  expect(validateTwo).toEqual(false);
+  expect(validate).toEqual(false);
+});
 
-  const validateWrongType = await validateAgainstSchema(
+test("validate should fail with wrong type", async () => {
+  const bigQueryConfig = createBigQueryConfigMock();
+
+  await setupTable(
+    "mock_table",
+    [
+      {
+        name: "property_hello",
+        ...bigQuerySchemaTypeMap("String"),
+      },
+    ],
+    bigQueryConfig
+  );
+
+  const validate = await validateAgainstSchema(
     "mock_table",
     {
       property_hello: 123,
     },
-    { bigquery, dataset }
+    bigQueryConfig
   );
 
-  expect(validateWrongType).toEqual(false);
+  expect(validate).toEqual(false);
+});
+
+test("validate should accept nullable", async () => {
+  const bigQueryConfig = createBigQueryConfigMock();
+
+  await setupTable(
+    "mock_table",
+    [
+      {
+        name: "property_mock",
+        ...bigQuerySchemaTypeMap("Optional<String>"),
+      },
+    ],
+    bigQueryConfig
+  );
+
+  const validate = await validateAgainstSchema(
+    "mock_table",
+    {
+      property_mock: null,
+    },
+    bigQueryConfig
+  );
+
+  expect(validate).toEqual(true);
+});
+
+test("validate should not accept null", async () => {
+  const bigQueryConfig = createBigQueryConfigMock();
+
+  await setupTable(
+    "mock_table",
+    [
+      {
+        name: "property_hello",
+        ...bigQuerySchemaTypeMap("String"),
+      },
+    ],
+    bigQueryConfig
+  );
+
+  const validate = await validateAgainstSchema(
+    "mock_table",
+    {
+      property_hello: null,
+    },
+    bigQueryConfig
+  );
+
+  expect(validate).toEqual(false);
 });

@@ -3,7 +3,7 @@ const setupTable = require("./setupTable");
 const createBigQueryConfigMock = require("../config.mock");
 
 test("insert dynamic fields", async () => {
-  const { bigquery, dataset } = createBigQueryConfigMock();
+  const bigQueryConfig = createBigQueryConfigMock();
 
   await setupTable(
     "embark_track",
@@ -13,13 +13,10 @@ test("insert dynamic fields", async () => {
         type: "STRING",
       },
     ],
-    {
-      bigquery,
-      dataset,
-    }
+    bigQueryConfig
   );
 
-  expect(bigquery.getTables()).toMatchSnapshot();
+  expect(bigQueryConfig.bigquery.getTables()).toMatchSnapshot();
 
   await insertDynamicFields(
     "embark_track",
@@ -29,13 +26,10 @@ test("insert dynamic fields", async () => {
       some_rouge_field_that_should_be_gone: "asss",
       property_random_personal_number: "nsisks",
     },
-    {
-      bigquery,
-      dataset,
-    }
+    bigQueryConfig
   );
 
-  expect(bigquery.getTables()).toMatchSnapshot();
+  expect(bigQueryConfig.bigquery.getTables()).toMatchSnapshot();
 
   await insertDynamicFields(
     "embark_track",
@@ -45,11 +39,8 @@ test("insert dynamic fields", async () => {
       some_rouge_field_that_should_be_gone: "asss",
       property_random_personal_number: "nsisks",
     },
-    {
-      bigquery,
-      dataset,
-    }
+    bigQueryConfig
   );
 
-  expect(bigquery.getTables()).toMatchSnapshot();
+  expect(bigQueryConfig.bigquery.getTables()).toMatchSnapshot();
 });

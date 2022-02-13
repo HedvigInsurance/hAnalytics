@@ -2,7 +2,7 @@ const setupTable = require("./setupTable");
 const createBigQueryConfigMock = require("../config.mock");
 
 test("sets up a table correctly", async () => {
-  const { bigquery, dataset } = createBigQueryConfigMock();
+  const bigQueryConfig = createBigQueryConfigMock();
 
   setupTable(
     "mock_table",
@@ -12,17 +12,14 @@ test("sets up a table correctly", async () => {
         type: "STRING",
       },
     ],
-    {
-      bigquery,
-      dataset,
-    }
+    bigQueryConfig
   );
 
-  expect(bigquery.getTables()).toMatchSnapshot();
+  expect(bigQueryConfig.bigquery.getTables()).toMatchSnapshot();
 });
 
 test("updates a table correctly", async () => {
-  const { bigquery, dataset } = createBigQueryConfigMock();
+  const bigQueryConfig = createBigQueryConfigMock();
 
   await setupTable(
     "mock_table",
@@ -32,13 +29,10 @@ test("updates a table correctly", async () => {
         type: "STRING",
       },
     ],
-    {
-      bigquery,
-      dataset,
-    }
+    bigQueryConfig
   );
 
-  expect(bigquery.getTables().length).toEqual(1);
+  expect(bigQueryConfig.bigquery.getTables().length).toEqual(1);
 
   await setupTable(
     "mock_table",
@@ -52,11 +46,8 @@ test("updates a table correctly", async () => {
         type: "STRING",
       },
     ],
-    {
-      bigquery,
-      dataset,
-    }
+    bigQueryConfig
   );
 
-  expect(bigquery.getTables()).toMatchSnapshot();
+  expect(bigQueryConfig.bigquery.getTables()).toMatchSnapshot();
 });

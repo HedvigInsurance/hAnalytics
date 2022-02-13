@@ -2,9 +2,9 @@ const createView = require("./createView");
 const createBigQueryConfigMock = require("../config.mock");
 
 test("validate against schema", async () => {
-  const { bigquery, dataset, projectId } = createBigQueryConfigMock();
+  const bigQueryConfig = createBigQueryConfigMock();
 
-  await createView("mock_table", { bigquery, dataset, projectId });
+  await createView("mock_table", bigQueryConfig);
 
-  expect(bigquery.getTables()).toMatchSnapshot();
+  expect(bigQueryConfig.bigquery.getTables()).toMatchSnapshot();
 });
