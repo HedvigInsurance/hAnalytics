@@ -9,6 +9,7 @@ const timersPromises = require("timers/promises");
 const createInMemoryBackend = require("./periodicIngestorInMemoryBackend");
 const setupTable = require("./schema/setupTable");
 const createBigQueryConfigMock = require("./config.mock");
+const { bigQuerySchemaTypeMap } = require("../../commons/typeMaps");
 
 test("ingests correctly", async () => {
   const bigQueryConfig = createBigQueryConfigMock();
@@ -82,7 +83,11 @@ test("doesnt ingest invalid rows", async () => {
     [
       {
         name: "property",
-        type: "STRING",
+        ...bigQuerySchemaTypeMap("String"),
+      },
+      {
+        name: "context_something",
+        ...bigQuerySchemaTypeMap("String"),
       },
     ],
     bigQueryConfig
@@ -95,7 +100,7 @@ test("doesnt ingest invalid rows", async () => {
       table: "mock_table",
       row: {
         property: "HELLO",
-        context_something_invalid: Math.random(),
+        context_something: Math.random(),
       },
     });
 
@@ -103,6 +108,7 @@ test("doesnt ingest invalid rows", async () => {
       table: "mock_table",
       row: {
         property: "HELLO",
+        context_something: "value",
       },
     });
   });

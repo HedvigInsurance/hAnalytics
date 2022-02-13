@@ -10,606 +10,6 @@ Array [
             "name": "event_id",
             "type": "STRING",
           },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_0",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_0_double",
-            "type": "INTEGER",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_0_bool",
-            "type": "BOOLEAN",
-          },
-          Object {
-            "mode": "REPEATED",
-            "name": "property_store_0_array",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_1000",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_1000_double",
-            "type": "INTEGER",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_1000_bool",
-            "type": "BOOLEAN",
-          },
-          Object {
-            "mode": "REPEATED",
-            "name": "property_store_1000_array",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_2000",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_2000_double",
-            "type": "INTEGER",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_2000_bool",
-            "type": "BOOLEAN",
-          },
-          Object {
-            "mode": "REPEATED",
-            "name": "property_store_2000_array",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_3000",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_3000_double",
-            "type": "INTEGER",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_3000_bool",
-            "type": "BOOLEAN",
-          },
-          Object {
-            "mode": "REPEATED",
-            "name": "property_store_3000_array",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_4000",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_4000_double",
-            "type": "INTEGER",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_4000_bool",
-            "type": "BOOLEAN",
-          },
-          Object {
-            "mode": "REPEATED",
-            "name": "property_store_4000_array",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_5000",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_5000_double",
-            "type": "INTEGER",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_5000_bool",
-            "type": "BOOLEAN",
-          },
-          Object {
-            "mode": "REPEATED",
-            "name": "property_store_5000_array",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_6000",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_6000_double",
-            "type": "INTEGER",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_6000_bool",
-            "type": "BOOLEAN",
-          },
-          Object {
-            "mode": "REPEATED",
-            "name": "property_store_6000_array",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_7000",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_7000_double",
-            "type": "INTEGER",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_7000_bool",
-            "type": "BOOLEAN",
-          },
-          Object {
-            "mode": "REPEATED",
-            "name": "property_store_7000_array",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_8000",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_8000_double",
-            "type": "INTEGER",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_8000_bool",
-            "type": "BOOLEAN",
-          },
-          Object {
-            "mode": "REPEATED",
-            "name": "property_store_8000_array",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_9000",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_9000_double",
-            "type": "INTEGER",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_9000_bool",
-            "type": "BOOLEAN",
-          },
-          Object {
-            "mode": "REPEATED",
-            "name": "property_store_9000_array",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_10000",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_10000_double",
-            "type": "INTEGER",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_10000_bool",
-            "type": "BOOLEAN",
-          },
-          Object {
-            "mode": "REPEATED",
-            "name": "property_store_10000_array",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_11000",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_11000_double",
-            "type": "INTEGER",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_11000_bool",
-            "type": "BOOLEAN",
-          },
-          Object {
-            "mode": "REPEATED",
-            "name": "property_store_11000_array",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_12000",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_12000_double",
-            "type": "INTEGER",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_12000_bool",
-            "type": "BOOLEAN",
-          },
-          Object {
-            "mode": "REPEATED",
-            "name": "property_store_12000_array",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_13000",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_13000_double",
-            "type": "INTEGER",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_13000_bool",
-            "type": "BOOLEAN",
-          },
-          Object {
-            "mode": "REPEATED",
-            "name": "property_store_13000_array",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_14000",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_14000_double",
-            "type": "INTEGER",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_14000_bool",
-            "type": "BOOLEAN",
-          },
-          Object {
-            "mode": "REPEATED",
-            "name": "property_store_14000_array",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_15000",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_15000_double",
-            "type": "INTEGER",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_15000_bool",
-            "type": "BOOLEAN",
-          },
-          Object {
-            "mode": "REPEATED",
-            "name": "property_store_15000_array",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_16000",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_16000_double",
-            "type": "INTEGER",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_16000_bool",
-            "type": "BOOLEAN",
-          },
-          Object {
-            "mode": "REPEATED",
-            "name": "property_store_16000_array",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_17000",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_17000_double",
-            "type": "INTEGER",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_17000_bool",
-            "type": "BOOLEAN",
-          },
-          Object {
-            "mode": "REPEATED",
-            "name": "property_store_17000_array",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_18000",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_18000_double",
-            "type": "INTEGER",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_18000_bool",
-            "type": "BOOLEAN",
-          },
-          Object {
-            "mode": "REPEATED",
-            "name": "property_store_18000_array",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_19000",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_19000_double",
-            "type": "INTEGER",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_19000_bool",
-            "type": "BOOLEAN",
-          },
-          Object {
-            "mode": "REPEATED",
-            "name": "property_store_19000_array",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_20000",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_20000_double",
-            "type": "INTEGER",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_20000_bool",
-            "type": "BOOLEAN",
-          },
-          Object {
-            "mode": "REPEATED",
-            "name": "property_store_20000_array",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_21000",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_21000_double",
-            "type": "INTEGER",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_21000_bool",
-            "type": "BOOLEAN",
-          },
-          Object {
-            "mode": "REPEATED",
-            "name": "property_store_21000_array",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_22000",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_22000_double",
-            "type": "INTEGER",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_22000_bool",
-            "type": "BOOLEAN",
-          },
-          Object {
-            "mode": "REPEATED",
-            "name": "property_store_22000_array",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_23000",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_23000_double",
-            "type": "INTEGER",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_23000_bool",
-            "type": "BOOLEAN",
-          },
-          Object {
-            "mode": "REPEATED",
-            "name": "property_store_23000_array",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_24000",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_24000_double",
-            "type": "INTEGER",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_24000_bool",
-            "type": "BOOLEAN",
-          },
-          Object {
-            "mode": "REPEATED",
-            "name": "property_store_24000_array",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_25000",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_25000_double",
-            "type": "INTEGER",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_25000_bool",
-            "type": "BOOLEAN",
-          },
-          Object {
-            "mode": "REPEATED",
-            "name": "property_store_25000_array",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_26000",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_26000_double",
-            "type": "INTEGER",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_26000_bool",
-            "type": "BOOLEAN",
-          },
-          Object {
-            "mode": "REPEATED",
-            "name": "property_store_26000_array",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_27000",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_27000_double",
-            "type": "INTEGER",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_27000_bool",
-            "type": "BOOLEAN",
-          },
-          Object {
-            "mode": "REPEATED",
-            "name": "property_store_27000_array",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_28000",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_28000_double",
-            "type": "INTEGER",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_28000_bool",
-            "type": "BOOLEAN",
-          },
-          Object {
-            "mode": "REPEATED",
-            "name": "property_store_28000_array",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_29000",
-            "type": "STRING",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_29000_double",
-            "type": "INTEGER",
-          },
-          Object {
-            "mode": "REQUIRED",
-            "name": "property_store_29000_bool",
-            "type": "BOOLEAN",
-          },
-          Object {
-            "mode": "REPEATED",
-            "name": "property_store_29000_array",
-            "type": "STRING",
-          },
         ],
       },
       "timePartitioning": Object {
@@ -625,93 +25,6 @@ Array [
       },
       Object {
         "event_id": "mock_id",
-      },
-      Object {
-        "event_id": "mock_id",
-      },
-      Object {
-        "event_id": "mock_id",
-      },
-      Object {
-        "event_id": "mock_id",
-      },
-      Object {
-        "event_id": "mock_id",
-      },
-      Object {
-        "event_id": "mock_id",
-      },
-      Object {
-        "event_id": "mock_id",
-      },
-      Object {
-        "event_id": "mock_id",
-      },
-      Object {
-        "event_id": "mock_id",
-      },
-      Object {
-        "event_id": "mock_id",
-      },
-      Object {
-        "event_id": "mock_id",
-      },
-      Object {
-        "event_id": "mock_id",
-      },
-      Object {
-        "event_id": "mock_id",
-      },
-      Object {
-        "event_id": "mock_id",
-      },
-      Object {
-        "event_id": "mock_id",
-      },
-      Object {
-        "event_id": "mock_id",
-      },
-      Object {
-        "event_id": "mock_id",
-      },
-      Object {
-        "event_id": "mock_id",
-      },
-      Object {
-        "event_id": "mock_id",
-      },
-      Object {
-        "event_id": "mock_id",
-      },
-      Object {
-        "event_id": "mock_id",
-      },
-      Object {
-        "event_id": "mock_id",
-      },
-      Object {
-        "event_id": "mock_id",
-      },
-      Object {
-        "event_id": "mock_id",
-      },
-      Object {
-        "event_id": "mock_id",
-      },
-      Object {
-        "event_id": "mock_id",
-      },
-      Object {
-        "event_id": "mock_id",
-      },
-      Object {
-        "event_id": "mock_id",
-      },
-      Object {
-        "event_id": "mock_id",
-      },
-      Object {
-        "event_id": "mock_id",
         "property_store_0": "HELLO",
         "property_store_0_array": Array [
           "string",
@@ -719,6 +32,9 @@ Array [
         ],
         "property_store_0_bool": true,
         "property_store_0_double": 150,
+      },
+      Object {
+        "event_id": "mock_id",
       },
       Object {
         "event_id": "mock_id",
@@ -732,6 +48,9 @@ Array [
       },
       Object {
         "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
         "property_store_2000": "HELLO",
         "property_store_2000_array": Array [
           "string",
@@ -739,6 +58,9 @@ Array [
         ],
         "property_store_2000_bool": true,
         "property_store_2000_double": 150,
+      },
+      Object {
+        "event_id": "mock_id",
       },
       Object {
         "event_id": "mock_id",
@@ -752,6 +74,9 @@ Array [
       },
       Object {
         "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
         "property_store_4000": "HELLO",
         "property_store_4000_array": Array [
           "string",
@@ -759,6 +84,9 @@ Array [
         ],
         "property_store_4000_bool": true,
         "property_store_4000_double": 150,
+      },
+      Object {
+        "event_id": "mock_id",
       },
       Object {
         "event_id": "mock_id",
@@ -772,6 +100,9 @@ Array [
       },
       Object {
         "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
         "property_store_6000": "HELLO",
         "property_store_6000_array": Array [
           "string",
@@ -779,6 +110,9 @@ Array [
         ],
         "property_store_6000_bool": true,
         "property_store_6000_double": 150,
+      },
+      Object {
+        "event_id": "mock_id",
       },
       Object {
         "event_id": "mock_id",
@@ -792,6 +126,9 @@ Array [
       },
       Object {
         "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
         "property_store_8000": "HELLO",
         "property_store_8000_array": Array [
           "string",
@@ -799,6 +136,9 @@ Array [
         ],
         "property_store_8000_bool": true,
         "property_store_8000_double": 150,
+      },
+      Object {
+        "event_id": "mock_id",
       },
       Object {
         "event_id": "mock_id",
@@ -812,6 +152,9 @@ Array [
       },
       Object {
         "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
         "property_store_10000": "HELLO",
         "property_store_10000_array": Array [
           "string",
@@ -819,6 +162,9 @@ Array [
         ],
         "property_store_10000_bool": true,
         "property_store_10000_double": 150,
+      },
+      Object {
+        "event_id": "mock_id",
       },
       Object {
         "event_id": "mock_id",
@@ -832,6 +178,9 @@ Array [
       },
       Object {
         "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
         "property_store_12000": "HELLO",
         "property_store_12000_array": Array [
           "string",
@@ -839,6 +188,9 @@ Array [
         ],
         "property_store_12000_bool": true,
         "property_store_12000_double": 150,
+      },
+      Object {
+        "event_id": "mock_id",
       },
       Object {
         "event_id": "mock_id",
@@ -852,6 +204,9 @@ Array [
       },
       Object {
         "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
         "property_store_14000": "HELLO",
         "property_store_14000_array": Array [
           "string",
@@ -859,6 +214,9 @@ Array [
         ],
         "property_store_14000_bool": true,
         "property_store_14000_double": 150,
+      },
+      Object {
+        "event_id": "mock_id",
       },
       Object {
         "event_id": "mock_id",
@@ -872,6 +230,9 @@ Array [
       },
       Object {
         "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
         "property_store_16000": "HELLO",
         "property_store_16000_array": Array [
           "string",
@@ -879,6 +240,9 @@ Array [
         ],
         "property_store_16000_bool": true,
         "property_store_16000_double": 150,
+      },
+      Object {
+        "event_id": "mock_id",
       },
       Object {
         "event_id": "mock_id",
@@ -892,6 +256,9 @@ Array [
       },
       Object {
         "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
         "property_store_18000": "HELLO",
         "property_store_18000_array": Array [
           "string",
@@ -899,6 +266,9 @@ Array [
         ],
         "property_store_18000_bool": true,
         "property_store_18000_double": 150,
+      },
+      Object {
+        "event_id": "mock_id",
       },
       Object {
         "event_id": "mock_id",
@@ -912,6 +282,9 @@ Array [
       },
       Object {
         "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
         "property_store_20000": "HELLO",
         "property_store_20000_array": Array [
           "string",
@@ -919,6 +292,9 @@ Array [
         ],
         "property_store_20000_bool": true,
         "property_store_20000_double": 150,
+      },
+      Object {
+        "event_id": "mock_id",
       },
       Object {
         "event_id": "mock_id",
@@ -932,6 +308,9 @@ Array [
       },
       Object {
         "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
         "property_store_22000": "HELLO",
         "property_store_22000_array": Array [
           "string",
@@ -939,6 +318,9 @@ Array [
         ],
         "property_store_22000_bool": true,
         "property_store_22000_double": 150,
+      },
+      Object {
+        "event_id": "mock_id",
       },
       Object {
         "event_id": "mock_id",
@@ -952,6 +334,9 @@ Array [
       },
       Object {
         "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
         "property_store_24000": "HELLO",
         "property_store_24000_array": Array [
           "string",
@@ -959,6 +344,9 @@ Array [
         ],
         "property_store_24000_bool": true,
         "property_store_24000_double": 150,
+      },
+      Object {
+        "event_id": "mock_id",
       },
       Object {
         "event_id": "mock_id",
@@ -972,6 +360,9 @@ Array [
       },
       Object {
         "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
         "property_store_26000": "HELLO",
         "property_store_26000_array": Array [
           "string",
@@ -979,6 +370,9 @@ Array [
         ],
         "property_store_26000_bool": true,
         "property_store_26000_double": 150,
+      },
+      Object {
+        "event_id": "mock_id",
       },
       Object {
         "event_id": "mock_id",
@@ -992,6 +386,9 @@ Array [
       },
       Object {
         "event_id": "mock_id",
+      },
+      Object {
+        "event_id": "mock_id",
         "property_store_28000": "HELLO",
         "property_store_28000_array": Array [
           "string",
@@ -999,6 +396,9 @@ Array [
         ],
         "property_store_28000_bool": true,
         "property_store_28000_double": 150,
+      },
+      Object {
+        "event_id": "mock_id",
       },
       Object {
         "event_id": "mock_id",
@@ -1015,260 +415,7 @@ Array [
 ]
 `;
 
-exports[`does keep invalid rows 1`] = `
-Array [
-  Object {
-    "currentRetries": 0,
-    "row": Object {
-      "context_something_invalid": 0,
-      "property": "HELLO",
-    },
-    "skipOnSourceVersion": "none",
-    "sourceVersionRetires": 1,
-    "table": "mock_table",
-  },
-  Object {
-    "currentRetries": 0,
-    "row": Object {
-      "context_something_invalid": 1,
-      "property": "HELLO",
-    },
-    "skipOnSourceVersion": "none",
-    "sourceVersionRetires": 1,
-    "table": "mock_table",
-  },
-  Object {
-    "currentRetries": 0,
-    "row": Object {
-      "context_something_invalid": 2,
-      "property": "HELLO",
-    },
-    "skipOnSourceVersion": "none",
-    "sourceVersionRetires": 1,
-    "table": "mock_table",
-  },
-  Object {
-    "currentRetries": 0,
-    "row": Object {
-      "context_something_invalid": 3,
-      "property": "HELLO",
-    },
-    "skipOnSourceVersion": "none",
-    "sourceVersionRetires": 1,
-    "table": "mock_table",
-  },
-  Object {
-    "currentRetries": 0,
-    "row": Object {
-      "context_something_invalid": 4,
-      "property": "HELLO",
-    },
-    "skipOnSourceVersion": "none",
-    "sourceVersionRetires": 1,
-    "table": "mock_table",
-  },
-  Object {
-    "currentRetries": 0,
-    "row": Object {
-      "context_something_invalid": 5,
-      "property": "HELLO",
-    },
-    "skipOnSourceVersion": "none",
-    "sourceVersionRetires": 1,
-    "table": "mock_table",
-  },
-  Object {
-    "currentRetries": 0,
-    "row": Object {
-      "context_something_invalid": 6,
-      "property": "HELLO",
-    },
-    "skipOnSourceVersion": "none",
-    "sourceVersionRetires": 1,
-    "table": "mock_table",
-  },
-  Object {
-    "currentRetries": 0,
-    "row": Object {
-      "context_something_invalid": 7,
-      "property": "HELLO",
-    },
-    "skipOnSourceVersion": "none",
-    "sourceVersionRetires": 1,
-    "table": "mock_table",
-  },
-  Object {
-    "currentRetries": 0,
-    "row": Object {
-      "context_something_invalid": 8,
-      "property": "HELLO",
-    },
-    "skipOnSourceVersion": "none",
-    "sourceVersionRetires": 1,
-    "table": "mock_table",
-  },
-  Object {
-    "currentRetries": 0,
-    "row": Object {
-      "context_something_invalid": 9,
-      "property": "HELLO",
-    },
-    "skipOnSourceVersion": "none",
-    "sourceVersionRetires": 1,
-    "table": "mock_table",
-  },
-  Object {
-    "currentRetries": 0,
-    "row": Object {
-      "context_something_invalid": 10,
-      "property": "HELLO",
-    },
-    "skipOnSourceVersion": "none",
-    "sourceVersionRetires": 1,
-    "table": "mock_table",
-  },
-  Object {
-    "currentRetries": 0,
-    "row": Object {
-      "context_something_invalid": 11,
-      "property": "HELLO",
-    },
-    "skipOnSourceVersion": "none",
-    "sourceVersionRetires": 1,
-    "table": "mock_table",
-  },
-  Object {
-    "currentRetries": 0,
-    "row": Object {
-      "context_something_invalid": 12,
-      "property": "HELLO",
-    },
-    "skipOnSourceVersion": "none",
-    "sourceVersionRetires": 1,
-    "table": "mock_table",
-  },
-  Object {
-    "currentRetries": 0,
-    "row": Object {
-      "context_something_invalid": 13,
-      "property": "HELLO",
-    },
-    "skipOnSourceVersion": "none",
-    "sourceVersionRetires": 1,
-    "table": "mock_table",
-  },
-  Object {
-    "currentRetries": 0,
-    "row": Object {
-      "context_something_invalid": 14,
-      "property": "HELLO",
-    },
-    "skipOnSourceVersion": "none",
-    "sourceVersionRetires": 1,
-    "table": "mock_table",
-  },
-  Object {
-    "currentRetries": 0,
-    "row": Object {
-      "context_something_invalid": 15,
-      "property": "HELLO",
-    },
-    "skipOnSourceVersion": "none",
-    "sourceVersionRetires": 1,
-    "table": "mock_table",
-  },
-  Object {
-    "currentRetries": 0,
-    "row": Object {
-      "context_something_invalid": 16,
-      "property": "HELLO",
-    },
-    "skipOnSourceVersion": "none",
-    "sourceVersionRetires": 1,
-    "table": "mock_table",
-  },
-  Object {
-    "currentRetries": 0,
-    "row": Object {
-      "context_something_invalid": 17,
-      "property": "HELLO",
-    },
-    "skipOnSourceVersion": "none",
-    "sourceVersionRetires": 1,
-    "table": "mock_table",
-  },
-  Object {
-    "currentRetries": 0,
-    "row": Object {
-      "context_something_invalid": 18,
-      "property": "HELLO",
-    },
-    "skipOnSourceVersion": "none",
-    "sourceVersionRetires": 1,
-    "table": "mock_table",
-  },
-  Object {
-    "currentRetries": 0,
-    "row": Object {
-      "context_something_invalid": 19,
-      "property": "HELLO",
-    },
-    "skipOnSourceVersion": "none",
-    "sourceVersionRetires": 1,
-    "table": "mock_table",
-  },
-  Object {
-    "currentRetries": 0,
-    "row": Object {
-      "context_something_invalid": 20,
-      "property": "HELLO",
-    },
-    "skipOnSourceVersion": "none",
-    "sourceVersionRetires": 1,
-    "table": "mock_table",
-  },
-  Object {
-    "currentRetries": 0,
-    "row": Object {
-      "context_something_invalid": 21,
-      "property": "HELLO",
-    },
-    "skipOnSourceVersion": "none",
-    "sourceVersionRetires": 1,
-    "table": "mock_table",
-  },
-  Object {
-    "currentRetries": 0,
-    "row": Object {
-      "context_something_invalid": 22,
-      "property": "HELLO",
-    },
-    "skipOnSourceVersion": "none",
-    "sourceVersionRetires": 1,
-    "table": "mock_table",
-  },
-  Object {
-    "currentRetries": 0,
-    "row": Object {
-      "context_something_invalid": 23,
-      "property": "HELLO",
-    },
-    "skipOnSourceVersion": "none",
-    "sourceVersionRetires": 1,
-    "table": "mock_table",
-  },
-  Object {
-    "currentRetries": 0,
-    "row": Object {
-      "context_something_invalid": 24,
-      "property": "HELLO",
-    },
-    "skipOnSourceVersion": "none",
-    "sourceVersionRetires": 1,
-    "table": "mock_table",
-  },
-]
-`;
+exports[`does keep invalid rows 1`] = `Array []`;
 
 exports[`ingests correctly 1`] = `Array []`;
 
