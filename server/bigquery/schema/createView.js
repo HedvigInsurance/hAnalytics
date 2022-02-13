@@ -6,7 +6,7 @@ const createView = async (name, fields, bigQueryConfig) => {
     WHERE __row_number = 1
   `;
 
-  const viewName = `${name}_view`;
+  const viewName = `${name}_distinct_view`;
 
   const updateSchemaAndView = async () => {
     const [view] = await bigQueryConfig.bigquery

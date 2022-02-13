@@ -40,7 +40,7 @@ Array [
     WHERE __row_number = 1
   ",
     },
-    "name": "mock_table_view",
+    "name": "mock_table_distinct_view",
     "rows": Array [],
   },
 ]
