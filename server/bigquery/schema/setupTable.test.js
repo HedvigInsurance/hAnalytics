@@ -4,8 +4,9 @@ const createBigQueryConfigMock = require("../config.mock");
 test("sets up a table correctly", async () => {
   const bigQueryConfig = createBigQueryConfigMock();
 
-  setupTable(
+  await setupTable(
     "mock_table",
+    "description",
     [
       {
         name: "property",
@@ -23,6 +24,7 @@ test("updates a table correctly", async () => {
 
   await setupTable(
     "mock_table",
+    "description",
     [
       {
         name: "property",
@@ -36,6 +38,7 @@ test("updates a table correctly", async () => {
 
   await setupTable(
     "mock_table",
+    "description",
     [
       {
         name: "property",

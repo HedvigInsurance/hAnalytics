@@ -7,6 +7,7 @@ test("insert dynamic fields", async () => {
 
   await setupTable(
     "embark_track",
+    "mock table",
     [
       {
         name: "property_store_hello",

@@ -4,6 +4,7 @@ exports[`validate against schema 1`] = `
 Array [
   Object {
     "config": Object {
+      "description": "a mock table",
       "schema": Object {
         "fields": Array [
           Object {
@@ -24,6 +25,7 @@ Array [
   },
   Object {
     "config": Object {
+      "description": "a mock table",
       "schema": Object {
         "fields": Array [
           Object {

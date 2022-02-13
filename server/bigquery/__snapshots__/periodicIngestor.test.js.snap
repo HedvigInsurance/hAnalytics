@@ -4,6 +4,7 @@ exports[`does ingest if schema updates 1`] = `
 Array [
   Object {
     "config": Object {
+      "description": "a mock table",
       "schema": Object {
         "fields": Array [
           Object {
@@ -423,6 +424,7 @@ exports[`ingests correctly 2`] = `
 Array [
   Object {
     "config": Object {
+      "description": "a mock table",
       "schema": Object {
         "fields": Array [
           Object {

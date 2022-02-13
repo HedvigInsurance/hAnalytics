@@ -1,6 +1,6 @@
 const getSchema = require("./getSchema");
 
-const setupTable = async (name, fields, bigQueryConfig) => {
+const setupTable = async (name, description = "", fields, bigQueryConfig) => {
   try {
     await bigQueryConfig.bigquery
       .dataset(bigQueryConfig.dataset)
@@ -8,6 +8,7 @@ const setupTable = async (name, fields, bigQueryConfig) => {
         schema: {
           fields,
         },
+        description: description,
         timePartitioning: {
           type: "DAY",
           expirationMS: "7776000000",
@@ -29,6 +30,7 @@ const setupTable = async (name, fields, bigQueryConfig) => {
     const new_schema = schema;
     new_schema.fields = [...filteredFields, ...fields];
     metadata.schema = new_schema;
+    metadata.description = description;
 
     await table.setMetadata(metadata);
   }

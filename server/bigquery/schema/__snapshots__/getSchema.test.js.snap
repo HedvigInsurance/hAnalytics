@@ -4,6 +4,7 @@ exports[`can get schema 1`] = `
 Array [
   Object {
     "config": Object {
+      "description": "mock table",
       "schema": Object {
         "fields": Array [
           Object {
@@ -26,6 +27,7 @@ Array [
 
 exports[`can get schema 2`] = `
 Object {
+  "description": "mock table",
   "schema": Object {
     "fields": Array [
       Object {

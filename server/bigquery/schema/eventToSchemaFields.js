@@ -14,6 +14,7 @@ const eventToSchemaFields = (event) => {
 
       propertyFields.push({
         name: `property_${input.name}`,
+        description: input.description || "",
         ...typeOptions,
       });
     });
@@ -29,6 +30,7 @@ const eventToSchemaFields = (event) => {
 
       propertyFields.push({
         name: `property_${constant.name}`,
+        description: constant.description || "",
         ...typeOptions,
       });
     });
@@ -44,6 +46,7 @@ const eventToSchemaFields = (event) => {
 
       propertyFields.push({
         name: `property_${selector.name}`,
+        description: selector.description || "",
         ...typeOptions,
       });
     });

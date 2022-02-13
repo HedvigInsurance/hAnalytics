@@ -4,6 +4,7 @@ exports[`sets up a table correctly 1`] = `
 Array [
   Object {
     "config": Object {
+      "description": "description",
       "schema": Object {
         "fields": Array [
           Object {
@@ -28,6 +29,7 @@ exports[`updates a table correctly 1`] = `
 Array [
   Object {
     "config": Object {
+      "description": "description",
       "schema": Object {
         "fields": Array [
           Object {

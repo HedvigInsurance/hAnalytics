@@ -8,6 +8,7 @@ test("validate against schema", async () => {
 
   await setupTable(
     "mock_table",
+    "a mock table",
     [
       {
         name: "event_id",
@@ -19,6 +20,7 @@ test("validate against schema", async () => {
 
   await createView(
     "mock_table",
+    "a mock table",
     [
       {
         name: "event_id",

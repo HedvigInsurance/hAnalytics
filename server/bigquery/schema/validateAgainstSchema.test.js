@@ -8,6 +8,7 @@ test("validate String", async () => {
 
   await setupTable(
     "mock_table",
+    "mock table",
     [
       {
         name: "property_hello",
@@ -33,6 +34,7 @@ test("validate should fail with unknown properites", async () => {
 
   await setupTable(
     "mock_table",
+    "mock table",
     [
       {
         name: "property_hello",
@@ -58,6 +60,7 @@ test("validate should fail with wrong type", async () => {
 
   await setupTable(
     "mock_table",
+    "mock table",
     [
       {
         name: "property_hello",
@@ -83,6 +86,7 @@ test("validate should accept nullable", async () => {
 
   await setupTable(
     "mock_table",
+    "mock table",
     [
       {
         name: "property_mock",
@@ -108,6 +112,7 @@ test("validate should not accept null", async () => {
 
   await setupTable(
     "mock_table",
+    "mock table",
     [
       {
         name: "property_hello",
@@ -133,6 +138,7 @@ test("validate should accept array", async () => {
 
   await setupTable(
     "mock_table",
+    "mock table",
     [
       {
         name: "experiments",
@@ -158,6 +164,7 @@ test("validate should not accept array with wrong type", async () => {
 
   await setupTable(
     "mock_table",
+    "mock table",
     [
       {
         name: "experiments",

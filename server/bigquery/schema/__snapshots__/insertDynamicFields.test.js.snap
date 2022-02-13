@@ -4,6 +4,7 @@ exports[`insert dynamic fields 1`] = `
 Array [
   Object {
     "config": Object {
+      "description": "mock table",
       "schema": Object {
         "fields": Array [
           Object {
@@ -28,6 +29,7 @@ exports[`insert dynamic fields 2`] = `
 Array [
   Object {
     "config": Object {
+      "description": "mock table",
       "schema": Object {
         "fields": Array [
           Object {
@@ -57,6 +59,7 @@ exports[`insert dynamic fields 3`] = `
 Array [
   Object {
     "config": Object {
+      "description": "mock table",
       "schema": Object {
         "fields": Array [
           Object {

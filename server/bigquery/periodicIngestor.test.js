@@ -15,8 +15,9 @@ test("ingests correctly", async () => {
   const bigQueryConfig = createBigQueryConfigMock();
   start(bigQueryConfig, createInMemoryBackend(), 100, false, false);
 
-  setupTable(
+  await setupTable(
     "mock_table",
+    "a mock table",
     [
       {
         name: "property",
@@ -26,7 +27,7 @@ test("ingests correctly", async () => {
     bigQueryConfig
   );
 
-  addToQueue({
+  await addToQueue({
     table: "mock_table",
     row: {
       property: "HELLO",
@@ -44,8 +45,9 @@ test("ingests exact amount of rows", async () => {
   const bigQueryConfig = createBigQueryConfigMock();
   start(bigQueryConfig, createInMemoryBackend(), 25, false, false);
 
-  setupTable(
+  await setupTable(
     "mock_table",
+    "a mock table",
     [
       {
         name: "property",
@@ -78,8 +80,9 @@ test("doesnt ingest invalid rows", async () => {
   const bigQueryConfig = createBigQueryConfigMock();
   start(bigQueryConfig, createInMemoryBackend(), 5, false, false);
 
-  setupTable(
+  await setupTable(
     "mock_table",
+    "a mock table",
     [
       {
         name: "property",
@@ -125,8 +128,9 @@ test("does keep invalid rows", async () => {
   const bigQueryConfig = createBigQueryConfigMock();
   start(bigQueryConfig, createInMemoryBackend(), 5, false, false);
 
-  setupTable(
+  await setupTable(
     "mock_table",
+    "a mock table",
     [
       {
         name: "property",
@@ -161,6 +165,7 @@ test("does ingest if tables update", async () => {
 
   await setupTable(
     "mock_table",
+    "a mock table",
     [
       {
         name: "property",
@@ -190,6 +195,7 @@ test("does ingest if tables update", async () => {
 
   await setupTable(
     "mock_table2",
+    "a mock table",
     [
       {
         name: "property_2",
@@ -216,6 +222,7 @@ test("does ingest if schema updates", async () => {
 
   await setupTable(
     "embark_track",
+    "a mock table",
     [
       {
         name: "event_id",
@@ -262,8 +269,9 @@ test("does respect source version", async () => {
 
   process.env.SOURCE_VERSION = 0;
 
-  setupTable(
+  await setupTable(
     "mock_table",
+    "a mock table",
     [
       {
         name: "property",

@@ -1,4 +1,4 @@
-const createView = async (name, fields, bigQueryConfig) => {
+const createView = async (name, description = "", fields, bigQueryConfig) => {
   const viewQuery = `
     SELECT * EXCEPT (__row_number) FROM (
       SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`${bigQueryConfig.projectId}.${bigQueryConfig.dataset}.${name}\`
@@ -25,6 +25,7 @@ const createView = async (name, fields, bigQueryConfig) => {
     new_schema.fields = [...filteredFields, ...fields];
     metadata.schema = new_schema;
     metadata.view = viewQuery;
+    metadata.description = description;
 
     await view.setMetadata(metadata);
   };
@@ -34,6 +35,7 @@ const createView = async (name, fields, bigQueryConfig) => {
       .dataset(bigQueryConfig.dataset)
       .createTable(viewName, {
         view: viewQuery,
+        description,
       });
     await updateSchemaAndView();
   } catch (err) {
