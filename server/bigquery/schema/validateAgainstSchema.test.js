@@ -127,3 +127,53 @@ test("validate should not accept null", async () => {
 
   expect(validate).toEqual(false);
 });
+
+test("validate should accept array", async () => {
+  const bigQueryConfig = createBigQueryConfigMock();
+
+  await setupTable(
+    "mock_table",
+    [
+      {
+        name: "experiments",
+        ...bigQuerySchemaTypeMap("Array<String>"),
+      },
+    ],
+    bigQueryConfig
+  );
+
+  const validate = await validateAgainstSchema(
+    "mock_table",
+    {
+      experiments: ["123", "456"],
+    },
+    bigQueryConfig
+  );
+
+  expect(validate).toEqual(true);
+});
+
+test("validate should not accept array with wrong type", async () => {
+  const bigQueryConfig = createBigQueryConfigMock();
+
+  await setupTable(
+    "mock_table",
+    [
+      {
+        name: "experiments",
+        ...bigQuerySchemaTypeMap("Array<String>"),
+      },
+    ],
+    bigQueryConfig
+  );
+
+  const validate = await validateAgainstSchema(
+    "mock_table",
+    {
+      experiments: [123, "456"],
+    },
+    bigQueryConfig
+  );
+
+  expect(validate).toEqual(false);
+});

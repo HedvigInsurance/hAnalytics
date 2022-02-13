@@ -22,12 +22,15 @@ const validateAgainstSchema = async (name, row, bigQueryConfig) => {
       return false;
     }
 
-    if (
-      Array.isArray(row[key]) &&
-      row[key].length == 0 &&
-      field.mode === "REPEATABLE"
-    ) {
-      return false;
+    if (Array.isArray(row[key]) && field.mode === "REPEATED") {
+      return row[key]
+        .map((item) => {
+          const hanalyticsType = typeMaps.jsTypeMap(item);
+          const bigQueryType = typeMaps.bigQuerySchemaTypeMap(hanalyticsType);
+
+          return bigQueryType?.type === field.type;
+        })
+        .includes(false);
     }
 
     if (key === "timestamp") {
