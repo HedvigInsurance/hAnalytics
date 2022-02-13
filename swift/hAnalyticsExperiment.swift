@@ -95,10 +95,12 @@ public struct hAnalyticsExperiment {
       return variant
     }
 
-    hAnalyticsEvent.experimentEvaluated(name: "login_method", variant: LoginMethod.otp.rawValue)
-      .send()
+    hAnalyticsEvent.experimentEvaluated(
+      name: "login_method",
+      variant: LoginMethod.bankIdSweden.rawValue
+    ).send()
 
-    return .otp
+    return .bankIdSweden
   }
 
   /// Is moving flow activated
@@ -124,10 +126,10 @@ public struct hAnalyticsExperiment {
       return variant
     }
 
-    hAnalyticsEvent.experimentEvaluated(name: "payment_type", variant: PaymentType.adyen.rawValue)
+    hAnalyticsEvent.experimentEvaluated(name: "payment_type", variant: PaymentType.trustly.rawValue)
       .send()
 
-    return .adyen
+    return .trustly
   }
 
   /// Show payment step in PostOnboarding
