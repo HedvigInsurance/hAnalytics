@@ -30,20 +30,7 @@ const setupTable = async (name, fields, bigQueryConfig) => {
     new_schema.fields = [...filteredFields, ...fields];
     metadata.schema = new_schema;
 
-    try {
-      await table.setMetadata(metadata);
-    } catch (err) {
-      console.log(err);
-      if (
-        err.errors.find((error) =>
-          error.message.includes("has changed mode from NULLABLE to REQUIRED")
-        )
-      ) {
-        console.log("deleting");
-
-        await setupTable(name, fields, bigQueryConfig);
-      }
-    }
+    await table.setMetadata(metadata);
   }
 };
 
