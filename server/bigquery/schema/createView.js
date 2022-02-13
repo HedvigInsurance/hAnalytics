@@ -15,7 +15,7 @@ const createView = async (name, fields, bigQueryConfig) => {
       .get();
 
     const [metadata] = await view.getMetadata();
-    const schema = metadata.schema ?? {};
+    const schema = metadata.schema ?? { fields: [] };
 
     const filteredFields = schema.fields.filter(
       (schemaField) => !fields.find((field) => field.name == schemaField.name)

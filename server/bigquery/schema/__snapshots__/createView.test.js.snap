@@ -4,6 +4,35 @@ exports[`validate against schema 1`] = `
 Array [
   Object {
     "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "mode": "REQUIRED",
+            "name": "event_id",
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "mock_table",
+    "rows": Array [],
+  },
+  Object {
+    "config": Object {
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "mode": "REQUIRED",
+            "name": "event_id",
+            "type": "STRING",
+          },
+        ],
+      },
       "view": "
     SELECT * EXCEPT (__row_number) FROM (
       SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`mock_project_id.mock_dataset.mock_table\`
