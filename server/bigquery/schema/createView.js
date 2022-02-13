@@ -1,9 +1,6 @@
 const createView = async (name, description = "", fields, bigQueryConfig) => {
   const viewQuery = `
-    SELECT * EXCEPT (__row_number) FROM (
-      SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY timestamp DESC) AS __row_number FROM \`${bigQueryConfig.projectId}.${bigQueryConfig.dataset}.${name}\`
-    )
-    WHERE __row_number = 1
+      SELECT * FROM \`${bigQueryConfig.projectId}.${bigQueryConfig.dataset}.${name}\`
   `;
 
   const viewName = `${name}_distinct_view`;
