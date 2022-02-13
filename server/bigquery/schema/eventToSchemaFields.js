@@ -1,5 +1,6 @@
 const typeMaps = require("../../../commons/typeMaps");
 const { generalFields, contextFields, eventFields } = require("./schemaFields");
+const sortFields = require("./sortFields");
 
 const eventToSchemaFields = (event) => {
   var propertyFields = [];
@@ -55,12 +56,14 @@ const eventToSchemaFields = (event) => {
   const excludeEventFields = event.bigQuery?.noEventFields === true;
   const excludeContextFields = event.bigQuery?.noContextFields === true;
 
-  return [
-    excludeEventFields ? [] : eventFields,
-    excludeContextFields ? [] : contextFields,
-    generalFields,
-    propertyFields,
-  ].flatMap((i) => i);
+  return sortFields(
+    [
+      excludeEventFields ? [] : eventFields,
+      propertyFields,
+      generalFields,
+      excludeContextFields ? [] : contextFields,
+    ].flatMap((i) => i)
+  );
 };
 
 module.exports = eventToSchemaFields;

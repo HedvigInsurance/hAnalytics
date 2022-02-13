@@ -1,6 +1,7 @@
 const getEvents = require("../../../commons/getEvents");
 const typeMaps = require("../../../commons/typeMaps");
 const getSchema = require("./getSchema");
+const sortFields = require("./sortFields");
 
 const insertDynamicFields = async (name, row, bigQueryConfig) => {
   const event = (await getEvents()).find((event) => event.name == name);
@@ -58,7 +59,9 @@ const insertDynamicFields = async (name, row, bigQueryConfig) => {
   );
 
   const new_schema = schema;
-  new_schema.fields = [new_schema.fields, filteredFields].flatMap((i) => i);
+  new_schema.fields = sortFields(
+    [new_schema.fields, filteredFields].flatMap((i) => i)
+  );
   metadata.schema = new_schema;
 
   await table.setMetadata(metadata);

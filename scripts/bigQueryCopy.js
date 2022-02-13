@@ -5,7 +5,6 @@ const validateAgainstSchema = require("../server/bigquery/schema/validateAgainst
 const flattenObj = require("../server/bigquery/flattenObj");
 const setupTable = require("../server/bigquery/schema/setupTable");
 const eventToSchemaFields = require("../server/bigquery/schema/eventToSchemaFields");
-const createView = require("../server/bigquery/schema/createView");
 const timersPromises = require("timers/promises");
 
 function chunk(arr, len) {
@@ -42,22 +41,18 @@ const transfer = async () => {
         .dataset(bigQueryConfig.dataset)
         .table(event.name)
         .delete();
-
-      await bigQueryConfig.bigquery
-        .dataset(bigQueryConfig.dataset)
-        .table(`${event.name}_view`)
-        .delete();
     } catch (err) {}
 
     const schemaFields = eventToSchemaFields(event);
 
-    await setupTable(event.name, schemaFields, bigQueryConfig);
+    await setupTable(
+      event.name,
+      event.description,
+      schemaFields,
+      bigQueryConfig
+    );
 
     await timersPromises.setTimeout(5000);
-
-    if (event.bigQuery?.noEventFields !== true) {
-      await createView(event.name, schemaFields, bigQueryConfig);
-    }
 
     const metadata = await getSchema(event.name, bigQueryConfig);
 

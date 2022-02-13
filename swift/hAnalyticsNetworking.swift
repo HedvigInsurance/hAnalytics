@@ -117,7 +117,7 @@ public struct hAnalyticsNetworking {
     context["os"] = ["name": device.systemName, "version": device.systemVersion]
 
     let screen = device.screenSize
-    context["screen"] = ["width": screen.width, "height": screen.height]
+    context["screen"] = ["width": screen.width, "height": screen.height, "density": screen.density]
 
     let userAgent = device.userAgent
     context["userAgent"] = userAgent

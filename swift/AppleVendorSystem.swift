@@ -36,7 +36,7 @@ import Foundation
     override var systemVersion: String { device.systemVersion }
     override var screenSize: ScreenSize {
       let screenSize = UIScreen.main.bounds.size
-      return ScreenSize(width: Double(screenSize.width), height: Double(screenSize.height))
+      return ScreenSize(width: Double(screenSize.width), height: Double(screenSize.height), density: Double(UIScreen.main.scale))
     }
     override var userAgent: String? {
       #if !os(tvOS)
@@ -85,7 +85,7 @@ import Foundation
     override var systemVersion: String { device.systemVersion }
     override var screenSize: ScreenSize {
       let screenSize = device.screenBounds.size
-      return ScreenSize(width: Double(screenSize.width), height: Double(screenSize.height))
+      return ScreenSize(width: Double(screenSize.width), height: Double(screenSize.height), density: 1)
     }
     override var userAgent: String? { return nil }
     override var connection: ConnectionStatus {
@@ -152,7 +152,7 @@ import Foundation
     }
     override var screenSize: ScreenSize {
       let screenSize = NSScreen.main?.frame.size ?? CGSize(width: 0, height: 0)
-      return ScreenSize(width: Double(screenSize.width), height: Double(screenSize.height))
+      return ScreenSize(width: Double(screenSize.width), height: Double(screenSize.height), density: 1)
     }
     override var userAgent: String? {
       var userAgent: String?

@@ -3,6 +3,7 @@ import Foundation
 internal struct ScreenSize {
   let width: Double
   let height: Double
+  let density: Double
 }
 
 internal enum ConnectionType {
@@ -25,7 +26,7 @@ internal class VendorSystem {
   var identifierForVendor: String? { return nil }
   var systemName: String { return "unknown" }
   var systemVersion: String { return "" }
-  var screenSize: ScreenSize { return ScreenSize(width: 0, height: 0) }
+  var screenSize: ScreenSize { return ScreenSize(width: 0, height: 0, density: 1) }
   var userAgent: String? { return "unknown" }
   var connection: ConnectionStatus { return ConnectionStatus.unknown }
   static var current: VendorSystem = {

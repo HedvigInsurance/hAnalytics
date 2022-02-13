@@ -1,4 +1,5 @@
 const getSchema = require("./getSchema");
+const sortFields = require("./sortFields");
 
 const setupTable = async (name, description = "", fields, bigQueryConfig) => {
   try {
@@ -6,7 +7,7 @@ const setupTable = async (name, description = "", fields, bigQueryConfig) => {
       .dataset(bigQueryConfig.dataset)
       .createTable(name, {
         schema: {
-          fields,
+          fields: sortFields(fields),
         },
         description: description,
         timePartitioning: {
@@ -28,7 +29,7 @@ const setupTable = async (name, description = "", fields, bigQueryConfig) => {
     );
 
     const new_schema = schema;
-    new_schema.fields = [...filteredFields, ...fields];
+    new_schema.fields = sortFields([...filteredFields, ...fields]);
     metadata.schema = new_schema;
     metadata.description = description;
 
