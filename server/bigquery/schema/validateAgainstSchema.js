@@ -33,7 +33,10 @@ const validateAgainstSchema = async (name, row, bigQueryConfig) => {
         .includes(false);
     }
 
-    if (key === "timestamp") {
+    if (
+      field.type === "TIMESTAMP" &&
+      (typeof row[key]?.value === "string" || typeof row[key] === "string")
+    ) {
       return false;
     }
 
