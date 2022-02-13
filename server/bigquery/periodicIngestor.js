@@ -11,7 +11,8 @@ var isIdle = false;
 var droppedRowsErrors = [];
 var currentInterval = 10000;
 
-const getSourceVersion = () => process.env.SOURCE_VERSION || "none";
+const getSourceVersion = () =>
+  process.env.SOURCE_VERSION || process.env.HEROKU_SLUG_COMMIT || "none";
 
 const ingest = async (config) => {
   if (!insertQueueBackend) {
