@@ -930,7 +930,7 @@ Array [
   Object {
     "currentRetries": 0,
     "row": Object {
-      "context_something_invalid": 0.1663643652675928,
+      "context_something_invalid": 0,
       "property": "HELLO",
     },
     "skipOnSourceVersion": "none",
@@ -940,7 +940,7 @@ Array [
   Object {
     "currentRetries": 0,
     "row": Object {
-      "context_something_invalid": 0.45307248418525625,
+      "context_something_invalid": 1,
       "property": "HELLO",
     },
     "skipOnSourceVersion": "none",
@@ -950,7 +950,7 @@ Array [
   Object {
     "currentRetries": 0,
     "row": Object {
-      "context_something_invalid": 0.1288320392220208,
+      "context_something_invalid": 2,
       "property": "HELLO",
     },
     "skipOnSourceVersion": "none",
@@ -960,7 +960,7 @@ Array [
   Object {
     "currentRetries": 0,
     "row": Object {
-      "context_something_invalid": 0.2949652785998582,
+      "context_something_invalid": 3,
       "property": "HELLO",
     },
     "skipOnSourceVersion": "none",
@@ -970,7 +970,7 @@ Array [
   Object {
     "currentRetries": 0,
     "row": Object {
-      "context_something_invalid": 0.1250043266800842,
+      "context_something_invalid": 4,
       "property": "HELLO",
     },
     "skipOnSourceVersion": "none",
@@ -980,7 +980,7 @@ Array [
   Object {
     "currentRetries": 0,
     "row": Object {
-      "context_something_invalid": 0.6815746752418539,
+      "context_something_invalid": 5,
       "property": "HELLO",
     },
     "skipOnSourceVersion": "none",
@@ -990,7 +990,7 @@ Array [
   Object {
     "currentRetries": 0,
     "row": Object {
-      "context_something_invalid": 0.7089745081120247,
+      "context_something_invalid": 6,
       "property": "HELLO",
     },
     "skipOnSourceVersion": "none",
@@ -1000,7 +1000,7 @@ Array [
   Object {
     "currentRetries": 0,
     "row": Object {
-      "context_something_invalid": 0.5083649871536364,
+      "context_something_invalid": 7,
       "property": "HELLO",
     },
     "skipOnSourceVersion": "none",
@@ -1010,7 +1010,7 @@ Array [
   Object {
     "currentRetries": 0,
     "row": Object {
-      "context_something_invalid": 0.6300959093905751,
+      "context_something_invalid": 8,
       "property": "HELLO",
     },
     "skipOnSourceVersion": "none",
@@ -1020,7 +1020,7 @@ Array [
   Object {
     "currentRetries": 0,
     "row": Object {
-      "context_something_invalid": 0.5347252690882187,
+      "context_something_invalid": 9,
       "property": "HELLO",
     },
     "skipOnSourceVersion": "none",
@@ -1030,7 +1030,7 @@ Array [
   Object {
     "currentRetries": 0,
     "row": Object {
-      "context_something_invalid": 0.13109827420256148,
+      "context_something_invalid": 10,
       "property": "HELLO",
     },
     "skipOnSourceVersion": "none",
@@ -1040,7 +1040,7 @@ Array [
   Object {
     "currentRetries": 0,
     "row": Object {
-      "context_something_invalid": 0.8298520432382688,
+      "context_something_invalid": 11,
       "property": "HELLO",
     },
     "skipOnSourceVersion": "none",
@@ -1050,7 +1050,7 @@ Array [
   Object {
     "currentRetries": 0,
     "row": Object {
-      "context_something_invalid": 0.779724621393969,
+      "context_something_invalid": 12,
       "property": "HELLO",
     },
     "skipOnSourceVersion": "none",
@@ -1060,7 +1060,7 @@ Array [
   Object {
     "currentRetries": 0,
     "row": Object {
-      "context_something_invalid": 0.6696414614574462,
+      "context_something_invalid": 13,
       "property": "HELLO",
     },
     "skipOnSourceVersion": "none",
@@ -1070,7 +1070,7 @@ Array [
   Object {
     "currentRetries": 0,
     "row": Object {
-      "context_something_invalid": 0.9678921230195559,
+      "context_something_invalid": 14,
       "property": "HELLO",
     },
     "skipOnSourceVersion": "none",
@@ -1080,7 +1080,7 @@ Array [
   Object {
     "currentRetries": 0,
     "row": Object {
-      "context_something_invalid": 0.8764736339415244,
+      "context_something_invalid": 15,
       "property": "HELLO",
     },
     "skipOnSourceVersion": "none",
@@ -1090,7 +1090,7 @@ Array [
   Object {
     "currentRetries": 0,
     "row": Object {
-      "context_something_invalid": 0.9064927099547642,
+      "context_something_invalid": 16,
       "property": "HELLO",
     },
     "skipOnSourceVersion": "none",
@@ -1100,7 +1100,7 @@ Array [
   Object {
     "currentRetries": 0,
     "row": Object {
-      "context_something_invalid": 0.8567459374840152,
+      "context_something_invalid": 17,
       "property": "HELLO",
     },
     "skipOnSourceVersion": "none",
@@ -1110,7 +1110,7 @@ Array [
   Object {
     "currentRetries": 0,
     "row": Object {
-      "context_something_invalid": 0.41219238697020044,
+      "context_something_invalid": 18,
       "property": "HELLO",
     },
     "skipOnSourceVersion": "none",
@@ -1120,7 +1120,7 @@ Array [
   Object {
     "currentRetries": 0,
     "row": Object {
-      "context_something_invalid": 0.9716083157941919,
+      "context_something_invalid": 19,
       "property": "HELLO",
     },
     "skipOnSourceVersion": "none",
@@ -1130,7 +1130,7 @@ Array [
   Object {
     "currentRetries": 0,
     "row": Object {
-      "context_something_invalid": 0.21556599720724834,
+      "context_something_invalid": 20,
       "property": "HELLO",
     },
     "skipOnSourceVersion": "none",
@@ -1140,7 +1140,7 @@ Array [
   Object {
     "currentRetries": 0,
     "row": Object {
-      "context_something_invalid": 0.9127193867236252,
+      "context_something_invalid": 21,
       "property": "HELLO",
     },
     "skipOnSourceVersion": "none",
@@ -1150,7 +1150,7 @@ Array [
   Object {
     "currentRetries": 0,
     "row": Object {
-      "context_something_invalid": 0.26322968207345276,
+      "context_something_invalid": 22,
       "property": "HELLO",
     },
     "skipOnSourceVersion": "none",
@@ -1160,7 +1160,7 @@ Array [
   Object {
     "currentRetries": 0,
     "row": Object {
-      "context_something_invalid": 0.8406956782337074,
+      "context_something_invalid": 23,
       "property": "HELLO",
     },
     "skipOnSourceVersion": "none",
@@ -1170,7 +1170,7 @@ Array [
   Object {
     "currentRetries": 0,
     "row": Object {
-      "context_something_invalid": 0.12401849586460956,
+      "context_something_invalid": 24,
       "property": "HELLO",
     },
     "skipOnSourceVersion": "none",

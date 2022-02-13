@@ -22,13 +22,12 @@ const setupTable = async (name, fields, bigQueryConfig) => {
 
     const schema = metadata.schema ?? {};
 
-    const filteredFields = fields.filter(
-      (field) =>
-        !schema.fields.find((schemaField) => schemaField.name == field.name)
+    const filteredFields = schema.fields.filter(
+      (schemaField) => !fields.find((field) => field.name == schemaField.name)
     );
 
     const new_schema = schema;
-    new_schema.fields = [new_schema.fields, filteredFields].flatMap((i) => i);
+    new_schema.fields = [...filteredFields, ...fields];
     metadata.schema = new_schema;
 
     await table.setMetadata(metadata);

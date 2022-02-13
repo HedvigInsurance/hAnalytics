@@ -639,6 +639,7 @@ Array [
     "type": "STRING",
   },
   Object {
+    "mode": "NULLABLE",
     "name": "property_member_id",
     "type": "STRING",
   },

@@ -10,8 +10,17 @@ const insertDynamicFields = async (name, row, bigQueryConfig) => {
     return;
   }
 
+  const metadata = await getSchema(name, bigQueryConfig);
+  const schema = metadata.schema ?? {
+    fields: [],
+  };
+
   const fields = Object.keys(row)
     .map((key) => {
+      if (schema.fields.find((field) => field.name === key)) {
+        return null;
+      }
+
       if (
         ![...(event.inputs ?? []), ...(event.constants ?? [])].find((input) =>
           key.startsWith(`property_${input.name}`)
@@ -42,11 +51,6 @@ const insertDynamicFields = async (name, row, bigQueryConfig) => {
   const table = bigQueryConfig.bigquery
     .dataset(bigQueryConfig.dataset)
     .table(name);
-  const metadata = await getSchema(name, bigQueryConfig);
-
-  const schema = metadata.schema ?? {
-    fields: [],
-  };
 
   const filteredFields = fields.filter(
     (field) =>

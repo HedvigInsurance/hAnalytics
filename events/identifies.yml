@@ -5,5 +5,5 @@ bigQuery:
   noContext: true
 inputs:
   - name: member_id
-    type: String
+    type: Optional<String>
     argument: memberId

@@ -41,7 +41,9 @@ const validateAgainstSchema = async (name, row, bigQueryConfig) => {
     const bigQueryType = typeMaps.bigQuerySchemaTypeMap(hanalyticsType);
 
     if (bigQueryType?.type !== field.type) {
-      console.log(`Got type ${bigQueryType?.type} but expected ${field.type}`);
+      console.log(
+        `Got type ${bigQueryType?.type} for ${key} but expected ${field.type}`
+      );
       return true;
     }
 

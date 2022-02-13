@@ -90,7 +90,7 @@ test("doesnt ingest invalid rows", async () => {
 
   const numberOfRows = 25;
 
-  [...new Array(numberOfRows)].forEach(() => {
+  [...new Array(numberOfRows)].forEach((_, index) => {
     addToQueue({
       table: "mock_table",
       row: {
@@ -132,12 +132,12 @@ test("does keep invalid rows", async () => {
 
   const numberOfRows = 25;
 
-  [...new Array(numberOfRows)].forEach(() => {
+  [...new Array(numberOfRows)].forEach((_, index) => {
     addToQueue({
       table: "mock_table",
       row: {
         property: "HELLO",
-        context_something_invalid: Math.random(),
+        context_something_invalid: index,
       },
     });
   });

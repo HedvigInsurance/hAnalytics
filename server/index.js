@@ -24,7 +24,9 @@ app.post("/identify", async (req, res) => {
 
     bqAnalytics.identify({
       trackingId,
-      memberId: traits?.memberId || null,
+      property: {
+        memberId: traits?.memberId || null,
+      },
     });
 
     segmentAnalytics.identify({
