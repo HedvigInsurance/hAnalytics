@@ -21,8 +21,14 @@ test("kotlinTypeMap", () => {
 test("bigQuerySchemaTypeMap", () => {
   expect(typeMaps.bigQuerySchemaTypeMap("String")).toEqual({
     type: "STRING",
+    mode: "REQUIRED",
   });
   expect(typeMaps.bigQuerySchemaTypeMap("Double")).toEqual({
     type: "INTEGER",
+    mode: "REQUIRED",
+  });
+  expect(typeMaps.bigQuerySchemaTypeMap("Optional<Double>")).toEqual({
+    type: "INTEGER",
+    mode: "NULLABLE",
   });
 });

@@ -1,125 +1,107 @@
+const { bigQuerySchemaTypeMap } = require("../../../commons/typeMaps");
+
 const eventFields = [
   {
     name: "event",
-    type: "STRING",
+    ...bigQuerySchemaTypeMap("String"),
   },
   {
     name: "event_id",
-    type: "STRING",
+    ...bigQuerySchemaTypeMap("String"),
   },
 ];
 
 const contextFields = [
   {
     name: "context_app_build",
-    type: "STRING",
-    mode: "NULLABLE",
+    ...bigQuerySchemaTypeMap("String"),
   },
   {
     name: "context_app_name",
-    type: "STRING",
-    mode: "NULLABLE",
+    ...bigQuerySchemaTypeMap("String"),
   },
   {
     name: "context_app_namespace",
-    type: "STRING",
-    mode: "NULLABLE",
+    ...bigQuerySchemaTypeMap("String"),
   },
   {
     name: "context_app_version",
-    type: "STRING",
-    mode: "NULLABLE",
+    ...bigQuerySchemaTypeMap("String"),
   },
   {
     name: "context_device_id",
-    type: "STRING",
-    mode: "NULLABLE",
+    ...bigQuerySchemaTypeMap("Optional<String>"),
   },
   {
     name: "context_device_version",
-    type: "STRING",
-    mode: "NULLABLE",
+    ...bigQuerySchemaTypeMap("Optional<String>"),
   },
   {
     name: "context_device_manufacturer",
-    type: "STRING",
-    mode: "NULLABLE",
+    ...bigQuerySchemaTypeMap("Optional<String>"),
   },
   {
     name: "context_device_model",
-    type: "STRING",
-    mode: "NULLABLE",
+    ...bigQuerySchemaTypeMap("Optional<String>"),
   },
   {
     name: "context_device_type",
-    type: "STRING",
-    mode: "NULLABLE",
+    ...bigQuerySchemaTypeMap("Optional<String>"),
   },
   {
     name: "context_device_name",
-    type: "STRING",
-    mode: "NULLABLE",
+    ...bigQuerySchemaTypeMap("Optional<String>"),
   },
   {
     name: "context_ip",
-    type: "STRING",
-    mode: "NULLABLE",
+    ...bigQuerySchemaTypeMap("String"),
   },
   {
     name: "context_locale",
-    type: "STRING",
-    mode: "NULLABLE",
+    ...bigQuerySchemaTypeMap("String"),
   },
   {
     name: "context_os_name",
-    type: "STRING",
-    mode: "NULLABLE",
+    ...bigQuerySchemaTypeMap("String"),
   },
   {
     name: "context_os_version",
-    type: "STRING",
-    mode: "NULLABLE",
+    ...bigQuerySchemaTypeMap("String"),
   },
   {
     name: "context_screen_height",
-    type: "INTEGER",
-    mode: "NULLABLE",
+    ...bigQuerySchemaTypeMap("Optional<Double>"),
   },
   {
     name: "context_screen_width",
-    type: "INTEGER",
-    mode: "NULLABLE",
+    ...bigQuerySchemaTypeMap("Optional<Double>"),
   },
   {
     name: "context_screen_density",
-    type: "INTEGER",
-    mode: "NULLABLE",
+    ...bigQuerySchemaTypeMap("Optional<Double>"),
   },
   {
     name: "context_session_id",
-    type: "STRING",
-    mode: "NULLABLE",
+    ...bigQuerySchemaTypeMap("String"),
   },
   {
     name: "context_timezone",
-    type: "STRING",
-    mode: "NULLABLE",
+    ...bigQuerySchemaTypeMap("Optional<String>"),
   },
   {
     name: "context_traits_member_id",
-    type: "STRING",
-    mode: "NULLABLE",
+    ...bigQuerySchemaTypeMap("Optional<String>"),
   },
 ];
 
 const generalFields = [
   {
     name: "timestamp",
-    type: "TIMESTAMP",
+    ...bigQuerySchemaTypeMap("Date"),
   },
   {
     name: "tracking_id",
-    type: "STRING",
+    ...bigQuerySchemaTypeMap("String"),
   },
 ];
 

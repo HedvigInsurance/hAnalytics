@@ -49,11 +49,12 @@ const eventToSchemaFields = (event) => {
     });
   }
 
-  const includeContext = !!event.bigQuery?.noContext;
+  const excludeEventFields = event.bigQuery?.noEventFields === true;
+  const excludeContextFields = event.bigQuery?.noContextFields === true;
 
   return [
-    eventFields,
-    includeContext ? contextFields : [],
+    excludeEventFields ? [] : eventFields,
+    excludeContextFields ? [] : contextFields,
     generalFields,
     propertyFields,
   ].flatMap((i) => i);

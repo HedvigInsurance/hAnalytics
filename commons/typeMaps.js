@@ -66,15 +66,23 @@ const getBigQuerySchemaType = (type) => {
   const primitives = {
     String: {
       type: "STRING",
+      mode: "REQUIRED",
     },
     Integer: {
       type: "INTEGER",
+      mode: "REQUIRED",
     },
     Boolean: {
       type: "BOOLEAN",
+      mode: "REQUIRED",
     },
     Double: {
       type: "INTEGER",
+      mode: "REQUIRED",
+    },
+    Date: {
+      type: "TIMESTAMP",
+      mode: "REQUIRED",
     },
     Optional: (inner) => ({
       type: inner.type,

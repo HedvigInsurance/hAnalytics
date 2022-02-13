@@ -187,10 +187,12 @@ Array [
     "type": "STRING",
   },
   Object {
+    "mode": "REQUIRED",
     "name": "property_claim_id",
     "type": "STRING",
   },
   Object {
+    "mode": "REQUIRED",
     "name": "property_claim_status",
     "type": "STRING",
   },
@@ -216,10 +218,12 @@ Array [
     "type": "STRING",
   },
   Object {
+    "mode": "REQUIRED",
     "name": "property_claim_id",
     "type": "STRING",
   },
   Object {
+    "mode": "REQUIRED",
     "name": "property_claim_status",
     "type": "STRING",
   },
@@ -245,10 +249,12 @@ Array [
     "type": "STRING",
   },
   Object {
+    "mode": "REQUIRED",
     "name": "property_claim_id",
     "type": "STRING",
   },
   Object {
+    "mode": "REQUIRED",
     "name": "property_claim_status",
     "type": "STRING",
   },
@@ -274,6 +280,7 @@ Array [
     "type": "STRING",
   },
   Object {
+    "mode": "REQUIRED",
     "name": "property_claim_id",
     "type": "STRING",
   },
@@ -299,6 +306,7 @@ Array [
     "type": "STRING",
   },
   Object {
+    "mode": "REQUIRED",
     "name": "property_provider_id",
     "type": "STRING",
   },
@@ -324,6 +332,7 @@ Array [
     "type": "STRING",
   },
   Object {
+    "mode": "REQUIRED",
     "name": "property_type",
     "type": "STRING",
   },
@@ -349,6 +358,7 @@ Array [
     "type": "STRING",
   },
   Object {
+    "mode": "REQUIRED",
     "name": "property_location",
     "type": "STRING",
   },
@@ -374,10 +384,12 @@ Array [
     "type": "STRING",
   },
   Object {
+    "mode": "REQUIRED",
     "name": "property_originated_from_embark_story",
     "type": "STRING",
   },
   Object {
+    "mode": "REQUIRED",
     "name": "property_passage_name",
     "type": "STRING",
   },
@@ -403,10 +415,12 @@ Array [
     "type": "STRING",
   },
   Object {
+    "mode": "REQUIRED",
     "name": "property_originated_from_embark_story",
     "type": "STRING",
   },
   Object {
+    "mode": "REQUIRED",
     "name": "property_event_name",
     "type": "STRING",
   },
@@ -463,10 +477,12 @@ Array [
     "type": "STRING",
   },
   Object {
+    "mode": "REQUIRED",
     "name": "property_name",
     "type": "STRING",
   },
   Object {
+    "mode": "REQUIRED",
     "name": "property_variant",
     "type": "STRING",
   },
@@ -707,6 +723,7 @@ Array [
     "type": "STRING",
   },
   Object {
+    "mode": "REQUIRED",
     "name": "property_locale",
     "type": "STRING",
   },
@@ -732,6 +749,7 @@ Array [
     "type": "STRING",
   },
   Object {
+    "mode": "REQUIRED",
     "name": "property_type",
     "type": "STRING",
   },
@@ -783,6 +801,7 @@ Array [
     "type": "STRING",
   },
   Object {
+    "mode": "REQUIRED",
     "name": "property_embark_story_id",
     "type": "STRING",
   },
@@ -813,10 +832,12 @@ Array [
     "type": "STRING",
   },
   Object {
+    "mode": "REQUIRED",
     "name": "property_type_of_contracts",
     "type": "STRING",
   },
   Object {
+    "mode": "REQUIRED",
     "name": "property_initiated_from",
     "type": "STRING",
   },
@@ -947,10 +968,12 @@ Array [
     "type": "STRING",
   },
   Object {
+    "mode": "REQUIRED",
     "name": "property_claim_id",
     "type": "STRING",
   },
   Object {
+    "mode": "REQUIRED",
     "name": "property_claim_status",
     "type": "STRING",
   },
@@ -976,6 +999,7 @@ Array [
     "type": "STRING",
   },
   Object {
+    "mode": "REQUIRED",
     "name": "property_id",
     "type": "STRING",
   },
@@ -1106,6 +1130,7 @@ Array [
     "type": "STRING",
   },
   Object {
+    "mode": "REQUIRED",
     "name": "property_type_of_contract",
     "type": "STRING",
   },
@@ -1131,6 +1156,7 @@ Array [
     "type": "STRING",
   },
   Object {
+    "mode": "REQUIRED",
     "name": "property_provider_id",
     "type": "STRING",
   },
@@ -1156,6 +1182,7 @@ Array [
     "type": "STRING",
   },
   Object {
+    "mode": "REQUIRED",
     "name": "property_provider_id",
     "type": "STRING",
   },
@@ -1181,6 +1208,7 @@ Array [
     "type": "STRING",
   },
   Object {
+    "mode": "REQUIRED",
     "name": "property_provider_id",
     "type": "STRING",
   },
@@ -1206,6 +1234,7 @@ Array [
     "type": "STRING",
   },
   Object {
+    "mode": "REQUIRED",
     "name": "property_provider_id",
     "type": "STRING",
   },
@@ -1231,6 +1260,7 @@ Array [
     "type": "STRING",
   },
   Object {
+    "mode": "REQUIRED",
     "name": "property_provider_id",
     "type": "STRING",
   },
@@ -1256,6 +1286,7 @@ Array [
     "type": "STRING",
   },
   Object {
+    "mode": "REQUIRED",
     "name": "property_story_name",
     "type": "STRING",
   },
@@ -1344,6 +1375,7 @@ Array [
     "type": "STRING",
   },
   Object {
+    "mode": "REQUIRED",
     "name": "property_contract_id",
     "type": "STRING",
   },
@@ -1369,10 +1401,12 @@ Array [
     "type": "STRING",
   },
   Object {
+    "mode": "REQUIRED",
     "name": "property_has_accident_insurance",
     "type": "BOOLEAN",
   },
   Object {
+    "mode": "REQUIRED",
     "name": "property_has_home_insurance",
     "type": "BOOLEAN",
   },
@@ -1466,10 +1500,12 @@ Array [
     "type": "STRING",
   },
   Object {
+    "mode": "REQUIRED",
     "name": "property_type_of_contracts",
     "type": "STRING",
   },
   Object {
+    "mode": "REQUIRED",
     "name": "property_initiated_from",
     "type": "STRING",
   },

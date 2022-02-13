@@ -35,6 +35,7 @@ Array [
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_personal_number",
             "type": "STRING",
           },
@@ -63,6 +64,7 @@ Array [
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_personal_number",
             "type": "STRING",
           },

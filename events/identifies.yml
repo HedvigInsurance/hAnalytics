@@ -2,7 +2,8 @@ name: identifies
 description: Automatically created by hAnalytics when identifiying
 accessor: null
 bigQuery:
-  noContext: true
+  noContextFields: true
+  noEventFields: true
 inputs:
   - name: member_id
     type: Optional<String>

@@ -10,11 +10,10 @@ const validateAgainstSchema = async (name, row, bigQueryConfig) => {
     fields: [],
   };
 
-  return !Object.keys(row).find((key) => {
-    const field = schema.fields.find((field) => field.name == key);
+  return !schema.fields.find((field) => {
+    const key = field.name;
 
-    if (!field) {
-      console.log(`missing property ${key} on ${name}`);
+    if (row[key] == null && field.mode === "REQUIRED") {
       return true;
     }
 

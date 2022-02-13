@@ -11,14 +11,17 @@ Array [
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_0",
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_0_double",
             "type": "INTEGER",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_0_bool",
             "type": "BOOLEAN",
           },
@@ -28,14 +31,17 @@ Array [
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_1000",
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_1000_double",
             "type": "INTEGER",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_1000_bool",
             "type": "BOOLEAN",
           },
@@ -45,14 +51,17 @@ Array [
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_2000",
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_2000_double",
             "type": "INTEGER",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_2000_bool",
             "type": "BOOLEAN",
           },
@@ -62,14 +71,17 @@ Array [
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_3000",
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_3000_double",
             "type": "INTEGER",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_3000_bool",
             "type": "BOOLEAN",
           },
@@ -79,14 +91,17 @@ Array [
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_4000",
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_4000_double",
             "type": "INTEGER",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_4000_bool",
             "type": "BOOLEAN",
           },
@@ -96,14 +111,17 @@ Array [
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_5000",
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_5000_double",
             "type": "INTEGER",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_5000_bool",
             "type": "BOOLEAN",
           },
@@ -113,14 +131,17 @@ Array [
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_6000",
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_6000_double",
             "type": "INTEGER",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_6000_bool",
             "type": "BOOLEAN",
           },
@@ -130,14 +151,17 @@ Array [
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_7000",
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_7000_double",
             "type": "INTEGER",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_7000_bool",
             "type": "BOOLEAN",
           },
@@ -147,14 +171,17 @@ Array [
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_8000",
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_8000_double",
             "type": "INTEGER",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_8000_bool",
             "type": "BOOLEAN",
           },
@@ -164,14 +191,17 @@ Array [
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_9000",
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_9000_double",
             "type": "INTEGER",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_9000_bool",
             "type": "BOOLEAN",
           },
@@ -181,14 +211,17 @@ Array [
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_10000",
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_10000_double",
             "type": "INTEGER",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_10000_bool",
             "type": "BOOLEAN",
           },
@@ -198,14 +231,17 @@ Array [
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_11000",
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_11000_double",
             "type": "INTEGER",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_11000_bool",
             "type": "BOOLEAN",
           },
@@ -215,14 +251,17 @@ Array [
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_12000",
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_12000_double",
             "type": "INTEGER",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_12000_bool",
             "type": "BOOLEAN",
           },
@@ -232,14 +271,17 @@ Array [
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_13000",
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_13000_double",
             "type": "INTEGER",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_13000_bool",
             "type": "BOOLEAN",
           },
@@ -249,14 +291,17 @@ Array [
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_14000",
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_14000_double",
             "type": "INTEGER",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_14000_bool",
             "type": "BOOLEAN",
           },
@@ -266,14 +311,17 @@ Array [
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_15000",
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_15000_double",
             "type": "INTEGER",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_15000_bool",
             "type": "BOOLEAN",
           },
@@ -283,14 +331,17 @@ Array [
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_16000",
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_16000_double",
             "type": "INTEGER",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_16000_bool",
             "type": "BOOLEAN",
           },
@@ -300,14 +351,17 @@ Array [
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_17000",
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_17000_double",
             "type": "INTEGER",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_17000_bool",
             "type": "BOOLEAN",
           },
@@ -317,14 +371,17 @@ Array [
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_18000",
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_18000_double",
             "type": "INTEGER",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_18000_bool",
             "type": "BOOLEAN",
           },
@@ -334,14 +391,17 @@ Array [
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_19000",
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_19000_double",
             "type": "INTEGER",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_19000_bool",
             "type": "BOOLEAN",
           },
@@ -351,14 +411,17 @@ Array [
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_20000",
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_20000_double",
             "type": "INTEGER",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_20000_bool",
             "type": "BOOLEAN",
           },
@@ -368,14 +431,17 @@ Array [
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_21000",
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_21000_double",
             "type": "INTEGER",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_21000_bool",
             "type": "BOOLEAN",
           },
@@ -385,14 +451,17 @@ Array [
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_22000",
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_22000_double",
             "type": "INTEGER",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_22000_bool",
             "type": "BOOLEAN",
           },
@@ -402,14 +471,17 @@ Array [
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_23000",
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_23000_double",
             "type": "INTEGER",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_23000_bool",
             "type": "BOOLEAN",
           },
@@ -419,14 +491,17 @@ Array [
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_24000",
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_24000_double",
             "type": "INTEGER",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_24000_bool",
             "type": "BOOLEAN",
           },
@@ -436,14 +511,17 @@ Array [
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_25000",
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_25000_double",
             "type": "INTEGER",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_25000_bool",
             "type": "BOOLEAN",
           },
@@ -453,14 +531,17 @@ Array [
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_26000",
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_26000_double",
             "type": "INTEGER",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_26000_bool",
             "type": "BOOLEAN",
           },
@@ -470,14 +551,17 @@ Array [
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_27000",
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_27000_double",
             "type": "INTEGER",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_27000_bool",
             "type": "BOOLEAN",
           },
@@ -487,14 +571,17 @@ Array [
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_28000",
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_28000_double",
             "type": "INTEGER",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_28000_bool",
             "type": "BOOLEAN",
           },
@@ -504,14 +591,17 @@ Array [
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_29000",
             "type": "STRING",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_29000_double",
             "type": "INTEGER",
           },
           Object {
+            "mode": "REQUIRED",
             "name": "property_store_29000_bool",
             "type": "BOOLEAN",
           },
