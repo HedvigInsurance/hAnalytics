@@ -13,6 +13,10 @@ const cleanObj = (obj) => {
     return obj;
   }
 
+  if (Array.isArray(obj)) {
+    return obj;
+  }
+
   var copy = {};
   Object.keys(obj).forEach((key) => {
     const possibleTimestampValue = obj[key]?.value;

@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`periodicIngestorRedisBackend stores and consumes correctly 1`] = `
+Array [
+  Object {
+    "mock": "mock",
+    "property_experiments": Array [
+      "123",
+      "456",
+    ],
+  },
+]
+`;

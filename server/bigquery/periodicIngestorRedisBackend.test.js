@@ -12,9 +12,10 @@ describe("periodicIngestorRedisBackend", () => {
 
     redisBackend.append({
       mock: "mock",
+      property_experiments: ["123", "456"],
     });
 
-    expect((await redisBackend.consume()).length).toEqual(1);
+    expect(await redisBackend.consume()).toMatchSnapshot();
     expect((await redisBackend.consume()).length).toEqual(0);
 
     const numberOfItems = 5000;
