@@ -17,4 +17,22 @@ test("omits correctly", () => {
       otherValue: "hello",
     })
   ).toMatchSnapshot();
+
+  expect(
+    omit(["property", "otherValue"], {
+      property: {
+        hello: "hello",
+      },
+      otherValue: "hello",
+    })
+  ).toMatchSnapshot();
+
+  expect(
+    omit(["property", "othersValue"], {
+      property: {
+        hello: "hello",
+      },
+      otherValue: "hello",
+    })
+  ).toMatchSnapshot();
 });

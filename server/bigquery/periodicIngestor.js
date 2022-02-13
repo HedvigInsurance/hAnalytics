@@ -2,6 +2,7 @@ const timersPromises = require("timers/promises");
 const setupSchema = require("./setupSchema");
 const validateAgainstSchema = require("./schema/validateAgainstSchema");
 const insertDynamicFields = require("./schema/insertDynamicFields");
+const omit = require("./omit");
 
 var insertQueueBackend = null;
 var schemaLoaded = false;
@@ -107,7 +108,9 @@ const ingest = async (config) => {
         await config.bigquery
           .dataset(config.dataset)
           .table(entry.table)
-          .insert([entry.row]);
+          .insert([
+            omit(["context_device_id", "context_device_version"], entry.row),
+          ]);
       } catch (err) {
         if (err.name == "PartialFailureError") {
           console.log(

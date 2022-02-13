@@ -13,6 +13,11 @@ const validateAgainstSchema = async (name, row, bigQueryConfig) => {
   return !schema.fields.find((field) => {
     const key = field.name;
 
+    // old depreceated fields that we no longer care about
+    if (key === "context_device_id" || key === "context_device_version") {
+      return false;
+    }
+
     if (row[key] == null && field.mode === "REQUIRED") {
       return true;
     }

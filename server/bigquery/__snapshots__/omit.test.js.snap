@@ -7,3 +7,11 @@ Object {
   "otherValue": "hello",
 }
 `;
+
+exports[`omits correctly 3`] = `Object {}`;
+
+exports[`omits correctly 4`] = `
+Object {
+  "otherValue": "hello",
+}
+`;
