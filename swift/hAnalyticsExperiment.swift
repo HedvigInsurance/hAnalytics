@@ -95,10 +95,10 @@ public struct hAnalyticsExperiment {
       return variant
     }
 
-    hAnalyticsEvent.experimentEvaluated(name: "login_method", variant: LoginMethod.nemId.rawValue)
+    hAnalyticsEvent.experimentEvaluated(name: "login_method", variant: LoginMethod.otp.rawValue)
       .send()
 
-    return .nemId
+    return .otp
   }
 
   /// Is moving flow activated
