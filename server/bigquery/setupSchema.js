@@ -11,7 +11,10 @@ const setupSchema = async (onLoad, bigQueryConfig) => {
       const schemaFields = eventToSchemaFields(event);
 
       await setupTable(event.name, schemaFields, bigQueryConfig);
-      await createView(event.name, bigQueryConfig);
+
+      if (event.bigQuery?.noEventFields !== true) {
+        await createView(event.name, bigQueryConfig);
+      }
     })
   );
 
