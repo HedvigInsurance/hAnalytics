@@ -73,7 +73,6 @@ test("ingests exact amount of rows", async () => {
 });
 
 test("doesnt ingest invalid rows", async () => {
-  jest.setTimeout(20000);
   const bigQueryConfig = createBigQueryConfigMock();
   start(bigQueryConfig, inMemoryBackend, 5, false, false);
 
@@ -113,10 +112,9 @@ test("doesnt ingest invalid rows", async () => {
   expect(bigQueryConfig.bigquery.getTables()[0].rows.length).toEqual(
     numberOfRows
   );
-});
+}, 20000);
 
 test("does ingest if tables update", async () => {
-  jest.setTimeout(20000);
   const bigQueryConfig = createBigQueryConfigMock();
   start(bigQueryConfig, inMemoryBackend, 10, false, false);
 
@@ -169,10 +167,9 @@ test("does ingest if tables update", async () => {
   expect(bigQueryConfig.bigquery.getTables()[1].rows.length).toEqual(
     numberOfRows
   );
-});
+}, 20000);
 
 test("does ingest if schema updates", async () => {
-  jest.setTimeout(20000);
   const bigQueryConfig = createBigQueryConfigMock();
   start(bigQueryConfig, inMemoryBackend, 10, false, false);
 
@@ -216,4 +213,4 @@ test("does ingest if schema updates", async () => {
     numberOfRows * 2
   );
   expect(bigQueryConfig.bigquery.getTables()).toMatchSnapshot();
-});
+}, 20000);
