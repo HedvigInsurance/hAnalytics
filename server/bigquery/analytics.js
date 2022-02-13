@@ -2,6 +2,8 @@ const bigQueryConfig = require("./config");
 const flattenObj = require("./flattenObj");
 const omit = require("./omit");
 const { addToQueue, start } = require("./periodicIngestor");
+const createRedisBackend = require("./periodicIngestorRedisBackend");
+const createInMemoryBackend = require("./periodicIngestorInMemoryBackend");
 
 const track = async (name, event) => {
   const flatEvent = flattenObj(event);
@@ -51,12 +53,12 @@ const identify = async (identity) => {
 
 const getBackend = () => {
   if (process.env.REDIS_QUEUE) {
-    console.log("using redis queue");
-    return require("./periodicIngestorRedisBackend");
+    console.log("Using redis backend");
+    return createRedisBackend();
   }
 
-  console.log("using in memory queue");
-  return require("./periodicIngestorInMemoryBackend");
+  console.log("Using in memory backend");
+  return createInMemoryBackend();
 };
 
 start(bigQueryConfig, getBackend(), process.env.BQ_INGESTION_INTERVAL);

@@ -2,21 +2,6 @@ const RedisTaskQueue = require("redis-task-queue");
 const redisUrlParse = require("redis-url-parse");
 const { BigQueryDatetime } = require("@google-cloud/bigquery");
 
-const redisTaskQueue = new RedisTaskQueue(
-  process.env.REDIS_URL
-    ? {
-        ...redisUrlParse(process.env.REDIS_URL),
-        tls: {
-          rejectUnauthorized: false,
-        },
-      }
-    : {
-        port: 6379,
-        host: "127.0.0.1",
-        password: "",
-      }
-);
-
 const queue = "periodicIngestor";
 
 const cleanObj = (obj) => {
@@ -42,35 +27,52 @@ const cleanObj = (obj) => {
   return copy;
 };
 
-module.exports = {
-  append: async (entry) => {
-    redisTaskQueue.add({
-      queue,
-      data: {
-        entry,
-      },
-    });
-  },
-  consume: async (maxNumberOfItems = 100) => {
-    const numberOfItems = Math.min(
-      await redisTaskQueue.has(queue),
-      maxNumberOfItems
-    );
+module.exports = () => {
+  const redisTaskQueue = new RedisTaskQueue(
+    process.env.REDIS_URL
+      ? {
+          ...redisUrlParse(process.env.REDIS_URL),
+          tls: {
+            rejectUnauthorized: false,
+          },
+        }
+      : {
+          port: 6379,
+          host: "127.0.0.1",
+          password: "",
+        }
+  );
 
-    var list = [];
+  return {
+    append: async (entry) => {
+      redisTaskQueue.add({
+        queue,
+        data: {
+          entry,
+        },
+      });
+    },
+    consume: async (maxNumberOfItems = 100) => {
+      const numberOfItems = Math.min(
+        await redisTaskQueue.has(queue),
+        maxNumberOfItems
+      );
 
-    for (var i = 0; i < numberOfItems; i++) {
-      try {
-        const job = await redisTaskQueue.get(queue);
-        list.push(job.entry);
-      } catch (err) {
-        console.log(
-          "[REDIS] encountered error when trying to fetch from queue",
-          err
-        );
+      var list = [];
+
+      for (var i = 0; i < numberOfItems; i++) {
+        try {
+          const job = await redisTaskQueue.get(queue);
+          list.push(job.entry);
+        } catch (err) {
+          console.log(
+            "[REDIS] encountered error when trying to fetch from queue",
+            err
+          );
+        }
       }
-    }
 
-    return list.map(cleanObj);
-  },
+      return list.map(cleanObj);
+    },
+  };
 };

@@ -1,6 +1,8 @@
-const inMemoryBackend = require("./periodicIngestorInMemoryBackend");
+const createInMemoryBackend = require("./periodicIngestorInMemoryBackend");
 
 test("stores and consumes correctly", async () => {
+  const inMemoryBackend = createInMemoryBackend();
+
   inMemoryBackend.append({
     mock: "mock",
   });

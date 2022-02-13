@@ -11,6 +11,8 @@ var isIdle = false;
 var droppedRowsErrors = [];
 var currentInterval = 10000;
 
+const getSourceVersion = () => process.env.SOURCE_VERSION || "none";
+
 const ingest = async (config) => {
   if (!insertQueueBackend) {
     console.error("!!! No queue backend !!!");
@@ -19,11 +21,6 @@ const ingest = async (config) => {
 
   isIdle = false;
   didStop = false;
-
-  if (droppedRowsErrors.length > 5) {
-    console.log(`We have dropped a few rows`, droppedRowsErrors);
-    droppedRowsErrors = [];
-  }
 
   if (!running) {
     console.log("Ingestion has been stopped");
@@ -38,7 +35,19 @@ const ingest = async (config) => {
     return;
   }
 
-  const queue = await insertQueueBackend.consume();
+  const consumedQueue = await insertQueueBackend.consume();
+  const queue = [];
+
+  for (const entry of consumedQueue) {
+    if (
+      entry.skipOnSourceVersion &&
+      entry.skipOnSourceVersion == getSourceVersion()
+    ) {
+      await insertQueueBackend.append(entry);
+    } else {
+      queue.push(entry);
+    }
+  }
 
   if (queue.length == 0) {
     isIdle = true;
@@ -47,8 +56,26 @@ const ingest = async (config) => {
   for (const entry of queue) {
     const putBackIntoQueue = async (err) => {
       if (entry.currentRetries > 5) {
-        console.log("Dropping event as retries was too high");
+        console.log(
+          "Dropping event as retries was too high, adding SOURCE_VERSION to potentially fix in future release"
+        );
         droppedRowsErrors.push(err);
+
+        const sourceVersionRetries = entry.sourceVersionRetires ?? 0;
+
+        if (sourceVersionRetries < 5) {
+          await insertQueueBackend.append({
+            ...entry,
+            skipOnSourceVersion: getSourceVersion(),
+            sourceVersionRetires: sourceVersionRetries + 1,
+            currentRetries: 0,
+          });
+        } else {
+          console.log(
+            "Event wasn't fixed in 5 different source versions, so we will skip processing this event completely",
+            err
+          );
+        }
       } else {
         await insertQueueBackend.append({
           ...entry,

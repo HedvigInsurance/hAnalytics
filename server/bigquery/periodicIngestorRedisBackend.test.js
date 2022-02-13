@@ -1,4 +1,4 @@
-const redisBackend = require("./periodicIngestorRedisBackend");
+const createRedisBackend = require("./periodicIngestorRedisBackend");
 const { BigQueryDatetime } = require("@google-cloud/bigquery");
 const Redis = require("ioredis-mock");
 
@@ -8,6 +8,8 @@ describe("periodicIngestorRedisBackend", () => {
   });
 
   test("stores and consumes correctly", async () => {
+    const redisBackend = createRedisBackend();
+
     redisBackend.append({
       mock: "mock",
     });
@@ -32,6 +34,8 @@ describe("periodicIngestorRedisBackend", () => {
   });
 
   test("reparses DateTime correctly", async () => {
+    const redisBackend = createRedisBackend();
+
     const dateTime = new BigQueryDatetime(new Date().toISOString());
 
     const mockItem = {

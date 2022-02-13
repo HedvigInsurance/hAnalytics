@@ -925,6 +925,261 @@ Array [
 ]
 `;
 
+exports[`does keep invalid rows 1`] = `
+Array [
+  Object {
+    "currentRetries": 0,
+    "row": Object {
+      "context_something_invalid": 0.1663643652675928,
+      "property": "HELLO",
+    },
+    "skipOnSourceVersion": "none",
+    "sourceVersionRetires": 1,
+    "table": "mock_table",
+  },
+  Object {
+    "currentRetries": 0,
+    "row": Object {
+      "context_something_invalid": 0.45307248418525625,
+      "property": "HELLO",
+    },
+    "skipOnSourceVersion": "none",
+    "sourceVersionRetires": 1,
+    "table": "mock_table",
+  },
+  Object {
+    "currentRetries": 0,
+    "row": Object {
+      "context_something_invalid": 0.1288320392220208,
+      "property": "HELLO",
+    },
+    "skipOnSourceVersion": "none",
+    "sourceVersionRetires": 1,
+    "table": "mock_table",
+  },
+  Object {
+    "currentRetries": 0,
+    "row": Object {
+      "context_something_invalid": 0.2949652785998582,
+      "property": "HELLO",
+    },
+    "skipOnSourceVersion": "none",
+    "sourceVersionRetires": 1,
+    "table": "mock_table",
+  },
+  Object {
+    "currentRetries": 0,
+    "row": Object {
+      "context_something_invalid": 0.1250043266800842,
+      "property": "HELLO",
+    },
+    "skipOnSourceVersion": "none",
+    "sourceVersionRetires": 1,
+    "table": "mock_table",
+  },
+  Object {
+    "currentRetries": 0,
+    "row": Object {
+      "context_something_invalid": 0.6815746752418539,
+      "property": "HELLO",
+    },
+    "skipOnSourceVersion": "none",
+    "sourceVersionRetires": 1,
+    "table": "mock_table",
+  },
+  Object {
+    "currentRetries": 0,
+    "row": Object {
+      "context_something_invalid": 0.7089745081120247,
+      "property": "HELLO",
+    },
+    "skipOnSourceVersion": "none",
+    "sourceVersionRetires": 1,
+    "table": "mock_table",
+  },
+  Object {
+    "currentRetries": 0,
+    "row": Object {
+      "context_something_invalid": 0.5083649871536364,
+      "property": "HELLO",
+    },
+    "skipOnSourceVersion": "none",
+    "sourceVersionRetires": 1,
+    "table": "mock_table",
+  },
+  Object {
+    "currentRetries": 0,
+    "row": Object {
+      "context_something_invalid": 0.6300959093905751,
+      "property": "HELLO",
+    },
+    "skipOnSourceVersion": "none",
+    "sourceVersionRetires": 1,
+    "table": "mock_table",
+  },
+  Object {
+    "currentRetries": 0,
+    "row": Object {
+      "context_something_invalid": 0.5347252690882187,
+      "property": "HELLO",
+    },
+    "skipOnSourceVersion": "none",
+    "sourceVersionRetires": 1,
+    "table": "mock_table",
+  },
+  Object {
+    "currentRetries": 0,
+    "row": Object {
+      "context_something_invalid": 0.13109827420256148,
+      "property": "HELLO",
+    },
+    "skipOnSourceVersion": "none",
+    "sourceVersionRetires": 1,
+    "table": "mock_table",
+  },
+  Object {
+    "currentRetries": 0,
+    "row": Object {
+      "context_something_invalid": 0.8298520432382688,
+      "property": "HELLO",
+    },
+    "skipOnSourceVersion": "none",
+    "sourceVersionRetires": 1,
+    "table": "mock_table",
+  },
+  Object {
+    "currentRetries": 0,
+    "row": Object {
+      "context_something_invalid": 0.779724621393969,
+      "property": "HELLO",
+    },
+    "skipOnSourceVersion": "none",
+    "sourceVersionRetires": 1,
+    "table": "mock_table",
+  },
+  Object {
+    "currentRetries": 0,
+    "row": Object {
+      "context_something_invalid": 0.6696414614574462,
+      "property": "HELLO",
+    },
+    "skipOnSourceVersion": "none",
+    "sourceVersionRetires": 1,
+    "table": "mock_table",
+  },
+  Object {
+    "currentRetries": 0,
+    "row": Object {
+      "context_something_invalid": 0.9678921230195559,
+      "property": "HELLO",
+    },
+    "skipOnSourceVersion": "none",
+    "sourceVersionRetires": 1,
+    "table": "mock_table",
+  },
+  Object {
+    "currentRetries": 0,
+    "row": Object {
+      "context_something_invalid": 0.8764736339415244,
+      "property": "HELLO",
+    },
+    "skipOnSourceVersion": "none",
+    "sourceVersionRetires": 1,
+    "table": "mock_table",
+  },
+  Object {
+    "currentRetries": 0,
+    "row": Object {
+      "context_something_invalid": 0.9064927099547642,
+      "property": "HELLO",
+    },
+    "skipOnSourceVersion": "none",
+    "sourceVersionRetires": 1,
+    "table": "mock_table",
+  },
+  Object {
+    "currentRetries": 0,
+    "row": Object {
+      "context_something_invalid": 0.8567459374840152,
+      "property": "HELLO",
+    },
+    "skipOnSourceVersion": "none",
+    "sourceVersionRetires": 1,
+    "table": "mock_table",
+  },
+  Object {
+    "currentRetries": 0,
+    "row": Object {
+      "context_something_invalid": 0.41219238697020044,
+      "property": "HELLO",
+    },
+    "skipOnSourceVersion": "none",
+    "sourceVersionRetires": 1,
+    "table": "mock_table",
+  },
+  Object {
+    "currentRetries": 0,
+    "row": Object {
+      "context_something_invalid": 0.9716083157941919,
+      "property": "HELLO",
+    },
+    "skipOnSourceVersion": "none",
+    "sourceVersionRetires": 1,
+    "table": "mock_table",
+  },
+  Object {
+    "currentRetries": 0,
+    "row": Object {
+      "context_something_invalid": 0.21556599720724834,
+      "property": "HELLO",
+    },
+    "skipOnSourceVersion": "none",
+    "sourceVersionRetires": 1,
+    "table": "mock_table",
+  },
+  Object {
+    "currentRetries": 0,
+    "row": Object {
+      "context_something_invalid": 0.9127193867236252,
+      "property": "HELLO",
+    },
+    "skipOnSourceVersion": "none",
+    "sourceVersionRetires": 1,
+    "table": "mock_table",
+  },
+  Object {
+    "currentRetries": 0,
+    "row": Object {
+      "context_something_invalid": 0.26322968207345276,
+      "property": "HELLO",
+    },
+    "skipOnSourceVersion": "none",
+    "sourceVersionRetires": 1,
+    "table": "mock_table",
+  },
+  Object {
+    "currentRetries": 0,
+    "row": Object {
+      "context_something_invalid": 0.8406956782337074,
+      "property": "HELLO",
+    },
+    "skipOnSourceVersion": "none",
+    "sourceVersionRetires": 1,
+    "table": "mock_table",
+  },
+  Object {
+    "currentRetries": 0,
+    "row": Object {
+      "context_something_invalid": 0.12401849586460956,
+      "property": "HELLO",
+    },
+    "skipOnSourceVersion": "none",
+    "sourceVersionRetires": 1,
+    "table": "mock_table",
+  },
+]
+`;
+
 exports[`ingests correctly 1`] = `Array []`;
 
 exports[`ingests correctly 2`] = `

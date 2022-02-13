@@ -5,13 +5,14 @@ const {
   waitUntilIdle,
   consumeQueue,
 } = require("./periodicIngestor");
-const inMemoryBackend = require("./periodicIngestorInMemoryBackend");
+const timersPromises = require("timers/promises");
+const createInMemoryBackend = require("./periodicIngestorInMemoryBackend");
 const setupTable = require("./schema/setupTable");
 const createBigQueryConfigMock = require("./config.mock");
 
 test("ingests correctly", async () => {
   const bigQueryConfig = createBigQueryConfigMock();
-  start(bigQueryConfig, inMemoryBackend, 100, false, false);
+  start(bigQueryConfig, createInMemoryBackend(), 100, false, false);
 
   setupTable(
     "mock_table",
@@ -40,7 +41,7 @@ test("ingests correctly", async () => {
 
 test("ingests exact amount of rows", async () => {
   const bigQueryConfig = createBigQueryConfigMock();
-  start(bigQueryConfig, inMemoryBackend, 25, false, false);
+  start(bigQueryConfig, createInMemoryBackend(), 25, false, false);
 
   setupTable(
     "mock_table",
@@ -74,7 +75,7 @@ test("ingests exact amount of rows", async () => {
 
 test("doesnt ingest invalid rows", async () => {
   const bigQueryConfig = createBigQueryConfigMock();
-  start(bigQueryConfig, inMemoryBackend, 5, false, false);
+  start(bigQueryConfig, createInMemoryBackend(), 5, false, false);
 
   setupTable(
     "mock_table",
@@ -114,9 +115,43 @@ test("doesnt ingest invalid rows", async () => {
   );
 }, 20000);
 
+test("does keep invalid rows", async () => {
+  const bigQueryConfig = createBigQueryConfigMock();
+  start(bigQueryConfig, createInMemoryBackend(), 5, false, false);
+
+  setupTable(
+    "mock_table",
+    [
+      {
+        name: "property",
+        type: "STRING",
+      },
+    ],
+    bigQueryConfig
+  );
+
+  const numberOfRows = 25;
+
+  [...new Array(numberOfRows)].forEach(() => {
+    addToQueue({
+      table: "mock_table",
+      row: {
+        property: "HELLO",
+        context_something_invalid: Math.random(),
+      },
+    });
+  });
+
+  await timersPromises.setTimeout(1000);
+  await waitUntilIdle();
+  await stop();
+
+  expect(await consumeQueue()).toMatchSnapshot();
+}, 20000);
+
 test("does ingest if tables update", async () => {
   const bigQueryConfig = createBigQueryConfigMock();
-  start(bigQueryConfig, inMemoryBackend, 10, false, false);
+  start(bigQueryConfig, createInMemoryBackend(), 10, false, false);
 
   await setupTable(
     "mock_table",
@@ -171,7 +206,7 @@ test("does ingest if tables update", async () => {
 
 test("does ingest if schema updates", async () => {
   const bigQueryConfig = createBigQueryConfigMock();
-  start(bigQueryConfig, inMemoryBackend, 10, false, false);
+  start(bigQueryConfig, createInMemoryBackend(), 10, false, false);
 
   await setupTable(
     "embark_track",
@@ -213,4 +248,60 @@ test("does ingest if schema updates", async () => {
     numberOfRows * 2
   );
   expect(bigQueryConfig.bigquery.getTables()).toMatchSnapshot();
+}, 20000);
+
+test("does respect source version", async () => {
+  const bigQueryConfig = createBigQueryConfigMock();
+  start(bigQueryConfig, createInMemoryBackend(), 5, false, false);
+
+  process.env.SOURCE_VERSION = 0;
+
+  setupTable(
+    "mock_table",
+    [
+      {
+        name: "property",
+        type: "STRING",
+      },
+    ],
+    bigQueryConfig
+  );
+
+  const numberOfRows = 25;
+
+  [...new Array(numberOfRows)].forEach((_, index) => {
+    addToQueue({
+      table: "mock_table",
+      row: {
+        property: "HELLO",
+        context_something_invalid: index,
+      },
+    });
+  });
+
+  await timersPromises.setTimeout(1000);
+  await waitUntilIdle();
+
+  process.env.SOURCE_VERSION = 1;
+
+  await waitUntilIdle();
+
+  process.env.SOURCE_VERSION = 2;
+
+  await waitUntilIdle();
+
+  process.env.SOURCE_VERSION = 3;
+
+  await waitUntilIdle();
+
+  process.env.SOURCE_VERSION = 4;
+
+  await waitUntilIdle();
+
+  process.env.SOURCE_VERSION = 5;
+
+  await waitUntilIdle();
+  await stop();
+
+  expect((await consumeQueue()).length).toEqual(0);
 }, 20000);
