@@ -56,7 +56,7 @@ const transfer = async () => {
     await timersPromises.setTimeout(5000);
 
     if (event.bigQuery?.noEventFields !== true) {
-      await createView(event.name, bigQueryConfig);
+      await createView(event.name, schemaFields, bigQueryConfig);
     }
 
     const metadata = await getSchema(event.name, bigQueryConfig);
