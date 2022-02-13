@@ -1,7 +1,6 @@
 const getEvents = require("../../commons/getEvents");
 const setupTable = require("./schema/setupTable");
 const eventToSchemaFields = require("./schema/eventToSchemaFields");
-const createView = require("./schema/createView");
 
 const setupSchema = async (onLoad, bigQueryConfig) => {
   const events = await getEvents();
@@ -16,15 +15,6 @@ const setupSchema = async (onLoad, bigQueryConfig) => {
         schemaFields,
         bigQueryConfig
       );
-
-      if (event.bigQuery?.noEventFields !== true) {
-        await createView(
-          event.name,
-          event.description,
-          schemaFields,
-          bigQueryConfig
-        );
-      }
     })
   );
 
