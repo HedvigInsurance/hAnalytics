@@ -13,7 +13,7 @@ const { bigQuerySchemaTypeMap } = require("../../commons/typeMaps");
 
 test("ingests correctly", async () => {
   const bigQueryConfig = createBigQueryConfigMock();
-  start(bigQueryConfig, createInMemoryBackend(), 100, false, false);
+  start(bigQueryConfig, createInMemoryBackend(), 100, false);
 
   await setupTable(
     "mock_table",
@@ -43,7 +43,7 @@ test("ingests correctly", async () => {
 
 test("ingests exact amount of rows", async () => {
   const bigQueryConfig = createBigQueryConfigMock();
-  start(bigQueryConfig, createInMemoryBackend(), 25, false, false);
+  start(bigQueryConfig, createInMemoryBackend(), 25, false);
 
   await setupTable(
     "mock_table",
@@ -78,7 +78,7 @@ test("ingests exact amount of rows", async () => {
 
 test("doesnt ingest invalid rows", async () => {
   const bigQueryConfig = createBigQueryConfigMock();
-  start(bigQueryConfig, createInMemoryBackend(), 5, false, false);
+  start(bigQueryConfig, createInMemoryBackend(), 5, false);
 
   await setupTable(
     "mock_table",
@@ -126,7 +126,7 @@ test("doesnt ingest invalid rows", async () => {
 
 test("does keep invalid rows", async () => {
   const bigQueryConfig = createBigQueryConfigMock();
-  start(bigQueryConfig, createInMemoryBackend(), 5, false, false);
+  start(bigQueryConfig, createInMemoryBackend(), 5, false);
 
   await setupTable(
     "mock_table",
@@ -161,7 +161,7 @@ test("does keep invalid rows", async () => {
 
 test("does ingest if tables update", async () => {
   const bigQueryConfig = createBigQueryConfigMock();
-  start(bigQueryConfig, createInMemoryBackend(), 10, false, false);
+  start(bigQueryConfig, createInMemoryBackend(), 10, false);
 
   await setupTable(
     "mock_table",
@@ -218,7 +218,7 @@ test("does ingest if tables update", async () => {
 
 test("does ingest if schema updates", async () => {
   const bigQueryConfig = createBigQueryConfigMock();
-  start(bigQueryConfig, createInMemoryBackend(), 10, false, false);
+  start(bigQueryConfig, createInMemoryBackend(), 10, false);
 
   await setupTable(
     "embark_track",
@@ -265,7 +265,7 @@ test("does ingest if schema updates", async () => {
 
 test("does respect source version", async () => {
   const bigQueryConfig = createBigQueryConfigMock();
-  start(bigQueryConfig, createInMemoryBackend(), 5, false, false);
+  start(bigQueryConfig, createInMemoryBackend(), 5, false);
 
   process.env.SOURCE_VERSION = 0;
 
