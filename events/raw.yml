@@ -1,0 +1,10 @@
+name: raw
+description: RAW events not parsed or validated, will contain events not matching against schema
+accessor: null
+bigQuery:
+  noContextFields: true
+inputs:
+  - name: data
+    type: String
+    description: Event as JSON
+    argument: data
