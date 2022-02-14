@@ -49,6 +49,30 @@ class MemberIdsStrategy extends Strategy {
   }
 }
 
+function isSmallerVersionThanThreshold(version, threshold) {
+  let compareRes = threshold.localeCompare(version, undefined, { numeric: true, sensitivity: 'base' })
+
+  var isInvalid = false
+  if (compareRes === 0) {
+    isInvalid = true
+  } else if (compareRes === -1) {
+    isInvalid = false
+  } else if (compareRes === 1) {
+    isInvalid = true
+  }
+  return isInvalid
+}
+
+class AppVersionStrategy extends Strategy {
+  constructor() {
+    super("AppVersion");
+  }
+
+  isEnabled(parameters, context) {
+    return isSmallerVersionThanThreshold(context.appVersion, parameters.lowestAppVersion)
+  }
+}
+
 module.exports = {
   appName: "hanalytics",
   url: process.env.UNLEASH_API_URL,
@@ -56,6 +80,6 @@ module.exports = {
     Authorization: process.env.UNLEASH_API_KEY,
   },
   environment: process.env.UNLEASH_API_KEY.replace("*:").split(".")[0],
-  strategies: [new MemberIdsStrategy()],
+  strategies: [new MemberIdsStrategy(), new AppVersionStrategy()],
   storageProvider: new InMemStorageProvider(),
 };
