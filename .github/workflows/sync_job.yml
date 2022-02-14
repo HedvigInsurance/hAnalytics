@@ -2,7 +2,7 @@ name: Sync job
 on: [workflow_dispatch]
 
 jobs:
-  test:
+  sync:
     runs-on: ubuntu-latest
 
     steps:
