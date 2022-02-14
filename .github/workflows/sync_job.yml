@@ -17,3 +17,10 @@ jobs:
           GCLOUD_PROJECT: hedvig-dagobah
           SOURCE_DATASET: hanalytics_production
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+      - run: node scripts/bigQueryCopy.js
+        env:
+          BQ_DATASET: hanalytics_production_live
+          GCLOUD_PROJECT: hedvig-dagobah
+          DESTINATION_PREFIX: ""
+          SOURCE_PREFIX: __sync_table_
+          GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}

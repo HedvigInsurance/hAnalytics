@@ -74,13 +74,17 @@ const upsert = async () => {
         `;
     }
 
-    await bigQueryConfig.bigquery
+    const [insertedRows] = await bigQueryConfig.bigquery
       .dataset(bigQueryConfig.dataset)
       .table(source)
       .query({
         query,
         useQueryCache: false,
       });
+
+    console.log(
+      `Inserted a total of ${insertedRows.length} rows into ${destination}`
+    );
   }
 };
 
