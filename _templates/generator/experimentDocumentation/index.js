@@ -15,11 +15,11 @@ const getIntegrationStatus = async (experiment) => {
 
   try {
     const iosResult = await octokit.request("GET /search/code", {
-      q: `hAnalyticsEvent ${experiment.accessor} in:file repo:HedvigInsurance/Ugglan`,
+      q: `hAnalyticsExperiment ${experiment.accessor} in:file repo:HedvigInsurance/Ugglan`,
     });
 
     const androidResult = await octokit.request("GET /search/code", {
-      q: `hAnalytics ${experiment.accessor} in:file repo:HedvigInsurance/Android`,
+      q: `hAnalyticsExperiment ${experiment.accessor} in:file repo:HedvigInsurance/Android`,
     });
 
     return {
