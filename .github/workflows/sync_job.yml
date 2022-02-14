@@ -1,0 +1,19 @@
+name: Sync job
+on: [workflow_dispatch]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "15"
+      - run: npm install
+      - run: node scripts/bigQuerySync.js
+        with:
+          BQ_DATASET: hanalytics_production_live
+          GCLOUD_PROJECT: hedvig-dagobah
+          SOURCE_DATASET: hanalytics_production
+          GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}

@@ -21,6 +21,7 @@ test("insert dynamic fields", async () => {
 
   await insertDynamicFields(
     "embark_track",
+    "embark_track",
     {
       property_store_hello: "mock",
       property_store_personal_number: "93202320",
@@ -33,6 +34,7 @@ test("insert dynamic fields", async () => {
   expect(bigQueryConfig.bigquery.getTables()).toMatchSnapshot();
 
   await insertDynamicFields(
+    "embark_track",
     "embark_track",
     {
       property_store_hello: "mock",

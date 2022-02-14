@@ -97,7 +97,7 @@ const ingest = async (config) => {
       );
 
       try {
-        await insertDynamicFields(entry.table, entry.row, config);
+        await insertDynamicFields(entry.table, entry.table, entry.row, config);
         await putBackIntoQueue(new Error("not valid against schema"));
       } catch (err) {
         await putBackIntoQueue(err);

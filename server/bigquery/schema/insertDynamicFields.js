@@ -2,8 +2,9 @@ const getEvents = require("../../../commons/getEvents");
 const typeMaps = require("../../../commons/typeMaps");
 const getSchema = require("./getSchema");
 const sortFields = require("./sortFields");
+const timersPromises = require("timers/promises");
 
-const insertDynamicFields = async (name, row, bigQueryConfig) => {
+const insertDynamicFields = async (name, tableName, row, bigQueryConfig) => {
   const event = (await getEvents()).find((event) => event.name == name);
 
   if (!event) {
@@ -11,7 +12,9 @@ const insertDynamicFields = async (name, row, bigQueryConfig) => {
     return;
   }
 
-  const metadata = await getSchema(name, bigQueryConfig);
+  const metadata =
+    bigQueryConfig.cacher.get(`schema-${tableName}`) ||
+    (await getSchema(tableName, bigQueryConfig));
   const schema = metadata.schema ?? {
     fields: [],
   };
@@ -27,20 +30,16 @@ const insertDynamicFields = async (name, row, bigQueryConfig) => {
           key.startsWith(`property_${input.name}`)
         )
       ) {
-        console.log(`Key ${key} not in inputs or constants`);
         return null;
       }
 
-      const type = typeMaps.bigQuerySchemaTypeMap(typeMaps.jsTypeMap(row[key]));
-
-      if (!type) {
-        console.log(`No matching type for ${key}`);
-        return null;
-      }
-
-      console.log(
-        `Matching key ${key} to type ${JSON.stringify(type, null, 2)}`
+      const type = typeMaps.bigQuerySchemaTypeMap(
+        `Optional<${typeMaps.jsTypeMap(row[key])}>`
       );
+
+      if (!type?.type) {
+        return null;
+      }
 
       return {
         name: key,
@@ -51,22 +50,34 @@ const insertDynamicFields = async (name, row, bigQueryConfig) => {
 
   const table = bigQueryConfig.bigquery
     .dataset(bigQueryConfig.dataset)
-    .table(name);
+    .table(tableName);
 
-  const filteredFields = fields.filter(
-    (field) =>
-      !schema.fields.find((schemaField) => schemaField.name == field.name)
-  );
+  if (fields.length) {
+    const currentMetadata = await getSchema(tableName, bigQueryConfig);
+    const includedNames = [];
 
-  const new_schema = schema;
-  new_schema.fields = sortFields(
-    [new_schema.fields, filteredFields].flatMap((i) => i)
-  );
-  metadata.schema = new_schema;
+    var updatedSchema = {
+      ...currentMetadata,
+      schema: {
+        ...currentMetadata.schema,
+        fields: sortFields([
+          ...currentMetadata.schema.fields,
+          ...fields,
+        ]).filter((field) => {
+          if (includedNames.includes(field.name)) {
+            return false;
+          }
 
-  await table.setMetadata(metadata);
+          includedNames.push(field.name);
 
-  bigQueryConfig.cacher.set(`schema-${name}`, metadata);
+          return true;
+        }),
+      },
+    };
+
+    await table.setMetadata(updatedSchema);
+    bigQueryConfig.cacher.set(`schema-${tableName}`, updatedSchema);
+  }
 };
 
 module.exports = insertDynamicFields;
