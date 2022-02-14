@@ -49,6 +49,20 @@ class MemberIdsStrategy extends Strategy {
   }
 }
 
+function versionToInt(version) {
+  return parseInt(version.replace('.',''));
+}
+
+class AppVersionStrategy extends Strategy {
+  constructor() {
+    super("AppVersion");
+  }
+
+  isEnabled(parameters, context) {
+    return versionToInt(context.appVersion) <= versionToInt(parameters.lowestAppVersion)
+  }
+}
+
 module.exports = {
   appName: "hanalytics",
   url: process.env.UNLEASH_API_URL,
@@ -56,6 +70,6 @@ module.exports = {
     Authorization: process.env.UNLEASH_API_KEY,
   },
   environment: process.env.UNLEASH_API_KEY.replace("*:").split(".")[0],
-  strategies: [new MemberIdsStrategy()],
+  strategies: [new MemberIdsStrategy(), new AppVersionStrategy()],
   storageProvider: new InMemStorageProvider(),
 };

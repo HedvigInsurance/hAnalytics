@@ -1,0 +1,7 @@
+name: update_necessary
+description: Is using an outdated app version
+accessor: updateNecessary
+defaultFallback: disabled
+variants: []
+targets:
+  - Swift
