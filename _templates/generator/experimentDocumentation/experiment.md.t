@@ -1,5 +1,5 @@
 ---
-to: docs/docs/experiments/<%= file %>.md
+to: docs/docs/Experiments/<%= file.replace("experiments/", "Definitions/") %>.md
 ---
 # <%= experiment.accessor %>
 ## <%= experiment.name %>
