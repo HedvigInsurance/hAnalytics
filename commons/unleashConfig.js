@@ -49,8 +49,18 @@ class MemberIdsStrategy extends Strategy {
   }
 }
 
-function versionToInt(version) {
-  return parseInt(version.replace('.',''));
+function isSmallerVersionThanThreshold(version, threshold) {
+  let compareRes = threshold.localeCompare(version, undefined, { numeric: true, sensitivity: 'base' })
+
+  var isInvalid = false
+  if (compareRes === 0) {
+    isInvalid = true
+  } else if (compareRes === -1) {
+    isInvalid = false
+  } else if (compareRes === 1) {
+    isInvalid = true
+  }
+  return isInvalid
 }
 
 class AppVersionStrategy extends Strategy {
@@ -59,7 +69,7 @@ class AppVersionStrategy extends Strategy {
   }
 
   isEnabled(parameters, context) {
-    return versionToInt(context.appVersion) <= versionToInt(parameters.lowestAppVersion)
+    return isSmallerVersionThanThreshold(context.appVersion, parameters.lowestAppVersion)
   }
 }
 
