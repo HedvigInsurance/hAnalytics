@@ -1,4 +1,4 @@
-const bigQueryConfig = require("../server/bigQuery/config");
+const bigQueryConfig = require("../server/bigquery/config");
 const getEvents = require("../commons/getEvents");
 const getSchema = require("../server/bigquery/schema/getSchema");
 const validateAgainstSchema = require("../server/bigquery/schema/validateAgainstSchema");
