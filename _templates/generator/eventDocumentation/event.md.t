@@ -22,13 +22,13 @@ to: docs/docs/Events/<%= file.replace("events/", "Definitions/") %>.md
 ## Swift
 
 ```swift
-hAnalyticsEvent.<%= event.accessor %>(<%= (event.inputs ?? []).map((input) => `${input.argument}: ${swiftTypeMap(input.type)}`).join(",") %>)
+hAnalyticsEvent.<%= event.accessor %>(<%- (event.inputs ?? []).map((input) => `${input.argument}: ${swiftTypeMap(input.type)}`).join(", ") %>)
 ```
 
 ## Kotlin
 
 ```kotlin
-hAnalytics.<%= event.accessor %>(<%= (event.inputs ?? []).map((input) => `${input.argument}: ${kotlinTypeMap(input.type)}`).join(",") %>)
+hAnalytics.<%= event.accessor %>(<%- (event.inputs ?? []).map((input) => `${input.argument}: ${kotlinTypeMap(input.type)}`).join(", ") %>)
 ```
 
 <% } %>
