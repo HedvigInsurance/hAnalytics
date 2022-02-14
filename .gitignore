@@ -5,6 +5,6 @@ node_modules
 ktfmt.jar
 # Ignore Gradle project-specific cache directory
 .gradle
-docs/docs/events/**/*.md
-docs/docs/experiments/**/*.md
+docs/docs/Events/Definitions/**/*.md
+docs/docs/Experiments/Definitions/**/*.md
 google-credentials.json

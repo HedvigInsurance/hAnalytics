@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`validate 1`] = `
+Object {
+  "name": "identifies",
+  "variables": Object {
+    "member_id": "123",
+  },
+}
+`;
+
+exports[`validate nullable memberId 1`] = `
+Object {
+  "name": "identifies",
+  "variables": Object {
+    "member_id": null,
+  },
+}
+`;

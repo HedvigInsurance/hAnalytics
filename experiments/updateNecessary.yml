@@ -1,5 +1,6 @@
 name: update_necessary
-description: Is using an outdated app version
+description: Defines the lowest supported app version. Should prompt a user to update if it
+  uses an outdated version.
 accessor: updateNecessary
 defaultFallback: disabled
 variants: []

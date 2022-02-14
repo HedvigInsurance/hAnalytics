@@ -1,32 +1,7 @@
 ## hAnalytics
 
-This repo contains shared analytics definitions of events between Hedvigs iOS and Android apps.
+hAnalytics is a framework to create typesafe data collection through the whole stack straight from the client to the datawarehouse.
 
-### Defintion structure
+With hAnalytics event structure and types are first defined and then automatically generated into typesafe code that can be used on the platform where the data is generated.
 
-Each event defines the following fields:
-
-	- name: the event name to be sent to the analytics provider
-    - description: description of what the event is for
-	- accessor: the name of the accessor function that gets codegenerated
-	- inputs:
-		- name: the name of the input to be sent to the analytics provider
-		- type: the type of the input (String, Bool, Int, Double, Float)
-		- argument: the name of the argument that gets codegenerated
-    - graphql: (optional) perform a fetch against the graphql schema and populate the event with the returned data
-        query: |
-            query GraphQLQuery($INPUT_VARIABLE_NAME: Type!) {
-                someField(input: $INPUT_VARIABLE_NAME)
-                member {
-                    firstName
-                }
-            }
-        variables: (optional)
-            - INPUT_VARIABLE_NAME
-        selectors:
-            - name: FIRST_NAME
-              path: member.firstName (JMESPath spec path)
-
-### Build
-
-`sh compile.sh`
+Documentation lives [here](https://hedviginsurance.github.io/hAnalytics/)

@@ -131,13 +131,7 @@ module.exports = {
   addToQueue: (entry) => {
     insertQueueBackend?.append(entry);
   },
-  start: (
-    config,
-    backend,
-    interval = 10000,
-    shouldSetupSchema = true,
-    processOnSigterm = true
-  ) => {
+  start: (config, backend, interval = 10000, shouldSetupSchema = true) => {
     running = true;
     insertQueueBackend = backend;
     currentInterval = interval;
@@ -148,13 +142,6 @@ module.exports = {
       }, config);
     } else {
       schemaLoaded = true;
-    }
-
-    if (processOnSigterm) {
-      process.on("SIGTERM", async () => {
-        console.log("Processing before exiting");
-        await ingest(config);
-      });
     }
 
     return ingest(config);

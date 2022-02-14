@@ -4,6 +4,7 @@ const omit = require("./omit");
 const { addToQueue, start } = require("./periodicIngestor");
 const createRedisBackend = require("./periodicIngestorRedisBackend");
 const createInMemoryBackend = require("./periodicIngestorInMemoryBackend");
+const uuid = require("uuid");
 
 const track = async (name, event) => {
   const flatEvent = flattenObj(event);
@@ -21,6 +22,21 @@ const track = async (name, event) => {
 
   addToQueue(eventInsertEntry);
 
+  const rawEventInsertEntry = {
+    table: "raw",
+    row: {
+      event_id: uuid.v1(),
+      event: "raw",
+      property_data: JSON.stringify(eventInsertEntry.row),
+      timestamp: bigQueryConfig.bigquery.datetime(
+        event.timestamp.toISOString()
+      ),
+      tracking_id: flatEvent.tracking_id,
+    },
+  };
+
+  addToQueue(rawEventInsertEntry);
+
   const flatTrack = flattenObj(omit("property", event));
 
   const trackInsertEntry = {
@@ -35,6 +51,21 @@ const track = async (name, event) => {
   };
 
   addToQueue(trackInsertEntry);
+
+  const rawTrackInsertEntry = {
+    table: "raw",
+    row: {
+      event_id: uuid.v1(),
+      event: "raw",
+      property_data: JSON.stringify(trackInsertEntry.row),
+      timestamp: bigQueryConfig.bigquery.datetime(
+        event.timestamp.toISOString()
+      ),
+      tracking_id: flatEvent.tracking_id,
+    },
+  };
+
+  addToQueue(rawTrackInsertEntry);
 };
 
 const identify = async (identity) => {

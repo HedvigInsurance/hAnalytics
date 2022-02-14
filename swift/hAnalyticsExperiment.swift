@@ -21,6 +21,7 @@ public struct hAnalyticsExperiment {
       filter: [
         "allow_external_data_collection", "forever_february_campaign", "french_market", "key_gear",
         "login_method", "moving_flow", "payment_type", "post_onboarding_show_payment_step",
+        "update_necessary",
       ],
       onComplete: onComplete
     )
@@ -95,10 +96,10 @@ public struct hAnalyticsExperiment {
       return variant
     }
 
-    hAnalyticsEvent.experimentEvaluated(name: "login_method", variant: LoginMethod.otp.rawValue)
+    hAnalyticsEvent.experimentEvaluated(name: "login_method", variant: LoginMethod.nemId.rawValue)
       .send()
 
-    return .otp
+    return .nemId
   }
 
   /// Is moving flow activated
@@ -146,6 +147,20 @@ public struct hAnalyticsExperiment {
       name: "post_onboarding_show_payment_step",
       variant: "disabled"
     ).send()
+
+    return false
+  }
+
+  /// Defines the lowest supported app version. Should prompt a user to update if it uses an outdated version.
+  public static var updateNecessary: Bool {
+    if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
+      experiment["name"] == "update_necessary"
+    }), let variant = experiment["variant"] {
+      hAnalyticsEvent.experimentEvaluated(name: "update_necessary", variant: variant).send()
+      return variant == "enabled"
+    }
+
+    hAnalyticsEvent.experimentEvaluated(name: "update_necessary", variant: "disabled").send()
 
     return false
   }
