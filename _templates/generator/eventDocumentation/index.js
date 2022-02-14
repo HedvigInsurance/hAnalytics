@@ -3,7 +3,7 @@ const fs = require("fs");
 const typeMaps = require("../../../commons/typeMaps");
 const mockRunGraphQLQuery = require("../../../commons/mockRunGraphqlEvent");
 const { Octokit } = require("@octokit/core");
-const eventToSchemaFields = require("../../../server/bigQuery/schema/eventToSchemaFields");
+const eventToSchemaFields = require("../../../server/bigquery/schema/eventToSchemaFields");
 
 const octokit = new Octokit({
   auth: process.env.GITHUB_TOKEN,
