@@ -98,10 +98,10 @@ public struct hAnalyticsExperiment {
 
     hAnalyticsEvent.experimentEvaluated(
       name: "login_method",
-      variant: LoginMethod.bankIdNorway.rawValue
+      variant: LoginMethod.bankIdSweden.rawValue
     ).send()
 
-    return .bankIdNorway
+    return .bankIdSweden
   }
 
   /// Is moving flow activated
