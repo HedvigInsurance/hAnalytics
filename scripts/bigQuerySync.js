@@ -56,15 +56,35 @@ const transfer = async () => {
       var rows = [];
 
       try {
-        const query = `
-        SELECT * FROM \`${bigQueryConfig.projectId}.${source}.${event.name}\`
-        WHERE DATE_DIFF("${day}", EXTRACT(DATE FROM original_timestamp), DAY) = 0
-    `;
+        var query = "";
+
+        if (event.bigQuery?.noEventFields === true) {
+          query = `
+          SELECT
+            *
+            FROM
+              \`${bigQueryConfig.projectId}.${source}.${event.name}\` source
+            LEFT JOIN \`${bigQueryConfig.projectId}.${bigQueryConfig.dataset}.${tableName}\` destination ON source.original_timestamp = destination.timestamp
+            WHERE destination.timestamp IS NULL
+            `;
+        } else {
+          query = `
+          SELECT
+            *
+            FROM
+              \`${bigQueryConfig.projectId}.${source}.${event.name}\` source
+            LEFT JOIN \`${bigQueryConfig.projectId}.${bigQueryConfig.dataset}.${tableName}\` destination ON source.original_timestamp = destination.timestamp
+            WHERE destination.timestamp IS NULL
+            `;
+        }
 
         const [fetchedRows] = await bigQueryConfig.bigquery
           .dataset(source)
           .table(event.name)
-          .query(query);
+          .query({
+            query,
+            useQueryCache: false,
+          });
 
         rows = fetchedRows;
       } catch (err) {}
