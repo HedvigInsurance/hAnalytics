@@ -41,9 +41,6 @@ const transfer = async () => {
       parseInt(process.env.MATRIX_SKIP)
     );
 
-  console.log(events[9]);
-  console.log(events[0]);
-
   const days = [...Array(20)].map((_, index) => {
     var d = new Date();
     d.setDate(d.getDate() - index);
