@@ -127,10 +127,10 @@ public struct hAnalyticsExperiment {
       return variant
     }
 
-    hAnalyticsEvent.experimentEvaluated(name: "payment_type", variant: PaymentType.trustly.rawValue)
+    hAnalyticsEvent.experimentEvaluated(name: "payment_type", variant: PaymentType.adyen.rawValue)
       .send()
 
-    return .trustly
+    return .adyen
   }
 
   /// Show payment step in PostOnboarding
