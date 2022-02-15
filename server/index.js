@@ -92,13 +92,10 @@ app.post("/event", async (req, res) => {
       );
 
       selectors.forEach((selector) => {
-        const result = jmespath.search(graphqlData, selector.path);
-
-        try {
-          allProperties[selector.name] = JSON.parse(result);
-        } catch (err) {
-          allProperties[selector.name] = result;
-        }
+        allProperties[selector.name] = jmespath.search(
+          graphqlData,
+          selector.path
+        );
       });
     }
 
