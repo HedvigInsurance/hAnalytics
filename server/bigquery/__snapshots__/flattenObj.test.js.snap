@@ -47,3 +47,9 @@ Object {
   "property_store_other": "two",
 }
 `;
+
+exports[`flattens correctly 6`] = `
+Object {
+  "property_initiated_from": "test",
+}
+`;

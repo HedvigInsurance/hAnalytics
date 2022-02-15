@@ -64,4 +64,12 @@ test("flattens correctly", async () => {
       },
     })
   ).toMatchSnapshot();
+
+  expect(
+    flattenObj({
+      property: {
+        initiated_from: "test",
+      },
+    })
+  ).toMatchSnapshot();
 });
