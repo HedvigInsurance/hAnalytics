@@ -129,10 +129,6 @@ const transfer = async () => {
         const flatRow = flattenObj(row);
         var propertyMappedFlatRow = {};
 
-        propertyMappedFlatRow["loaded_at"] = bigQueryConfig.bigquery.datetime(
-          new Date().toISOString()
-        );
-
         Object.keys(flatRow).forEach((key) => {
           propertyMappedFlatRow[key] = flatRow[key];
 
@@ -169,6 +165,10 @@ const transfer = async () => {
           event.name,
           propertyMappedFlatRow,
           bigQueryConfig
+        );
+
+        filteredRow["loaded_at"] = bigQueryConfig.bigquery.datetime(
+          new Date().toISOString()
         );
 
         const valid = await validateAgainstSchema(
