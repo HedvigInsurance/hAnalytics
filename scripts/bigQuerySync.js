@@ -7,7 +7,7 @@ const setupTable = require("../server/bigquery/schema/setupTable");
 const eventToSchemaFields = require("../server/bigquery/schema/eventToSchemaFields");
 const timersPromises = require("timers/promises");
 const insertDynamicFields = require("../server/bigquery/schema/insertDynamicFields");
-const filterFieldsAccordingToEvent = require("../server/bigQuery/schema/filterFieldsAccordingToEvent");
+const filterFieldsAccordingToEvent = require("../server/bigquery/schema/filterFieldsAccordingToEvent");
 
 function chunk(arr, len) {
   var chunks = [],
