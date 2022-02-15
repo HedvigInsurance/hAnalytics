@@ -14,10 +14,10 @@ const eventToSchemaFields = (event, base = {}) => {
 
     if (Array.isArray(typeOptions)) {
       typeOptions.forEach((option) => {
-        if (option.name.startsWith(input.name)) {
+        if (option.name.startsWith(`property_${input.name}`)) {
           propertyFields.push({
             ...option,
-            name: `property_${option.name.replace(/^property_/, "")}`,
+            name: option.name ? option.name : `property_${input.name}`,
             description: input.description || "",
           });
         }

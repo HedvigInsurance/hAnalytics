@@ -283,12 +283,6 @@ Array [
           Object {
             "description": "",
             "mode": "NULLABLE",
-            "name": "property_random_personal_number",
-            "type": "STRING",
-          },
-          Object {
-            "description": "",
-            "mode": "NULLABLE",
             "name": "property_store_hello",
             "type": "STRING",
           },
@@ -296,12 +290,6 @@ Array [
             "description": "",
             "mode": "NULLABLE",
             "name": "property_store_personal_number",
-            "type": "STRING",
-          },
-          Object {
-            "description": "",
-            "mode": "NULLABLE",
-            "name": "some_rouge_field_that_should_be_gone",
             "type": "STRING",
           },
           Object {
@@ -460,12 +448,6 @@ Array [
           Object {
             "description": "",
             "mode": "NULLABLE",
-            "name": "property_random_personal_number",
-            "type": "STRING",
-          },
-          Object {
-            "description": "",
-            "mode": "NULLABLE",
             "name": "property_store_hello",
             "type": "STRING",
           },
@@ -473,12 +455,6 @@ Array [
             "description": "",
             "mode": "NULLABLE",
             "name": "property_store_personal_number",
-            "type": "STRING",
-          },
-          Object {
-            "description": "",
-            "mode": "NULLABLE",
-            "name": "some_rouge_field_that_should_be_gone",
             "type": "STRING",
           },
           Object {
