@@ -1,4 +1,5 @@
 require("dd-trace").init();
+require("dotenv").config();
 
 const express = require("express");
 const { request, gql } = require("graphql-request");

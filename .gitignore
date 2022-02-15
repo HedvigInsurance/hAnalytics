@@ -8,3 +8,4 @@ ktfmt.jar
 docs/docs/Events/Definitions/**/*.md
 docs/docs/Experiments/Definitions/**/*.md
 google-credentials.json
+.env
