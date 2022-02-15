@@ -143,7 +143,8 @@ const transfer = async () => {
 
         var filteredRow = await filterFieldsAccordingToEvent(
           event,
-          propertyMappedFlatRow
+          propertyMappedFlatRow,
+          bigQueryConfig
         );
 
         const valid = await validateAgainstSchema(
