@@ -171,7 +171,7 @@ abstract class HAnalytics {
     /**
      * When embark sends a tracking event
      */
-    fun embarkTrack(storyName: String, eventName: String, store: Map<String, Any?>) {
+    fun embarkTrack(storyName: String, eventName: String, store: Map<String, Optional>) {
         send(
             HAnalyticsEvent(
                 name = "embark_track",
