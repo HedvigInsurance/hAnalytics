@@ -52,6 +52,13 @@ const validateAgainstSchema = async (name, row, bigQueryConfig) => {
     return false;
   });
 
+  if (invalidField) {
+    console.log(
+      `Struck an invalid field when validating ${event.name}`,
+      invalidField
+    );
+  }
+
   return !invalidField;
 };
 

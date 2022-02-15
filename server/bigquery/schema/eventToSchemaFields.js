@@ -13,16 +13,18 @@ const eventToSchemaFields = (event, base = {}) => {
     }
 
     if (Array.isArray(typeOptions)) {
-      typeOptions.map((option) => {
-        propertyFields.push({
-          name: option.name ? option.name : `property_${input.name}`,
-          description: input.description || "",
-          ...option,
-        });
+      typeOptions.forEach((option) => {
+        if (option.name.startsWith(input.name)) {
+          propertyFields.push({
+            ...option,
+            name: `property_${option.name.replace(/^property_/, "")}`,
+            description: input.description || "",
+          });
+        }
       });
     } else {
       propertyFields.push({
-        name: `property_${input.name}`,
+        name: `property_${input.name.replace(/^property_/, "")}`,
         description: input.description || "",
         ...typeOptions,
       });

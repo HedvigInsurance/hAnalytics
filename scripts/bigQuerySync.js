@@ -8,6 +8,7 @@ const eventToSchemaFields = require("../server/bigquery/schema/eventToSchemaFiel
 const timersPromises = require("timers/promises");
 const insertDynamicFields = require("../server/bigquery/schema/insertDynamicFields");
 const filterFieldsAccordingToEvent = require("../server/bigquery/schema/filterFieldsAccordingToEvent");
+const uuid = require("uuid");
 
 function chunk(arr, len) {
   var chunks = [],
@@ -60,11 +61,9 @@ const transfer = async () => {
         if (event.bigQuery?.noEventFields === true) {
           query = `
           SELECT
-            srouce.*
+            source.*
             FROM
               \`${bigQueryConfig.projectId}.${source}.${event.name}\` source
-            LEFT JOIN \`${bigQueryConfig.projectId}.${bigQueryConfig.dataset}.${tableName}\` destination ON source.original_timestamp = destination.timestamp
-            WHERE destination.timestamp IS NULL
             `;
         } else {
           query = `
@@ -72,8 +71,6 @@ const transfer = async () => {
             source.*
             FROM
               \`${bigQueryConfig.projectId}.${source}.${event.name}\` source
-            LEFT JOIN \`${bigQueryConfig.projectId}.${bigQueryConfig.dataset}.${tableName}\` destination ON source.original_timestamp = destination.timestamp
-            WHERE destination.timestamp IS NULL
             `;
         }
 
@@ -128,18 +125,20 @@ const transfer = async () => {
         Object.keys(flatRow).forEach((key) => {
           propertyMappedFlatRow[key] = flatRow[key];
 
-          if (typeof flatRow[key] === "string") {
-            try {
-              propertyMappedFlatRow[`property_${key}`] = JSON.parse(
-                flatRow[key]
-              );
+          try {
+            const parsedValue = JSON.parse(flatRow[key]);
+
+            if (Array.isArray(parsedValue)) {
+              propertyMappedFlatRow[`property_${key}`] = parsedValue;
               propertyMappedFlatRow[`property_${key.replace("_id", "id")}`] =
-                JSON.parse(flatRow[key]);
-            } catch (err) {
-              propertyMappedFlatRow[`property_${key}`] = flatRow[key];
-              propertyMappedFlatRow[`property_${key.replace("_id", "id")}`] =
-                flatRow[key];
+                parsedValue;
+            } else {
+              throw new Error("Not array");
             }
+          } catch (err) {
+            propertyMappedFlatRow[`property_${key}`] = flatRow[key];
+            propertyMappedFlatRow[`property_${key.replace("_id", "id")}`] =
+              flatRow[key];
           }
         });
 
@@ -150,6 +149,10 @@ const transfer = async () => {
 
         propertyMappedFlatRow.timestamp = flatRow["original_timestamp_value"];
         propertyMappedFlatRow.tracking_id = flatRow["user_id"];
+
+        // some early events miss a correct context_session_id
+        propertyMappedFlatRow.context_session_id =
+          flatRow["context_session_id"] ?? uuid.v1();
 
         var filteredRow = await filterFieldsAccordingToEvent(
           event.name,
@@ -167,7 +170,6 @@ const transfer = async () => {
           rowsToInsert.push(filteredRow);
           numberValid++;
         } else {
-          console.log(filteredRow);
           numberInvalid++;
         }
       }
@@ -178,6 +180,19 @@ const transfer = async () => {
             .dataset(bigQueryConfig.dataset)
             .table(tableName)
             .insert(rows);
+
+          await bigQueryConfig.bigquery
+            .dataset(bigQueryConfig.dataset)
+            .table("__sync_table_raw")
+            .insert(
+              rows.map((row) => ({
+                event: "raw",
+                event_id: row["event_id"],
+                property_data: JSON.stringify(row),
+                timestamp: row["timestamp"],
+                tracking_id: row["tracking_id"],
+              }))
+            );
         };
 
         await Promise.all(
@@ -193,7 +208,9 @@ const transfer = async () => {
       }
 
       console.log(
-        `Done with ${event.name}: valid: ${numberValid}, invalid: ${numberInvalid}`
+        `Done with ${event.name}: valid ${
+          numberValid > 0
+        }, invalid: ${numberInvalid}`
       );
 
       totalValid = totalValid + numberValid;
