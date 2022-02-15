@@ -40,8 +40,6 @@ const upsert = async () => {
       (field) => field.name !== "loaded_at"
     );
 
-    console.log(fieldsExcludingLoadedAt);
-
     await setupTable(
       destination,
       event.description,
