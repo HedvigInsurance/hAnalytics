@@ -36,10 +36,16 @@ const upsert = async () => {
 
     const sourceMetadata = await getSchema(source, bigQueryConfig);
 
+    const fieldsExcludingLoadedAt = sourceMetadata.schema.fields.filter(
+      (field) => field.name !== "loaded_at"
+    );
+
+    console.log(fieldsExcludingLoadedAt);
+
     await setupTable(
       destination,
       event.description,
-      sourceMetadata.schema.fields,
+      fieldsExcludingLoadedAt,
       bigQueryConfig
     );
 
@@ -52,13 +58,9 @@ const upsert = async () => {
         ...destinationMetadata,
         schema: {
           ...destinationMetadata,
-          fields: sourceMetadata.schema.fields,
+          fields: fieldsExcludingLoadedAt,
         },
       });
-
-    const fieldsExcludingLoadedAt = sourceMetadata.schema.fields.filter(
-      (field) => field.name !== "loaded_at"
-    );
 
     var query = ``;
 
