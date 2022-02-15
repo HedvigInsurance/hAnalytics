@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`filters according to event: another_mock_event 1`] = `Object {}`;
+
+exports[`filters according to event: mock_event 1`] = `Object {}`;

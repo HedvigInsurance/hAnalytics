@@ -2,55 +2,43 @@ const typeMaps = require("../../../commons/typeMaps");
 const { generalFields, contextFields, eventFields } = require("./schemaFields");
 const sortFields = require("./sortFields");
 
-const eventToSchemaFields = (event) => {
+const eventToSchemaFields = (event, base = {}) => {
   var propertyFields = [];
 
-  if (event.inputs) {
-    event.inputs.forEach((input) => {
-      let typeOptions = typeMaps.bigQuerySchemaTypeMap(input.type);
+  const addFields = (input) => {
+    let typeOptions = typeMaps.bigQuerySchemaTypeMap(input.type, base);
 
-      if (!typeOptions) {
-        return;
-      }
+    if (!typeOptions) {
+      return;
+    }
 
+    if (Array.isArray(typeOptions)) {
+      typeOptions.map((option) => {
+        propertyFields.push({
+          name: option.name ? option.name : `property_${input.name}`,
+          description: input.description || "",
+          ...option,
+        });
+      });
+    } else {
       propertyFields.push({
         name: `property_${input.name}`,
         description: input.description || "",
         ...typeOptions,
       });
-    });
+    }
+  };
+
+  if (event.inputs) {
+    event.inputs.forEach(addFields);
   }
 
   if (event.constants) {
-    event.constants.forEach((constant) => {
-      let typeOptions = typeMaps.bigQuerySchemaTypeMap(constant.type);
-
-      if (!typeOptions) {
-        return;
-      }
-
-      propertyFields.push({
-        name: `property_${constant.name}`,
-        description: constant.description || "",
-        ...typeOptions,
-      });
-    });
+    event.constants.forEach(addFields);
   }
 
   if (event.graphql) {
-    event.graphql.selectors.forEach((selector) => {
-      let typeOptions = typeMaps.bigQuerySchemaTypeMap(selector.type);
-
-      if (!typeOptions) {
-        return;
-      }
-
-      propertyFields.push({
-        name: `property_${selector.name}`,
-        description: selector.description || "",
-        ...typeOptions,
-      });
-    });
+    event.graphql.selectors.forEach(addFields);
   }
 
   const excludeEventFields = event.bigQuery?.noEventFields === true;

@@ -10,13 +10,8 @@ const validateAgainstSchema = async (name, row, bigQueryConfig) => {
     fields: [],
   };
 
-  return !schema.fields.find((field) => {
+  const invalidField = schema.fields.find((field) => {
     const key = field.name;
-
-    // old depreceated fields that we no longer care about
-    if (key === "context_device_id" || key === "context_device_version") {
-      return false;
-    }
 
     if (row[key] == null && field.mode === "REQUIRED") {
       return true;
@@ -56,6 +51,8 @@ const validateAgainstSchema = async (name, row, bigQueryConfig) => {
 
     return false;
   });
+
+  return !invalidField;
 };
 
 module.exports = validateAgainstSchema;

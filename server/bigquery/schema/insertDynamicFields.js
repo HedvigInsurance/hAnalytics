@@ -1,11 +1,11 @@
-const getEvents = require("../../../commons/getEvents");
-const typeMaps = require("../../../commons/typeMaps");
 const getSchema = require("./getSchema");
 const sortFields = require("./sortFields");
-const timersPromises = require("timers/promises");
+const eventToSchemaFields = require("./eventToSchemaFields");
 
 const insertDynamicFields = async (name, tableName, row, bigQueryConfig) => {
-  const event = (await getEvents()).find((event) => event.name == name);
+  const event = (await bigQueryConfig.getEvents()).find(
+    (event) => event.name == name
+  );
 
   if (!event) {
     console.log(`No matching event with ${name}`);
@@ -19,34 +19,7 @@ const insertDynamicFields = async (name, tableName, row, bigQueryConfig) => {
     fields: [],
   };
 
-  const fields = Object.keys(row)
-    .map((key) => {
-      if (schema.fields.find((field) => field.name === key)) {
-        return null;
-      }
-
-      if (
-        ![...(event.inputs ?? []), ...(event.constants ?? [])].find((input) =>
-          key.startsWith(`property_${input.name}`)
-        )
-      ) {
-        return null;
-      }
-
-      const type = typeMaps.bigQuerySchemaTypeMap(
-        `Optional<${typeMaps.jsTypeMap(row[key])}>`
-      );
-
-      if (!type?.type) {
-        return null;
-      }
-
-      return {
-        name: key,
-        ...type,
-      };
-    })
-    .filter((i) => i);
+  const fields = eventToSchemaFields(event, row);
 
   const table = bigQueryConfig.bigquery
     .dataset(bigQueryConfig.dataset)

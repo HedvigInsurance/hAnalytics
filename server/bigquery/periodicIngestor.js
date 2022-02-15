@@ -2,7 +2,7 @@ const timersPromises = require("timers/promises");
 const setupSchema = require("./setupSchema");
 const validateAgainstSchema = require("./schema/validateAgainstSchema");
 const insertDynamicFields = require("./schema/insertDynamicFields");
-const omit = require("./omit");
+const filterFieldsAccordingToEvent = require("./schema/filterFieldsAccordingToEvent");
 
 var insertQueueBackend = null;
 var schemaLoaded = false;
@@ -89,7 +89,18 @@ const ingest = async (config) => {
 
     console.log(`inserting row into BQ ${entry.table}`);
 
-    const valid = await validateAgainstSchema(entry.table, entry.row, config);
+    const filteredRow = await filterFieldsAccordingToEvent(
+      entry.table,
+      entry.row,
+      config
+    );
+    var valid;
+
+    try {
+      valid = await validateAgainstSchema(entry.table, filteredRow, config);
+    } catch (err) {
+      valid = false;
+    }
 
     if (!valid) {
       console.log(
@@ -97,7 +108,12 @@ const ingest = async (config) => {
       );
 
       try {
-        await insertDynamicFields(entry.table, entry.table, entry.row, config);
+        await insertDynamicFields(
+          entry.table,
+          entry.table,
+          filteredRow,
+          config
+        );
         await putBackIntoQueue(new Error("not valid against schema"));
       } catch (err) {
         await putBackIntoQueue(err);
@@ -108,9 +124,7 @@ const ingest = async (config) => {
         await config.bigquery
           .dataset(config.dataset)
           .table(entry.table)
-          .insert([
-            omit(["context_device_id", "context_device_version"], entry.row),
-          ]);
+          .insert([filteredRow]);
       } catch (err) {
         if (err.name == "PartialFailureError") {
           console.log(
@@ -131,20 +145,18 @@ module.exports = {
   addToQueue: (entry) => {
     insertQueueBackend?.append(entry);
   },
-  start: (config, backend, interval = 10000, shouldSetupSchema = true) => {
+  start: async (config, backend, interval = 10000) => {
     running = true;
     insertQueueBackend = backend;
     currentInterval = interval;
 
-    if (shouldSetupSchema) {
-      setupSchema(() => {
-        schemaLoaded = true;
-      }, config);
-    } else {
+    await setupSchema(() => {
       schemaLoaded = true;
-    }
+    }, config);
 
-    return ingest(config);
+    ingest(config);
+
+    return;
   },
   stop: async () => {
     running = false;

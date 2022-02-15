@@ -1,4 +1,4 @@
-module.exports = () => {
+module.exports = (events) => {
   var tables = [];
 
   var bigquery = {
@@ -68,5 +68,6 @@ module.exports = () => {
     dataset: "mock_dataset",
     bigquery: bigquery,
     projectId: "mock_project_id",
+    getEvents: async () => events,
   };
 };

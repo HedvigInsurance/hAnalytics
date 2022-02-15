@@ -31,4 +31,35 @@ test("bigQuerySchemaTypeMap", () => {
     type: "INTEGER",
     mode: "NULLABLE",
   });
+
+  expect(
+    typeMaps.bigQuerySchemaTypeMap("Dictionary<String, Any>", {
+      hello: 123,
+    })
+  ).toEqual([{ mode: "NULLABLE", name: "hello", type: "INTEGER" }]);
+
+  expect(typeMaps.bigQuerySchemaTypeMap("Optional<Any>", "Value")).toEqual({
+    type: "STRING",
+    mode: "NULLABLE",
+  });
+
+  expect(
+    typeMaps.bigQuerySchemaTypeMap("Dictionary<String, Any>", {
+      hello: 123,
+      hello_mock: "mock",
+    })
+  ).toEqual([
+    { mode: "NULLABLE", name: "hello", type: "INTEGER" },
+    { mode: "NULLABLE", name: "hello_mock", type: "STRING" },
+  ]);
+
+  expect(
+    typeMaps.bigQuerySchemaTypeMap("Dictionary<String, Optional<Any>>", {
+      hello: 123,
+      hello_mock: "mock",
+    })
+  ).toEqual([
+    { mode: "NULLABLE", name: "hello", type: "INTEGER" },
+    { mode: "NULLABLE", name: "hello_mock", type: "STRING" },
+  ]);
 });

@@ -58,7 +58,7 @@ const getKotlinType = (type) => {
     }, "");
 };
 
-const getBigQuerySchemaType = (type) => {
+const getBigQuerySchemaType = (type, base = {}) => {
   if (!type) {
     return null;
   }
@@ -85,31 +85,36 @@ const getBigQuerySchemaType = (type) => {
       mode: "REQUIRED",
     },
     Optional: (inner) => ({
-      type: inner.type,
+      ...getBigQuerySchemaType(inner, base),
       mode: "NULLABLE",
     }),
     Array: (inner) => ({
-      type: inner.type,
+      ...getBigQuerySchemaType(inner, base),
       mode: "REPEATED",
     }),
-    Dictionary: () => null,
+    Dictionary: (inner) =>
+      Object.keys(base).map((key) => {
+        return {
+          name: key,
+          ...getBigQuerySchemaType(inner.split(", ")[1], base[key]),
+          mode: "NULLABLE",
+        };
+      }),
+    Any: {
+      ...getBigQuerySchemaType(getJSToHAnalyticsType(base)),
+      mode: "REQUIRED",
+    },
   };
 
-  return type
-    .split("<")
-    .reverse()
-    .reduce((acc, curr) => {
-      const currWithoutBrackets = curr?.type
-        ? curr.type
-        : curr.replace(/>/g, "");
-      const primitive = primitives[currWithoutBrackets];
+  const splitted = type.split("<");
 
-      if (typeof primitive === "function") {
-        return primitive(acc ?? "");
-      }
+  const primitive = primitives[splitted.shift().replaceAll(">", "")];
 
-      return primitive ? primitive : currWithoutBrackets;
-    }, "");
+  if (typeof primitive === "function") {
+    return primitive(splitted.join("<"), base);
+  }
+
+  return primitive;
 };
 
 const getJSToHAnalyticsType = (value) => {

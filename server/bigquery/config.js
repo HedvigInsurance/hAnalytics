@@ -1,4 +1,5 @@
 const { BigQuery } = require("@google-cloud/bigquery");
+const getEvents = require("../../commons/getEvents");
 const bigquery = new BigQuery(
   process.env.GOOGLE_CREDENTIALS
     ? {
@@ -14,4 +15,5 @@ module.exports = {
   dataset,
   bigquery,
   projectId: process.env.GCLOUD_PROJECT,
+  getEvents: getEvents,
 };

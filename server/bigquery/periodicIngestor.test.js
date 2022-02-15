@@ -7,30 +7,61 @@ const {
 } = require("./periodicIngestor");
 const timersPromises = require("timers/promises");
 const createInMemoryBackend = require("./periodicIngestorInMemoryBackend");
-const setupTable = require("./schema/setupTable");
 const createBigQueryConfigMock = require("./config.mock");
-const { bigQuerySchemaTypeMap } = require("../../commons/typeMaps");
+const schemaFields = require("./schema/schemaFields");
+
+const mockFieldReducer = (acc, curr) => {
+  switch (curr.type) {
+    case "INTEGER":
+      acc[curr.name] = 0;
+      return acc;
+    case "BOOLEAN":
+      acc[curr.name] = true;
+      return acc;
+    case "STRING":
+      acc[curr.name] = "mock";
+      return acc;
+    case "TIMESTAMP":
+      acc[curr.name] = "2020-02-10";
+      return acc;
+  }
+
+  return acc;
+};
+
+const mockContextProperties = schemaFields.contextFields.reduce(
+  mockFieldReducer,
+  {}
+);
+
+const mockEventProperties = schemaFields.eventFields.reduce(
+  mockFieldReducer,
+  {}
+);
+
+const mockGeneralProperties = schemaFields.generalFields.reduce(
+  mockFieldReducer,
+  {}
+);
 
 test("ingests correctly", async () => {
-  const bigQueryConfig = createBigQueryConfigMock();
-  start(bigQueryConfig, createInMemoryBackend(), 100, false);
-
-  await setupTable(
-    "mock_table",
-    "a mock table",
-    [
-      {
-        name: "property",
-        type: "STRING",
-      },
-    ],
-    bigQueryConfig
-  );
+  const bigQueryConfig = createBigQueryConfigMock([
+    {
+      name: "mock_event",
+      inputs: [
+        {
+          name: "hello",
+          type: "String",
+        },
+      ],
+    },
+  ]);
+  start(bigQueryConfig, createInMemoryBackend(), 100);
 
   await addToQueue({
-    table: "mock_table",
+    table: "mock_event",
     row: {
-      property: "HELLO",
+      property_hello: "HELLO",
     },
   });
 
@@ -42,28 +73,81 @@ test("ingests correctly", async () => {
 });
 
 test("ingests exact amount of rows", async () => {
-  const bigQueryConfig = createBigQueryConfigMock();
-  start(bigQueryConfig, createInMemoryBackend(), 25, false);
-
-  await setupTable(
-    "mock_table",
-    "a mock table",
-    [
-      {
-        name: "property",
-        type: "STRING",
-      },
-    ],
-    bigQueryConfig
-  );
+  const bigQueryConfig = createBigQueryConfigMock([
+    {
+      name: "mock_event",
+      inputs: [
+        {
+          name: "hello",
+          type: "String",
+        },
+      ],
+    },
+  ]);
+  await start(bigQueryConfig, createInMemoryBackend(), 25);
 
   const numberOfRows = 50;
 
   [...new Array(numberOfRows)].forEach(() => {
     addToQueue({
-      table: "mock_table",
+      table: "mock_event",
       row: {
-        property: "HELLO",
+        ...mockContextProperties,
+        ...mockEventProperties,
+        ...mockGeneralProperties,
+        property_hello: "HELLO",
+      },
+    });
+  });
+
+  await waitUntilIdle();
+  await stop();
+
+  expect(bigQueryConfig.bigquery.getTables()[0].rows.length).toEqual(
+    numberOfRows
+  );
+}, 5000);
+
+test("doesnt ingest invalid rows", async () => {
+  const bigQueryConfig = createBigQueryConfigMock([
+    {
+      name: "mock_event",
+      inputs: [
+        {
+          name: "hello",
+          type: "String",
+        },
+        {
+          name: "hello_other",
+          type: "Double",
+        },
+      ],
+    },
+  ]);
+  await start(bigQueryConfig, createInMemoryBackend(), 5);
+
+  const numberOfRows = 25;
+
+  [...new Array(numberOfRows)].forEach((_, index) => {
+    addToQueue({
+      table: "mock_event",
+      row: {
+        ...mockContextProperties,
+        ...mockEventProperties,
+        ...mockGeneralProperties,
+        property_hello: "HELLO",
+        property_hello_other: Math.random(),
+      },
+    });
+
+    addToQueue({
+      table: "mock_event",
+      row: {
+        ...mockContextProperties,
+        ...mockEventProperties,
+        ...mockGeneralProperties,
+        property_hello: "HELLO",
+        property_hello_other: "value",
       },
     });
   });
@@ -76,76 +160,33 @@ test("ingests exact amount of rows", async () => {
   );
 });
 
-test("doesnt ingest invalid rows", async () => {
-  const bigQueryConfig = createBigQueryConfigMock();
-  start(bigQueryConfig, createInMemoryBackend(), 5, false);
-
-  await setupTable(
-    "mock_table",
-    "a mock table",
-    [
-      {
-        name: "property",
-        ...bigQuerySchemaTypeMap("String"),
-      },
-      {
-        name: "context_something",
-        ...bigQuerySchemaTypeMap("String"),
-      },
-    ],
-    bigQueryConfig
-  );
-
-  const numberOfRows = 25;
-
-  [...new Array(numberOfRows)].forEach((_, index) => {
-    addToQueue({
-      table: "mock_table",
-      row: {
-        property: "HELLO",
-        context_something: Math.random(),
-      },
-    });
-
-    addToQueue({
-      table: "mock_table",
-      row: {
-        property: "HELLO",
-        context_something: "value",
-      },
-    });
-  });
-
-  await waitUntilIdle();
-  await stop();
-
-  expect(bigQueryConfig.bigquery.getTables()[0].rows.length).toEqual(
-    numberOfRows
-  );
-}, 20000);
-
 test("does keep invalid rows", async () => {
-  const bigQueryConfig = createBigQueryConfigMock();
-  start(bigQueryConfig, createInMemoryBackend(), 5, false);
-
-  await setupTable(
-    "mock_table",
-    "a mock table",
-    [
-      {
-        name: "property",
-        type: "STRING",
-      },
-    ],
-    bigQueryConfig
-  );
+  const bigQueryConfig = createBigQueryConfigMock([
+    {
+      name: "mock_event",
+      inputs: [
+        {
+          name: "hello",
+          type: "String",
+        },
+        {
+          name: "hello_other",
+          type: "Double",
+        },
+      ],
+    },
+  ]);
+  await start(bigQueryConfig, createInMemoryBackend(), 5);
 
   const numberOfRows = 25;
 
   [...new Array(numberOfRows)].forEach((_, index) => {
     addToQueue({
-      table: "mock_table",
+      table: "mock_event",
       row: {
+        ...mockContextProperties,
+        ...mockEventProperties,
+        ...mockGeneralProperties,
         property: "HELLO",
         context_something_invalid: index,
       },
@@ -157,99 +198,50 @@ test("does keep invalid rows", async () => {
   await stop();
 
   expect(await consumeQueue()).toMatchSnapshot();
-}, 20000);
+});
 
-test("does ingest if tables update", async () => {
-  const bigQueryConfig = createBigQueryConfigMock();
-  start(bigQueryConfig, createInMemoryBackend(), 10, false);
-
-  await setupTable(
-    "mock_table",
-    "a mock table",
-    [
-      {
-        name: "property",
-        type: "STRING",
-      },
-    ],
-    bigQueryConfig
-  );
-
-  const numberOfRows = 25;
-
-  [...new Array(numberOfRows)].forEach(() => {
-    addToQueue({
-      table: "mock_table",
-      row: {
-        property: "HELLO",
-      },
-    });
-
-    addToQueue({
-      table: "mock_table2",
-      row: {
-        property_2: "HELLO",
-      },
-    });
-  });
-
-  await setupTable(
-    "mock_table2",
-    "a mock table",
-    [
-      {
-        name: "property_2",
-        type: "STRING",
-      },
-    ],
-    bigQueryConfig
-  );
-
-  await waitUntilIdle();
-  await stop();
-
-  expect(bigQueryConfig.bigquery.getTables()[0].rows.length).toEqual(
-    numberOfRows
-  );
-  expect(bigQueryConfig.bigquery.getTables()[1].rows.length).toEqual(
-    numberOfRows
-  );
-}, 20000);
-
-test("does ingest if schema updates", async () => {
-  const bigQueryConfig = createBigQueryConfigMock();
-  start(bigQueryConfig, createInMemoryBackend(), 10, false);
-
-  await setupTable(
-    "embark_track",
-    "a mock table",
-    [
-      {
-        name: "event_id",
-        type: "STRING",
-      },
-    ],
-    bigQueryConfig
-  );
+test("does ingest dynamic fields", async () => {
+  const bigQueryConfig = createBigQueryConfigMock([
+    {
+      name: "mock_event",
+      inputs: [
+        {
+          name: "hello",
+          type: "String",
+        },
+        {
+          name: "hello_other",
+          type: "Dictionary<String, Any>",
+        },
+      ],
+    },
+  ]);
+  await start(bigQueryConfig, createInMemoryBackend(), 10);
 
   const numberOfRows = 30;
 
   [...new Array(numberOfRows)].forEach((_, index) => {
     addToQueue({
-      table: "embark_track",
+      table: "mock_event",
       row: {
-        event_id: "mock_id",
+        ...mockContextProperties,
+        ...mockEventProperties,
+        ...mockGeneralProperties,
+        property_hello: "hello",
       },
     });
 
     addToQueue({
-      table: "embark_track",
+      table: "mock_event",
       row: {
-        event_id: "mock_id",
-        [`property_store_${index * 1000}`]: "HELLO",
-        [`property_store_${index * 1000}_double`]: 150,
-        [`property_store_${index * 1000}_bool`]: true,
-        [`property_store_${index * 1000}_array`]: ["string", "string2"],
+        ...mockContextProperties,
+        ...mockEventProperties,
+        ...mockGeneralProperties,
+        property_hello: "hello",
+        [`property_hello_other_field`]: "HELLO",
+        [`property_hello_other_field_double`]: 150,
+        [`property_hello_other_field_bool`]: true,
+        [`property_hello_other_field_array`]: ["string", "string2"],
       },
     });
   });
@@ -261,25 +253,27 @@ test("does ingest if schema updates", async () => {
     numberOfRows * 2
   );
   expect(bigQueryConfig.bigquery.getTables()).toMatchSnapshot();
-}, 20000);
+});
 
 test("does respect source version", async () => {
-  const bigQueryConfig = createBigQueryConfigMock();
-  start(bigQueryConfig, createInMemoryBackend(), 5, false);
+  const bigQueryConfig = createBigQueryConfigMock([
+    {
+      name: "mock_event",
+      inputs: [
+        {
+          name: "hello",
+          type: "String",
+        },
+        {
+          name: "hello_other",
+          type: "Dictionary<String, Any>",
+        },
+      ],
+    },
+  ]);
+  await start(bigQueryConfig, createInMemoryBackend(), 5);
 
   process.env.SOURCE_VERSION = 0;
-
-  await setupTable(
-    "mock_table",
-    "a mock table",
-    [
-      {
-        name: "property",
-        type: "STRING",
-      },
-    ],
-    bigQueryConfig
-  );
 
   const numberOfRows = 25;
 
@@ -287,7 +281,9 @@ test("does respect source version", async () => {
     addToQueue({
       table: "mock_table",
       row: {
-        property: "HELLO",
+        ...mockContextProperties,
+        ...mockEventProperties,
+        ...mockGeneralProperties,
         context_something_invalid: index,
       },
     });
@@ -318,4 +314,4 @@ test("does respect source version", async () => {
   await stop();
 
   expect((await consumeQueue()).length).toEqual(0);
-}, 20000);
+});

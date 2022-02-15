@@ -1,21 +1,21 @@
 const insertDynamicFields = require("./insertDynamicFields");
-const setupTable = require("./setupTable");
 const createBigQueryConfigMock = require("../config.mock");
+const setupSchema = require("../setupSchema");
 
 test("insert dynamic fields", async () => {
-  const bigQueryConfig = createBigQueryConfigMock();
+  const bigQueryConfig = createBigQueryConfigMock([
+    {
+      name: "embark_track",
+      inputs: [
+        {
+          name: "store",
+          type: "Dictionary<String, Any>",
+        },
+      ],
+    },
+  ]);
 
-  await setupTable(
-    "embark_track",
-    "mock table",
-    [
-      {
-        name: "property_store_hello",
-        type: "STRING",
-      },
-    ],
-    bigQueryConfig
-  );
+  await setupSchema(() => {}, bigQueryConfig);
 
   expect(bigQueryConfig.bigquery.getTables()).toMatchSnapshot();
 

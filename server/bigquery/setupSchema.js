@@ -1,9 +1,8 @@
-const getEvents = require("../../commons/getEvents");
 const setupTable = require("./schema/setupTable");
 const eventToSchemaFields = require("./schema/eventToSchemaFields");
 
 const setupSchema = async (onLoad, bigQueryConfig) => {
-  const events = await getEvents();
+  const events = await bigQueryConfig.getEvents();
 
   await Promise.all(
     events.map(async (event) => {

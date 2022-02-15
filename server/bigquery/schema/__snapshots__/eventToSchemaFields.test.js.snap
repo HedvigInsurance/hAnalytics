@@ -2399,6 +2399,12 @@ Array [
     "type": "STRING",
   },
   Object {
+    "description": "",
+    "mode": "NULLABLE",
+    "name": "property_store_an_item",
+    "type": "STRING",
+  },
+  Object {
     "description": "Time when event happened",
     "mode": "REQUIRED",
     "name": "timestamp",
