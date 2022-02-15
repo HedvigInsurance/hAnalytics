@@ -43,7 +43,7 @@ const transfer = async () => {
     const schemaFields = eventToSchemaFields(event);
     const tableName = `__sync_table_${event.name}`;
 
-    await bigQueryConfig.bigQuery
+    await bigQueryConfig.bigquery
       .dataset(bigQueryConfig.dataset)
       .table(tableName)
       .delete();
