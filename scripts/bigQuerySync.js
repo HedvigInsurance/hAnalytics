@@ -215,6 +215,7 @@ const transfer = async () => {
                 property_data: JSON.stringify(row),
                 timestamp: row["timestamp"],
                 tracking_id: row["tracking_id"],
+                loaded_at: row["loaded_at"],
               }))
             );
         };
