@@ -26,7 +26,23 @@ const source = process.env.SOURCE_DATASET;
 
 /// Takes everything from SOURCE_DATASET and puts into __sync_table_event_name
 const transfer = async () => {
-  const events = await getEvents();
+  const events = (await getEvents())
+    .sort((a, b) => {
+      if (a.name < b.name) {
+        return -1;
+      }
+      if (a.name > b.name) {
+        return 1;
+      }
+      return 0;
+    })
+    .slice(
+      parseInt(process.env.MATRIX_SKIP) - 10,
+      parseInt(process.env.MATRIX_SKIP)
+    );
+
+  console.log(events[9]);
+  console.log(events[0]);
 
   const days = [...Array(20)].map((_, index) => {
     var d = new Date();

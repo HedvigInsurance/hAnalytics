@@ -5,7 +5,20 @@ const setupTable = require("../server/bigquery/schema/setupTable");
 
 /// Takes everything from sync tables, and copies unique fields
 const upsert = async () => {
-  const events = await getEvents();
+  const events = (await getEvents())
+    .sort((a, b) => {
+      if (a.name < b.name) {
+        return -1;
+      }
+      if (a.name > b.name) {
+        return 1;
+      }
+      return 0;
+    })
+    .slice(
+      parseInt(process.env.MATRIX_SKIP) - 10,
+      parseInt(process.env.MATRIX_SKIP)
+    );
 
   if (typeof process.env.SOURCE_PREFIX === "undefined") {
     console.log("Set SOURCE_PREFIX");
