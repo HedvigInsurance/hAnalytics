@@ -7,6 +7,7 @@ const setupTable = require("../server/bigquery/schema/setupTable");
 const eventToSchemaFields = require("../server/bigquery/schema/eventToSchemaFields");
 const timersPromises = require("timers/promises");
 const insertDynamicFields = require("../server/bigquery/schema/insertDynamicFields");
+const filterFieldsAccordingToEvent = require("../server/bigQuery/schema/filterFieldsAccordingToEvent");
 
 function chunk(arr, len) {
   var chunks = [],
@@ -128,81 +129,22 @@ const transfer = async () => {
 
         Object.keys(flatRow).forEach((key) => {
           propertyMappedFlatRow[key] = flatRow[key];
-          propertyMappedFlatRow[`property_${key}`] = flatRow[key];
-        });
-
-        const metadata = bigQueryConfig.cacher.get(`schema-${tableName}`);
-
-        const keys = Object.keys(propertyMappedFlatRow).filter((key) =>
-          metadata.schema.fields.find((field) => field.name == key)
-        );
-
-        var filteredRow = {};
-
-        const parseFieldValue = (field, value) => {
-          if (field.mode === "NULLABLE" && value === null) {
-            return null;
-          } else if (field.mode === "REPEATED") {
-            if (Array.isArray(value) && value.length === 0) {
-              return value;
-            }
-
-            return JSON.parse(value).map((value) =>
-              parseFieldValue(
-                {
-                  ...field,
-                  mode: "REQUIRED",
-                },
-                value
-              )
-            );
-          } else if (field.type === "INTEGER" && value) {
-            return parseFloat(value);
-          } else if (field.type === "STRING") {
-            return `${value}`;
-          } else if (field.type === "BOOLEAN") {
-            return !!value;
-          }
-
-          return null;
-        };
-
-        keys.forEach((key) => {
-          const field = metadata.schema.fields.find(
-            (field) => field.name == key
-          );
-
-          if (field) {
-            if (key == "id") {
-              filteredRow[field.name] = parseFieldValue(field, row["_id"]);
-            } else if (key == "member_id") {
-              filteredRow[field.name] = parseFieldValue(
-                field,
-                flatRow["member_id"]
-              );
-            } else {
-              try {
-                filteredRow[field.name] = parseFieldValue(
-                  field,
-                  JSON.parse(flatRow[key])
-                );
-              } catch (err) {
-                filteredRow[field.name] = parseFieldValue(
-                  field,
-                  propertyMappedFlatRow[key]
-                );
-              }
-            }
-          }
+          propertyMappedFlatRow[`property_${key.replace("_id", "id")}`] =
+            flatRow[key];
         });
 
         if (event.bigQuery?.noEventFields !== true) {
-          filteredRow.event_id =
+          propertyMappedFlatRow.event_id =
             flatRow["context_hanalytics_event_id"] || flatRow["id"];
         }
 
-        filteredRow.timestamp = row["original_timestamp"];
-        filteredRow.tracking_id = row["user_id"];
+        propertyMappedFlatRow.timestamp = flatRow["original_timestamp"];
+        propertyMappedFlatRow.tracking_id = flatRow["user_id"];
+
+        var filteredRow = await filterFieldsAccordingToEvent(
+          event,
+          propertyMappedFlatRow
+        );
 
         const valid = await validateAgainstSchema(
           tableName,
