@@ -43,10 +43,22 @@ const transfer = async () => {
     const schemaFields = eventToSchemaFields(event);
     const tableName = `__sync_table_${event.name}`;
 
+    await bigQueryConfig.bigQuery
+      .dataset(bigQueryConfig.dataset)
+      .table(tableName)
+      .delete();
+
     await setupTable(
       tableName,
       event.description,
-      schemaFields,
+      [
+        ...schemaFields,
+        {
+          name: "loaded_at",
+          type: "TIMESTAMP",
+          mode: "REQUIRED",
+        },
+      ],
       bigQueryConfig
     );
 
@@ -121,6 +133,10 @@ const transfer = async () => {
       for (row of rows) {
         const flatRow = flattenObj(row);
         var propertyMappedFlatRow = {};
+
+        propertyMappedFlatRow["loaded_at"] = bigQueryConfig.bigquery.datetime(
+          new Date().toISOString()
+        );
 
         Object.keys(flatRow).forEach((key) => {
           propertyMappedFlatRow[key] = flatRow[key];

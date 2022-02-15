@@ -43,12 +43,17 @@ const upsert = async () => {
         },
       });
 
+    const fieldsExcludingLoadedAt = sourceMetadata.schema.fields.filter(
+      (field) => field.name !== "loaded_at"
+    );
+
     var query = ``;
-    var fieldsInsert = sourceMetadata.schema.fields
+
+    var fieldsInsert = fieldsExcludingLoadedAt
       .map((field) => field.name)
       .join(", ");
 
-    var fieldsToSelect = sourceMetadata.schema.fields
+    var fieldsToSelect = fieldsExcludingLoadedAt
       .map((field) => `source.${field.name}`)
       .join(", ");
 
@@ -84,6 +89,48 @@ const upsert = async () => {
 
     console.log(
       `Inserted a total of ${insertedRows.length} rows into ${destination}`
+    );
+
+    var updateQuery = ``;
+
+    var fieldsUpdate = fieldsExcludingLoadedAt
+      .map((field) => `${field.name} = source.${field.name}`)
+      .join(", ");
+
+    var fieldsUpdateSelect = fieldsExcludingLoadedAt
+      .map((field) => `${field.name}`)
+      .join(", ");
+
+    if (event.bigQuery?.noEventFields === true) {
+      updateQuery = `
+        UPDATE \`${bigQueryConfig.projectId}.${bigQueryConfig.dataset}.${destination}\` destination
+        SET ${fieldsUpdate}
+        FROM (
+        select ${fieldsUpdateSelect}, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY loaded_at DESC) as __row_number from \`${bigQueryConfig.projectId}.${bigQueryConfig.dataset}.${source}\`
+        ) source
+        WHERE source.timestamp = destination.timestamp AND __row_number = 1
+      `;
+    } else {
+      updateQuery = `
+        UPDATE \`${bigQueryConfig.projectId}.${bigQueryConfig.dataset}.${destination}\` destination
+        SET ${fieldsUpdate}
+        FROM (
+        select ${fieldsUpdateSelect}, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY loaded_at DESC) as __row_number from \`${bigQueryConfig.projectId}.${bigQueryConfig.dataset}.${source}\`
+        ) source
+        WHERE source.event_id = destination.event_id AND __row_number = 1
+      `;
+    }
+
+    const [updatedRows] = await bigQueryConfig.bigquery
+      .dataset(bigQueryConfig.dataset)
+      .table(source)
+      .query({
+        query: updateQuery,
+        useQueryCache: false,
+      });
+
+    console.log(
+      `Updated a total of ${updatedRows.length} rows into ${destination}`
     );
   }
 };
