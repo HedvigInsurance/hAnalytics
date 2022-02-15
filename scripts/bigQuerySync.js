@@ -42,6 +42,15 @@ const transfer = async () => {
     const schemaFields = eventToSchemaFields(event);
     const tableName = `__sync_table_${event.name}`;
 
+    try {
+      await bigQueryConfig.bigquery
+        .dataset(bigQueryConfig.dataset)
+        .table(tableName)
+        .delete();
+    } catch (err) {
+      console.log(err);
+    }
+
     await setupTable(
       tableName,
       event.description,
@@ -62,7 +71,7 @@ const transfer = async () => {
         if (event.bigQuery?.noEventFields === true) {
           query = `
           SELECT
-            *
+            srouce.*
             FROM
               \`${bigQueryConfig.projectId}.${source}.${event.name}\` source
             LEFT JOIN \`${bigQueryConfig.projectId}.${bigQueryConfig.dataset}.${tableName}\` destination ON source.original_timestamp = destination.timestamp
@@ -71,7 +80,7 @@ const transfer = async () => {
         } else {
           query = `
           SELECT
-            *
+            source.*
             FROM
               \`${bigQueryConfig.projectId}.${source}.${event.name}\` source
             LEFT JOIN \`${bigQueryConfig.projectId}.${bigQueryConfig.dataset}.${tableName}\` destination ON source.original_timestamp = destination.timestamp
@@ -129,8 +138,20 @@ const transfer = async () => {
 
         Object.keys(flatRow).forEach((key) => {
           propertyMappedFlatRow[key] = flatRow[key];
-          propertyMappedFlatRow[`property_${key.replace("_id", "id")}`] =
-            flatRow[key];
+
+          if (typeof flatRow[key] === "string") {
+            try {
+              propertyMappedFlatRow[`property_${key}`] = JSON.parse(
+                flatRow[key]
+              );
+              propertyMappedFlatRow[`property_${key.replace("_id", "id")}`] =
+                JSON.parse(flatRow[key]);
+            } catch (err) {
+              propertyMappedFlatRow[`property_${key}`] = flatRow[key];
+              propertyMappedFlatRow[`property_${key.replace("_id", "id")}`] =
+                flatRow[key];
+            }
+          }
         });
 
         if (event.bigQuery?.noEventFields !== true) {
@@ -138,11 +159,11 @@ const transfer = async () => {
             flatRow["context_hanalytics_event_id"] || flatRow["id"];
         }
 
-        propertyMappedFlatRow.timestamp = flatRow["original_timestamp"];
+        propertyMappedFlatRow.timestamp = flatRow["original_timestamp_value"];
         propertyMappedFlatRow.tracking_id = flatRow["user_id"];
 
         var filteredRow = await filterFieldsAccordingToEvent(
-          event,
+          event.name,
           propertyMappedFlatRow,
           bigQueryConfig
         );
