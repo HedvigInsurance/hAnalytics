@@ -1,5 +1,5 @@
 ---
-to: docs/docs/Events/<%= file.replace("events/", "Definitions/") %>.md
+to: docs/docs/<%= file.replace("definitions/events/", "Definitions/Events/") %>.md
 ---
 # <%= event.accessor %>
 ## <%= event.name %>

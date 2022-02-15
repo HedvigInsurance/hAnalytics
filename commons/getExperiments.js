@@ -2,7 +2,7 @@ const yaml = require("js-yaml");
 const fs = require("fs");
 const glob = require("glob");
 
-const loadEvent = async (importPath) => {
+const loadExperiment = async (importPath) => {
   const fileData = await new Promise((resolve, reject) => {
     fs.readFile(importPath, "utf8", (err, file) => {
       if (err) {
@@ -18,8 +18,8 @@ const loadEvent = async (importPath) => {
 
 const getEvents = async () =>
   await new Promise((resolve) => {
-    glob("definitions/events/**/*.yml", {}, async (_, files) => {
-      const events = await Promise.all(files.map(loadEvent));
+    glob("definitions/experiments/**/*.yml", {}, async (_, files) => {
+      const events = await Promise.all(files.map(loadExperiment));
       resolve(events);
     });
   });

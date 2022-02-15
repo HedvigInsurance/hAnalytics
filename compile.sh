@@ -5,11 +5,11 @@ HYGEN_OVERWRITE=1 npx hygen generator hAnalytics
 
 rm -rf docs/docs/events
 
-for file in $( find events -type f -name '*.yml' );
+for file in $( find definitions/events -type f -name '*.yml' );
     do HYGEN_OVERWRITE=1 npx hygen generator eventDocumentation --path $file
 done
 
-for file in $( find experiments -type f -name '*.yml' );
+for file in $( find definitions/experiments -type f -name '*.yml' );
     do HYGEN_OVERWRITE=1 npx hygen generator experimentDocumentation --path $file
 done
 

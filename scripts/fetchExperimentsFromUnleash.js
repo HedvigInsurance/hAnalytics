@@ -1,58 +1,63 @@
-const { startUnleash } = require("unleash-client")
-const yaml = require('js-yaml');
-const camelCase = require('camelcase');
-const fs = require("fs")
-const unleashConfig = require("../commons/unleashConfig")
+const { startUnleash } = require("unleash-client");
+const yaml = require("js-yaml");
+const camelCase = require("camelcase");
+const fs = require("fs");
+const unleashConfig = require("../commons/unleashConfig");
 
 const populateExperimentsFolder = async () => {
-    const unleash = await startUnleash(unleashConfig);
-    
-    const definitions = unleash.getFeatureToggleDefinitions()
+  const unleash = await startUnleash(unleashConfig);
 
-    const DIR = "experiments"
+  const definitions = unleash.getFeatureToggleDefinitions();
 
-    fs.rmSync(DIR, { recursive: true })
-    fs.mkdirSync(DIR)
+  const DIR = "definitions/experiments";
 
-    definitions.forEach(definition => {
-        const defaultFallback = unleash.getVariant(definition.name)
-        const defaultIsEnabled = unleash.isEnabled(definition.name)
+  fs.rmSync(DIR, { recursive: true });
+  fs.mkdirSync(DIR);
 
-        const codegenStrategy = definition.strategies.find(strategy => 
-            strategy.name === 'Codegen'
-        )
+  definitions.forEach((definition) => {
+    const defaultFallback = unleash.getVariant(definition.name);
+    const defaultIsEnabled = unleash.isEnabled(definition.name);
 
-        if (!codegenStrategy) {
-            console.log(`Skipping ${definition.name} as no Codegen strategy was defined`)
-            return
-        }
+    const codegenStrategy = definition.strategies.find(
+      (strategy) => strategy.name === "Codegen"
+    );
 
-        const hasVariants = definition.variants.length > 0
+    if (!codegenStrategy) {
+      console.log(
+        `Skipping ${definition.name} as no Codegen strategy was defined`
+      );
+      return;
+    }
 
-        const getDefaultFallback = () => {
-            if (hasVariants) {
-                return camelCase(defaultFallback.name)
-            }
+    const hasVariants = definition.variants.length > 0;
 
-            return defaultIsEnabled ? "enabled" : "disabled"
-        }
+    const getDefaultFallback = () => {
+      if (hasVariants) {
+        return camelCase(defaultFallback.name);
+      }
 
-        const mappedObject = {
-            name: definition.name,
-            description: definition.description ?? "",
-            accessor: camelCase(definition.name),
-            defaultFallback: getDefaultFallback(),
-            variants: definition.variants.map(variant => ({
-                name: variant.name,
-                case: camelCase(variant.name)
-            })),
-            targets: [
-                "Swift", "Kotlin"
-            ].filter(target => codegenStrategy.parameters[target] === 'true')
-        }
+      return defaultIsEnabled ? "enabled" : "disabled";
+    };
 
-        fs.writeFileSync(`${DIR}/${camelCase(definition.name)}.yml`, yaml.dump(mappedObject))
-    })
-}
+    const mappedObject = {
+      name: definition.name,
+      description: definition.description ?? "",
+      accessor: camelCase(definition.name),
+      defaultFallback: getDefaultFallback(),
+      variants: definition.variants.map((variant) => ({
+        name: variant.name,
+        case: camelCase(variant.name),
+      })),
+      targets: ["Swift", "Kotlin"].filter(
+        (target) => codegenStrategy.parameters[target] === "true"
+      ),
+    };
 
-populateExperimentsFolder()
+    fs.writeFileSync(
+      `${DIR}/${camelCase(definition.name)}.yml`,
+      yaml.dump(mappedObject)
+    );
+  });
+};
+
+populateExperimentsFolder();

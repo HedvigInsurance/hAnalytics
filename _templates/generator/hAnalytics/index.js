@@ -1,17 +1,14 @@
-const yaml = require("js-yaml");
-const fs = require("fs");
 const { format } = require("graphql-formatter");
-const glob = require("glob");
 const typeMaps = require("../../../commons/typeMaps");
 const mockRunGraphQLQuery = require("../../../commons/mockRunGraphqlEvent");
+const getEvents = require("../../../commons/getEvents");
+const getExperiments = require("../../../commons/getExperiments");
 
 const capitalizeFirstLetter = (s) => `${s[0].toUpperCase()}${s.slice(1)}`;
 
 module.exports = {
   params: async () => {
-    const importEvent = async (importPath) => {
-      const event = yaml.load(fs.readFileSync(importPath, "utf8"));
-
+    const mapEvent = async (event) => {
       if (!event.accessor) {
         return null;
       }
@@ -25,27 +22,18 @@ module.exports = {
       return event;
     };
 
-    const events = await new Promise((resolve) => {
-      glob("events/**/*.yml", {}, async (_, files) => {
-        const events = await Promise.all(files.map(importEvent));
-        resolve(events.filter((i) => i));
-      });
-    });
+    const events = (
+      await Promise.all((await getEvents()).map(mapEvent))
+    ).filter((i) => i);
 
-    const importExperiment = async (importPath) => {
-      const experiment = yaml.load(fs.readFileSync(importPath, "utf8"));
+    const mapExperiment = (experiment) => {
       return {
         ...experiment,
         enumName: capitalizeFirstLetter(experiment.accessor),
       };
     };
 
-    const experiments = await new Promise((resolve) => {
-      glob("experiments/**/*.yml", {}, async (_, files) => {
-        const experiments = await Promise.all(files.map(importExperiment));
-        resolve(experiments);
-      });
-    });
+    const experiments = (await getExperiments()).map(mapExperiment);
 
     return {
       events: events,
