@@ -1,39 +1,28 @@
 const getSchema = require("./getSchema");
 const sortFields = require("./sortFields");
+const updateSchema = require("./updateSchema");
 
 const setupTable = async (name, description = "", fields, bigQueryConfig) => {
   try {
+    const metadata = {
+      schema: {
+        fields: sortFields(fields),
+      },
+      description: description,
+      timePartitioning: {
+        type: "DAY",
+        expirationMS: "7776000000",
+        field: "timestamp",
+      },
+    };
+
     await bigQueryConfig.bigquery
       .dataset(bigQueryConfig.dataset)
-      .createTable(name, {
-        schema: {
-          fields: sortFields(fields),
-        },
-        description: description,
-        timePartitioning: {
-          type: "DAY",
-          expirationMS: "7776000000",
-          field: "timestamp",
-        },
-      });
+      .createTable(name, metadata);
+
+    bigQueryConfig.cacher.set(`schema-${name}`, metadata);
   } catch (err) {
-    const table = bigQueryConfig.bigquery
-      .dataset(bigQueryConfig.dataset)
-      .table(name);
-    const metadata = await getSchema(name, bigQueryConfig);
-
-    const schema = metadata.schema ?? {};
-
-    const filteredFields = schema.fields.filter(
-      (schemaField) => !fields.find((field) => field.name == schemaField.name)
-    );
-
-    const new_schema = schema;
-    new_schema.fields = sortFields([...filteredFields, ...fields]);
-    metadata.schema = new_schema;
-    metadata.description = description;
-
-    await table.setMetadata(metadata);
+    await updateSchema(name, fields, description, bigQueryConfig);
   }
 };
 

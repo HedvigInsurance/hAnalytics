@@ -400,6 +400,10 @@ Array [
     "description": "",
     "mode": "REQUIRED",
     "name": "property_screen_name",
+    "permittedValues": Array [
+      "offer",
+      "claims_status_detail",
+    ],
     "type": "STRING",
   },
   Object {

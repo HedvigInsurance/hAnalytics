@@ -184,3 +184,41 @@ test("validate should not accept array with wrong type", async () => {
 
   expect(validate).toEqual(false);
 });
+
+test("validate custom enum type values", async () => {
+  const bigQueryConfig = createBigQueryConfigMock();
+
+  await setupTable(
+    "mock_table",
+    "mock table",
+    [
+      {
+        name: "app_screen_name",
+        ...(await bigQuerySchemaTypeMap("AppScreen")),
+      },
+    ],
+    bigQueryConfig
+  );
+
+  expect(bigQueryConfig.bigquery.getTables()).toMatchSnapshot();
+
+  const validate = await validateAgainstSchema(
+    "mock_table",
+    {
+      app_screen_name: "offer",
+    },
+    bigQueryConfig
+  );
+
+  expect(validate).toEqual(true);
+
+  const validateFaulty = await validateAgainstSchema(
+    "mock_table",
+    {
+      app_screen_name: "this_should_not_work",
+    },
+    bigQueryConfig
+  );
+
+  expect(validateFaulty).toEqual(false);
+});

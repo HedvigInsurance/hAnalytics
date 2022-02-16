@@ -1,19 +1,12 @@
-const getSchema = require("./getSchema");
 const typeMaps = require("../../../commons/typeMaps");
 
 const validateAgainstSchema = async (name, row, bigQueryConfig) => {
-  const metadata =
-    bigQueryConfig.cacher.get(`schema-${name}`) ||
-    (await getSchema(name, bigQueryConfig));
-
-  const schema = metadata.schema ?? {
-    fields: [],
-  };
+  const metadata = bigQueryConfig.cacher.get(`schema-${name}`);
 
   var invalidFields = [];
 
   await Promise.all(
-    schema.fields.map(async (field) => {
+    metadata.schema.fields.map(async (field) => {
       const key = field.name;
 
       if (row[key] == null && field.mode === "REQUIRED") {
@@ -60,6 +53,11 @@ const validateAgainstSchema = async (name, row, bigQueryConfig) => {
         console.log(
           `Got type ${bigQueryType?.type} for ${key} but expected ${field.type}`
         );
+        invalidFields.push(field);
+        return;
+      }
+
+      if (field?.permittedValues && !field.permittedValues.includes(row[key])) {
         invalidFields.push(field);
         return;
       }

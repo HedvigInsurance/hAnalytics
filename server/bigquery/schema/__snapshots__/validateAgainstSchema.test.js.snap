@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`validate custom enum type values 1`] = `
+Array [
+  Object {
+    "config": Object {
+      "description": "mock table",
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "mode": "REQUIRED",
+            "name": "app_screen_name",
+            "permittedValues": Array [
+              "offer",
+              "claims_status_detail",
+            ],
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "mock_table",
+    "rows": Array [],
+  },
+]
+`;

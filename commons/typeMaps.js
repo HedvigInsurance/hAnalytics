@@ -138,7 +138,13 @@ const getBigQuerySchemaType = async (type, base = {}, ignoreCustom = false) => {
           base,
           true
         );
-        primitives[customType.name] = rawType;
+
+        primitives[customType.name] = {
+          ...rawType,
+          permittedValues: Object.keys(customType.cases).map(
+            (key) => customType.cases[key]
+          ),
+        };
       }
     }
   }
