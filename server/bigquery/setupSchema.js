@@ -6,7 +6,7 @@ const setupSchema = async (onLoad, bigQueryConfig) => {
 
   await Promise.all(
     events.map(async (event) => {
-      const schemaFields = await eventToSchemaFields(event);
+      const schemaFields = await eventToSchemaFields(event, {}, bigQueryConfig);
 
       await setupTable(
         event.name,

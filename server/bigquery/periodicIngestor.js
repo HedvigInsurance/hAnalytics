@@ -99,7 +99,6 @@ const ingest = async (config) => {
     try {
       valid = await validateAgainstSchema(entry.table, filteredRow, config);
     } catch (err) {
-      console.log(err);
       valid = false;
     }
 

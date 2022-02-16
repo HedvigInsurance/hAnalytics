@@ -10,6 +10,7 @@ const insertDynamicFields = require("../server/bigquery/schema/insertDynamicFiel
 const filterFieldsAccordingToEvent = require("../server/bigquery/schema/filterFieldsAccordingToEvent");
 const uuid = require("uuid");
 const transform = require("../definitions/transforms");
+const deepmerge = require("deepmerge");
 
 function chunk(arr, len) {
   var chunks = [],
@@ -27,20 +28,15 @@ const source = process.env.SOURCE_DATASET;
 
 /// Takes everything from SOURCE_DATASET and puts into __sync_table_event_name
 const transfer = async () => {
-  const events = (await getEvents())
-    .sort((a, b) => {
-      if (a.name < b.name) {
-        return -1;
-      }
-      if (a.name > b.name) {
-        return 1;
-      }
-      return 0;
-    })
-    .slice(
-      parseInt(process.env.MATRIX_SKIP) - 10,
-      parseInt(process.env.MATRIX_SKIP)
-    );
+  const events = (await getEvents()).sort((a, b) => {
+    if (a.name < b.name) {
+      return -1;
+    }
+    if (a.name > b.name) {
+      return 1;
+    }
+    return 0;
+  });
 
   const days = [...Array(20)].map((_, index) => {
     var d = new Date();
@@ -54,7 +50,7 @@ const transfer = async () => {
   var totalValid = 0;
 
   const promises = events.map(async (event) => {
-    const schemaFields = await eventToSchemaFields(event);
+    const schemaFields = await eventToSchemaFields(event, {}, bigQueryConfig);
     const tableName = `__sync_table_${event.name}`;
 
     // try {
@@ -115,7 +111,9 @@ const transfer = async () => {
           });
 
         rows = fetchedRows;
-      } catch (err) {}
+      } catch (err) {
+        console.log(err);
+      }
 
       var rowsToInsertMap = {};
       var numberValid = 0;
@@ -238,49 +236,62 @@ const transfer = async () => {
               }))
             );
 
+          const aggregateRows = rows.map((row) => {
+            const rowWithoutProperties = Object.keys(row).reduce(
+              (acc, curr) => {
+                if (!curr.startsWith("property_")) {
+                  acc[curr] = row[curr];
+                }
+                return acc;
+              },
+              {}
+            );
+
+            const rowWithProperties = Object.keys(row).reduce((acc, curr) => {
+              if (curr.startsWith("property_")) {
+                acc[curr] = row[curr];
+              }
+              return acc;
+            }, {});
+
+            const fullAggregateEvent = {
+              ...rowWithoutProperties,
+              event_id: row.event_id,
+              event: row.event,
+              timestamp: row.timestamp,
+              tracking_id: row.tracking_id,
+              loaded_at: row["loaded_at"],
+            };
+
+            if (Object.keys(rowWithProperties).length) {
+              fullAggregateEvent[`properties_${row.event}`] = {
+                ...rowWithProperties,
+              };
+            }
+
+            return fullAggregateEvent;
+          });
+
+          var totalDynamicAggregateFields = {};
+
+          for (row of aggregateRows) {
+            totalDynamicAggregateFields = deepmerge(
+              totalDynamicAggregateFields,
+              row
+            );
+          }
+
+          await insertDynamicFields(
+            "aggregate",
+            "__sync_table_aggregate",
+            totalDynamicAggregateFields,
+            bigQueryConfig
+          );
+
           await bigQueryConfig.bigquery
             .dataset(bigQueryConfig.dataset)
             .table("__sync_table_aggregate")
-            .insert(
-              rows.map((row) => {
-                const rowWithoutProperties = Object.keys(row).reduce(
-                  (acc, curr) => {
-                    if (!curr.startsWith("property_")) {
-                      acc[curr] = row[curr];
-                    }
-                    return acc;
-                  },
-                  {}
-                );
-
-                const rowWithProperties = Object.keys(row).reduce(
-                  (acc, curr) => {
-                    if (curr.startsWith("property_")) {
-                      acc[curr] = row[curr];
-                    }
-                    return acc;
-                  },
-                  {}
-                );
-
-                const fullAggregateEvent = {
-                  ...rowWithoutProperties,
-                  event_id: row.event_id,
-                  event: row.event,
-                  timestamp: row.timestamp,
-                  tracking_id: row.tracking_id,
-                  loaded_at: row["loaded_at"],
-                };
-
-                if (Object.keys(rowWithProperties).length) {
-                  fullAggregateEvent[`properties_${row.event}`] = {
-                    ...rowWithProperties,
-                  };
-                }
-
-                return fullAggregateEvent;
-              })
-            );
+            .insert(aggregateRows);
         };
 
         await Promise.all(

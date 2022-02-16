@@ -3,7 +3,7 @@ const typeMaps = require("../../../commons/typeMaps");
 const { generalFields, contextFields, eventFields } = require("./schemaFields");
 const sortFields = require("./sortFields");
 
-const eventToSchemaFields = async (event, base = {}) => {
+const eventToSchemaFields = async (event, base = {}, bigQueryConfig) => {
   var propertyFields = [];
 
   const addFields = async (input) => {
@@ -45,22 +45,26 @@ const eventToSchemaFields = async (event, base = {}) => {
   }
 
   if (event.bigQuery?.addAggregatePropertyFields) {
-    const events = await getEvents();
+    const events = await bigQueryConfig.getEvents();
 
     for (aggregateEvent of events) {
       if (
         aggregateEvent.name !== event.name &&
         aggregateEvent.bigQuery?.excludeFromAggregate !== true
       ) {
-        const fields = await eventToSchemaFields({
-          ...aggregateEvent,
-          bigQuery: {
-            ...aggregateEvent.bigQuery,
-            noEventFields: true,
-            noContextFields: true,
-            noGeneralFields: true,
+        const fields = await eventToSchemaFields(
+          {
+            ...aggregateEvent,
+            bigQuery: {
+              ...aggregateEvent.bigQuery,
+              noEventFields: true,
+              noContextFields: true,
+              noGeneralFields: true,
+            },
           },
-        });
+          base[`properties_${aggregateEvent.name}`],
+          bigQueryConfig
+        );
 
         if (fields.length) {
           propertyFields.push({

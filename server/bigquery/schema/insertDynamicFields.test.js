@@ -47,3 +47,47 @@ test("insert dynamic fields", async () => {
 
   expect(bigQueryConfig.bigquery.getTables()).toMatchSnapshot();
 });
+
+test("insert dynamic fields in aggregate", async () => {
+  const bigQueryConfig = createBigQueryConfigMock([
+    {
+      name: "embark_track",
+      bigQuery: {
+        noContextFields: true,
+      },
+      inputs: [
+        {
+          name: "store",
+          type: "Dictionary<String, Any>",
+        },
+      ],
+    },
+    {
+      name: "aggregate",
+      bigQuery: {
+        noContextFields: true,
+        addAggregatePropertyFields: true,
+      },
+    },
+  ]);
+
+  await setupSchema(() => {}, bigQueryConfig);
+
+  expect(bigQueryConfig.bigquery.getTables()).toMatchSnapshot();
+
+  await insertDynamicFields(
+    "aggregate",
+    "aggregate",
+    {
+      properties_embark_track: {
+        property_store_hello: "mock",
+        property_store_personal_number: "93202320",
+        some_rouge_field_that_should_be_gone: "asss",
+        property_random_personal_number: "nsisks",
+      },
+    },
+    bigQueryConfig
+  );
+
+  expect(bigQueryConfig.bigquery.getTables()).toMatchSnapshot();
+});

@@ -9,7 +9,7 @@ const filterFieldsAccordingToEvent = async (eventName, row, bigQueryConfig) => {
     return {};
   }
 
-  const fields = await eventToSchemaFields(event, row);
+  const fields = await eventToSchemaFields(event, row, bigQueryConfig);
   const result = {};
 
   Object.keys(row).forEach((key) => {

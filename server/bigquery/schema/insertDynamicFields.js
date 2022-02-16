@@ -11,7 +11,7 @@ const insertDynamicFields = async (name, tableName, row, bigQueryConfig) => {
     return;
   }
 
-  const fields = await eventToSchemaFields(event, row);
+  const fields = await eventToSchemaFields(event, row, bigQueryConfig);
 
   if (fields.length) {
     await updateSchema(tableName, fields, null, bigQueryConfig);
