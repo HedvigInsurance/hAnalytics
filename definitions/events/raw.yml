@@ -4,6 +4,7 @@ accessor: null
 type: INTERNAL
 bigQuery:
   noContextFields: true
+  excludeFromAggregate: true
 inputs:
   - name: data
     type: String

@@ -48,7 +48,10 @@ const eventToSchemaFields = async (event, base = {}) => {
     const events = await getEvents();
 
     for (aggregateEvent of events) {
-      if (aggregateEvent.name !== event.name) {
+      if (
+        aggregateEvent.name !== event.name &&
+        aggregateEvent.bigQuery?.excludeFromAggregate !== true
+      ) {
         const fields = await eventToSchemaFields({
           ...aggregateEvent,
           bigQuery: {

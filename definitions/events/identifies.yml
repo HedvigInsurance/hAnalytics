@@ -5,6 +5,7 @@ type: INTERNAL
 bigQuery:
   noContextFields: true
   noEventFields: true
+  excludeFromAggregate: true
 inputs:
   - name: member_id
     type: Optional<String>
