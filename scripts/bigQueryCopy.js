@@ -5,7 +5,8 @@ const setupTable = require("../server/bigquery/schema/setupTable");
 
 /// Takes everything from sync tables, and copies unique fields
 const upsert = async () => {
-  const events = (await getEvents())
+  const allEvents = await getEvents();
+  const events = allEvents
     .sort((a, b) => {
       if (a.name < b.name) {
         return -1;
@@ -75,20 +76,29 @@ const upsert = async () => {
       INSERT INTO \`${bigQueryConfig.projectId}.${bigQueryConfig.dataset}.${destination}\` (${fieldsInsert})
       (SELECT
         ${fieldsToSelect}
-        FROM
-            \`${bigQueryConfig.projectId}.${bigQueryConfig.dataset}.${source}\` source
+        from
+        (
+          SELECT *, ROW_NUMBER() OVER (PARTITION BY timestamp ORDER BY loaded_at DESC) as __row_number
+          FROM
+              \`${bigQueryConfig.projectId}.${bigQueryConfig.dataset}.${source}\`
+        ) source
+        WHERE destination.timestamp IS NULL
         LEFT JOIN \`${bigQueryConfig.projectId}.${bigQueryConfig.dataset}.${destination}\` destination ON source.timestamp = destination.timestamp
-        WHERE destination.timestamp IS NULL)
+        WHERE source.__row_number = 1)
         `;
     } else {
       query = `
       INSERT INTO \`${bigQueryConfig.projectId}.${bigQueryConfig.dataset}.${destination}\` (${fieldsInsert})
       (SELECT
         ${fieldsToSelect}
-        FROM
-            \`${bigQueryConfig.projectId}.${bigQueryConfig.dataset}.${source}\` source
+        from
+        (
+          SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY loaded_at DESC) as __row_number
+          FROM
+              \`${bigQueryConfig.projectId}.${bigQueryConfig.dataset}.${source}\`
+        ) source
         LEFT JOIN \`${bigQueryConfig.projectId}.${bigQueryConfig.dataset}.${destination}\` destination ON source.event_id = destination.event_id
-        WHERE destination.event_id IS NULL)
+        WHERE destination.event_id IS NULL AND source.__row_number = 1)
         `;
     }
 
@@ -117,7 +127,7 @@ const upsert = async () => {
         UPDATE \`${bigQueryConfig.projectId}.${bigQueryConfig.dataset}.${destination}\` destination
         SET ${fieldsUpdate}
         FROM (
-        select ${fieldsUpdateSelect}, ROW_NUMBER() OVER (PARTITION BY timestamp ORDER BY loaded_at DESC) as __row_number from \`${bigQueryConfig.projectId}.${bigQueryConfig.dataset}.${source}\`
+          SELECT ${fieldsUpdateSelect}, ROW_NUMBER() OVER (PARTITION BY timestamp ORDER BY loaded_at DESC) as __row_number from \`${bigQueryConfig.projectId}.${bigQueryConfig.dataset}.${source}\`
         ) source
         WHERE source.timestamp = destination.timestamp AND __row_number = 1
       `;
@@ -126,7 +136,7 @@ const upsert = async () => {
         UPDATE \`${bigQueryConfig.projectId}.${bigQueryConfig.dataset}.${destination}\` destination
         SET ${fieldsUpdate}
         FROM (
-        select ${fieldsUpdateSelect}, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY loaded_at DESC) as __row_number from \`${bigQueryConfig.projectId}.${bigQueryConfig.dataset}.${source}\`
+          SELECT ${fieldsUpdateSelect}, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY loaded_at DESC) as __row_number from \`${bigQueryConfig.projectId}.${bigQueryConfig.dataset}.${source}\`
         ) source
         WHERE source.event_id = destination.event_id AND __row_number = 1
       `;
