@@ -302,9 +302,9 @@ const transfer = async () => {
       }
 
       console.log(
-        `Done with ${event.name}: valid ${
+        `Done with ${event.name}: did find valid rows ${
           numberValid > 0
-        }, invalid: ${numberInvalid}`
+        }, number invalid rows: ${numberInvalid}`
       );
 
       totalValid = totalValid + numberValid;
