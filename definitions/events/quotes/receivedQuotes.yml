@@ -1,0 +1,28 @@
+name: received_quotes
+description: When the user received some quotes
+accessor: received_quotes
+inputs:
+  - name: quote_ids
+    type: Array<String>
+    argument: quoteIds
+graphql:
+  query: |
+    query ReceivedQuotes($quote_ids: [ID!]!) {
+      quoteBundle(input: {
+        ids: $quote_ids
+      }) {
+        quotes {
+          typeOfContract
+          initiatedFrom
+        }
+      }
+    }
+  variables:
+    - quote_ids
+  selectors:
+    - name: type_of_contracts
+      type: Array<String>
+      path: quoteBundle.quotes[*].typeOfContract | sort(@)
+    - name: initiated_from
+      type: String
+      path: quoteBundle.quotes[0].initiatedFrom

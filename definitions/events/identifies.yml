@@ -1,6 +1,7 @@
 name: identifies
 description: Automatically created by hAnalytics when identifiying
 accessor: null
+type: INTERNAL
 bigQuery:
   noContextFields: true
   noEventFields: true

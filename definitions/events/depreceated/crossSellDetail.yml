@@ -1,0 +1,8 @@
+name: screen_view_cross_sell_detail
+description: When the detail screen of a cross sell is shown
+accessor: screenViewCrossSellDetail
+deprecationReason: Replaced with screenView
+inputs:
+  - name: type_of_contract
+    type: String
+    argument: typeOfContract

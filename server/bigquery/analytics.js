@@ -4,20 +4,21 @@ const omit = require("./omit");
 const { addToQueue, start } = require("./periodicIngestor");
 const createRedisBackend = require("./periodicIngestorRedisBackend");
 const createInMemoryBackend = require("./periodicIngestorInMemoryBackend");
-const uuid = require("uuid");
+const transform = require("../../definitions/transforms");
 
 const track = async (name, event) => {
   const flatEvent = flattenObj(event);
+  const completeEvent = {
+    ...flatEvent,
+    event: name,
+    timestamp: bigQueryConfig.bigquery.datetime(event.timestamp.toISOString()),
+  };
+
+  const transformedEvent = transform(completeEvent);
 
   const eventInsertEntry = {
-    table: name,
-    row: {
-      ...flatEvent,
-      event: name,
-      timestamp: bigQueryConfig.bigquery.datetime(
-        event.timestamp.toISOString()
-      ),
-    },
+    table: transformedEvent.event,
+    row: transformedEvent,
   };
 
   addToQueue(eventInsertEntry);
@@ -25,47 +26,26 @@ const track = async (name, event) => {
   const rawEventInsertEntry = {
     table: "raw",
     row: {
-      event_id: uuid.v1(),
+      event_id: transformedEvent.event_id,
       event: "raw",
-      property_data: JSON.stringify(eventInsertEntry.row),
-      timestamp: bigQueryConfig.bigquery.datetime(
-        event.timestamp.toISOString()
-      ),
-      tracking_id: flatEvent.tracking_id,
+      property_data: JSON.stringify(transformedEvent),
+      timestamp: transformedEvent.timestamp,
+      tracking_id: transformedEvent.tracking_id,
     },
   };
 
   addToQueue(rawEventInsertEntry);
 
-  const flatTrack = flattenObj(omit("property", event));
+  const flatTrack = omit("property", transformedEvent);
 
   const trackInsertEntry = {
     table: "tracks",
     row: {
       ...flatTrack,
-      event: name,
-      timestamp: bigQueryConfig.bigquery.datetime(
-        event.timestamp.toISOString()
-      ),
     },
   };
 
   addToQueue(trackInsertEntry);
-
-  const rawTrackInsertEntry = {
-    table: "raw",
-    row: {
-      event_id: uuid.v1(),
-      event: "raw",
-      property_data: JSON.stringify(trackInsertEntry.row),
-      timestamp: bigQueryConfig.bigquery.datetime(
-        event.timestamp.toISOString()
-      ),
-      tracking_id: flatEvent.tracking_id,
-    },
-  };
-
-  addToQueue(rawTrackInsertEntry);
 };
 
 const identify = async (identity) => {

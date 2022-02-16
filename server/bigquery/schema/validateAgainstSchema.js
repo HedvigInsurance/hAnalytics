@@ -1,65 +1,79 @@
-const getSchema = require("./getSchema");
 const typeMaps = require("../../../commons/typeMaps");
 
 const validateAgainstSchema = async (name, row, bigQueryConfig) => {
-  const metadata =
-    bigQueryConfig.cacher.get(`schema-${name}`) ||
-    (await getSchema(name, bigQueryConfig));
+  const metadata = bigQueryConfig.cacher.get(`schema-${name}`);
 
-  const schema = metadata.schema ?? {
-    fields: [],
-  };
+  var invalidFields = [];
 
-  const invalidField = schema.fields.find((field) => {
-    const key = field.name;
+  await Promise.all(
+    metadata.schema.fields.map(async (field) => {
+      const key = field.name;
 
-    if (row[key] == null && field.mode === "REQUIRED") {
-      return true;
-    }
+      if (row[key] == null && field.mode === "REQUIRED") {
+        invalidFields.push(field);
+        return;
+      }
 
-    if (row[key] == null && field.mode === "NULLABLE") {
-      return false;
-    }
+      if (row[key] == null && field.mode === "NULLABLE") {
+        return;
+      }
 
-    if (Array.isArray(row[key]) && field.mode === "REPEATED") {
-      return row[key]
-        .map((item) => {
-          const hanalyticsType = typeMaps.jsTypeMap(item);
-          const bigQueryType = typeMaps.bigQuerySchemaTypeMap(hanalyticsType);
+      if (Array.isArray(row[key]) && field.mode === "REPEATED") {
+        const validatedFields = await Promise.all(
+          row[key].map(async (item) => {
+            const hanalyticsType = typeMaps.jsTypeMap(item);
+            const bigQueryType = await typeMaps.bigQuerySchemaTypeMap(
+              hanalyticsType
+            );
 
-          return bigQueryType?.type === field.type;
-        })
-        .includes(false);
-    }
+            return bigQueryType?.type === field.type;
+          })
+        );
 
-    if (
-      field.type === "TIMESTAMP" &&
-      (typeof row[key]?.value === "string" || typeof row[key] === "string")
-    ) {
-      return false;
-    }
+        const invalid = validatedFields.includes(false);
 
-    const hanalyticsType = typeMaps.jsTypeMap(row[key]);
-    const bigQueryType = typeMaps.bigQuerySchemaTypeMap(hanalyticsType);
+        if (invalid) {
+          invalidFields.push(field);
+        }
 
-    if (bigQueryType?.type !== field.type) {
-      console.log(
-        `Got type ${bigQueryType?.type} for ${key} but expected ${field.type}`
-      );
-      return true;
-    }
+        return;
+      }
 
-    return false;
-  });
+      if (
+        field.type === "TIMESTAMP" &&
+        (typeof row[key]?.value === "string" || typeof row[key] === "string")
+      ) {
+        return;
+      }
 
-  if (invalidField) {
+      const hanalyticsType = typeMaps.jsTypeMap(row[key]);
+      const bigQueryType = await typeMaps.bigQuerySchemaTypeMap(hanalyticsType);
+
+      if (bigQueryType?.type !== field.type) {
+        console.log(
+          `Got type ${bigQueryType?.type} for ${key} but expected ${field.type}`
+        );
+        invalidFields.push(field);
+        return;
+      }
+
+      if (field?.permittedValues && !field.permittedValues.includes(row[key])) {
+        invalidFields.push(field);
+        return;
+      }
+
+      return;
+    })
+  );
+
+  if (invalidFields.length) {
     console.log(
-      `Struck an invalid field when validating ${name}`,
-      invalidField
+      `Struck some invalid fields when validating ${name}`,
+      invalidFields
     );
   }
 
-  return !invalidField;
+  return invalidFields.length === 0;
 };
 
 module.exports = validateAgainstSchema;

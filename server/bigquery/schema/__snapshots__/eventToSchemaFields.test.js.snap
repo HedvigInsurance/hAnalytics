@@ -274,6 +274,181 @@ Array [
 ]
 `;
 
+exports[`creates schemas according to events: app_screen_view 1`] = `
+Array [
+  Object {
+    "description": "The build number of the app, for example 8293",
+    "mode": "REQUIRED",
+    "name": "context_app_build",
+    "type": "STRING",
+  },
+  Object {
+    "description": "The name of the app, for example Hedvig, Ugglan",
+    "mode": "REQUIRED",
+    "name": "context_app_name",
+    "type": "STRING",
+  },
+  Object {
+    "description": "The namespace of the app, for example com.hedvig.app",
+    "mode": "REQUIRED",
+    "name": "context_app_namespace",
+    "type": "STRING",
+  },
+  Object {
+    "description": "The version of the app, for example 7.6.0",
+    "mode": "REQUIRED",
+    "name": "context_app_version",
+    "type": "STRING",
+  },
+  Object {
+    "description": "The manufacturer of the device, for example Samsung or Apple",
+    "mode": "NULLABLE",
+    "name": "context_device_manufacturer",
+    "type": "STRING",
+  },
+  Object {
+    "description": "The model of device, for example iPhone13,3",
+    "mode": "NULLABLE",
+    "name": "context_device_model",
+    "type": "STRING",
+  },
+  Object {
+    "description": "The name of the device, for example iPhone",
+    "mode": "NULLABLE",
+    "name": "context_device_name",
+    "type": "STRING",
+  },
+  Object {
+    "description": "The type of device, for example ios or android",
+    "mode": "NULLABLE",
+    "name": "context_device_type",
+    "type": "STRING",
+  },
+  Object {
+    "description": "The users IP address",
+    "mode": "REQUIRED",
+    "name": "context_ip",
+    "type": "STRING",
+  },
+  Object {
+    "description": "The locale that was current, for example en-SE",
+    "mode": "REQUIRED",
+    "name": "context_locale",
+    "type": "STRING",
+  },
+  Object {
+    "description": "OS name for example Android, iOS, iPadOS, MacOS, Windows",
+    "mode": "REQUIRED",
+    "name": "context_os_name",
+    "type": "STRING",
+  },
+  Object {
+    "description": "OS version for example 15.0.1 for iOS 15.0.1",
+    "mode": "REQUIRED",
+    "name": "context_os_version",
+    "type": "STRING",
+  },
+  Object {
+    "description": "Pixel density of screen",
+    "mode": "NULLABLE",
+    "name": "context_screen_density",
+    "type": "INTEGER",
+  },
+  Object {
+    "description": "Height of screen in pixels",
+    "mode": "NULLABLE",
+    "name": "context_screen_height",
+    "type": "INTEGER",
+  },
+  Object {
+    "description": "Width of screen in pixels",
+    "mode": "NULLABLE",
+    "name": "context_screen_width",
+    "type": "INTEGER",
+  },
+  Object {
+    "description": "An id which is preserved across a session, when application is closed a new id is generated",
+    "mode": "REQUIRED",
+    "name": "context_session_id",
+    "type": "STRING",
+  },
+  Object {
+    "description": "Timezone of device",
+    "mode": "REQUIRED",
+    "name": "context_timezone",
+    "type": "STRING",
+  },
+  Object {
+    "description": "Member id associated with the event",
+    "mode": "NULLABLE",
+    "name": "context_traits_member_id",
+    "type": "STRING",
+  },
+  Object {
+    "description": "String name of event, for example screen_view_offer",
+    "mode": "REQUIRED",
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "description": "Unique ID of the event",
+    "mode": "REQUIRED",
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "description": "",
+    "mode": "REQUIRED",
+    "name": "property_screen_name",
+    "permittedValues": Array [
+      "offer",
+      "claims_status_detail",
+      "claim_honor_pledge",
+      "common_claim_detail",
+      "embark",
+      "embark_tooltip",
+      "market_picker",
+      "marketing",
+      "data_collection_authenticating",
+      "data_collection_credentials",
+      "data_collection_fail",
+      "data_collection_intro",
+      "data_collection_success",
+      "connect_payment_adyen",
+      "connect_payment_trustly",
+      "connect_payment_failed",
+      "connect_payment_success",
+      "payments",
+      "charity",
+      "contact_info",
+      "cross_sell_detail",
+      "forever",
+      "home",
+      "insurance_Detail",
+      "insurances",
+      "moving_flow_intro",
+      "profile",
+      "app_information",
+      "app_settings",
+      "chat",
+    ],
+    "type": "STRING",
+  },
+  Object {
+    "description": "Time when event happened",
+    "mode": "REQUIRED",
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "description": "Tracking id, also called DeviceID in some contexes, use this primarily to identify a singular user",
+    "mode": "REQUIRED",
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+]
+`;
+
 exports[`creates schemas according to events: app_shutdown 1`] = `
 Array [
   Object {
@@ -4056,7 +4231,7 @@ Array [
 ]
 `;
 
-exports[`creates schemas according to events: screen_view_app_information 1`] = `
+exports[`creates schemas according to events: received_quotes 1`] = `
 Array [
   Object {
     "description": "The build number of the app, for example 8293",
@@ -4179,140 +4354,21 @@ Array [
     "type": "STRING",
   },
   Object {
-    "description": "Time when event happened",
+    "description": "",
     "mode": "REQUIRED",
-    "name": "timestamp",
-    "type": "TIMESTAMP",
-  },
-  Object {
-    "description": "Tracking id, also called DeviceID in some contexes, use this primarily to identify a singular user",
-    "mode": "REQUIRED",
-    "name": "tracking_id",
-    "type": "STRING",
-  },
-]
-`;
-
-exports[`creates schemas according to events: screen_view_app_settings 1`] = `
-Array [
-  Object {
-    "description": "The build number of the app, for example 8293",
-    "mode": "REQUIRED",
-    "name": "context_app_build",
+    "name": "property_initiated_from",
     "type": "STRING",
   },
   Object {
-    "description": "The name of the app, for example Hedvig, Ugglan",
-    "mode": "REQUIRED",
-    "name": "context_app_name",
+    "description": "",
+    "mode": "REPEATED",
+    "name": "property_quote_ids",
     "type": "STRING",
   },
   Object {
-    "description": "The namespace of the app, for example com.hedvig.app",
-    "mode": "REQUIRED",
-    "name": "context_app_namespace",
-    "type": "STRING",
-  },
-  Object {
-    "description": "The version of the app, for example 7.6.0",
-    "mode": "REQUIRED",
-    "name": "context_app_version",
-    "type": "STRING",
-  },
-  Object {
-    "description": "The manufacturer of the device, for example Samsung or Apple",
-    "mode": "NULLABLE",
-    "name": "context_device_manufacturer",
-    "type": "STRING",
-  },
-  Object {
-    "description": "The model of device, for example iPhone13,3",
-    "mode": "NULLABLE",
-    "name": "context_device_model",
-    "type": "STRING",
-  },
-  Object {
-    "description": "The name of the device, for example iPhone",
-    "mode": "NULLABLE",
-    "name": "context_device_name",
-    "type": "STRING",
-  },
-  Object {
-    "description": "The type of device, for example ios or android",
-    "mode": "NULLABLE",
-    "name": "context_device_type",
-    "type": "STRING",
-  },
-  Object {
-    "description": "The users IP address",
-    "mode": "REQUIRED",
-    "name": "context_ip",
-    "type": "STRING",
-  },
-  Object {
-    "description": "The locale that was current, for example en-SE",
-    "mode": "REQUIRED",
-    "name": "context_locale",
-    "type": "STRING",
-  },
-  Object {
-    "description": "OS name for example Android, iOS, iPadOS, MacOS, Windows",
-    "mode": "REQUIRED",
-    "name": "context_os_name",
-    "type": "STRING",
-  },
-  Object {
-    "description": "OS version for example 15.0.1 for iOS 15.0.1",
-    "mode": "REQUIRED",
-    "name": "context_os_version",
-    "type": "STRING",
-  },
-  Object {
-    "description": "Pixel density of screen",
-    "mode": "NULLABLE",
-    "name": "context_screen_density",
-    "type": "INTEGER",
-  },
-  Object {
-    "description": "Height of screen in pixels",
-    "mode": "NULLABLE",
-    "name": "context_screen_height",
-    "type": "INTEGER",
-  },
-  Object {
-    "description": "Width of screen in pixels",
-    "mode": "NULLABLE",
-    "name": "context_screen_width",
-    "type": "INTEGER",
-  },
-  Object {
-    "description": "An id which is preserved across a session, when application is closed a new id is generated",
-    "mode": "REQUIRED",
-    "name": "context_session_id",
-    "type": "STRING",
-  },
-  Object {
-    "description": "Timezone of device",
-    "mode": "REQUIRED",
-    "name": "context_timezone",
-    "type": "STRING",
-  },
-  Object {
-    "description": "Member id associated with the event",
-    "mode": "NULLABLE",
-    "name": "context_traits_member_id",
-    "type": "STRING",
-  },
-  Object {
-    "description": "String name of event, for example screen_view_offer",
-    "mode": "REQUIRED",
-    "name": "event",
-    "type": "STRING",
-  },
-  Object {
-    "description": "Unique ID of the event",
-    "mode": "REQUIRED",
-    "name": "event_id",
+    "description": "",
+    "mode": "REPEATED",
+    "name": "property_type_of_contracts",
     "type": "STRING",
   },
   Object {
@@ -7422,143 +7478,6 @@ Array [
 ]
 `;
 
-exports[`creates schemas according to events: screen_view_market_picker 1`] = `
-Array [
-  Object {
-    "description": "The build number of the app, for example 8293",
-    "mode": "REQUIRED",
-    "name": "context_app_build",
-    "type": "STRING",
-  },
-  Object {
-    "description": "The name of the app, for example Hedvig, Ugglan",
-    "mode": "REQUIRED",
-    "name": "context_app_name",
-    "type": "STRING",
-  },
-  Object {
-    "description": "The namespace of the app, for example com.hedvig.app",
-    "mode": "REQUIRED",
-    "name": "context_app_namespace",
-    "type": "STRING",
-  },
-  Object {
-    "description": "The version of the app, for example 7.6.0",
-    "mode": "REQUIRED",
-    "name": "context_app_version",
-    "type": "STRING",
-  },
-  Object {
-    "description": "The manufacturer of the device, for example Samsung or Apple",
-    "mode": "NULLABLE",
-    "name": "context_device_manufacturer",
-    "type": "STRING",
-  },
-  Object {
-    "description": "The model of device, for example iPhone13,3",
-    "mode": "NULLABLE",
-    "name": "context_device_model",
-    "type": "STRING",
-  },
-  Object {
-    "description": "The name of the device, for example iPhone",
-    "mode": "NULLABLE",
-    "name": "context_device_name",
-    "type": "STRING",
-  },
-  Object {
-    "description": "The type of device, for example ios or android",
-    "mode": "NULLABLE",
-    "name": "context_device_type",
-    "type": "STRING",
-  },
-  Object {
-    "description": "The users IP address",
-    "mode": "REQUIRED",
-    "name": "context_ip",
-    "type": "STRING",
-  },
-  Object {
-    "description": "The locale that was current, for example en-SE",
-    "mode": "REQUIRED",
-    "name": "context_locale",
-    "type": "STRING",
-  },
-  Object {
-    "description": "OS name for example Android, iOS, iPadOS, MacOS, Windows",
-    "mode": "REQUIRED",
-    "name": "context_os_name",
-    "type": "STRING",
-  },
-  Object {
-    "description": "OS version for example 15.0.1 for iOS 15.0.1",
-    "mode": "REQUIRED",
-    "name": "context_os_version",
-    "type": "STRING",
-  },
-  Object {
-    "description": "Pixel density of screen",
-    "mode": "NULLABLE",
-    "name": "context_screen_density",
-    "type": "INTEGER",
-  },
-  Object {
-    "description": "Height of screen in pixels",
-    "mode": "NULLABLE",
-    "name": "context_screen_height",
-    "type": "INTEGER",
-  },
-  Object {
-    "description": "Width of screen in pixels",
-    "mode": "NULLABLE",
-    "name": "context_screen_width",
-    "type": "INTEGER",
-  },
-  Object {
-    "description": "An id which is preserved across a session, when application is closed a new id is generated",
-    "mode": "REQUIRED",
-    "name": "context_session_id",
-    "type": "STRING",
-  },
-  Object {
-    "description": "Timezone of device",
-    "mode": "REQUIRED",
-    "name": "context_timezone",
-    "type": "STRING",
-  },
-  Object {
-    "description": "Member id associated with the event",
-    "mode": "NULLABLE",
-    "name": "context_traits_member_id",
-    "type": "STRING",
-  },
-  Object {
-    "description": "String name of event, for example screen_view_offer",
-    "mode": "REQUIRED",
-    "name": "event",
-    "type": "STRING",
-  },
-  Object {
-    "description": "Unique ID of the event",
-    "mode": "REQUIRED",
-    "name": "event_id",
-    "type": "STRING",
-  },
-  Object {
-    "description": "Time when event happened",
-    "mode": "REQUIRED",
-    "name": "timestamp",
-    "type": "TIMESTAMP",
-  },
-  Object {
-    "description": "Tracking id, also called DeviceID in some contexes, use this primarily to identify a singular user",
-    "mode": "REQUIRED",
-    "name": "tracking_id",
-    "type": "STRING",
-  },
-]
-`;
-
 exports[`creates schemas according to events: screen_view_marketing 1`] = `
 Array [
   Object {
@@ -7816,161 +7735,6 @@ Array [
     "description": "Unique ID of the event",
     "mode": "REQUIRED",
     "name": "event_id",
-    "type": "STRING",
-  },
-  Object {
-    "description": "Time when event happened",
-    "mode": "REQUIRED",
-    "name": "timestamp",
-    "type": "TIMESTAMP",
-  },
-  Object {
-    "description": "Tracking id, also called DeviceID in some contexes, use this primarily to identify a singular user",
-    "mode": "REQUIRED",
-    "name": "tracking_id",
-    "type": "STRING",
-  },
-]
-`;
-
-exports[`creates schemas according to events: screen_view_offer 1`] = `
-Array [
-  Object {
-    "description": "The build number of the app, for example 8293",
-    "mode": "REQUIRED",
-    "name": "context_app_build",
-    "type": "STRING",
-  },
-  Object {
-    "description": "The name of the app, for example Hedvig, Ugglan",
-    "mode": "REQUIRED",
-    "name": "context_app_name",
-    "type": "STRING",
-  },
-  Object {
-    "description": "The namespace of the app, for example com.hedvig.app",
-    "mode": "REQUIRED",
-    "name": "context_app_namespace",
-    "type": "STRING",
-  },
-  Object {
-    "description": "The version of the app, for example 7.6.0",
-    "mode": "REQUIRED",
-    "name": "context_app_version",
-    "type": "STRING",
-  },
-  Object {
-    "description": "The manufacturer of the device, for example Samsung or Apple",
-    "mode": "NULLABLE",
-    "name": "context_device_manufacturer",
-    "type": "STRING",
-  },
-  Object {
-    "description": "The model of device, for example iPhone13,3",
-    "mode": "NULLABLE",
-    "name": "context_device_model",
-    "type": "STRING",
-  },
-  Object {
-    "description": "The name of the device, for example iPhone",
-    "mode": "NULLABLE",
-    "name": "context_device_name",
-    "type": "STRING",
-  },
-  Object {
-    "description": "The type of device, for example ios or android",
-    "mode": "NULLABLE",
-    "name": "context_device_type",
-    "type": "STRING",
-  },
-  Object {
-    "description": "The users IP address",
-    "mode": "REQUIRED",
-    "name": "context_ip",
-    "type": "STRING",
-  },
-  Object {
-    "description": "The locale that was current, for example en-SE",
-    "mode": "REQUIRED",
-    "name": "context_locale",
-    "type": "STRING",
-  },
-  Object {
-    "description": "OS name for example Android, iOS, iPadOS, MacOS, Windows",
-    "mode": "REQUIRED",
-    "name": "context_os_name",
-    "type": "STRING",
-  },
-  Object {
-    "description": "OS version for example 15.0.1 for iOS 15.0.1",
-    "mode": "REQUIRED",
-    "name": "context_os_version",
-    "type": "STRING",
-  },
-  Object {
-    "description": "Pixel density of screen",
-    "mode": "NULLABLE",
-    "name": "context_screen_density",
-    "type": "INTEGER",
-  },
-  Object {
-    "description": "Height of screen in pixels",
-    "mode": "NULLABLE",
-    "name": "context_screen_height",
-    "type": "INTEGER",
-  },
-  Object {
-    "description": "Width of screen in pixels",
-    "mode": "NULLABLE",
-    "name": "context_screen_width",
-    "type": "INTEGER",
-  },
-  Object {
-    "description": "An id which is preserved across a session, when application is closed a new id is generated",
-    "mode": "REQUIRED",
-    "name": "context_session_id",
-    "type": "STRING",
-  },
-  Object {
-    "description": "Timezone of device",
-    "mode": "REQUIRED",
-    "name": "context_timezone",
-    "type": "STRING",
-  },
-  Object {
-    "description": "Member id associated with the event",
-    "mode": "NULLABLE",
-    "name": "context_traits_member_id",
-    "type": "STRING",
-  },
-  Object {
-    "description": "String name of event, for example screen_view_offer",
-    "mode": "REQUIRED",
-    "name": "event",
-    "type": "STRING",
-  },
-  Object {
-    "description": "Unique ID of the event",
-    "mode": "REQUIRED",
-    "name": "event_id",
-    "type": "STRING",
-  },
-  Object {
-    "description": "",
-    "mode": "REQUIRED",
-    "name": "property_initiated_from",
-    "type": "STRING",
-  },
-  Object {
-    "description": "",
-    "mode": "REPEATED",
-    "name": "property_offer_ids",
-    "type": "STRING",
-  },
-  Object {
-    "description": "",
-    "mode": "REQUIRED",
-    "name": "property_type_of_contracts",
     "type": "STRING",
   },
   Object {

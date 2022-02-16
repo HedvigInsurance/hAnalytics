@@ -1,7 +1,0 @@
-name: screen_view_embark
-description: When embark is shown
-accessor: screenViewEmbark
-inputs:
-  - name: story_name
-    type: String
-    argument: storyName

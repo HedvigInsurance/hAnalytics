@@ -3,6 +3,7 @@ const typeMaps = require("../../../commons/typeMaps");
 const mockRunGraphQLQuery = require("../../../commons/mockRunGraphqlEvent");
 const getEvents = require("../../../commons/getEvents");
 const getExperiments = require("../../../commons/getExperiments");
+const getTypes = require("../../../commons/getTypes");
 
 const capitalizeFirstLetter = (s) => `${s[0].toUpperCase()}${s.slice(1)}`;
 
@@ -34,9 +35,11 @@ module.exports = {
     };
 
     const experiments = (await getExperiments()).map(mapExperiment);
+    const types = await getTypes();
 
     return {
-      events: events,
+      events,
+      types,
       experiments: {
         swift: experiments.filter((experiment) =>
           experiment.targets.includes("Swift")
@@ -44,6 +47,55 @@ module.exports = {
         kotlin: experiments.filter((experiment) =>
           experiment.targets.includes("Kotlin")
         ),
+      },
+      capitalizeFirstLetter,
+      swiftLiteral: (value, type) => {
+        switch (type) {
+          case "String":
+          case "Optional<String>":
+            return `"${value}"`;
+          case "Boolean":
+          case "Optional<Boolean>":
+            return `${value}`;
+          case "Double":
+          case "Integer":
+          case "Optional<Double>":
+          case "Optional<Integer>":
+            return `${value}`;
+        }
+      },
+      kotlinLiteral: (value, type) => {
+        switch (type) {
+          case "String":
+          case "Optional<String>":
+            return `"${value}"`;
+          case "Boolean":
+          case "Optional<Boolean>":
+            return `${value}`;
+          case "Double":
+          case "Integer":
+          case "Optional<Double>":
+          case "Optional<Integer>":
+            return `${value}`;
+        }
+      },
+      swiftInputToGetter: (input) => {
+        const type = types.find((type) => type.name === input.type);
+
+        if (type) {
+          return `${input.argument}.rawValue`;
+        }
+
+        return input.argument;
+      },
+      kotlinInputToGetter: (input) => {
+        const type = types.find((type) => type.name === input.type);
+
+        if (type) {
+          return `${input.argument}.rawValue`;
+        }
+
+        return input.argument;
       },
       ...typeMaps,
       stringToSwiftComment: (s) =>

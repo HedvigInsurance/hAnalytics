@@ -1,0 +1,35 @@
+name: AppScreen
+description: An app screen
+type: Enum
+rawType: String
+cases:
+  offer: offer
+  claimsStatusDetail: claims_status_detail
+  claimHonorPledge: claim_honor_pledge
+  commonClaimDetail: common_claim_detail
+  embark: embark
+  embarkTooltip: embark_tooltip
+  marketPicker: market_picker
+  marketing: marketing
+  dataCollectionAuthenticating: data_collection_authenticating
+  dataCollectionCredentials: data_collection_credentials
+  dataCollectionFail: data_collection_fail
+  dataCollectionIntro: data_collection_intro
+  dataCollectionSuccess: data_collection_success
+  connectPaymentAdyen: connect_payment_adyen
+  connectPaymentTrustly: connect_payment_trustly
+  connectPaymentFailed: connect_payment_failed
+  connectPaymentSuccess: connect_payment_success
+  payments: payments
+  charity: charity
+  contactInfo: contact_info
+  crossSellDetail: cross_sell_detail
+  forever: forever
+  home: home
+  insuranceDetail: insurance_Detail
+  insurances: insurances
+  movingFlowIntro: moving_flow_intro
+  profile: profile
+  app_information: app_information
+  app_settings: app_settings
+  chat: chat

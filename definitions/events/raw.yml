@@ -1,6 +1,7 @@
 name: raw
 description: RAW events not parsed nor validated, will contain events not matching against schema
 accessor: null
+type: INTERNAL
 bigQuery:
   noContextFields: true
 inputs:

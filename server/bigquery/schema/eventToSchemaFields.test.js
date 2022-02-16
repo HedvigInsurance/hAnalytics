@@ -5,9 +5,9 @@ const eventToSchemaFields = require("./eventToSchemaFields");
 test("creates schemas according to events", async () => {
   const events = await getEvents();
 
-  events.forEach((event) => {
+  for (event of events) {
     expect(
-      eventToSchemaFields(
+      await eventToSchemaFields(
         event,
         flattenObj({
           property: {
@@ -18,5 +18,5 @@ test("creates schemas according to events", async () => {
         })
       )
     ).toMatchSnapshot(event.name);
-  });
+  }
 });

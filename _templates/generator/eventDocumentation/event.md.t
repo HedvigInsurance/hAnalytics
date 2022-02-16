@@ -33,7 +33,9 @@ hAnalytics.<%= event.accessor %>(<%- (event.inputs ?? []).map((input) => `${inpu
 
 <% } %>
 
-## Integration status
+<% if (event.type !== "INTERNAL") { %>
+
+## Platform status
 
 | Platform      | Status |
 | ----------- | ----------- |
@@ -42,4 +44,12 @@ hAnalytics.<%= event.accessor %>(<%- (event.inputs ?? []).map((input) => `${inpu
 
 Yes means that the platform has sent data atleast once in the last 30 days for this event.
 
-Integration status was last checked on <%= integrationStatus.lastUpdated %>
+Platform status was last checked on <%= integrationStatus.lastUpdated %>
+
+<% } else { %>
+
+## Platform status
+
+This is an internal event, its automatically collected and managed by the `hAnalytics` server. As such it should be available always given its characteristics, see description for more info.
+
+<% } %>

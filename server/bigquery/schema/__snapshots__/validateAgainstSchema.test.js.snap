@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`validate custom enum type values 1`] = `
+Array [
+  Object {
+    "config": Object {
+      "description": "mock table",
+      "schema": Object {
+        "fields": Array [
+          Object {
+            "mode": "REQUIRED",
+            "name": "app_screen_name",
+            "permittedValues": Array [
+              "offer",
+              "claims_status_detail",
+              "claim_honor_pledge",
+              "common_claim_detail",
+              "embark",
+              "embark_tooltip",
+              "market_picker",
+              "marketing",
+              "data_collection_authenticating",
+              "data_collection_credentials",
+              "data_collection_fail",
+              "data_collection_intro",
+              "data_collection_success",
+              "connect_payment_adyen",
+              "connect_payment_trustly",
+              "connect_payment_failed",
+              "connect_payment_success",
+              "payments",
+              "charity",
+              "contact_info",
+              "cross_sell_detail",
+              "forever",
+              "home",
+              "insurance_Detail",
+              "insurances",
+              "moving_flow_intro",
+              "profile",
+              "app_information",
+              "app_settings",
+              "chat",
+            ],
+            "type": "STRING",
+          },
+        ],
+      },
+      "timePartitioning": Object {
+        "expirationMS": "7776000000",
+        "field": "timestamp",
+        "type": "DAY",
+      },
+    },
+    "name": "mock_table",
+    "rows": Array [],
+  },
+]
+`;
