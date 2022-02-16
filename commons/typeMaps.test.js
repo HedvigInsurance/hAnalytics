@@ -18,33 +18,35 @@ test("kotlinTypeMap", () => {
   expect(typeMaps.kotlinTypeMap("Optional<String>")).toEqual("String?");
 });
 
-test("bigQuerySchemaTypeMap", () => {
-  expect(typeMaps.bigQuerySchemaTypeMap("String")).toEqual({
+test("bigQuerySchemaTypeMap", async () => {
+  expect(await typeMaps.bigQuerySchemaTypeMap("String")).toEqual({
     type: "STRING",
     mode: "REQUIRED",
   });
-  expect(typeMaps.bigQuerySchemaTypeMap("Double")).toEqual({
+  expect(await typeMaps.bigQuerySchemaTypeMap("Double")).toEqual({
     type: "INTEGER",
     mode: "REQUIRED",
   });
-  expect(typeMaps.bigQuerySchemaTypeMap("Optional<Double>")).toEqual({
+  expect(await typeMaps.bigQuerySchemaTypeMap("Optional<Double>")).toEqual({
     type: "INTEGER",
     mode: "NULLABLE",
   });
 
   expect(
-    typeMaps.bigQuerySchemaTypeMap("Dictionary<String, Any>", {
+    await typeMaps.bigQuerySchemaTypeMap("Dictionary<String, Any>", {
       hello: 123,
     })
   ).toEqual([{ mode: "NULLABLE", name: "hello", type: "INTEGER" }]);
 
-  expect(typeMaps.bigQuerySchemaTypeMap("Optional<Any>", "Value")).toEqual({
+  expect(
+    await typeMaps.bigQuerySchemaTypeMap("Optional<Any>", "Value")
+  ).toEqual({
     type: "STRING",
     mode: "NULLABLE",
   });
 
   expect(
-    typeMaps.bigQuerySchemaTypeMap("Dictionary<String, Any>", {
+    await typeMaps.bigQuerySchemaTypeMap("Dictionary<String, Any>", {
       hello: 123,
       hello_mock: "mock",
     })
@@ -54,7 +56,7 @@ test("bigQuerySchemaTypeMap", () => {
   ]);
 
   expect(
-    typeMaps.bigQuerySchemaTypeMap("Dictionary<String, Optional<Any>>", {
+    await typeMaps.bigQuerySchemaTypeMap("Dictionary<String, Optional<Any>>", {
       hello: 123,
       hello_mock: "mock",
     })

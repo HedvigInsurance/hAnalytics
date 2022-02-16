@@ -1,3 +1,5 @@
+const getTypes = require("./getTypes");
+
 const getSwiftType = (type) => {
   if (!type) {
     return null;
@@ -58,7 +60,7 @@ const getKotlinType = (type) => {
     }, "");
 };
 
-const getBigQuerySchemaType = (type, base = {}) => {
+const getBigQuerySchemaType = async (type, base = {}, ignoreCustom = false) => {
   if (!type) {
     return null;
   }
@@ -84,34 +86,69 @@ const getBigQuerySchemaType = (type, base = {}) => {
       type: "TIMESTAMP",
       mode: "REQUIRED",
     },
-    Optional: (inner) => ({
-      ...getBigQuerySchemaType(inner, base),
-      mode: "NULLABLE",
-    }),
-    Array: (inner) => ({
-      ...getBigQuerySchemaType(inner, base),
-      mode: "REPEATED",
-    }),
-    Dictionary: (inner) =>
-      Object.keys(base).map((key) => {
-        return {
-          name: key,
-          ...getBigQuerySchemaType(inner.split(", ")[1], base[key]),
-          mode: "NULLABLE",
-        };
-      }),
-    Any: {
-      ...getBigQuerySchemaType(getJSToHAnalyticsType(base)),
-      mode: "REQUIRED",
+    Optional: async (inner) => {
+      const resolvedInner = await getBigQuerySchemaType(inner, base);
+
+      return {
+        ...resolvedInner,
+        mode: "NULLABLE",
+      };
+    },
+    Array: async (inner) => {
+      const resolvedInner = await getBigQuerySchemaType(inner, base);
+
+      return {
+        ...resolvedInner,
+        mode: "REPEATED",
+      };
+    },
+    Dictionary: async (inner) =>
+      Promise.all(
+        Object.keys(base).map(async (key) => {
+          const resolvedInner = await getBigQuerySchemaType(
+            inner.split(", ")[1],
+            base[key]
+          );
+          return {
+            name: key,
+            ...resolvedInner,
+            mode: "NULLABLE",
+          };
+        })
+      ),
+    Any: async () => {
+      const resolvedInner = await getBigQuerySchemaType(
+        getJSToHAnalyticsType(base)
+      );
+
+      return {
+        ...resolvedInner,
+        mode: "REQUIRED",
+      };
     },
   };
+
+  const customTypes = await getTypes();
+
+  if (!ignoreCustom) {
+    for (customType of customTypes) {
+      if (customType.type === "Enum") {
+        const rawType = await getBigQuerySchemaType(
+          customType.rawType,
+          base,
+          true
+        );
+        primitives[customType.name] = rawType;
+      }
+    }
+  }
 
   const splitted = type.split("<");
 
   const primitive = primitives[splitted.shift().replaceAll(">", "")];
 
   if (typeof primitive === "function") {
-    return primitive(splitted.join("<"), base);
+    return await primitive(splitted.join("<"), base);
   }
 
   return primitive;

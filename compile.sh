@@ -3,16 +3,6 @@ set -e
 
 HYGEN_OVERWRITE=1 npx hygen generator hAnalytics
 
-rm -rf docs/docs/events
-
-for file in $( find definitions/events -type f -name '*.yml' );
-    do HYGEN_OVERWRITE=1 npx hygen generator eventDocumentation --path $file
-done
-
-for file in $( find definitions/experiments -type f -name '*.yml' );
-    do HYGEN_OVERWRITE=1 npx hygen generator experimentDocumentation --path $file
-done
-
 if [ -x /usr/local/bin/swift-format ] 
 then
     echo "Skipping installing swift-format"
@@ -39,3 +29,13 @@ swift-format format -i swift/hAnalyticsExperiment.swift
 ./gradlew ktlintFormat
 
 npm run test -- --ci
+
+rm -rf docs/docs/events
+
+for file in $( find definitions/events -type f -name '*.yml' );
+    do HYGEN_OVERWRITE=1 npx hygen generator eventDocumentation --path $file
+done
+
+for file in $( find definitions/experiments -type f -name '*.yml' );
+    do HYGEN_OVERWRITE=1 npx hygen generator experimentDocumentation --path $file
+done

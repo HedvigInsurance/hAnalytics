@@ -28,6 +28,22 @@ public struct hAnalyticsParcel {
     }
 }
 
+<% types.forEach((type) => { %>
+
+    <% if (type.type === "Enum") { %>
+
+        <%- stringToSwiftComment(type.description) || "no description given" %>
+        public enum <%= type.name %>: <%- swiftTypeMap(type.rawType) %> {
+            <% Object.keys(type.cases).forEach((enumCaseKey) => { %>
+                case <%- enumCaseKey %> = <%- swiftLiteral(type.cases[enumCaseKey], type.rawType) %>
+            <% }) %>
+        }
+
+    <% } %>
+
+
+<% }) %>
+
 extension hAnalyticsEvent {
     /// identifies and registers the trackingId
     public static func identify() {
@@ -41,10 +57,10 @@ extension hAnalyticsEvent {
         <% if(event.graphql) { %>
                 let properties: [String: Any?] = [
                     <% (event.inputs ?? []).forEach(function(input) { %>
-                            "<%= input.name %>": <%= input.argument %>,
+                            "<%= input.name %>": <%= swiftInputToGetter(input) %>,
                     <% }); %>
                     <% (event.constants ?? []).forEach(function(constant) { %>
-                            "<%= constant.name %>": <%= constant.value %>,
+                            "<%= constant.name %>": <%= swiftLiteral(constant.value, constant.type) %>,
                     <% }); %>
                     <%= !event.inputs && !event.constants ? ":" : "" %>
                 ]
@@ -54,7 +70,7 @@ extension hAnalyticsEvent {
 
                 let graphQLVariables: [String: Any?] = [
                     <% graphQLInputs.forEach(function(input) { %>
-                            "<%= input.name %>": <%= input.argument %>,
+                            "<%= input.name %>": <%= swiftInputToGetter(input) %>,
                     <% }); %>
                     <% graphQLConstants.forEach(function(constant) { %>
                             "<%= constant.name %>": <%= constant.value %>,
@@ -80,7 +96,7 @@ extension hAnalyticsEvent {
         <% } else { %>
                 let properties: [String: Any?] = [
                     <% (event.inputs ?? []).forEach(function(input) { %>
-                            "<%= input.name %>": <%= input.argument %>,
+                            "<%= input.name %>": <%- swiftInputToGetter(input) %>,
                     <% }); %>
                     <% (event.constants ?? []).forEach(function(constant) { %>
                             "<%= constant.name %>": <%= constant.value %>,

@@ -1,0 +1,7 @@
+name: AppScreen
+description: An app screen
+type: Enum
+rawType: String
+cases:
+  offer: offer
+  claimsStatusDetail: claims_status_detail

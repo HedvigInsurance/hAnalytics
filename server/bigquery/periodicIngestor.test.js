@@ -29,20 +29,14 @@ const mockFieldReducer = (acc, curr) => {
   return acc;
 };
 
-const mockContextProperties = schemaFields.contextFields.reduce(
-  mockFieldReducer,
-  {}
-);
+const mockContextProperties = async () =>
+  (await schemaFields.contextFields()).reduce(mockFieldReducer, {});
 
-const mockEventProperties = schemaFields.eventFields.reduce(
-  mockFieldReducer,
-  {}
-);
+const mockEventProperties = async () =>
+  (await schemaFields.eventFields()).reduce(mockFieldReducer, {});
 
-const mockGeneralProperties = schemaFields.generalFields.reduce(
-  mockFieldReducer,
-  {}
-);
+const mockGeneralProperties = async () =>
+  (await schemaFields.generalFields()).reduce(mockFieldReducer, {});
 
 test("ingests correctly", async () => {
   const bigQueryConfig = createBigQueryConfigMock([
@@ -87,18 +81,19 @@ test("ingests exact amount of rows", async () => {
   await start(bigQueryConfig, createInMemoryBackend(), 25);
 
   const numberOfRows = 50;
+  const rows = [...new Array(numberOfRows)].map((_, index) => index);
 
-  [...new Array(numberOfRows)].forEach(() => {
+  for (row of rows) {
     addToQueue({
       table: "mock_event",
       row: {
-        ...mockContextProperties,
-        ...mockEventProperties,
-        ...mockGeneralProperties,
+        ...(await mockContextProperties()),
+        ...(await mockEventProperties()),
+        ...(await mockGeneralProperties()),
         property_hello: "HELLO",
       },
     });
-  });
+  }
 
   await waitUntilIdle();
   await stop();
@@ -127,14 +122,15 @@ test("doesnt ingest invalid rows", async () => {
   await start(bigQueryConfig, createInMemoryBackend(), 5);
 
   const numberOfRows = 25;
+  const rows = [...new Array(numberOfRows)].map((_, index) => index);
 
-  [...new Array(numberOfRows)].forEach((_, index) => {
+  for (row of rows) {
     addToQueue({
       table: "mock_event",
       row: {
-        ...mockContextProperties,
-        ...mockEventProperties,
-        ...mockGeneralProperties,
+        ...(await mockContextProperties()),
+        ...(await mockEventProperties()),
+        ...(await mockGeneralProperties()),
         property_hello: "HELLO",
         property_hello_other: Math.random(),
       },
@@ -143,14 +139,14 @@ test("doesnt ingest invalid rows", async () => {
     addToQueue({
       table: "mock_event",
       row: {
-        ...mockContextProperties,
-        ...mockEventProperties,
-        ...mockGeneralProperties,
+        ...(await mockContextProperties()),
+        ...(await mockEventProperties()),
+        ...(await mockGeneralProperties()),
         property_hello: "HELLO",
         property_hello_other: "value",
       },
     });
-  });
+  }
 
   await waitUntilIdle();
   await stop();
@@ -179,19 +175,20 @@ test("does keep invalid rows", async () => {
   await start(bigQueryConfig, createInMemoryBackend(), 5);
 
   const numberOfRows = 25;
+  const rows = [...new Array(numberOfRows)].map((_, index) => index);
 
-  [...new Array(numberOfRows)].forEach((_, index) => {
+  for (row of rows) {
     addToQueue({
       table: "mock_event",
       row: {
-        ...mockContextProperties,
-        ...mockEventProperties,
-        ...mockGeneralProperties,
+        ...(await mockContextProperties()),
+        ...(await mockEventProperties()),
+        ...(await mockGeneralProperties()),
         property: "HELLO",
-        context_something_invalid: index,
+        context_something_invalid: row,
       },
     });
-  });
+  }
 
   await timersPromises.setTimeout(1000);
   await waitUntilIdle();
@@ -219,14 +216,15 @@ test("does ingest dynamic fields", async () => {
   await start(bigQueryConfig, createInMemoryBackend(), 10);
 
   const numberOfRows = 30;
+  const rows = [...new Array(numberOfRows)].map((_, index) => index);
 
-  [...new Array(numberOfRows)].forEach((_, index) => {
+  for (row of rows) {
     addToQueue({
       table: "mock_event",
       row: {
-        ...mockContextProperties,
-        ...mockEventProperties,
-        ...mockGeneralProperties,
+        ...(await mockContextProperties()),
+        ...(await mockEventProperties()),
+        ...(await mockGeneralProperties()),
         property_hello: "hello",
       },
     });
@@ -234,9 +232,9 @@ test("does ingest dynamic fields", async () => {
     addToQueue({
       table: "mock_event",
       row: {
-        ...mockContextProperties,
-        ...mockEventProperties,
-        ...mockGeneralProperties,
+        ...(await mockContextProperties()),
+        ...(await mockEventProperties()),
+        ...(await mockGeneralProperties()),
         property_hello: "hello",
         [`property_hello_other_field`]: "HELLO",
         [`property_hello_other_field_double`]: 150,
@@ -244,7 +242,7 @@ test("does ingest dynamic fields", async () => {
         [`property_hello_other_field_array`]: ["string", "string2"],
       },
     });
-  });
+  }
 
   await waitUntilIdle();
   await stop();
@@ -276,18 +274,19 @@ test("does respect source version", async () => {
   process.env.SOURCE_VERSION = 0;
 
   const numberOfRows = 25;
+  const rows = [...new Array(numberOfRows)].map((_, index) => index);
 
-  [...new Array(numberOfRows)].forEach((_, index) => {
+  for (row of rows) {
     addToQueue({
       table: "mock_table",
       row: {
-        ...mockContextProperties,
-        ...mockEventProperties,
-        ...mockGeneralProperties,
-        context_something_invalid: index,
+        ...(await mockContextProperties()),
+        ...(await mockEventProperties()),
+        ...(await mockGeneralProperties()),
+        context_something_invalid: row,
       },
     });
-  });
+  }
 
   await timersPromises.setTimeout(1000);
   await waitUntilIdle();

@@ -1,7 +1,38 @@
 package com.hedvig.hanalytics
 
+interface AppScreenRaw {
+    val value: String
+}
+
+/**
+ * An app screen
+ */
+enum class AppScreen : AppScreenRaw {
+
+    Offer {
+        override val value = "offer"
+    },
+
+    ClaimsStatusDetail {
+        override val value = "claims_status_detail"
+    };
+}
+
 abstract class HAnalytics {
     protected abstract fun send(event: HAnalyticsEvent)
+    /**
+     * A screen was shown in the app
+     */
+    fun screenView(screen: AppScreen) {
+        send(
+            HAnalyticsEvent(
+                name = "app_screen_view",
+                properties = mapOf(
+                    "screen_name" to screen.rawValue,
+                ),
+            )
+        )
+    }
     /**
      * When a file, video, image, gif is sent in the chat
      */

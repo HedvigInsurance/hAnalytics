@@ -53,7 +53,7 @@ const transfer = async () => {
   var totalValid = 0;
 
   const promises = events.map(async (event) => {
-    const schemaFields = eventToSchemaFields(event);
+    const schemaFields = await eventToSchemaFields(event);
     const tableName = `__sync_table_${event.name}`;
 
     await setupTable(

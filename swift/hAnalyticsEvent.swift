@@ -21,9 +21,24 @@ public struct hAnalyticsParcel {
   public func send() { sender() }
 }
 
+/// An app screen
+public enum AppScreen: String {
+  case offer = "offer"
+  case claimsStatusDetail = "claims_status_detail"
+}
+
 extension hAnalyticsEvent {
   /// identifies and registers the trackingId
   public static func identify() { hAnalyticsNetworking.identify() }
+
+  /// A screen was shown in the app
+  public static func screenView(screen: AppScreen) -> hAnalyticsParcel {
+    return hAnalyticsParcel {
+      let properties: [String: Any?] = ["screen_name": screen.rawValue]
+
+      hAnalyticsNetworking.send(hAnalyticsEvent(name: "app_screen_view", properties: properties))
+    }
+  }
 
   /// When a file, video, image, gif is sent in the chat
   public static func chatRichMessageSent() -> hAnalyticsParcel {

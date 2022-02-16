@@ -2,11 +2,11 @@ const typeMaps = require("../../../commons/typeMaps");
 const { generalFields, contextFields, eventFields } = require("./schemaFields");
 const sortFields = require("./sortFields");
 
-const eventToSchemaFields = (event, base = {}) => {
+const eventToSchemaFields = async (event, base = {}) => {
   var propertyFields = [];
 
-  const addFields = (input) => {
-    let typeOptions = typeMaps.bigQuerySchemaTypeMap(input.type, base);
+  const addFields = async (input) => {
+    let typeOptions = await typeMaps.bigQuerySchemaTypeMap(input.type, base);
 
     if (!typeOptions) {
       return;
@@ -32,15 +32,15 @@ const eventToSchemaFields = (event, base = {}) => {
   };
 
   if (event.inputs) {
-    event.inputs.forEach(addFields);
+    await Promise.all(event.inputs.map(addFields));
   }
 
   if (event.constants) {
-    event.constants.forEach(addFields);
+    await Promise.all(event.constants.map(addFields));
   }
 
   if (event.graphql) {
-    event.graphql.selectors.forEach(addFields);
+    await Promise.all(event.graphql.selectors.map(addFields));
   }
 
   const excludeEventFields = event.bigQuery?.noEventFields === true;
@@ -48,10 +48,10 @@ const eventToSchemaFields = (event, base = {}) => {
 
   return sortFields(
     [
-      excludeEventFields ? [] : eventFields,
+      excludeEventFields ? [] : await eventFields(),
       propertyFields,
-      generalFields,
-      excludeContextFields ? [] : contextFields,
+      await generalFields(),
+      excludeContextFields ? [] : await contextFields(),
     ].flatMap((i) => i)
   );
 };

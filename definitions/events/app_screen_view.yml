@@ -1,0 +1,7 @@
+name: app_screen_view
+description: A screen was shown in the app
+accessor: screenView
+inputs:
+  - name: screen_name
+    type: AppScreen
+    argument: screen

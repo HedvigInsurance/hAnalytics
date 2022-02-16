@@ -6,13 +6,24 @@ const { bigQuerySchemaTypeMap } = require("../../../commons/typeMaps");
 test("validate String", async () => {
   const bigQueryConfig = createBigQueryConfigMock();
 
+  await bigQuerySchemaTypeMap("String");
+
+  console.log([
+    {
+      name: "property_hello",
+      ...(await bigQuerySchemaTypeMap("String")),
+    },
+  ]);
+
+  return;
+
   await setupTable(
     "mock_table",
     "mock table",
     [
       {
         name: "property_hello",
-        ...bigQuerySchemaTypeMap("String"),
+        ...(await bigQuerySchemaTypeMap("String")),
       },
     ],
     bigQueryConfig
@@ -38,7 +49,7 @@ test("validate should fail with unknown properites", async () => {
     [
       {
         name: "property_hello",
-        ...bigQuerySchemaTypeMap("String"),
+        ...(await bigQuerySchemaTypeMap("String")),
       },
     ],
     bigQueryConfig
@@ -64,7 +75,7 @@ test("validate should fail with wrong type", async () => {
     [
       {
         name: "property_hello",
-        ...bigQuerySchemaTypeMap("String"),
+        ...(await bigQuerySchemaTypeMap("String")),
       },
     ],
     bigQueryConfig
@@ -90,7 +101,7 @@ test("validate should accept nullable", async () => {
     [
       {
         name: "property_mock",
-        ...bigQuerySchemaTypeMap("Optional<String>"),
+        ...(await bigQuerySchemaTypeMap("Optional<String>")),
       },
     ],
     bigQueryConfig
@@ -116,7 +127,7 @@ test("validate should not accept null", async () => {
     [
       {
         name: "property_hello",
-        ...bigQuerySchemaTypeMap("String"),
+        ...(await bigQuerySchemaTypeMap("String")),
       },
     ],
     bigQueryConfig
@@ -142,7 +153,7 @@ test("validate should accept array", async () => {
     [
       {
         name: "experiments",
-        ...bigQuerySchemaTypeMap("Array<String>"),
+        ...(await bigQuerySchemaTypeMap("Array<String>")),
       },
     ],
     bigQueryConfig
@@ -168,7 +179,7 @@ test("validate should not accept array with wrong type", async () => {
     [
       {
         name: "experiments",
-        ...bigQuerySchemaTypeMap("Array<String>"),
+        ...(await bigQuerySchemaTypeMap("Array<String>")),
       },
     ],
     bigQueryConfig
