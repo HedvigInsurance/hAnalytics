@@ -57,6 +57,17 @@ const transfer = async () => {
     const schemaFields = await eventToSchemaFields(event);
     const tableName = `__sync_table_${event.name}`;
 
+    try {
+      await bigQueryConfig.bigquery
+        .dataset(bigQueryConfig.dataset)
+        .table(tableName)
+        .delete();
+    } catch (err) {
+      console.log(err);
+    }
+
+    await timersPromises.setTimeout(60000);
+
     await setupTable(
       tableName,
       event.description,
@@ -192,13 +203,14 @@ const transfer = async () => {
         );
 
         if (valid) {
-          const transformedRow = transform(filteredRow);
+          for (transformedRow of transform(filteredRow)) {
+            if (!rowsToInsertMap[transformedRow.event]) {
+              rowsToInsertMap[transformedRow.event] = [];
+            }
 
-          if (!rowsToInsertMap[transformedRow.event]) {
-            rowsToInsertMap[transformedRow.event] = [];
+            rowsToInsertMap[transformedRow.event].push(transformedRow);
           }
 
-          rowsToInsertMap[transformedRow.event].push(transformedRow);
           numberValid++;
         } else {
           numberInvalid++;

@@ -56,8 +56,6 @@ const updateSchema = async (
         );
       }
     }
-  } else {
-    console.log("Not updating schema");
   }
 };
 

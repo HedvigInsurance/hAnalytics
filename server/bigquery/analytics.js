@@ -14,38 +14,38 @@ const track = async (name, event) => {
     timestamp: bigQueryConfig.bigquery.datetime(event.timestamp.toISOString()),
   };
 
-  const transformedEvent = transform(completeEvent);
+  for (transformedEvent of transform(completeEvent)) {
+    const eventInsertEntry = {
+      table: transformedEvent.event,
+      row: transformedEvent,
+    };
 
-  const eventInsertEntry = {
-    table: transformedEvent.event,
-    row: transformedEvent,
-  };
+    addToQueue(eventInsertEntry);
 
-  addToQueue(eventInsertEntry);
+    const rawEventInsertEntry = {
+      table: "raw",
+      row: {
+        event_id: transformedEvent.event_id,
+        event: "raw",
+        property_data: JSON.stringify(transformedEvent),
+        timestamp: transformedEvent.timestamp,
+        tracking_id: transformedEvent.tracking_id,
+      },
+    };
 
-  const rawEventInsertEntry = {
-    table: "raw",
-    row: {
-      event_id: transformedEvent.event_id,
-      event: "raw",
-      property_data: JSON.stringify(transformedEvent),
-      timestamp: transformedEvent.timestamp,
-      tracking_id: transformedEvent.tracking_id,
-    },
-  };
+    addToQueue(rawEventInsertEntry);
 
-  addToQueue(rawEventInsertEntry);
+    const flatTrack = omit("property", transformedEvent);
 
-  const flatTrack = omit("property", transformedEvent);
+    const trackInsertEntry = {
+      table: "tracks",
+      row: {
+        ...flatTrack,
+      },
+    };
 
-  const trackInsertEntry = {
-    table: "tracks",
-    row: {
-      ...flatTrack,
-    },
-  };
-
-  addToQueue(trackInsertEntry);
+    addToQueue(trackInsertEntry);
+  }
 };
 
 const identify = async (identity) => {
