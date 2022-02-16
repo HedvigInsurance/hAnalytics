@@ -119,7 +119,7 @@ const upsert = async () => {
         UPDATE \`${bigQueryConfig.projectId}.${bigQueryConfig.dataset}.${destination}\` destination
         SET ${fieldsUpdate}
         FROM (
-        select ${fieldsUpdateSelect}, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY loaded_at DESC) as __row_number from \`${bigQueryConfig.projectId}.${bigQueryConfig.dataset}.${source}\`
+        select ${fieldsUpdateSelect}, ROW_NUMBER() OVER (PARTITION BY timestamp ORDER BY loaded_at DESC) as __row_number from \`${bigQueryConfig.projectId}.${bigQueryConfig.dataset}.${source}\`
         ) source
         WHERE source.timestamp = destination.timestamp AND __row_number = 1
       `;
