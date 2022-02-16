@@ -1,3 +1,4 @@
 name: tracks
 description: Automatic event that is created when any other event is ingested
 accessor: null
+type: INTERNAL
