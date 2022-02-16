@@ -17,7 +17,7 @@ const track = async (name, event) => {
   const transformedEvent = transform(completeEvent);
 
   const eventInsertEntry = {
-    table: name,
+    table: transformedEvent.event,
     row: transformedEvent,
   };
 
