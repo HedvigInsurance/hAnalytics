@@ -2,12 +2,8 @@ const yaml = require("js-yaml");
 const fs = require("fs");
 const typeMaps = require("../../../commons/typeMaps");
 const mockRunGraphQLQuery = require("../../../commons/mockRunGraphqlEvent");
-const { Octokit } = require("@octokit/core");
 const eventToSchemaFields = require("../../../server/bigquery/schema/eventToSchemaFields");
-
-const octokit = new Octokit({
-  auth: process.env.GITHUB_TOKEN,
-});
+const bigQueryConfig = require("../../../server/bigquery/config");
 
 const getIntegrationStatus = async (event) => {
   const lastUpdated = new Date()
@@ -16,17 +12,30 @@ const getIntegrationStatus = async (event) => {
     .replace(/\..+/, "");
 
   try {
-    const iosResult = await octokit.request("GET /search/code", {
-      q: `hAnalyticsEvent ${event.accessor} in:file repo:HedvigInsurance/Ugglan`,
-    });
+    const hasEvent = async (os) => {
+      const query = `
+        SELECT
+            count(*) as count
+        FROM \`${bigQueryConfig.projectId}.${bigQueryConfig.dataset}.${event.name}\`
+        WHERE context_os_name="${os}" AND EXTRACT(DATE FROM timestamp) >= DATE_ADD(CURRENT_DATE(), INTERVAL -30 DAY)
+      `;
 
-    const androidResult = await octokit.request("GET /search/code", {
-      q: `hAnalytics ${event.accessor} in:file repo:HedvigInsurance/Android`,
-    });
+      const [rows] = await bigQueryConfig.bigquery
+        .dataset(bigQueryConfig.dataset)
+        .table(event.name)
+        .query({
+          query: query,
+        });
+
+      return rows[0].count > 0;
+    };
+
+    const hasIOSEvent = await hasEvent("iOS");
+    const hasAndroidEvent = await hasEvent("Android");
 
     return {
-      ios: iosResult.data.total_count > 0,
-      android: androidResult.data.total_count > 0,
+      ios: hasIOSEvent,
+      android: hasAndroidEvent,
       lastUpdated: lastUpdated,
     };
   } catch (err) {

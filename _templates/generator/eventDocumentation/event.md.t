@@ -40,4 +40,6 @@ hAnalytics.<%= event.accessor %>(<%- (event.inputs ?? []).map((input) => `${inpu
 | iOS      |    <%= integrationStatus.ios ? "Yes" : "No" %>    |
 | Android      | <%= integrationStatus.android ? "Yes" : "No" %>       |
 
+Yes means that the platform has sent data atleast once in the last 30 days for this event.
+
 Integration status was last checked on <%= integrationStatus.lastUpdated %>
