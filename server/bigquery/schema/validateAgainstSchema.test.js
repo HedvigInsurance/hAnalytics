@@ -8,15 +8,6 @@ test("validate String", async () => {
 
   await bigQuerySchemaTypeMap("String");
 
-  console.log([
-    {
-      name: "property_hello",
-      ...(await bigQuerySchemaTypeMap("String")),
-    },
-  ]);
-
-  return;
-
   await setupTable(
     "mock_table",
     "mock table",
