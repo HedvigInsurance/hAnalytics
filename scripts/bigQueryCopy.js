@@ -92,7 +92,7 @@ const upsert = async () => {
         `;
     }
 
-    const [insertedRows] = await bigQueryConfig.bigquery
+    await bigQueryConfig.bigquery
       .dataset(bigQueryConfig.dataset)
       .table(source)
       .query({
@@ -100,9 +100,7 @@ const upsert = async () => {
         useQueryCache: false,
       });
 
-    console.log(
-      `Inserted a total of ${insertedRows.length} rows into ${destination}`
-    );
+    console.log(`Started inserting rows into ${destination}`);
 
     var updateQuery = ``;
 
@@ -134,7 +132,7 @@ const upsert = async () => {
       `;
     }
 
-    const [updatedRows] = await bigQueryConfig.bigquery
+    await bigQueryConfig.bigquery
       .dataset(bigQueryConfig.dataset)
       .table(source)
       .query({
@@ -142,9 +140,7 @@ const upsert = async () => {
         useQueryCache: false,
       });
 
-    console.log(
-      `Updated a total of ${updatedRows.length} rows into ${destination}`
-    );
+    console.log(`Starting updating rows in ${destination}`);
   }
 };
 
