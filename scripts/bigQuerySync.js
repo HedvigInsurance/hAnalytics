@@ -194,7 +194,7 @@ const transfer = async () => {
         if (valid) {
           const transformedRow = transform(filteredRow);
 
-          if (rowsToInsertMap[transformedRow.event]) {
+          if (!rowsToInsertMap[transformedRow.event]) {
             rowsToInsertMap[transformedRow.event] = [];
           }
 
