@@ -57,16 +57,16 @@ const transfer = async () => {
     const schemaFields = await eventToSchemaFields(event);
     const tableName = `__sync_table_${event.name}`;
 
-    try {
-      await bigQueryConfig.bigquery
-        .dataset(bigQueryConfig.dataset)
-        .table(tableName)
-        .delete();
-    } catch (err) {
-      console.log(err);
-    }
+    // try {
+    //   await bigQueryConfig.bigquery
+    //     .dataset(bigQueryConfig.dataset)
+    //     .table(tableName)
+    //     .delete();
+    // } catch (err) {
+    //   console.log(err);
+    // }
 
-    await timersPromises.setTimeout(60000);
+    // await timersPromises.setTimeout(60000);
 
     await setupTable(
       tableName,
@@ -237,6 +237,50 @@ const transfer = async () => {
                 loaded_at: row["loaded_at"],
               }))
             );
+
+          await bigQueryConfig.bigquery
+            .dataset(bigQueryConfig.dataset)
+            .table("__sync_table_aggregate")
+            .insert(
+              rows.map((row) => {
+                const rowWithoutProperties = Object.keys(row).reduce(
+                  (acc, curr) => {
+                    if (!curr.startsWith("property_")) {
+                      acc[curr] = row[curr];
+                    }
+                    return acc;
+                  },
+                  {}
+                );
+
+                const rowWithProperties = Object.keys(row).reduce(
+                  (acc, curr) => {
+                    if (curr.startsWith("property_")) {
+                      acc[curr] = row[curr];
+                    }
+                    return acc;
+                  },
+                  {}
+                );
+
+                const fullAggregateEvent = {
+                  ...rowWithoutProperties,
+                  event_id: row.event_id,
+                  event: row.event,
+                  timestamp: row.timestamp,
+                  tracking_id: row.tracking_id,
+                  loaded_at: row["loaded_at"],
+                };
+
+                if (Object.keys(rowWithProperties).length) {
+                  fullAggregateEvent[`properties_${row.event}`] = {
+                    ...rowWithProperties,
+                  };
+                }
+
+                return fullAggregateEvent;
+              })
+            );
         };
 
         await Promise.all(
@@ -247,6 +291,7 @@ const transfer = async () => {
                   try {
                     await insertRows(rows, `__sync_table_${key}`);
                   } catch (err) {
+                    console.log(key, JSON.stringify(err.errors, null, 2));
                     numberValid--;
                     numberInvalid++;
                   }

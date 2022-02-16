@@ -1,3 +1,4 @@
+const getEvents = require("../../../commons/getEvents");
 const typeMaps = require("../../../commons/typeMaps");
 const { generalFields, contextFields, eventFields } = require("./schemaFields");
 const sortFields = require("./sortFields");
@@ -43,14 +44,43 @@ const eventToSchemaFields = async (event, base = {}) => {
     await Promise.all(event.graphql.selectors.map(addFields));
   }
 
+  if (event.bigQuery?.addAggregatePropertyFields) {
+    const events = await getEvents();
+
+    for (aggregateEvent of events) {
+      if (aggregateEvent.name !== event.name) {
+        const fields = await eventToSchemaFields({
+          ...aggregateEvent,
+          bigQuery: {
+            ...aggregateEvent.bigQuery,
+            noEventFields: true,
+            noContextFields: true,
+            noGeneralFields: true,
+          },
+        });
+
+        if (fields.length) {
+          propertyFields.push({
+            name: `properties_${aggregateEvent.name}`,
+            description: aggregateEvent.description || "",
+            type: "STRUCT",
+            mode: "NULLABLE",
+            fields,
+          });
+        }
+      }
+    }
+  }
+
   const excludeEventFields = event.bigQuery?.noEventFields === true;
   const excludeContextFields = event.bigQuery?.noContextFields === true;
+  const excludeGeneralFields = event.bigQuery?.noGeneralFields === true;
 
   return sortFields(
     [
       excludeEventFields ? [] : await eventFields(),
       propertyFields,
-      await generalFields(),
+      excludeGeneralFields ? [] : await generalFields(),
       excludeContextFields ? [] : await contextFields(),
     ].flatMap((i) => i)
   );

@@ -1,5 +1,730 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`creates schemas according to events: aggregate 1`] = `
+Array [
+  Object {
+    "description": "A screen was shown in the app",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "property_screen_name",
+        "permittedValues": Array [
+          "offer",
+          "claims_status_detail",
+          "claim_honor_pledge",
+          "common_claim_detail",
+          "embark",
+          "embark_tooltip",
+          "market_picker",
+          "marketing",
+          "data_collection_authenticating",
+          "data_collection_credentials",
+          "data_collection_fail",
+          "data_collection_intro",
+          "data_collection_success",
+          "connect_payment_adyen",
+          "connect_payment_trustly",
+          "connect_payment_failed",
+          "connect_payment_success",
+          "payments",
+          "charity",
+          "contact_info",
+          "cross_sell_detail",
+          "forever",
+          "home",
+          "insurance_Detail",
+          "insurances",
+          "moving_flow_intro",
+          "profile",
+          "app_information",
+          "app_settings",
+          "chat",
+        ],
+        "type": "STRING",
+      },
+    ],
+    "mode": "NULLABLE",
+    "name": "app_screen_view_properties",
+    "type": "STRUCT",
+  },
+  Object {
+    "description": "When a claim card has been clicked on screen",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "property_claim_id",
+        "type": "STRING",
+      },
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "property_claim_status",
+        "type": "STRING",
+      },
+    ],
+    "mode": "NULLABLE",
+    "name": "claim_card_click_properties",
+    "type": "STRUCT",
+  },
+  Object {
+    "description": "When a claim card has been shown on screen",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "property_claim_id",
+        "type": "STRING",
+      },
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "property_claim_status",
+        "type": "STRING",
+      },
+    ],
+    "mode": "NULLABLE",
+    "name": "claim_card_visible_properties",
+    "type": "STRUCT",
+  },
+  Object {
+    "description": "When contact chat is tapped on claim details",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "property_claim_id",
+        "type": "STRING",
+      },
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "property_claim_status",
+        "type": "STRING",
+      },
+    ],
+    "mode": "NULLABLE",
+    "name": "claim_status_detail_click_open_chat_properties",
+    "type": "STRUCT",
+  },
+  Object {
+    "description": "When a claims recording has been played in the claims status screen",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "property_claim_id",
+        "type": "STRING",
+      },
+    ],
+    "mode": "NULLABLE",
+    "name": "claims_detail_recording_played_properties",
+    "type": "STRUCT",
+  },
+  Object {
+    "description": "The build number of the app, for example 8293",
+    "mode": "REQUIRED",
+    "name": "context_app_build",
+    "type": "STRING",
+  },
+  Object {
+    "description": "The name of the app, for example Hedvig, Ugglan",
+    "mode": "REQUIRED",
+    "name": "context_app_name",
+    "type": "STRING",
+  },
+  Object {
+    "description": "The namespace of the app, for example com.hedvig.app",
+    "mode": "REQUIRED",
+    "name": "context_app_namespace",
+    "type": "STRING",
+  },
+  Object {
+    "description": "The version of the app, for example 7.6.0",
+    "mode": "REQUIRED",
+    "name": "context_app_version",
+    "type": "STRING",
+  },
+  Object {
+    "description": "The manufacturer of the device, for example Samsung or Apple",
+    "mode": "NULLABLE",
+    "name": "context_device_manufacturer",
+    "type": "STRING",
+  },
+  Object {
+    "description": "The model of device, for example iPhone13,3",
+    "mode": "NULLABLE",
+    "name": "context_device_model",
+    "type": "STRING",
+  },
+  Object {
+    "description": "The name of the device, for example iPhone",
+    "mode": "NULLABLE",
+    "name": "context_device_name",
+    "type": "STRING",
+  },
+  Object {
+    "description": "The type of device, for example ios or android",
+    "mode": "NULLABLE",
+    "name": "context_device_type",
+    "type": "STRING",
+  },
+  Object {
+    "description": "The users IP address",
+    "mode": "REQUIRED",
+    "name": "context_ip",
+    "type": "STRING",
+  },
+  Object {
+    "description": "The locale that was current, for example en-SE",
+    "mode": "REQUIRED",
+    "name": "context_locale",
+    "type": "STRING",
+  },
+  Object {
+    "description": "OS name for example Android, iOS, iPadOS, MacOS, Windows",
+    "mode": "REQUIRED",
+    "name": "context_os_name",
+    "type": "STRING",
+  },
+  Object {
+    "description": "OS version for example 15.0.1 for iOS 15.0.1",
+    "mode": "REQUIRED",
+    "name": "context_os_version",
+    "type": "STRING",
+  },
+  Object {
+    "description": "Pixel density of screen",
+    "mode": "NULLABLE",
+    "name": "context_screen_density",
+    "type": "INTEGER",
+  },
+  Object {
+    "description": "Height of screen in pixels",
+    "mode": "NULLABLE",
+    "name": "context_screen_height",
+    "type": "INTEGER",
+  },
+  Object {
+    "description": "Width of screen in pixels",
+    "mode": "NULLABLE",
+    "name": "context_screen_width",
+    "type": "INTEGER",
+  },
+  Object {
+    "description": "An id which is preserved across a session, when application is closed a new id is generated",
+    "mode": "REQUIRED",
+    "name": "context_session_id",
+    "type": "STRING",
+  },
+  Object {
+    "description": "Timezone of device",
+    "mode": "REQUIRED",
+    "name": "context_timezone",
+    "type": "STRING",
+  },
+  Object {
+    "description": "Member id associated with the event",
+    "mode": "NULLABLE",
+    "name": "context_traits_member_id",
+    "type": "STRING",
+  },
+  Object {
+    "description": "When the user decided to skip data collection",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "property_provider_id",
+        "type": "STRING",
+      },
+    ],
+    "mode": "NULLABLE",
+    "name": "data_collection_skipped_properties",
+    "type": "STRUCT",
+  },
+  Object {
+    "description": "When a deep link was opened",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "property_type",
+        "type": "STRING",
+      },
+    ],
+    "mode": "NULLABLE",
+    "name": "deep_link_opened_properties",
+    "type": "STRUCT",
+  },
+  Object {
+    "description": "When embark does an external redirect",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "property_location",
+        "type": "STRING",
+      },
+    ],
+    "mode": "NULLABLE",
+    "name": "embark_external_redirect_properties",
+    "type": "STRUCT",
+  },
+  Object {
+    "description": "When embark goes back one passage",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "property_originated_from_embark_story",
+        "type": "STRING",
+      },
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "property_passage_name",
+        "type": "STRING",
+      },
+    ],
+    "mode": "NULLABLE",
+    "name": "embark_passage_go_back_properties",
+    "type": "STRUCT",
+  },
+  Object {
+    "description": "When embark sends a tracking event",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "property_event_name",
+        "type": "STRING",
+      },
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "property_originated_from_embark_story",
+        "type": "STRING",
+      },
+    ],
+    "mode": "NULLABLE",
+    "name": "embark_track_properties",
+    "type": "STRUCT",
+  },
+  Object {
+    "description": "When embark does a varianted offer redirect",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REPEATED",
+        "name": "property_all_ids",
+        "type": "STRING",
+      },
+      Object {
+        "description": "",
+        "mode": "REPEATED",
+        "name": "property_selected_ids",
+        "type": "STRING",
+      },
+    ],
+    "mode": "NULLABLE",
+    "name": "embark_varianted_offer_redirect_properties",
+    "type": "STRUCT",
+  },
+  Object {
+    "description": "String name of event, for example screen_view_offer",
+    "mode": "REQUIRED",
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "description": "Unique ID of the event",
+    "mode": "REQUIRED",
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "description": "Experiment where evaluated, typically means it was shown on screen or similar",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "property_name",
+        "type": "STRING",
+      },
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "property_variant",
+        "type": "STRING",
+      },
+    ],
+    "mode": "NULLABLE",
+    "name": "experiment_evaluated_properties",
+    "type": "STRUCT",
+  },
+  Object {
+    "description": "Experiments where loaded from server",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REPEATED",
+        "name": "property_experiments",
+        "type": "STRING",
+      },
+    ],
+    "mode": "NULLABLE",
+    "name": "experiments_loaded_properties",
+    "type": "STRUCT",
+  },
+  Object {
+    "description": "Automatically created by hAnalytics when identifiying",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "NULLABLE",
+        "name": "property_member_id",
+        "type": "STRING",
+      },
+    ],
+    "mode": "NULLABLE",
+    "name": "identifies_properties",
+    "type": "STRUCT",
+  },
+  Object {
+    "description": "When a market was selected on the market picker screen",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "property_locale",
+        "type": "STRING",
+      },
+    ],
+    "mode": "NULLABLE",
+    "name": "market_selected_properties",
+    "type": "STRUCT",
+  },
+  Object {
+    "description": "A push notification was opened",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "property_type",
+        "type": "STRING",
+      },
+    ],
+    "mode": "NULLABLE",
+    "name": "notification_opened_properties",
+    "type": "STRUCT",
+  },
+  Object {
+    "description": "The state of notification permission:
+  granted == true: push notifications permissions are approved
+  granted == false: push notifications permissions are denied
+  granted == null: push notifications permissions are not determined yet / unknown
+",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "NULLABLE",
+        "name": "property_granted",
+        "type": "BOOLEAN",
+      },
+    ],
+    "mode": "NULLABLE",
+    "name": "notification_permission_properties",
+    "type": "STRUCT",
+  },
+  Object {
+    "description": "When an embark flow is choosen on the choose screen",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "property_embark_story_id",
+        "type": "STRING",
+      },
+    ],
+    "mode": "NULLABLE",
+    "name": "onboarding_choose_embark_flow_properties",
+    "type": "STRUCT",
+  },
+  Object {
+    "description": "When quotes are signed in the offer screen",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "property_initiated_from",
+        "type": "STRING",
+      },
+      Object {
+        "description": "",
+        "mode": "REPEATED",
+        "name": "property_quote_ids",
+        "type": "STRING",
+      },
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "property_type_of_contracts",
+        "type": "STRING",
+      },
+    ],
+    "mode": "NULLABLE",
+    "name": "quotes_signed_properties",
+    "type": "STRUCT",
+  },
+  Object {
+    "description": "RAW events not parsed nor validated, will contain events not matching against schema",
+    "fields": Array [
+      Object {
+        "description": "Event as JSON",
+        "mode": "REQUIRED",
+        "name": "property_data",
+        "type": "STRING",
+      },
+    ],
+    "mode": "NULLABLE",
+    "name": "raw_properties",
+    "type": "STRUCT",
+  },
+  Object {
+    "description": "When the user received some quotes",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "property_initiated_from",
+        "type": "STRING",
+      },
+      Object {
+        "description": "",
+        "mode": "REPEATED",
+        "name": "property_quote_ids",
+        "type": "STRING",
+      },
+      Object {
+        "description": "",
+        "mode": "REPEATED",
+        "name": "property_type_of_contracts",
+        "type": "STRING",
+      },
+    ],
+    "mode": "NULLABLE",
+    "name": "received_quotes_properties",
+    "type": "STRUCT",
+  },
+  Object {
+    "description": "When the claims status detail screen is shown",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "property_claim_id",
+        "type": "STRING",
+      },
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "property_claim_status",
+        "type": "STRING",
+      },
+    ],
+    "mode": "NULLABLE",
+    "name": "screen_view_claims_status_detail_properties",
+    "type": "STRUCT",
+  },
+  Object {
+    "description": "When a common claim detail screen is shown",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "property_id",
+        "type": "STRING",
+      },
+    ],
+    "mode": "NULLABLE",
+    "name": "screen_view_common_claim_detail_properties",
+    "type": "STRUCT",
+  },
+  Object {
+    "description": "When the detail screen of a cross sell is shown",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "property_type_of_contract",
+        "type": "STRING",
+      },
+    ],
+    "mode": "NULLABLE",
+    "name": "screen_view_cross_sell_detail_properties",
+    "type": "STRUCT",
+  },
+  Object {
+    "description": "When data collection waiting for authentication screen is shown",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "property_provider_id",
+        "type": "STRING",
+      },
+    ],
+    "mode": "NULLABLE",
+    "name": "screen_view_data_collection_authenticating_properties",
+    "type": "STRUCT",
+  },
+  Object {
+    "description": "When data collection credentials screen is shown (Insurely)",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "property_provider_id",
+        "type": "STRING",
+      },
+    ],
+    "mode": "NULLABLE",
+    "name": "screen_view_data_collection_credentials_properties",
+    "type": "STRUCT",
+  },
+  Object {
+    "description": "When data collection failed",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "property_provider_id",
+        "type": "STRING",
+      },
+    ],
+    "mode": "NULLABLE",
+    "name": "screen_view_data_collection_fail_properties",
+    "type": "STRUCT",
+  },
+  Object {
+    "description": "When data collection intro screen is shown (Insurely)",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "property_provider_id",
+        "type": "STRING",
+      },
+    ],
+    "mode": "NULLABLE",
+    "name": "screen_view_data_collection_intro_properties",
+    "type": "STRUCT",
+  },
+  Object {
+    "description": "When data collection succeeded",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "property_provider_id",
+        "type": "STRING",
+      },
+    ],
+    "mode": "NULLABLE",
+    "name": "screen_view_data_collection_success_properties",
+    "type": "STRUCT",
+  },
+  Object {
+    "description": "When embark is shown",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "property_story_name",
+        "type": "STRING",
+      },
+    ],
+    "mode": "NULLABLE",
+    "name": "screen_view_embark_properties",
+    "type": "STRUCT",
+  },
+  Object {
+    "description": "When detail screen of an insurance is shown",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "property_contract_id",
+        "type": "STRING",
+      },
+    ],
+    "mode": "NULLABLE",
+    "name": "screen_view_insurance_detail_properties",
+    "type": "STRUCT",
+  },
+  Object {
+    "description": "When Insurances tab is shown",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "property_has_accident_insurance",
+        "type": "BOOLEAN",
+      },
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "property_has_home_insurance",
+        "type": "BOOLEAN",
+      },
+    ],
+    "mode": "NULLABLE",
+    "name": "screen_view_insurances_properties",
+    "type": "STRUCT",
+  },
+  Object {
+    "description": "When Offer screen is shown",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "property_initiated_from",
+        "type": "STRING",
+      },
+      Object {
+        "description": "",
+        "mode": "REPEATED",
+        "name": "property_offer_ids",
+        "type": "STRING",
+      },
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "property_type_of_contracts",
+        "type": "STRING",
+      },
+    ],
+    "mode": "NULLABLE",
+    "name": "screen_view_offer_properties",
+    "type": "STRUCT",
+  },
+  Object {
+    "description": "Time when event happened",
+    "mode": "REQUIRED",
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "description": "Tracking id, also called DeviceID in some contexes, use this primarily to identify a singular user",
+    "mode": "REQUIRED",
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+]
+`;
+
 exports[`creates schemas according to events: app_background 1`] = `
 Array [
   Object {
@@ -4386,6 +5111,280 @@ Array [
 ]
 `;
 
+exports[`creates schemas according to events: screen_view_app_information 1`] = `
+Array [
+  Object {
+    "description": "The build number of the app, for example 8293",
+    "mode": "REQUIRED",
+    "name": "context_app_build",
+    "type": "STRING",
+  },
+  Object {
+    "description": "The name of the app, for example Hedvig, Ugglan",
+    "mode": "REQUIRED",
+    "name": "context_app_name",
+    "type": "STRING",
+  },
+  Object {
+    "description": "The namespace of the app, for example com.hedvig.app",
+    "mode": "REQUIRED",
+    "name": "context_app_namespace",
+    "type": "STRING",
+  },
+  Object {
+    "description": "The version of the app, for example 7.6.0",
+    "mode": "REQUIRED",
+    "name": "context_app_version",
+    "type": "STRING",
+  },
+  Object {
+    "description": "The manufacturer of the device, for example Samsung or Apple",
+    "mode": "NULLABLE",
+    "name": "context_device_manufacturer",
+    "type": "STRING",
+  },
+  Object {
+    "description": "The model of device, for example iPhone13,3",
+    "mode": "NULLABLE",
+    "name": "context_device_model",
+    "type": "STRING",
+  },
+  Object {
+    "description": "The name of the device, for example iPhone",
+    "mode": "NULLABLE",
+    "name": "context_device_name",
+    "type": "STRING",
+  },
+  Object {
+    "description": "The type of device, for example ios or android",
+    "mode": "NULLABLE",
+    "name": "context_device_type",
+    "type": "STRING",
+  },
+  Object {
+    "description": "The users IP address",
+    "mode": "REQUIRED",
+    "name": "context_ip",
+    "type": "STRING",
+  },
+  Object {
+    "description": "The locale that was current, for example en-SE",
+    "mode": "REQUIRED",
+    "name": "context_locale",
+    "type": "STRING",
+  },
+  Object {
+    "description": "OS name for example Android, iOS, iPadOS, MacOS, Windows",
+    "mode": "REQUIRED",
+    "name": "context_os_name",
+    "type": "STRING",
+  },
+  Object {
+    "description": "OS version for example 15.0.1 for iOS 15.0.1",
+    "mode": "REQUIRED",
+    "name": "context_os_version",
+    "type": "STRING",
+  },
+  Object {
+    "description": "Pixel density of screen",
+    "mode": "NULLABLE",
+    "name": "context_screen_density",
+    "type": "INTEGER",
+  },
+  Object {
+    "description": "Height of screen in pixels",
+    "mode": "NULLABLE",
+    "name": "context_screen_height",
+    "type": "INTEGER",
+  },
+  Object {
+    "description": "Width of screen in pixels",
+    "mode": "NULLABLE",
+    "name": "context_screen_width",
+    "type": "INTEGER",
+  },
+  Object {
+    "description": "An id which is preserved across a session, when application is closed a new id is generated",
+    "mode": "REQUIRED",
+    "name": "context_session_id",
+    "type": "STRING",
+  },
+  Object {
+    "description": "Timezone of device",
+    "mode": "REQUIRED",
+    "name": "context_timezone",
+    "type": "STRING",
+  },
+  Object {
+    "description": "Member id associated with the event",
+    "mode": "NULLABLE",
+    "name": "context_traits_member_id",
+    "type": "STRING",
+  },
+  Object {
+    "description": "String name of event, for example screen_view_offer",
+    "mode": "REQUIRED",
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "description": "Unique ID of the event",
+    "mode": "REQUIRED",
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "description": "Time when event happened",
+    "mode": "REQUIRED",
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "description": "Tracking id, also called DeviceID in some contexes, use this primarily to identify a singular user",
+    "mode": "REQUIRED",
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: screen_view_app_settings 1`] = `
+Array [
+  Object {
+    "description": "The build number of the app, for example 8293",
+    "mode": "REQUIRED",
+    "name": "context_app_build",
+    "type": "STRING",
+  },
+  Object {
+    "description": "The name of the app, for example Hedvig, Ugglan",
+    "mode": "REQUIRED",
+    "name": "context_app_name",
+    "type": "STRING",
+  },
+  Object {
+    "description": "The namespace of the app, for example com.hedvig.app",
+    "mode": "REQUIRED",
+    "name": "context_app_namespace",
+    "type": "STRING",
+  },
+  Object {
+    "description": "The version of the app, for example 7.6.0",
+    "mode": "REQUIRED",
+    "name": "context_app_version",
+    "type": "STRING",
+  },
+  Object {
+    "description": "The manufacturer of the device, for example Samsung or Apple",
+    "mode": "NULLABLE",
+    "name": "context_device_manufacturer",
+    "type": "STRING",
+  },
+  Object {
+    "description": "The model of device, for example iPhone13,3",
+    "mode": "NULLABLE",
+    "name": "context_device_model",
+    "type": "STRING",
+  },
+  Object {
+    "description": "The name of the device, for example iPhone",
+    "mode": "NULLABLE",
+    "name": "context_device_name",
+    "type": "STRING",
+  },
+  Object {
+    "description": "The type of device, for example ios or android",
+    "mode": "NULLABLE",
+    "name": "context_device_type",
+    "type": "STRING",
+  },
+  Object {
+    "description": "The users IP address",
+    "mode": "REQUIRED",
+    "name": "context_ip",
+    "type": "STRING",
+  },
+  Object {
+    "description": "The locale that was current, for example en-SE",
+    "mode": "REQUIRED",
+    "name": "context_locale",
+    "type": "STRING",
+  },
+  Object {
+    "description": "OS name for example Android, iOS, iPadOS, MacOS, Windows",
+    "mode": "REQUIRED",
+    "name": "context_os_name",
+    "type": "STRING",
+  },
+  Object {
+    "description": "OS version for example 15.0.1 for iOS 15.0.1",
+    "mode": "REQUIRED",
+    "name": "context_os_version",
+    "type": "STRING",
+  },
+  Object {
+    "description": "Pixel density of screen",
+    "mode": "NULLABLE",
+    "name": "context_screen_density",
+    "type": "INTEGER",
+  },
+  Object {
+    "description": "Height of screen in pixels",
+    "mode": "NULLABLE",
+    "name": "context_screen_height",
+    "type": "INTEGER",
+  },
+  Object {
+    "description": "Width of screen in pixels",
+    "mode": "NULLABLE",
+    "name": "context_screen_width",
+    "type": "INTEGER",
+  },
+  Object {
+    "description": "An id which is preserved across a session, when application is closed a new id is generated",
+    "mode": "REQUIRED",
+    "name": "context_session_id",
+    "type": "STRING",
+  },
+  Object {
+    "description": "Timezone of device",
+    "mode": "REQUIRED",
+    "name": "context_timezone",
+    "type": "STRING",
+  },
+  Object {
+    "description": "Member id associated with the event",
+    "mode": "NULLABLE",
+    "name": "context_traits_member_id",
+    "type": "STRING",
+  },
+  Object {
+    "description": "String name of event, for example screen_view_offer",
+    "mode": "REQUIRED",
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "description": "Unique ID of the event",
+    "mode": "REQUIRED",
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "description": "Time when event happened",
+    "mode": "REQUIRED",
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "description": "Tracking id, also called DeviceID in some contexes, use this primarily to identify a singular user",
+    "mode": "REQUIRED",
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+]
+`;
+
 exports[`creates schemas according to events: screen_view_charity 1`] = `
 Array [
   Object {
@@ -7478,6 +8477,143 @@ Array [
 ]
 `;
 
+exports[`creates schemas according to events: screen_view_market_picker 1`] = `
+Array [
+  Object {
+    "description": "The build number of the app, for example 8293",
+    "mode": "REQUIRED",
+    "name": "context_app_build",
+    "type": "STRING",
+  },
+  Object {
+    "description": "The name of the app, for example Hedvig, Ugglan",
+    "mode": "REQUIRED",
+    "name": "context_app_name",
+    "type": "STRING",
+  },
+  Object {
+    "description": "The namespace of the app, for example com.hedvig.app",
+    "mode": "REQUIRED",
+    "name": "context_app_namespace",
+    "type": "STRING",
+  },
+  Object {
+    "description": "The version of the app, for example 7.6.0",
+    "mode": "REQUIRED",
+    "name": "context_app_version",
+    "type": "STRING",
+  },
+  Object {
+    "description": "The manufacturer of the device, for example Samsung or Apple",
+    "mode": "NULLABLE",
+    "name": "context_device_manufacturer",
+    "type": "STRING",
+  },
+  Object {
+    "description": "The model of device, for example iPhone13,3",
+    "mode": "NULLABLE",
+    "name": "context_device_model",
+    "type": "STRING",
+  },
+  Object {
+    "description": "The name of the device, for example iPhone",
+    "mode": "NULLABLE",
+    "name": "context_device_name",
+    "type": "STRING",
+  },
+  Object {
+    "description": "The type of device, for example ios or android",
+    "mode": "NULLABLE",
+    "name": "context_device_type",
+    "type": "STRING",
+  },
+  Object {
+    "description": "The users IP address",
+    "mode": "REQUIRED",
+    "name": "context_ip",
+    "type": "STRING",
+  },
+  Object {
+    "description": "The locale that was current, for example en-SE",
+    "mode": "REQUIRED",
+    "name": "context_locale",
+    "type": "STRING",
+  },
+  Object {
+    "description": "OS name for example Android, iOS, iPadOS, MacOS, Windows",
+    "mode": "REQUIRED",
+    "name": "context_os_name",
+    "type": "STRING",
+  },
+  Object {
+    "description": "OS version for example 15.0.1 for iOS 15.0.1",
+    "mode": "REQUIRED",
+    "name": "context_os_version",
+    "type": "STRING",
+  },
+  Object {
+    "description": "Pixel density of screen",
+    "mode": "NULLABLE",
+    "name": "context_screen_density",
+    "type": "INTEGER",
+  },
+  Object {
+    "description": "Height of screen in pixels",
+    "mode": "NULLABLE",
+    "name": "context_screen_height",
+    "type": "INTEGER",
+  },
+  Object {
+    "description": "Width of screen in pixels",
+    "mode": "NULLABLE",
+    "name": "context_screen_width",
+    "type": "INTEGER",
+  },
+  Object {
+    "description": "An id which is preserved across a session, when application is closed a new id is generated",
+    "mode": "REQUIRED",
+    "name": "context_session_id",
+    "type": "STRING",
+  },
+  Object {
+    "description": "Timezone of device",
+    "mode": "REQUIRED",
+    "name": "context_timezone",
+    "type": "STRING",
+  },
+  Object {
+    "description": "Member id associated with the event",
+    "mode": "NULLABLE",
+    "name": "context_traits_member_id",
+    "type": "STRING",
+  },
+  Object {
+    "description": "String name of event, for example screen_view_offer",
+    "mode": "REQUIRED",
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "description": "Unique ID of the event",
+    "mode": "REQUIRED",
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "description": "Time when event happened",
+    "mode": "REQUIRED",
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "description": "Tracking id, also called DeviceID in some contexes, use this primarily to identify a singular user",
+    "mode": "REQUIRED",
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+]
+`;
+
 exports[`creates schemas according to events: screen_view_marketing 1`] = `
 Array [
   Object {
@@ -7735,6 +8871,161 @@ Array [
     "description": "Unique ID of the event",
     "mode": "REQUIRED",
     "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "description": "Time when event happened",
+    "mode": "REQUIRED",
+    "name": "timestamp",
+    "type": "TIMESTAMP",
+  },
+  Object {
+    "description": "Tracking id, also called DeviceID in some contexes, use this primarily to identify a singular user",
+    "mode": "REQUIRED",
+    "name": "tracking_id",
+    "type": "STRING",
+  },
+]
+`;
+
+exports[`creates schemas according to events: screen_view_offer 1`] = `
+Array [
+  Object {
+    "description": "The build number of the app, for example 8293",
+    "mode": "REQUIRED",
+    "name": "context_app_build",
+    "type": "STRING",
+  },
+  Object {
+    "description": "The name of the app, for example Hedvig, Ugglan",
+    "mode": "REQUIRED",
+    "name": "context_app_name",
+    "type": "STRING",
+  },
+  Object {
+    "description": "The namespace of the app, for example com.hedvig.app",
+    "mode": "REQUIRED",
+    "name": "context_app_namespace",
+    "type": "STRING",
+  },
+  Object {
+    "description": "The version of the app, for example 7.6.0",
+    "mode": "REQUIRED",
+    "name": "context_app_version",
+    "type": "STRING",
+  },
+  Object {
+    "description": "The manufacturer of the device, for example Samsung or Apple",
+    "mode": "NULLABLE",
+    "name": "context_device_manufacturer",
+    "type": "STRING",
+  },
+  Object {
+    "description": "The model of device, for example iPhone13,3",
+    "mode": "NULLABLE",
+    "name": "context_device_model",
+    "type": "STRING",
+  },
+  Object {
+    "description": "The name of the device, for example iPhone",
+    "mode": "NULLABLE",
+    "name": "context_device_name",
+    "type": "STRING",
+  },
+  Object {
+    "description": "The type of device, for example ios or android",
+    "mode": "NULLABLE",
+    "name": "context_device_type",
+    "type": "STRING",
+  },
+  Object {
+    "description": "The users IP address",
+    "mode": "REQUIRED",
+    "name": "context_ip",
+    "type": "STRING",
+  },
+  Object {
+    "description": "The locale that was current, for example en-SE",
+    "mode": "REQUIRED",
+    "name": "context_locale",
+    "type": "STRING",
+  },
+  Object {
+    "description": "OS name for example Android, iOS, iPadOS, MacOS, Windows",
+    "mode": "REQUIRED",
+    "name": "context_os_name",
+    "type": "STRING",
+  },
+  Object {
+    "description": "OS version for example 15.0.1 for iOS 15.0.1",
+    "mode": "REQUIRED",
+    "name": "context_os_version",
+    "type": "STRING",
+  },
+  Object {
+    "description": "Pixel density of screen",
+    "mode": "NULLABLE",
+    "name": "context_screen_density",
+    "type": "INTEGER",
+  },
+  Object {
+    "description": "Height of screen in pixels",
+    "mode": "NULLABLE",
+    "name": "context_screen_height",
+    "type": "INTEGER",
+  },
+  Object {
+    "description": "Width of screen in pixels",
+    "mode": "NULLABLE",
+    "name": "context_screen_width",
+    "type": "INTEGER",
+  },
+  Object {
+    "description": "An id which is preserved across a session, when application is closed a new id is generated",
+    "mode": "REQUIRED",
+    "name": "context_session_id",
+    "type": "STRING",
+  },
+  Object {
+    "description": "Timezone of device",
+    "mode": "REQUIRED",
+    "name": "context_timezone",
+    "type": "STRING",
+  },
+  Object {
+    "description": "Member id associated with the event",
+    "mode": "NULLABLE",
+    "name": "context_traits_member_id",
+    "type": "STRING",
+  },
+  Object {
+    "description": "String name of event, for example screen_view_offer",
+    "mode": "REQUIRED",
+    "name": "event",
+    "type": "STRING",
+  },
+  Object {
+    "description": "Unique ID of the event",
+    "mode": "REQUIRED",
+    "name": "event_id",
+    "type": "STRING",
+  },
+  Object {
+    "description": "",
+    "mode": "REQUIRED",
+    "name": "property_initiated_from",
+    "type": "STRING",
+  },
+  Object {
+    "description": "",
+    "mode": "REPEATED",
+    "name": "property_offer_ids",
+    "type": "STRING",
+  },
+  Object {
+    "description": "",
+    "mode": "REQUIRED",
+    "name": "property_type_of_contracts",
     "type": "STRING",
   },
   Object {

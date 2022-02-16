@@ -1,4 +1,3 @@
-const getSchema = require("./getSchema");
 const sortFields = require("./sortFields");
 const updateSchema = require("./updateSchema");
 

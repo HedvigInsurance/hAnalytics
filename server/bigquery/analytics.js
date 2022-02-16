@@ -22,6 +22,41 @@ const track = async (name, event) => {
 
     addToQueue(eventInsertEntry);
 
+    const transformedEventWithoutProperties = Object.keys(
+      transformedEvent
+    ).reduce((acc, curr) => {
+      if (!curr.startsWith("property_")) {
+        acc[curr] = transformedEvent[curr];
+      }
+      return acc;
+    }, {});
+
+    const transformedEventWithProperties = Object.keys(transformedEvent).reduce(
+      (acc, curr) => {
+        if (curr.startsWith("property_")) {
+          acc[curr] = transformedEvent[curr];
+        }
+        return acc;
+      },
+      {}
+    );
+
+    const aggregateInsertEntry = {
+      table: "aggregate",
+      row: {
+        ...transformedEventWithoutProperties,
+        event_id: transformedEvent.event_id,
+        event: transformedEvent.event,
+        [`properties_${transformedEvent.event}`]: {
+          ...transformedEventWithProperties,
+        },
+        timestamp: transformedEvent.timestamp,
+        tracking_id: transformedEvent.tracking_id,
+      },
+    };
+
+    addToQueue(aggregateInsertEntry);
+
     const rawEventInsertEntry = {
       table: "raw",
       row: {
