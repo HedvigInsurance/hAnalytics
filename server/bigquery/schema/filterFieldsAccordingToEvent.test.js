@@ -29,7 +29,7 @@ test("filters according to event", async () => {
     events.map(async (event) => {
       expect(
         await filterFieldsAccordingToEvent(
-          event,
+          event.name,
           flattenObj({
             context_app_name: "Hedvig",
             property: {

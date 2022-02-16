@@ -6,6 +6,10 @@ test("insert dynamic fields", async () => {
   const bigQueryConfig = createBigQueryConfigMock([
     {
       name: "embark_track",
+      bigQuery: {
+        noContextFields: true,
+        noEventFields: true,
+      },
       inputs: [
         {
           name: "store",
@@ -54,6 +58,7 @@ test("insert dynamic fields in aggregate", async () => {
       name: "embark_track",
       bigQuery: {
         noContextFields: true,
+        noEventFields: true,
       },
       inputs: [
         {
