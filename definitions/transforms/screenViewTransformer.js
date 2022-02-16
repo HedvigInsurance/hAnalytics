@@ -1,7 +1,7 @@
 const matchRegex = /^screen_view_/;
 
 module.exports = {
-  shouldTransform: (event) => event.event.match(matchRegex),
+  shouldTransform: (event) => !!event.event.match(matchRegex),
   transform: (event) => {
     return {
       ...event,

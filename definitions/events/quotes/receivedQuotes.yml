@@ -9,7 +9,7 @@ graphql:
   query: |
     query ReceivedQuotes($quote_ids: [ID!]!) {
       quoteBundle(input: {
-        ids: $offer_ids
+        ids: $quote_ids
       }) {
         quotes {
           typeOfContract

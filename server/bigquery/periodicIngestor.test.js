@@ -64,7 +64,7 @@ test("ingests correctly", async () => {
 
   expect(await consumeQueue()).toMatchSnapshot();
   expect(bigQueryConfig.bigquery.getTables()).toMatchSnapshot();
-});
+}, 10000);
 
 test("ingests exact amount of rows", async () => {
   const bigQueryConfig = createBigQueryConfigMock([
@@ -101,7 +101,7 @@ test("ingests exact amount of rows", async () => {
   expect(bigQueryConfig.bigquery.getTables()[0].rows.length).toEqual(
     numberOfRows
   );
-}, 5000);
+}, 10000);
 
 test("doesnt ingest invalid rows", async () => {
   const bigQueryConfig = createBigQueryConfigMock([
@@ -154,7 +154,7 @@ test("doesnt ingest invalid rows", async () => {
   expect(bigQueryConfig.bigquery.getTables()[0].rows.length).toEqual(
     numberOfRows
   );
-});
+}, 10000);
 
 test("does keep invalid rows", async () => {
   const bigQueryConfig = createBigQueryConfigMock([
@@ -195,7 +195,7 @@ test("does keep invalid rows", async () => {
   await stop();
 
   expect(await consumeQueue()).toMatchSnapshot();
-});
+}, 10000);
 
 test("does ingest dynamic fields", async () => {
   const bigQueryConfig = createBigQueryConfigMock([
@@ -251,7 +251,7 @@ test("does ingest dynamic fields", async () => {
     numberOfRows * 2
   );
   expect(bigQueryConfig.bigquery.getTables()).toMatchSnapshot();
-});
+}, 10000);
 
 test("does respect source version", async () => {
   const bigQueryConfig = createBigQueryConfigMock([
@@ -313,4 +313,4 @@ test("does respect source version", async () => {
   await stop();
 
   expect((await consumeQueue()).length).toEqual(0);
-});
+}, 10000);

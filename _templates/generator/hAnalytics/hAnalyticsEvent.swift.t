@@ -52,6 +52,7 @@ extension hAnalyticsEvent {
 
 <% events.forEach(function(event) { %>
     <%- stringToSwiftComment(event.description) || "no description given" %>
+    <%- event.deprecationReason ? `@available(*, deprecated, message: "${event.deprecationReason}")` : "" %>
     public static func <%= event.accessor %>(<%= (event.inputs ?? []).map((input) => `${input.argument}: ${swiftTypeMap(input.type)}`).join(",") %>) -> hAnalyticsParcel {
         return hAnalyticsParcel {
         <% if(event.graphql) { %>

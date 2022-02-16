@@ -1,0 +1,4 @@
+name: screen_view_chat
+description: When the chat is shown
+accessor: screenViewChat
+deprecationReason: Replaced with screenView

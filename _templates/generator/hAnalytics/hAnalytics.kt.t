@@ -34,7 +34,7 @@ abstract class HAnalytics {
         /**
          <%- stringToKotlinComment(event.description) || "* No description given" %>
          */
-        fun <%= event.accessor %>(<%- (event.inputs ?? []).map(input => `${input.argument}: ${kotlinTypeMap(input.type)}`).join(",") %>) {
+        <%- event.deprecationReason ? `@Deprecated("${event.deprecationReason}")\n` : "" %> fun <%= event.accessor %>(<%- (event.inputs ?? []).map(input => `${input.argument}: ${kotlinTypeMap(input.type)}`).join(",") %>) {
             <%_ if (event.graphql) { -%>
                 send(
                     HAnalyticsEvent(

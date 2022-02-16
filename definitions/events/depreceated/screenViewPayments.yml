@@ -1,0 +1,4 @@
+name: screen_view_payments
+description: Payments screen was shown
+accessor: screenViewPayments
+deprecationReason: Replaced with screenView

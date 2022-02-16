@@ -6,6 +6,11 @@ const setupSchema = async (onLoad, bigQueryConfig) => {
 
   await Promise.all(
     events.map(async (event) => {
+      if (event.deprecationReason) {
+        /// skip setting up tables for deprecated events
+        return;
+      }
+
       const schemaFields = await eventToSchemaFields(event);
 
       await setupTable(
