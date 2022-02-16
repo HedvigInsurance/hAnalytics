@@ -9,6 +9,7 @@ const timersPromises = require("timers/promises");
 const insertDynamicFields = require("../server/bigquery/schema/insertDynamicFields");
 const filterFieldsAccordingToEvent = require("../server/bigquery/schema/filterFieldsAccordingToEvent");
 const uuid = require("uuid");
+const transform = require("../definitions/transforms");
 
 function chunk(arr, len) {
   var chunks = [],
@@ -105,7 +106,7 @@ const transfer = async () => {
         rows = fetchedRows;
       } catch (err) {}
 
-      var rowsToInsert = [];
+      var rowsToInsertMap = {};
       var numberValid = 0;
       var numberInvalid = 0;
 
@@ -191,15 +192,21 @@ const transfer = async () => {
         );
 
         if (valid) {
-          rowsToInsert.push(filteredRow);
+          const transformedRow = transform(filteredRow);
+
+          if (rowsToInsertMap[transformedRow.event]) {
+            rowsToInsertMap[transformedRow.event] = [];
+          }
+
+          rowsToInsertMap[transformedRow.event].push(transformedRow);
           numberValid++;
         } else {
           numberInvalid++;
         }
       }
 
-      if (rowsToInsert.length) {
-        const insertRows = async (rows) => {
+      if (Object.keys(rowsToInsertMap)) {
+        const insertRows = async (rows, tableName) => {
           await bigQueryConfig.bigquery
             .dataset(bigQueryConfig.dataset)
             .table(tableName)
@@ -221,14 +228,19 @@ const transfer = async () => {
         };
 
         await Promise.all(
-          chunk(rowsToInsert, 500).map(async (rows) => {
-            try {
-              await insertRows(rows);
-            } catch (err) {
-              numberValid--;
-              numberInvalid++;
-            }
-          })
+          Object.keys(rowsToInsertMap).map(
+            async (key) =>
+              await Promise.all(
+                chunk(rowsToInsertMap[key], 500).map(async (rows) => {
+                  try {
+                    await insertRows(rows, `__sync_table_${key}`);
+                  } catch (err) {
+                    numberValid--;
+                    numberInvalid++;
+                  }
+                })
+              )
+          )
         );
       }
 
