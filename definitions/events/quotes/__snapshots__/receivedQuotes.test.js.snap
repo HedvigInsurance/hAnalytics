@@ -2,27 +2,32 @@
 
 exports[`one SE_ACCIDENT quote 1`] = `
 Object {
-  "name": "screen_view_offer",
+  "name": "received_quotes",
   "variables": Object {
     "initiated_from": "SELF_CHANGE",
-    "offer_ids": Array [
+    "quote_ids": Array [
       "123",
     ],
-    "type_of_contracts": "SE_ACCIDENT",
+    "type_of_contracts": Array [
+      "SE_ACCIDENT",
+    ],
   },
 }
 `;
 
 exports[`two different quotes 1`] = `
 Object {
-  "name": "screen_view_offer",
+  "name": "received_quotes",
   "variables": Object {
     "initiated_from": "APP",
-    "offer_ids": Array [
+    "quote_ids": Array [
       "123",
       "12345",
     ],
-    "type_of_contracts": "SE_ACCIDENT, SE_APARTMENT_BRF",
+    "type_of_contracts": Array [
+      "SE_ACCIDENT",
+      "SE_APARTMENT_BRF",
+    ],
   },
 }
 `;

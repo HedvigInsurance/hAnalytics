@@ -1,3 +1,0 @@
-name: screen_view_connect_payment_failed
-description: When payment connection did fail
-accessor: screenViewConnectPaymentFailed

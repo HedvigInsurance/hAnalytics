@@ -1,7 +1,0 @@
-name: screen_view_data_collection_fail
-description: When data collection failed
-accessor: screenViewDataCollectionFail
-inputs:
-  - name: provider_id
-    type: String
-    argument: providerId

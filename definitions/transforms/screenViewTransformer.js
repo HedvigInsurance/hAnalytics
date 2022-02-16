@@ -6,7 +6,7 @@ module.exports = {
     return {
       ...event,
       event: "screen_view",
-      property_screen_name: event.event_name.replace(matchRegex, ""),
+      property_screen_name: event.event.replace(matchRegex, ""),
     };
   },
 };

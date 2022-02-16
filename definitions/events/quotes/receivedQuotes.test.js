@@ -4,7 +4,7 @@ test("one SE_ACCIDENT quote", () => {
   const event = validateEvent(
     __filename,
     {
-      offerIds: ["123"],
+      quoteIds: ["123"],
     },
     {
       quoteBundle: {
@@ -25,7 +25,7 @@ test("two different quotes", () => {
   const event = validateEvent(
     __filename,
     {
-      offerIds: ["123", "12345"],
+      quoteIds: ["123", "12345"],
     },
     {
       quoteBundle: {
