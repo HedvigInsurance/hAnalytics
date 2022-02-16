@@ -6,8 +6,6 @@ const { bigQuerySchemaTypeMap } = require("../../../commons/typeMaps");
 test("validate String", async () => {
   const bigQueryConfig = createBigQueryConfigMock();
 
-  await bigQuerySchemaTypeMap("String");
-
   await setupTable(
     "mock_table",
     "mock table",
