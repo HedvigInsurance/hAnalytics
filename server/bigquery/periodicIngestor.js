@@ -4,40 +4,50 @@ const validateAgainstSchema = require("./schema/validateAgainstSchema");
 const insertDynamicFields = require("./schema/insertDynamicFields");
 const filterFieldsAccordingToEvent = require("./schema/filterFieldsAccordingToEvent");
 
-var insertQueueBackend = null;
-var schemaLoaded = false;
-var running = false;
-var didStop = false;
-var isIdle = false;
-var droppedRowsErrors = [];
-var currentInterval = 10000;
+const createState = () => {
+  var _schemaLoadedPromiseHandlers = {};
+  var schemaLoaded = new Promise(function (resolve, reject) {
+    _schemaLoadedPromiseHandlers = { resolve: resolve, reject: reject };
+  });
+
+  return {
+    _schemaLoadedPromiseHandlers,
+    insertQueueBackend: null,
+    schemaLoaded: schemaLoaded,
+    running: false,
+    didStop: false,
+    isIdle: false,
+    droppedRowsErrors: [],
+    currentInterval: 10000,
+  };
+};
 
 const getSourceVersion = () =>
   process.env.SOURCE_VERSION || process.env.HEROKU_SLUG_COMMIT || "none";
 
-const ingest = async (config) => {
-  if (!insertQueueBackend) {
+const ingest = async (config, state) => {
+  if (!state.insertQueueBackend) {
     console.error("!!! No queue backend !!!");
     return;
   }
 
-  isIdle = false;
-  didStop = false;
+  state.isIdle = false;
+  state.didStop = false;
 
-  if (!running) {
+  if (!state.running) {
     console.log("Ingestion has been stopped");
-    didStop = true;
+    state.didStop = true;
     return;
   }
 
-  if (!schemaLoaded) {
+  if (!state.schemaLoaded) {
     console.log("Not inserting as schema hasn't loaded yet");
-    await timersPromises.setTimeout(currentInterval / 10);
-    await ingest(config);
+    await timersPromises.setTimeout(state.currentInterval / 10);
+    await ingest(config, state);
     return;
   }
 
-  const consumedQueue = await insertQueueBackend.consume();
+  const consumedQueue = await state.insertQueueBackend.consume();
   const queue = [];
 
   for (const entry of consumedQueue) {
@@ -45,14 +55,14 @@ const ingest = async (config) => {
       entry.skipOnSourceVersion &&
       entry.skipOnSourceVersion == getSourceVersion()
     ) {
-      await insertQueueBackend.append(entry);
+      await state.insertQueueBackend.append(entry);
     } else {
       queue.push(entry);
     }
   }
 
   if (queue.length == 0) {
-    isIdle = true;
+    state.isIdle = true;
   }
 
   for (const entry of queue) {
@@ -62,12 +72,12 @@ const ingest = async (config) => {
           "Dropping event as retries was too high, adding SOURCE_VERSION to potentially fix in future release",
           JSON.stringify(entry.row, null, 2)
         );
-        droppedRowsErrors.push(err);
+        state.droppedRowsErrors.push(err);
 
         const sourceVersionRetries = entry.sourceVersionRetires ?? 0;
 
         if (sourceVersionRetries < 5) {
-          await insertQueueBackend.append({
+          await state.insertQueueBackend.append({
             ...entry,
             skipOnSourceVersion: getSourceVersion(),
             sourceVersionRetires: sourceVersionRetries + 1,
@@ -80,7 +90,7 @@ const ingest = async (config) => {
           );
         }
       } else {
-        await insertQueueBackend.append({
+        await state.insertQueueBackend.append({
           ...entry,
           currentRetries: (entry.currentRetries ?? 0) + 1,
         });
@@ -137,53 +147,55 @@ const ingest = async (config) => {
     }
   }
 
-  await timersPromises.setTimeout(currentInterval);
-  await ingest(config);
+  await timersPromises.setTimeout(state.currentInterval);
+  await ingest(config, state);
 };
 
 module.exports = {
-  addToQueue: (entry) => {
-    insertQueueBackend?.append(entry);
+  addToQueue: (entry, state) => {
+    state.insertQueueBackend?.append(entry);
   },
-  start: async (config, backend, interval = 10000) => {
-    running = true;
-    insertQueueBackend = backend;
-    currentInterval = interval;
+  start: (config, backend, interval = 10000) => {
+    var state = createState();
 
-    await setupSchema(() => {
-      schemaLoaded = true;
+    state.running = true;
+    state.insertQueueBackend = backend;
+    state.currentInterval = interval;
+
+    setupSchema(() => {
+      state._schemaLoadedPromiseHandlers.resolve();
     }, config);
 
-    ingest(config);
+    ingest(config, state);
 
-    return;
+    return state;
   },
-  stop: async () => {
-    running = false;
+  stop: async (state) => {
+    state.running = false;
 
     return new Promise((resolve) => {
       var interval = setInterval(async () => {
-        if (didStop) {
+        if (state.didStop) {
           clearInterval(interval);
 
           setTimeout(() => {
             resolve();
           }, 100);
         }
-      }, currentInterval * 5);
+      }, state.currentInterval * 5);
     });
   },
-  waitUntilIdle: async () => {
-    isIdle = false;
+  waitUntilIdle: async (state) => {
+    state.isIdle = false;
 
     return new Promise((resolve) => {
       var interval = setInterval(() => {
-        if (isIdle) {
+        if (state.isIdle) {
           clearInterval(interval);
           resolve();
         }
-      }, currentInterval * 5);
+      }, state.currentInterval * 5);
     });
   },
-  consumeQueue: async () => insertQueueBackend.consume(),
+  consumeQueue: async (state) => state.insertQueueBackend.consume(),
 };

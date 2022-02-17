@@ -6,6 +6,22 @@ const createRedisBackend = require("./periodicIngestorRedisBackend");
 const createInMemoryBackend = require("./periodicIngestorInMemoryBackend");
 const transform = require("../../definitions/transforms");
 
+const getBackend = () => {
+  if (process.env.REDIS_QUEUE) {
+    console.log("Using redis backend");
+    return createRedisBackend();
+  }
+
+  console.log("Using in memory backend");
+  return createInMemoryBackend();
+};
+
+const state = start(
+  bigQueryConfig,
+  getBackend(),
+  process.env.BQ_INGESTION_INTERVAL
+);
+
 const track = async (name, event) => {
   const flatEvent = flattenObj(event);
   const completeEvent = {
@@ -20,7 +36,7 @@ const track = async (name, event) => {
       row: transformedEvent,
     };
 
-    addToQueue(eventInsertEntry);
+    addToQueue(eventInsertEntry, state);
 
     const transformedEventWithoutProperties = Object.keys(
       transformedEvent
@@ -55,7 +71,7 @@ const track = async (name, event) => {
       },
     };
 
-    addToQueue(aggregateInsertEntry);
+    addToQueue(aggregateInsertEntry, state);
 
     const rawEventInsertEntry = {
       table: "raw",
@@ -68,7 +84,7 @@ const track = async (name, event) => {
       },
     };
 
-    addToQueue(rawEventInsertEntry);
+    addToQueue(rawEventInsertEntry, state);
 
     const flatTrack = omit("property", transformedEvent);
 
@@ -79,7 +95,7 @@ const track = async (name, event) => {
       },
     };
 
-    addToQueue(trackInsertEntry);
+    addToQueue(trackInsertEntry, state);
   }
 };
 
@@ -94,20 +110,8 @@ const identify = async (identity) => {
     },
   };
 
-  addToQueue(insertEntry);
+  addToQueue(insertEntry, state);
 };
-
-const getBackend = () => {
-  if (process.env.REDIS_QUEUE) {
-    console.log("Using redis backend");
-    return createRedisBackend();
-  }
-
-  console.log("Using in memory backend");
-  return createInMemoryBackend();
-};
-
-start(bigQueryConfig, getBackend(), process.env.BQ_INGESTION_INTERVAL);
 
 module.exports = {
   track,

@@ -54,19 +54,23 @@ describe("periodicIngestor", () => {
         ],
       },
     ]);
-    start(bigQueryConfig, createInMemoryBackend(), 100);
+    const state = start(bigQueryConfig, createInMemoryBackend(), 100);
+    await state.schemaLoaded;
 
-    await addToQueue({
-      table: "mock_event",
-      row: {
-        property_hello: "HELLO",
+    await addToQueue(
+      {
+        table: "mock_event",
+        row: {
+          property_hello: "HELLO",
+        },
       },
-    });
+      state
+    );
 
-    await waitUntilIdle();
-    await stop();
+    await waitUntilIdle(state);
+    await stop(state);
 
-    expect(await consumeQueue()).toMatchSnapshot();
+    expect(await consumeQueue(state)).toMatchSnapshot();
     expect(bigQueryConfig.bigquery.getTables()).toMatchSnapshot();
   }, 10000);
 
@@ -82,25 +86,29 @@ describe("periodicIngestor", () => {
         ],
       },
     ]);
-    await start(bigQueryConfig, createInMemoryBackend(), 25);
+    const state = start(bigQueryConfig, createInMemoryBackend(), 25);
+    await state.schemaLoaded;
 
     const numberOfRows = 50;
     const rows = [...new Array(numberOfRows)].map((_, index) => index);
 
     for (row of rows) {
-      addToQueue({
-        table: "mock_event",
-        row: {
-          ...(await mockContextProperties()),
-          ...(await mockEventProperties()),
-          ...(await mockGeneralProperties()),
-          property_hello: "HELLO",
+      addToQueue(
+        {
+          table: "mock_event",
+          row: {
+            ...(await mockContextProperties()),
+            ...(await mockEventProperties()),
+            ...(await mockGeneralProperties()),
+            property_hello: "HELLO",
+          },
         },
-      });
+        state
+      );
     }
 
-    await waitUntilIdle();
-    await stop();
+    await waitUntilIdle(state);
+    await stop(state);
 
     expect(bigQueryConfig.bigquery.getTables()[0].rows.length).toEqual(
       numberOfRows
@@ -123,37 +131,44 @@ describe("periodicIngestor", () => {
         ],
       },
     ]);
-    await start(bigQueryConfig, createInMemoryBackend(), 5);
+    const state = start(bigQueryConfig, createInMemoryBackend(), 5);
+    await state.schemaLoaded;
 
     const numberOfRows = 25;
     const rows = [...new Array(numberOfRows)].map((_, index) => index);
 
     for (row of rows) {
-      addToQueue({
-        table: "mock_event",
-        row: {
-          ...(await mockContextProperties()),
-          ...(await mockEventProperties()),
-          ...(await mockGeneralProperties()),
-          property_hello: "HELLO",
-          property_hello_other: Math.random(),
+      addToQueue(
+        {
+          table: "mock_event",
+          row: {
+            ...(await mockContextProperties()),
+            ...(await mockEventProperties()),
+            ...(await mockGeneralProperties()),
+            property_hello: "HELLO",
+            property_hello_other: Math.random(),
+          },
         },
-      });
+        state
+      );
 
-      addToQueue({
-        table: "mock_event",
-        row: {
-          ...(await mockContextProperties()),
-          ...(await mockEventProperties()),
-          ...(await mockGeneralProperties()),
-          property_hello: "HELLO",
-          property_hello_other: "value",
+      addToQueue(
+        {
+          table: "mock_event",
+          row: {
+            ...(await mockContextProperties()),
+            ...(await mockEventProperties()),
+            ...(await mockGeneralProperties()),
+            property_hello: "HELLO",
+            property_hello_other: "value",
+          },
         },
-      });
+        state
+      );
     }
 
-    await waitUntilIdle();
-    await stop();
+    await waitUntilIdle(state);
+    await stop(state);
 
     expect(bigQueryConfig.bigquery.getTables()[0].rows.length).toEqual(
       numberOfRows
@@ -176,28 +191,32 @@ describe("periodicIngestor", () => {
         ],
       },
     ]);
-    await start(bigQueryConfig, createInMemoryBackend(), 5);
+    const state = start(bigQueryConfig, createInMemoryBackend(), 5);
+    await state.schemaLoaded;
 
     const numberOfRows = 25;
     const rows = [...new Array(numberOfRows)].map((_, index) => index);
 
     for (row of rows) {
-      addToQueue({
-        table: "mock_event",
-        row: {
-          ...(await mockContextProperties()),
-          ...(await mockEventProperties()),
-          ...(await mockGeneralProperties()),
-          property: "HELLO",
-          context_something_invalid: row,
+      addToQueue(
+        {
+          table: "mock_event",
+          row: {
+            ...(await mockContextProperties()),
+            ...(await mockEventProperties()),
+            ...(await mockGeneralProperties()),
+            property: "HELLO",
+            context_something_invalid: row,
+          },
         },
-      });
+        state
+      );
     }
 
-    await waitUntilIdle();
-    await stop();
+    await waitUntilIdle(state);
+    await stop(state);
 
-    expect(await consumeQueue()).toMatchSnapshot();
+    expect(await consumeQueue(state)).toMatchSnapshot();
   }, 10000);
 
   test("does ingest dynamic fields", async () => {
@@ -216,39 +235,47 @@ describe("periodicIngestor", () => {
         ],
       },
     ]);
-    await start(bigQueryConfig, createInMemoryBackend(), 10);
+    const state = start(bigQueryConfig, createInMemoryBackend(), 10);
+
+    await state.schemaLoaded;
 
     const numberOfRows = 30;
     const rows = [...new Array(numberOfRows)].map((_, index) => index);
 
     for (row of rows) {
-      addToQueue({
-        table: "mock_event",
-        row: {
-          ...(await mockContextProperties()),
-          ...(await mockEventProperties()),
-          ...(await mockGeneralProperties()),
-          property_hello: "hello",
+      addToQueue(
+        {
+          table: "mock_event",
+          row: {
+            ...(await mockContextProperties()),
+            ...(await mockEventProperties()),
+            ...(await mockGeneralProperties()),
+            property_hello: "hello",
+          },
         },
-      });
+        state
+      );
 
-      addToQueue({
-        table: "mock_event",
-        row: {
-          ...(await mockContextProperties()),
-          ...(await mockEventProperties()),
-          ...(await mockGeneralProperties()),
-          property_hello: "hello",
-          [`property_hello_other_field`]: "HELLO",
-          [`property_hello_other_field_double`]: 150,
-          [`property_hello_other_field_bool`]: true,
-          [`property_hello_other_field_array`]: ["string", "string2"],
+      addToQueue(
+        {
+          table: "mock_event",
+          row: {
+            ...(await mockContextProperties()),
+            ...(await mockEventProperties()),
+            ...(await mockGeneralProperties()),
+            property_hello: "hello",
+            [`property_hello_other_field`]: "HELLO",
+            [`property_hello_other_field_double`]: 150,
+            [`property_hello_other_field_bool`]: true,
+            [`property_hello_other_field_array`]: ["string", "string2"],
+          },
         },
-      });
+        state
+      );
     }
 
-    await waitUntilIdle();
-    await stop();
+    await waitUntilIdle(state);
+    await stop(state);
 
     expect(bigQueryConfig.bigquery.getTables()[0].rows.length).toEqual(
       numberOfRows * 2
@@ -272,7 +299,8 @@ describe("periodicIngestor", () => {
         ],
       },
     ]);
-    await start(bigQueryConfig, createInMemoryBackend(), 5);
+    const state = start(bigQueryConfig, createInMemoryBackend(), 5);
+    await state.schemaLoaded;
 
     process.env.SOURCE_VERSION = 0;
 
@@ -280,40 +308,43 @@ describe("periodicIngestor", () => {
     const rows = [...new Array(numberOfRows)].map((_, index) => index);
 
     for (row of rows) {
-      addToQueue({
-        table: "mock_table",
-        row: {
-          ...(await mockContextProperties()),
-          ...(await mockEventProperties()),
-          ...(await mockGeneralProperties()),
-          context_something_invalid: row,
+      addToQueue(
+        {
+          table: "mock_table",
+          row: {
+            ...(await mockContextProperties()),
+            ...(await mockEventProperties()),
+            ...(await mockGeneralProperties()),
+            context_something_invalid: row,
+          },
         },
-      });
+        state
+      );
     }
 
-    await waitUntilIdle();
+    await waitUntilIdle(state);
 
     process.env.SOURCE_VERSION = 1;
 
-    await waitUntilIdle();
+    await waitUntilIdle(state);
 
     process.env.SOURCE_VERSION = 2;
 
-    await waitUntilIdle();
+    await waitUntilIdle(state);
 
     process.env.SOURCE_VERSION = 3;
 
-    await waitUntilIdle();
+    await waitUntilIdle(state);
 
     process.env.SOURCE_VERSION = 4;
 
-    await waitUntilIdle();
+    await waitUntilIdle(state);
 
     process.env.SOURCE_VERSION = 5;
 
-    await waitUntilIdle();
-    await stop();
+    await waitUntilIdle(state);
+    await stop(state);
 
-    expect((await consumeQueue()).length).toEqual(0);
+    expect((await consumeQueue(state)).length).toEqual(0);
   }, 10000);
 });
