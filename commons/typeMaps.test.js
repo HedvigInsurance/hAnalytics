@@ -33,35 +33,39 @@ test("bigQuerySchemaTypeMap", async () => {
   });
 
   expect(
-    await typeMaps.bigQuerySchemaTypeMap("Dictionary<String, Any>", {
+    await typeMaps.bigQuerySchemaTypeMap("Dictionary<String, String>", {
       hello: 123,
     })
-  ).toEqual([{ mode: "NULLABLE", name: "hello", type: "INTEGER" }]);
+  ).toEqual({
+    fields: [
+      { mode: "REQUIRED", name: "key", type: "STRING" },
+      { mode: "REQUIRED", name: "value", type: "STRING" },
+    ],
+    mode: "REPEATED",
+    type: "STRUCT",
+  });
 
   expect(
-    await typeMaps.bigQuerySchemaTypeMap("Optional<Any>", "Value")
+    await typeMaps.bigQuerySchemaTypeMap("Optional<String>", "Value")
   ).toEqual({
     type: "STRING",
     mode: "NULLABLE",
   });
 
   expect(
-    await typeMaps.bigQuerySchemaTypeMap("Dictionary<String, Any>", {
-      hello: 123,
-      hello_mock: "mock",
-    })
-  ).toEqual([
-    { mode: "NULLABLE", name: "hello", type: "INTEGER" },
-    { mode: "NULLABLE", name: "hello_mock", type: "STRING" },
-  ]);
-
-  expect(
-    await typeMaps.bigQuerySchemaTypeMap("Dictionary<String, Optional<Any>>", {
-      hello: 123,
-      hello_mock: "mock",
-    })
-  ).toEqual([
-    { mode: "NULLABLE", name: "hello", type: "INTEGER" },
-    { mode: "NULLABLE", name: "hello_mock", type: "STRING" },
-  ]);
+    await typeMaps.bigQuerySchemaTypeMap(
+      "Dictionary<Optional<String>, Optional<String>>",
+      {
+        hello: 123,
+        hello_mock: "mock",
+      }
+    )
+  ).toEqual({
+    fields: [
+      { mode: "NULLABLE", name: "key", type: "STRING" },
+      { mode: "NULLABLE", name: "value", type: "STRING" },
+    ],
+    mode: "REPEATED",
+    type: "STRUCT",
+  });
 });

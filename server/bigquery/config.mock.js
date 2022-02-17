@@ -59,6 +59,10 @@ module.exports = (events) => {
             },
           ];
         },
+        exists: async () => {
+          var table = tables.find((table) => table.name == name);
+          return [!!table];
+        },
       }),
     }),
   };
@@ -68,6 +72,8 @@ module.exports = (events) => {
     dataset: "mock_dataset",
     bigquery: bigquery,
     projectId: "mock_project_id",
+    tablePrefix: "",
+    injectLoadedAtField: false,
     getEvents: async () => events,
   };
 };

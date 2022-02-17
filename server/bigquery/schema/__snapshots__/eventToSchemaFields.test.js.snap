@@ -128,7 +128,7 @@ Array [
       Object {
         "description": "",
         "mode": "REQUIRED",
-        "name": "property_screen_name",
+        "name": "screen_name",
         "permittedValues": Array [
           "offer",
           "claims_status_detail",
@@ -174,13 +174,13 @@ Array [
       Object {
         "description": "",
         "mode": "REQUIRED",
-        "name": "property_claim_id",
+        "name": "claim_id",
         "type": "STRING",
       },
       Object {
         "description": "",
         "mode": "REQUIRED",
-        "name": "property_claim_status",
+        "name": "claim_status",
         "type": "STRING",
       },
     ],
@@ -194,13 +194,13 @@ Array [
       Object {
         "description": "",
         "mode": "REQUIRED",
-        "name": "property_claim_id",
+        "name": "claim_id",
         "type": "STRING",
       },
       Object {
         "description": "",
         "mode": "REQUIRED",
-        "name": "property_claim_status",
+        "name": "claim_status",
         "type": "STRING",
       },
     ],
@@ -214,13 +214,13 @@ Array [
       Object {
         "description": "",
         "mode": "REQUIRED",
-        "name": "property_claim_id",
+        "name": "claim_id",
         "type": "STRING",
       },
       Object {
         "description": "",
         "mode": "REQUIRED",
-        "name": "property_claim_status",
+        "name": "claim_status",
         "type": "STRING",
       },
     ],
@@ -234,7 +234,7 @@ Array [
       Object {
         "description": "",
         "mode": "REQUIRED",
-        "name": "property_claim_id",
+        "name": "claim_id",
         "type": "STRING",
       },
     ],
@@ -248,7 +248,7 @@ Array [
       Object {
         "description": "",
         "mode": "REQUIRED",
-        "name": "property_provider_id",
+        "name": "provider_id",
         "type": "STRING",
       },
     ],
@@ -262,7 +262,7 @@ Array [
       Object {
         "description": "",
         "mode": "REQUIRED",
-        "name": "property_type",
+        "name": "type",
         "type": "STRING",
       },
     ],
@@ -276,7 +276,7 @@ Array [
       Object {
         "description": "",
         "mode": "REQUIRED",
-        "name": "property_location",
+        "name": "location",
         "type": "STRING",
       },
     ],
@@ -290,13 +290,13 @@ Array [
       Object {
         "description": "",
         "mode": "REQUIRED",
-        "name": "property_originated_from_embark_story",
+        "name": "originated_from_embark_story",
         "type": "STRING",
       },
       Object {
         "description": "",
         "mode": "REQUIRED",
-        "name": "property_passage_name",
+        "name": "passage_name",
         "type": "STRING",
       },
     ],
@@ -310,14 +310,32 @@ Array [
       Object {
         "description": "",
         "mode": "REQUIRED",
-        "name": "property_event_name",
+        "name": "event_name",
         "type": "STRING",
       },
       Object {
         "description": "",
         "mode": "REQUIRED",
-        "name": "property_originated_from_embark_story",
+        "name": "originated_from_embark_story",
         "type": "STRING",
+      },
+      Object {
+        "description": "",
+        "fields": Array [
+          Object {
+            "mode": "REQUIRED",
+            "name": "key",
+            "type": "STRING",
+          },
+          Object {
+            "mode": "NULLABLE",
+            "name": "value",
+            "type": "STRING",
+          },
+        ],
+        "mode": "REPEATED",
+        "name": "store",
+        "type": "STRUCT",
       },
     ],
     "mode": "NULLABLE",
@@ -330,13 +348,13 @@ Array [
       Object {
         "description": "",
         "mode": "REPEATED",
-        "name": "property_all_ids",
+        "name": "all_ids",
         "type": "STRING",
       },
       Object {
         "description": "",
         "mode": "REPEATED",
-        "name": "property_selected_ids",
+        "name": "selected_ids",
         "type": "STRING",
       },
     ],
@@ -350,13 +368,13 @@ Array [
       Object {
         "description": "",
         "mode": "REQUIRED",
-        "name": "property_name",
+        "name": "name",
         "type": "STRING",
       },
       Object {
         "description": "",
         "mode": "REQUIRED",
-        "name": "property_variant",
+        "name": "variant",
         "type": "STRING",
       },
     ],
@@ -370,7 +388,7 @@ Array [
       Object {
         "description": "",
         "mode": "REPEATED",
-        "name": "property_experiments",
+        "name": "experiments",
         "type": "STRING",
       },
     ],
@@ -384,7 +402,7 @@ Array [
       Object {
         "description": "",
         "mode": "REQUIRED",
-        "name": "property_locale",
+        "name": "locale",
         "type": "STRING",
       },
     ],
@@ -398,7 +416,7 @@ Array [
       Object {
         "description": "",
         "mode": "REQUIRED",
-        "name": "property_type",
+        "name": "type",
         "type": "STRING",
       },
     ],
@@ -416,7 +434,7 @@ Array [
       Object {
         "description": "",
         "mode": "NULLABLE",
-        "name": "property_granted",
+        "name": "granted",
         "type": "BOOLEAN",
       },
     ],
@@ -430,7 +448,7 @@ Array [
       Object {
         "description": "",
         "mode": "REQUIRED",
-        "name": "property_embark_story_id",
+        "name": "embark_story_id",
         "type": "STRING",
       },
     ],
@@ -444,19 +462,19 @@ Array [
       Object {
         "description": "",
         "mode": "REQUIRED",
-        "name": "property_initiated_from",
+        "name": "initiated_from",
         "type": "STRING",
       },
       Object {
         "description": "",
         "mode": "REPEATED",
-        "name": "property_quote_ids",
+        "name": "quote_ids",
         "type": "STRING",
       },
       Object {
         "description": "",
         "mode": "REQUIRED",
-        "name": "property_type_of_contracts",
+        "name": "type_of_contracts",
         "type": "STRING",
       },
     ],
@@ -470,19 +488,19 @@ Array [
       Object {
         "description": "",
         "mode": "REQUIRED",
-        "name": "property_initiated_from",
+        "name": "initiated_from",
         "type": "STRING",
       },
       Object {
         "description": "",
         "mode": "REPEATED",
-        "name": "property_quote_ids",
+        "name": "quote_ids",
         "type": "STRING",
       },
       Object {
         "description": "",
         "mode": "REPEATED",
-        "name": "property_type_of_contracts",
+        "name": "type_of_contracts",
         "type": "STRING",
       },
     ],
@@ -496,13 +514,13 @@ Array [
       Object {
         "description": "",
         "mode": "REQUIRED",
-        "name": "property_claim_id",
+        "name": "claim_id",
         "type": "STRING",
       },
       Object {
         "description": "",
         "mode": "REQUIRED",
-        "name": "property_claim_status",
+        "name": "claim_status",
         "type": "STRING",
       },
     ],
@@ -516,7 +534,7 @@ Array [
       Object {
         "description": "",
         "mode": "REQUIRED",
-        "name": "property_id",
+        "name": "id",
         "type": "STRING",
       },
     ],
@@ -530,7 +548,7 @@ Array [
       Object {
         "description": "",
         "mode": "REQUIRED",
-        "name": "property_type_of_contract",
+        "name": "type_of_contract",
         "type": "STRING",
       },
     ],
@@ -544,7 +562,7 @@ Array [
       Object {
         "description": "",
         "mode": "REQUIRED",
-        "name": "property_provider_id",
+        "name": "provider_id",
         "type": "STRING",
       },
     ],
@@ -558,7 +576,7 @@ Array [
       Object {
         "description": "",
         "mode": "REQUIRED",
-        "name": "property_provider_id",
+        "name": "provider_id",
         "type": "STRING",
       },
     ],
@@ -572,7 +590,7 @@ Array [
       Object {
         "description": "",
         "mode": "REQUIRED",
-        "name": "property_provider_id",
+        "name": "provider_id",
         "type": "STRING",
       },
     ],
@@ -586,7 +604,7 @@ Array [
       Object {
         "description": "",
         "mode": "REQUIRED",
-        "name": "property_provider_id",
+        "name": "provider_id",
         "type": "STRING",
       },
     ],
@@ -600,7 +618,7 @@ Array [
       Object {
         "description": "",
         "mode": "REQUIRED",
-        "name": "property_provider_id",
+        "name": "provider_id",
         "type": "STRING",
       },
     ],
@@ -614,7 +632,7 @@ Array [
       Object {
         "description": "",
         "mode": "REQUIRED",
-        "name": "property_story_name",
+        "name": "story_name",
         "type": "STRING",
       },
     ],
@@ -628,7 +646,7 @@ Array [
       Object {
         "description": "",
         "mode": "REQUIRED",
-        "name": "property_contract_id",
+        "name": "contract_id",
         "type": "STRING",
       },
     ],
@@ -642,13 +660,13 @@ Array [
       Object {
         "description": "",
         "mode": "REQUIRED",
-        "name": "property_has_accident_insurance",
+        "name": "has_accident_insurance",
         "type": "BOOLEAN",
       },
       Object {
         "description": "",
         "mode": "REQUIRED",
-        "name": "property_has_home_insurance",
+        "name": "has_home_insurance",
         "type": "BOOLEAN",
       },
     ],
@@ -662,19 +680,19 @@ Array [
       Object {
         "description": "",
         "mode": "REQUIRED",
-        "name": "property_initiated_from",
+        "name": "initiated_from",
         "type": "STRING",
       },
       Object {
         "description": "",
         "mode": "REPEATED",
-        "name": "property_offer_ids",
+        "name": "offer_ids",
         "type": "STRING",
       },
       Object {
         "description": "",
         "mode": "REQUIRED",
-        "name": "property_type_of_contracts",
+        "name": "type_of_contracts",
         "type": "STRING",
       },
     ],
@@ -3272,9 +3290,21 @@ Array [
   },
   Object {
     "description": "",
-    "mode": "NULLABLE",
-    "name": "property_store_an_item",
-    "type": "STRING",
+    "fields": Array [
+      Object {
+        "mode": "REQUIRED",
+        "name": "key",
+        "type": "STRING",
+      },
+      Object {
+        "mode": "NULLABLE",
+        "name": "value",
+        "type": "STRING",
+      },
+    ],
+    "mode": "REPEATED",
+    "name": "property_store",
+    "type": "STRUCT",
   },
   Object {
     "description": "Time when event happened",

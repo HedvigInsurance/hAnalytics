@@ -1,13 +1,21 @@
-const getEvents = require("../../../commons/getEvents");
 const typeMaps = require("../../../commons/typeMaps");
-const { generalFields, contextFields, eventFields } = require("./schemaFields");
+const {
+  generalFields,
+  contextFields,
+  eventFields,
+  loadedAtFields,
+} = require("./schemaFields");
 const sortFields = require("./sortFields");
 
-const eventToSchemaFields = async (event, base = {}, bigQueryConfig) => {
+const eventToSchemaFields = async (
+  event,
+  bigQueryConfig,
+  propertyPrefix = `property_`
+) => {
   var propertyFields = [];
 
   const addFields = async (input) => {
-    let typeOptions = await typeMaps.bigQuerySchemaTypeMap(input.type, base);
+    let typeOptions = await typeMaps.bigQuerySchemaTypeMap(input.type);
 
     if (!typeOptions) {
       return;
@@ -15,17 +23,15 @@ const eventToSchemaFields = async (event, base = {}, bigQueryConfig) => {
 
     if (Array.isArray(typeOptions)) {
       typeOptions.forEach((option) => {
-        if (option.name.startsWith(`property_${input.name}`)) {
-          propertyFields.push({
-            ...option,
-            name: option.name ? option.name : `property_${input.name}`,
-            description: input.description || "",
-          });
-        }
+        propertyFields.push({
+          ...option,
+          name: `${propertyPrefix}${input.name}`,
+          description: input.description || "",
+        });
       });
     } else {
       propertyFields.push({
-        name: `property_${input.name.replace(/^property_/, "")}`,
+        name: `${propertyPrefix}${input.name}`,
         description: input.description || "",
         ...typeOptions,
       });
@@ -62,8 +68,11 @@ const eventToSchemaFields = async (event, base = {}, bigQueryConfig) => {
               noGeneralFields: true,
             },
           },
-          base[`properties_${aggregateEvent.name}`],
-          bigQueryConfig
+          {
+            ...bigQueryConfig,
+            injectLoadedAtField: false,
+          },
+          ""
         );
 
         if (fields.length) {
@@ -82,6 +91,7 @@ const eventToSchemaFields = async (event, base = {}, bigQueryConfig) => {
   const excludeEventFields = event.bigQuery?.noEventFields === true;
   const excludeContextFields = event.bigQuery?.noContextFields === true;
   const excludeGeneralFields = event.bigQuery?.noGeneralFields === true;
+  const excludeLoadedAtField = !bigQueryConfig.injectLoadedAtField;
 
   return sortFields(
     [
@@ -89,6 +99,7 @@ const eventToSchemaFields = async (event, base = {}, bigQueryConfig) => {
       propertyFields,
       excludeGeneralFields ? [] : await generalFields(),
       excludeContextFields ? [] : await contextFields(),
+      excludeLoadedAtField ? [] : await loadedAtFields(),
     ].flatMap((i) => i)
   );
 };

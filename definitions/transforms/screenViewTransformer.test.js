@@ -9,7 +9,9 @@ test("screen_view_offer", () => {
   expect(screenViewOfferEvent).toEqual({
     event: "app_screen_view",
     event_id: "mock-transformed-app_screen_view",
-    property_screen_name: "offer",
+    property: {
+      screen_name: "offer",
+    },
   });
 });
 
@@ -22,7 +24,9 @@ test("screen_view_claim_honor_pledge", () => {
   expect(screenViewOfferEvent).toEqual({
     event: "app_screen_view",
     event_id: "mock-transformed-app_screen_view",
-    property_screen_name: "claim_honor_pledge",
+    property: {
+      screen_name: "claim_honor_pledge",
+    },
   });
 });
 

@@ -34,21 +34,4 @@ describe("periodicIngestorRedisBackend", () => {
       numberOfItems / 2
     );
   });
-
-  test("reparses DateTime correctly", async () => {
-    const redisBackend = createRedisBackend();
-
-    const dateTime = new BigQueryDatetime(new Date().toISOString());
-
-    const mockItem = {
-      mock: "mock",
-      timestamp: dateTime,
-    };
-
-    redisBackend.append(mockItem);
-
-    const list = await redisBackend.consume();
-
-    expect(list).toEqual([mockItem]);
-  });
 });

@@ -9,5 +9,5 @@ inputs:
     type: String
     argument: eventName
   - name: store
-    type: Dictionary<String, Optional<Any>>
+    type: Dictionary<String, Optional<String>>
     argument: store

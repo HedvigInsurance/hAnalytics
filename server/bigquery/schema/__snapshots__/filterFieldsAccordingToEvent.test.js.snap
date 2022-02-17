@@ -3,7 +3,7 @@
 exports[`filters according to event: another_mock_event 1`] = `
 Object {
   "context_app_name": "Hedvig",
-  "property_store_an_item": "123",
+  "property_store": Array [],
 }
 `;
 

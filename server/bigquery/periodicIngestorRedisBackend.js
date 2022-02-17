@@ -1,35 +1,7 @@
 const RedisTaskQueue = require("redis-task-queue");
 const redisUrlParse = require("redis-url-parse");
-const { BigQueryDatetime } = require("@google-cloud/bigquery");
 
 const queue = "periodicIngestor";
-
-const cleanObj = (obj) => {
-  if (!obj) {
-    return obj;
-  }
-
-  if (typeof obj !== "object") {
-    return obj;
-  }
-
-  if (Array.isArray(obj)) {
-    return obj;
-  }
-
-  var copy = {};
-  Object.keys(obj).forEach((key) => {
-    const possibleTimestampValue = obj[key]?.value;
-
-    if (typeof possibleTimestampValue === "string") {
-      copy[key] = new BigQueryDatetime(possibleTimestampValue);
-    } else {
-      copy[key] = cleanObj(obj[key]);
-    }
-  });
-
-  return copy;
-};
 
 module.exports = () => {
   const redisTaskQueue = new RedisTaskQueue(
@@ -76,7 +48,7 @@ module.exports = () => {
         }
       }
 
-      return list.map(cleanObj);
+      return list;
     },
   };
 };

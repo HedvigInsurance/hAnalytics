@@ -8,18 +8,8 @@ test("creates schemas according to events", async () => {
   const bigQueryConfig = createBigQueryConfigMock(events);
 
   for (event of events) {
-    expect(
-      await eventToSchemaFields(
-        event,
-        flattenObj({
-          property: {
-            store: {
-              an_item: "123",
-            },
-          },
-        }),
-        bigQueryConfig
-      )
-    ).toMatchSnapshot(event.name);
+    expect(await eventToSchemaFields(event, bigQueryConfig)).toMatchSnapshot(
+      event.name
+    );
   }
 });

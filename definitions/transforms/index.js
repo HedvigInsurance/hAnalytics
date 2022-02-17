@@ -1,4 +1,5 @@
 const screenViewTransformer = require("./screenViewTransformer");
+const deepcopy = require("deepcopy");
 
 const transformers = [screenViewTransformer];
 
@@ -9,13 +10,13 @@ module.exports = (event) => {
     transformers.reduce((event, transformer) => {
       if (transformer.shouldTransform(event)) {
         if (transformer.keepUntransformedEvent) {
-          stack.push(event);
+          stack.push(deepcopy(event));
         }
 
         return transformer.transform(event);
       }
 
-      return event;
+      return deepcopy(event);
     }, event)
   );
 

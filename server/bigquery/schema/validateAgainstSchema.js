@@ -14,6 +14,44 @@ const validateAgainstSchema = async (name, row, bigQueryConfig) => {
       return;
     }
 
+    if (field.type === "RECORD" || field.type === "STRUCT") {
+      const itemsToValidate = [];
+
+      if (field.mode === "REPEATED") {
+        if (!Array.isArray(row[key])) {
+          return {
+            ...field,
+            fields: field.fields,
+          };
+        }
+
+        for (item of row[key]) {
+          itemsToValidate.push(item);
+        }
+      } else {
+        itemsToValidate.push(row[key]);
+      }
+
+      const fieldResults = [];
+
+      for (itemToValidate of itemsToValidate) {
+        for (structField of field.fields) {
+          fieldResults.push(await validateField(structField, itemToValidate));
+        }
+      }
+
+      const invalidFields = fieldResults.filter((i) => i);
+
+      if (invalidFields.length) {
+        return {
+          ...field,
+          fields: invalidFields,
+        };
+      }
+
+      return;
+    }
+
     if (Array.isArray(row[key]) && field.mode === "REPEATED") {
       const validatedFields = await Promise.all(
         row[key].map(async (item) => {
@@ -35,27 +73,11 @@ const validateAgainstSchema = async (name, row, bigQueryConfig) => {
       return;
     }
 
-    if (
-      field.type === "TIMESTAMP" &&
-      (typeof row[key]?.value === "string" || typeof row[key] === "string")
-    ) {
-      return;
-    }
+    if (field.type === "TIMESTAMP") {
+      const timestamp = row[key]?.value || row[key];
 
-    if (field.type === "RECORD" || field.type === "STRUCT") {
-      const fieldResults = [];
-
-      for (structField of field.fields) {
-        fieldResults.push(await validateField(structField, row[key]));
-      }
-
-      const invalidFields = fieldResults.filter((i) => i);
-
-      if (invalidFields.length) {
-        return {
-          ...field,
-          fields: invalidFields,
-        };
+      if (!Date.parse(timestamp)) {
+        return field;
       }
 
       return;
@@ -86,7 +108,8 @@ const validateAgainstSchema = async (name, row, bigQueryConfig) => {
   if (invalidFields.length) {
     console.log(
       `Struck some invalid fields when validating ${name}`,
-      invalidFields
+      JSON.stringify(invalidFields, null, 2),
+      JSON.stringify(row, null, 2)
     );
   }
 

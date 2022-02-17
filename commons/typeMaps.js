@@ -60,7 +60,7 @@ const getKotlinType = (type) => {
     }, "");
 };
 
-const getBigQuerySchemaType = async (type, base = {}, ignoreCustom = false) => {
+const getBigQuerySchemaType = async (type, ignoreCustom = false) => {
   if (!type) {
     return null;
   }
@@ -87,7 +87,7 @@ const getBigQuerySchemaType = async (type, base = {}, ignoreCustom = false) => {
       mode: "REQUIRED",
     },
     Optional: async (inner) => {
-      const resolvedInner = await getBigQuerySchemaType(inner, base);
+      const resolvedInner = await getBigQuerySchemaType(inner);
 
       return {
         ...resolvedInner,
@@ -95,35 +95,32 @@ const getBigQuerySchemaType = async (type, base = {}, ignoreCustom = false) => {
       };
     },
     Array: async (inner) => {
-      const resolvedInner = await getBigQuerySchemaType(inner, base);
+      const resolvedInner = await getBigQuerySchemaType(inner);
 
       return {
         ...resolvedInner,
         mode: "REPEATED",
       };
     },
-    Dictionary: async (inner) =>
-      Promise.all(
-        Object.keys(base).map(async (key) => {
-          const resolvedInner = await getBigQuerySchemaType(
-            inner.split(", ")[1],
-            base[key]
-          );
-          return {
-            name: key,
-            ...resolvedInner,
-            mode: "NULLABLE",
-          };
-        })
-      ),
-    Any: async () => {
-      const resolvedInner = await getBigQuerySchemaType(
-        getJSToHAnalyticsType(base)
-      );
+    Dictionary: async (inner) => {
+      const types = inner.split(", ");
+
+      const keyType = await getBigQuerySchemaType(types[0]);
+      const valueType = await getBigQuerySchemaType(types[1]);
 
       return {
-        ...resolvedInner,
-        mode: "REQUIRED",
+        type: "STRUCT",
+        mode: "REPEATED",
+        fields: [
+          {
+            ...keyType,
+            name: "key",
+          },
+          {
+            ...valueType,
+            name: "value",
+          },
+        ],
       };
     },
   };
@@ -133,11 +130,7 @@ const getBigQuerySchemaType = async (type, base = {}, ignoreCustom = false) => {
   if (!ignoreCustom) {
     for (customType of customTypes) {
       if (customType.type === "Enum") {
-        const rawType = await getBigQuerySchemaType(
-          customType.rawType,
-          base,
-          true
-        );
+        const rawType = await getBigQuerySchemaType(customType.rawType, true);
 
         primitives[customType.name] = {
           ...rawType,
@@ -154,7 +147,7 @@ const getBigQuerySchemaType = async (type, base = {}, ignoreCustom = false) => {
   const primitive = primitives[splitted.shift().replaceAll(">", "")];
 
   if (typeof primitive === "function") {
-    return await primitive(splitted.join("<"), base);
+    return await primitive(splitted.join("<"));
   }
 
   return primitive;

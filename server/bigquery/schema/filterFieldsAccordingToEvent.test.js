@@ -44,3 +44,52 @@ test("filters according to event", async () => {
     })
   );
 });
+
+test("filters according to event", async () => {
+  const bigQueryConfig = createBigQueryConfigMock([
+    {
+      name: "mock_event",
+      inputs: [
+        {
+          name: "input_mock",
+          type: "Dictionary<String, String>",
+        },
+      ],
+    },
+    {
+      name: "aggregate",
+      bigQuery: {
+        includeAggregateProperties: true,
+      },
+    },
+  ]);
+
+  expect(
+    await filterFieldsAccordingToEvent(
+      "aggregate",
+      {
+        properties_mock_event: {
+          input_mock: {
+            hello: "hello",
+            otherValue: "hello",
+          },
+          faulty: true,
+        },
+      },
+      bigQueryConfig
+    )
+  ).toEqual({
+    properties_mock_event: {
+      input_mock: [
+        {
+          key: "hello",
+          value: "hello",
+        },
+        {
+          key: "otherValue",
+          value: "hello",
+        },
+      ],
+    },
+  });
+});

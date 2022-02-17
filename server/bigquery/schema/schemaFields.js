@@ -121,8 +121,17 @@ const generalFields = async () => [
   },
 ];
 
+const loadedAtFields = async () => [
+  {
+    name: "loaded_at",
+    description: "Time when event was ingested",
+    ...(await bigQuerySchemaTypeMap("Date")),
+  },
+];
+
 module.exports = {
   eventFields,
   contextFields,
   generalFields,
+  loadedAtFields,
 };
