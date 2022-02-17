@@ -343,6 +343,17 @@ query ScreenViewInsurances {
         )
     }
     /**
+     * When market picker is shown
+     */
+    fun screenViewMarketPicker() {
+        send(
+            HAnalyticsEvent(
+                name = "screen_view_market_picker",
+                properties = mapOf(),
+            )
+        )
+    }
+    /**
      * When moving flow intro screen is shown
      */
     @Deprecated("Replaced with screenView")
@@ -355,6 +366,43 @@ query ScreenViewInsurances {
         )
     }
     /**
+     * When Offer screen is shown
+     */
+    fun screenViewOffer(offerIds: List<String>) {
+        send(
+            HAnalyticsEvent(
+                name = "screen_view_offer",
+                properties = mapOf(
+                    "offer_ids" to offerIds,
+                ),
+                graphql = mapOf(
+                    "query" to """
+query ScreenViewOffer(${"\$"}offer_ids: [ID!]!) {
+	quoteBundle(input: {
+		ids: ${"\$"}offer_ids
+	}) {
+		quotes {
+			typeOfContract
+			initiatedFrom
+		}
+	}
+}                            """.trimIndent(),
+                    "selectors" to listOf(
+                        mapOf(
+                            "name" to "type_of_contracts",
+                            "path" to "quoteBundle.quotes[*].typeOfContract | sort(@) | join(', ', @)",
+                        ),
+                        mapOf(
+                            "name" to "initiated_from",
+                            "path" to "quoteBundle.quotes[0].initiatedFrom",
+                        ),
+                    ),
+                    "variables" to mapOf<String, Any?>(),
+                ),
+            )
+        )
+    }
+    /**
      * When Profile tab is shown
      */
     @Deprecated("Replaced with screenView")
@@ -362,6 +410,30 @@ query ScreenViewInsurances {
         send(
             HAnalyticsEvent(
                 name = "screen_view_profile",
+                properties = mapOf(),
+            )
+        )
+    }
+    /**
+     * When app information screen was shown
+     */
+    @Deprecated("Replaced with screenView")
+    fun screenViewAppInformation() {
+        send(
+            HAnalyticsEvent(
+                name = "screen_view_app_information",
+                properties = mapOf(),
+            )
+        )
+    }
+    /**
+     * When app settings screen was shown
+     */
+    @Deprecated("Replaced with screenView")
+    fun screenViewAppSettings() {
+        send(
+            HAnalyticsEvent(
+                name = "screen_view_app_settings",
                 properties = mapOf(),
             )
         )

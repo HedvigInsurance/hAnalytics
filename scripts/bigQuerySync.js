@@ -23,7 +23,7 @@ const transfer = async () => {
     return 0;
   });
 
-  const days = [...Array(20)].map((_, index) => {
+  const days = [...Array(23)].map((_, index) => {
     var d = new Date();
     d.setDate(d.getDate() - index);
     return d.toISOString().split("T")[0];
@@ -32,20 +32,9 @@ const transfer = async () => {
   bigQueryConfig.tablePrefix = `__sync_table_`;
   bigQueryConfig.injectLoadedAtField = true;
 
-  // for (event of events) {
-  //   try {
-  //     await bigQueryConfig.bigquery
-  //       .dataset(bigQueryConfig.dataset)
-  //       .table(`__sync_table_${event.name}`)
-  //       .delete();
-  //   } catch (err) {}
-  // }
-
-  // await timersPromises.setTimeout(60000);
-
   const backend = createInMemoryBackend();
 
-  const ingestorState = periodicIngestor.start(bigQueryConfig, backend, 500);
+  const ingestorState = periodicIngestor.start(bigQueryConfig, backend, 100);
   await ingestorState.schemaLoaded;
 
   const promises = events.map(async (event) => {
@@ -129,6 +118,8 @@ const transfer = async () => {
 
         mappedRow.context.screen_density = row["context_screen_density"] ?? 0;
 
+        await timersPromises.setTimeout(50);
+
         if (!mappedRow.event) {
           // probably identify
           trackers.identify(mappedRow, bigQueryConfig, ingestorState);
@@ -141,8 +132,6 @@ const transfer = async () => {
           );
         }
       }
-
-      await waitUntilIdle(ingestorState);
     }
   });
 

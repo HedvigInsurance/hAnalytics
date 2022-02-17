@@ -258,6 +258,18 @@ extension hAnalyticsEvent {
     }
   }
 
+  /// When market picker is shown
+
+  public static func screenViewMarketPicker() -> hAnalyticsParcel {
+    return hAnalyticsParcel {
+      let properties: [String: Any?] = [:]
+
+      hAnalyticsNetworking.send(
+        hAnalyticsEvent(name: "screen_view_market_picker", properties: properties)
+      )
+    }
+  }
+
   /// When moving flow intro screen is shown
   @available(*, deprecated, message: "Replaced with screenView")
   public static func screenViewMovingFlowIntro() -> hAnalyticsParcel {
@@ -270,6 +282,43 @@ extension hAnalyticsEvent {
     }
   }
 
+  /// When Offer screen is shown
+
+  public static func screenViewOffer(offerIds: [String]) -> hAnalyticsParcel {
+    return hAnalyticsParcel {
+      let properties: [String: Any?] = ["offer_ids": offerIds]
+
+      let graphQLVariables: [String: Any?] = ["offer_ids": offerIds]
+
+      hAnalyticsNetworking.send(
+        hAnalyticsEvent(
+          name: "screen_view_offer",
+          properties: properties,
+          graphql: [
+            "query": """
+              query ScreenViewOffer($offer_ids: [ID!]!) {
+              	quoteBundle(input: {
+              		ids: $offer_ids
+              	}) {
+              		quotes {
+              			typeOfContract
+              			initiatedFrom
+              		}
+              	}
+              }
+              """,
+            "selectors": [
+              [
+                "name": "type_of_contracts",
+                "path": "quoteBundle.quotes[*].typeOfContract | sort(@) | join(', ', @)",
+              ], ["name": "initiated_from", "path": "quoteBundle.quotes[0].initiatedFrom"],
+            ], "variables": graphQLVariables,
+          ]
+        )
+      )
+    }
+  }
+
   /// When Profile tab is shown
   @available(*, deprecated, message: "Replaced with screenView")
   public static func screenViewProfile() -> hAnalyticsParcel {
@@ -278,6 +327,30 @@ extension hAnalyticsEvent {
 
       hAnalyticsNetworking.send(
         hAnalyticsEvent(name: "screen_view_profile", properties: properties)
+      )
+    }
+  }
+
+  /// When app information screen was shown
+  @available(*, deprecated, message: "Replaced with screenView")
+  public static func screenViewAppInformation() -> hAnalyticsParcel {
+    return hAnalyticsParcel {
+      let properties: [String: Any?] = [:]
+
+      hAnalyticsNetworking.send(
+        hAnalyticsEvent(name: "screen_view_app_information", properties: properties)
+      )
+    }
+  }
+
+  /// When app settings screen was shown
+  @available(*, deprecated, message: "Replaced with screenView")
+  public static func screenViewAppSettings() -> hAnalyticsParcel {
+    return hAnalyticsParcel {
+      let properties: [String: Any?] = [:]
+
+      hAnalyticsNetworking.send(
+        hAnalyticsEvent(name: "screen_view_app_settings", properties: properties)
       )
     }
   }
