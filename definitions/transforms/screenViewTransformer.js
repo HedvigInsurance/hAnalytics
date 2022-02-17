@@ -1,7 +1,13 @@
 const matchRegex = /^screen_view_/;
 
 module.exports = {
-  shouldTransform: (event) => !!event.event?.match(matchRegex),
+  shouldTransform: (event) => {
+    try {
+      return !!event.event?.match(matchRegex);
+    } catch (err) {
+      return false;
+    }
+  },
   keepUntransformedEvent: true,
   transform: (event) => {
     return {
