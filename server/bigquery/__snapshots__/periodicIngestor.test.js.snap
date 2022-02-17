@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`does ingest dynamic fields 1`] = `
+exports[`periodicIngestor does ingest dynamic fields 1`] = `
 Array [
   Object {
     "config": Object {
@@ -1870,7 +1870,7 @@ Array [
 ]
 `;
 
-exports[`does keep invalid rows 1`] = `
+exports[`periodicIngestor does keep invalid rows 1`] = `
 Array [
   Object {
     "currentRetries": 0,
@@ -2675,7 +2675,7 @@ Array [
 ]
 `;
 
-exports[`ingests correctly 1`] = `
+exports[`periodicIngestor ingests correctly 1`] = `
 Array [
   Object {
     "currentRetries": 0,
@@ -2689,7 +2689,7 @@ Array [
 ]
 `;
 
-exports[`ingests correctly 2`] = `
+exports[`periodicIngestor ingests correctly 2`] = `
 Array [
   Object {
     "config": Object {

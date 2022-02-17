@@ -5,6 +5,7 @@ const Redis = require("ioredis-mock");
 describe("periodicIngestorRedisBackend", () => {
   beforeEach((done) => {
     new Redis().flushall().then(() => done());
+    jest.spyOn(console, "log").mockImplementation(() => {});
   });
 
   test("stores and consumes correctly", async () => {
