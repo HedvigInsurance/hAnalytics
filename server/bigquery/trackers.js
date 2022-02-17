@@ -90,6 +90,7 @@ const identify = async (identity, bigQueryConfig, ingestorState) => {
     row: {
       ...flatIdentity,
       timestamp: parseTimestamp(new Date(), bigQueryConfig),
+      loaded_at: identity.loaded_at,
     },
   };
 

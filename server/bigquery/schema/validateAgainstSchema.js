@@ -6,6 +6,12 @@ const validateAgainstSchema = async (name, row, bigQueryConfig) => {
   const validateField = async (field, row) => {
     const key = field.name;
 
+    if (field.type === "BOOLEAN") {
+      if (row[key] === true || row[key] === false) {
+        return;
+      }
+    }
+
     if (row[key] == null && field.mode === "REQUIRED") {
       return field;
     }

@@ -103,13 +103,13 @@ app.post("/event", async (req, res) => {
     const hanalyticsEventId = uuid.v1();
 
     bqAnalytics.track(event, {
-      trackingId,
+      tracking_id: trackingId,
       property: allProperties,
       timestamp,
-      eventId: hanalyticsEventId,
+      event_id: hanalyticsEventId,
       context: {
         timezone,
-        sessionId,
+        session_id: sessionId,
         os: {
           name: os.name,
           version: os.version,

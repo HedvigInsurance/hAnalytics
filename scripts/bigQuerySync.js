@@ -41,6 +41,8 @@ const transfer = async () => {
   //   } catch (err) {}
   // }
 
+  // await timersPromises.setTimeout(60000);
+
   const backend = createInMemoryBackend();
 
   const ingestorState = periodicIngestor.start(bigQueryConfig, backend, 500);
@@ -127,15 +129,20 @@ const transfer = async () => {
 
         mappedRow.context.screen_density = row["context_screen_density"] ?? 0;
 
-        await timersPromises.setTimeout(50);
-
-        trackers.track(
-          mappedRow.event,
-          mappedRow,
-          bigQueryConfig,
-          ingestorState
-        );
+        if (!mappedRow.event) {
+          // probably identify
+          trackers.identify(mappedRow, bigQueryConfig, ingestorState);
+        } else {
+          trackers.track(
+            mappedRow.event,
+            mappedRow,
+            bigQueryConfig,
+            ingestorState
+          );
+        }
       }
+
+      await waitUntilIdle(ingestorState);
     }
   });
 
