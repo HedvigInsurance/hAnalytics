@@ -3,4 +3,4 @@ description: All events and properties combined
 accessor: null
 type: INTERNAL
 bigQuery:
-  addAggregatePropertyFields: true
+  includeAggregateProperties: true

@@ -44,7 +44,7 @@ const eventToSchemaFields = async (event, base = {}, bigQueryConfig) => {
     await Promise.all(event.graphql.selectors.map(addFields));
   }
 
-  if (event.bigQuery?.addAggregatePropertyFields) {
+  if (event.bigQuery?.includeAggregateProperties === true) {
     const events = await bigQueryConfig.getEvents();
 
     for (aggregateEvent of events) {

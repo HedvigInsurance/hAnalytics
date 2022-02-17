@@ -1,6 +1,7 @@
 const insertDynamicFields = require("./insertDynamicFields");
 const createBigQueryConfigMock = require("../config.mock");
 const setupSchema = require("../setupSchema");
+const { bigquery } = require("../config");
 
 test("insert dynamic fields", async () => {
   const bigQueryConfig = createBigQueryConfigMock([
@@ -35,7 +36,24 @@ test("insert dynamic fields", async () => {
     bigQueryConfig
   );
 
-  expect(bigQueryConfig.bigquery.getTables()).toMatchSnapshot();
+  var [metadata] = await bigQueryConfig.bigquery
+    .dataset(bigQueryConfig.dataset)
+    .table("embark_track")
+    .getMetadata();
+
+  expect(metadata.schema.fields).toContainEqual({
+    description: "",
+    name: "property_store_personal_number",
+    mode: "NULLABLE",
+    type: "STRING",
+  });
+
+  expect(metadata.schema.fields).toContainEqual({
+    description: "",
+    name: "property_store_hello",
+    mode: "NULLABLE",
+    type: "STRING",
+  });
 
   await insertDynamicFields(
     "embark_track",
@@ -49,7 +67,24 @@ test("insert dynamic fields", async () => {
     bigQueryConfig
   );
 
-  expect(bigQueryConfig.bigquery.getTables()).toMatchSnapshot();
+  var [metadata] = await bigQueryConfig.bigquery
+    .dataset(bigQueryConfig.dataset)
+    .table("embark_track")
+    .getMetadata();
+
+  expect(metadata.schema.fields).not.toContainEqual({
+    description: "",
+    name: "some_rouge_field_that_should_be_gone",
+    mode: "NULLABLE",
+    type: "STRING",
+  });
+
+  expect(metadata.schema.fields).not.toContainEqual({
+    description: "",
+    name: "property_random_personal_number",
+    mode: "NULLABLE",
+    type: "STRING",
+  });
 });
 
 test("insert dynamic fields in aggregate", async () => {
@@ -71,7 +106,7 @@ test("insert dynamic fields in aggregate", async () => {
       name: "aggregate",
       bigQuery: {
         noContextFields: true,
-        addAggregatePropertyFields: true,
+        includeAggregateProperties: true,
       },
     },
   ]);
@@ -94,5 +129,29 @@ test("insert dynamic fields in aggregate", async () => {
     bigQueryConfig
   );
 
-  expect(bigQueryConfig.bigquery.getTables()).toMatchSnapshot();
+  var [metadata] = await bigQueryConfig.bigquery
+    .dataset(bigQueryConfig.dataset)
+    .table("aggregate")
+    .getMetadata();
+
+  expect(metadata.schema.fields).toContainEqual({
+    description: "",
+    name: "properties_embark_track",
+    mode: "NULLABLE",
+    type: "STRUCT",
+    fields: [
+      {
+        description: "",
+        mode: "NULLABLE",
+        name: "property_store_hello",
+        type: "STRING",
+      },
+      {
+        description: "",
+        mode: "NULLABLE",
+        name: "property_store_personal_number",
+        type: "STRING",
+      },
+    ],
+  });
 });
