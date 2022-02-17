@@ -55,7 +55,7 @@ module.exports = {
 
     return {
       event,
-      schemaFields: await eventToSchemaFields(event, {}),
+      schemaFields: await eventToSchemaFields(event, bigQueryConfig),
       graphqlResults: graphqlResults,
       file: args.path.replace(".yml", ""),
       integrationStatus: await getIntegrationStatus(event),
