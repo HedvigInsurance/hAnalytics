@@ -25,7 +25,7 @@ const track = async (name, event) => {
 };
 
 const identify = async (identity) => {
-  trackers.track(identity, bigQueryConfig, state);
+  trackers.identify(identity, bigQueryConfig, state);
 };
 
 module.exports = {
