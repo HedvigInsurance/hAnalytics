@@ -1,133 +1,70 @@
 package com.hedvig.hanalytics
 
-interface AppScreenRaw {
-    val value: String
-}
-
 /**
  * An app screen
  */
-enum class AppScreen : AppScreenRaw {
+enum class AppScreen(val value: String) {
 
-    Offer {
-        override val value = "offer"
-    },
+    Offer("offer"),
 
-    ClaimsStatusDetail {
-        override val value = "claims_status_detail"
-    },
+    ClaimsStatusDetail("claims_status_detail"),
 
-    ClaimHonorPledge {
-        override val value = "claim_honor_pledge"
-    },
+    ClaimHonorPledge("claim_honor_pledge"),
 
-    CommonClaimDetail {
-        override val value = "common_claim_detail"
-    },
+    CommonClaimDetail("common_claim_detail"),
 
-    Embark {
-        override val value = "embark"
-    },
+    Embark("embark"),
 
-    EmbarkTooltip {
-        override val value = "embark_tooltip"
-    },
+    EmbarkTooltip("embark_tooltip"),
 
-    MarketPicker {
-        override val value = "market_picker"
-    },
+    MarketPicker("market_picker"),
 
-    Marketing {
-        override val value = "marketing"
-    },
+    Marketing("marketing"),
 
-    DataCollectionAuthenticating {
-        override val value = "data_collection_authenticating"
-    },
+    DataCollectionAuthenticating("data_collection_authenticating"),
 
-    DataCollectionCredentials {
-        override val value = "data_collection_credentials"
-    },
+    DataCollectionCredentials("data_collection_credentials"),
 
-    DataCollectionFail {
-        override val value = "data_collection_fail"
-    },
+    DataCollectionFail("data_collection_fail"),
 
-    DataCollectionIntro {
-        override val value = "data_collection_intro"
-    },
+    DataCollectionIntro("data_collection_intro"),
 
-    DataCollectionSuccess {
-        override val value = "data_collection_success"
-    },
+    DataCollectionSuccess("data_collection_success"),
 
-    ConnectPaymentAdyen {
-        override val value = "connect_payment_adyen"
-    },
+    ConnectPaymentAdyen("connect_payment_adyen"),
 
-    ConnectPaymentTrustly {
-        override val value = "connect_payment_trustly"
-    },
+    ConnectPaymentTrustly("connect_payment_trustly"),
 
-    ConnectPaymentFailed {
-        override val value = "connect_payment_failed"
-    },
+    ConnectPaymentFailed("connect_payment_failed"),
 
-    ConnectPaymentSuccess {
-        override val value = "connect_payment_success"
-    },
+    ConnectPaymentSuccess("connect_payment_success"),
 
-    Payments {
-        override val value = "payments"
-    },
+    Payments("payments"),
 
-    Charity {
-        override val value = "charity"
-    },
+    Charity("charity"),
 
-    ContactInfo {
-        override val value = "contact_info"
-    },
+    ContactInfo("contact_info"),
 
-    CrossSellDetail {
-        override val value = "cross_sell_detail"
-    },
+    CrossSellDetail("cross_sell_detail"),
 
-    Forever {
-        override val value = "forever"
-    },
+    Forever("forever"),
 
-    Home {
-        override val value = "home"
-    },
+    Home("home"),
 
-    InsuranceDetail {
-        override val value = "insurance_Detail"
-    },
+    InsuranceDetail("insurance_Detail"),
 
-    Insurances {
-        override val value = "insurances"
-    },
+    Insurances("insurances"),
 
-    MovingFlowIntro {
-        override val value = "moving_flow_intro"
-    },
+    MovingFlowIntro("moving_flow_intro"),
 
-    Profile {
-        override val value = "profile"
-    },
+    Profile("profile"),
 
-    App_information {
-        override val value = "app_information"
-    },
+    App_information("app_information"),
 
-    App_settings {
-        override val value = "app_settings"
-    },
+    App_settings("app_settings"),
 
-    Chat {
-        override val value = "chat"
-    };
+    Chat("chat")
+    ;
 }
 
 abstract class HAnalytics {
@@ -140,7 +77,7 @@ abstract class HAnalytics {
             HAnalyticsEvent(
                 name = "app_screen_view",
                 properties = mapOf(
-                    "screen_name" to screen.rawValue,
+                    "screen_name" to screen.value,
                 ),
             )
         )
@@ -689,7 +626,7 @@ query ScreenViewOffer(${"\$"}offer_ids: [ID!]!) {
     /**
      * When embark sends a tracking event
      */
-    fun embarkTrack(storyName: String, eventName: String, store: Map<String, Optional>) {
+    fun embarkTrack(storyName: String, eventName: String, store: Map<String, String?>) {
         send(
             HAnalyticsEvent(
                 name = "embark_track",
