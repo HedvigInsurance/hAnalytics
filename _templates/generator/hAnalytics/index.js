@@ -4,6 +4,7 @@ const mockRunGraphQLQuery = require("../../../commons/mockRunGraphqlEvent");
 const getEvents = require("../../../commons/getEvents");
 const getExperiments = require("../../../commons/getExperiments");
 const customTypes = require("../../../commons/customTypes");
+const { snakeCase } = require("snake-case");
 
 const capitalizeFirstLetter = (s) => `${s[0].toUpperCase()}${s.slice(1)}`;
 
@@ -97,6 +98,7 @@ module.exports = {
         return input.argument;
       },
       ...typeMaps,
+      snakeCase,
       stringToSwiftComment: (s) =>
         s
           .split("\n")

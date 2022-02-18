@@ -12,7 +12,7 @@ package com.hedvig.hanalytics
         enum class <%= type.name %>(val value: <%- kotlinTypeMap(type.rawType) %>) {
             <% var caseKeys = Object.keys(type.cases) %>
             <% caseKeys.forEach((enumCaseKey) => { %>
-                <%= capitalizeFirstLetter(enumCaseKey) %>(<%- kotlinLiteral(type.cases[enumCaseKey], type.rawType) %>)
+                <%= snakeCase(enumCaseKey).toUpperCase() %>(<%- kotlinLiteral(type.cases[enumCaseKey], type.rawType) %>)
                 <%= enumCaseKey === caseKeys[caseKeys.length - 1] ? `;` : `,` %>
             <% }) %>
         }

@@ -5,65 +5,65 @@ package com.hedvig.hanalytics
  */
 enum class AppScreen(val value: String) {
 
-    Offer("offer"),
+    OFFER("offer"),
 
-    ClaimsStatusDetail("claims_status_detail"),
+    CLAIMS_STATUS_DETAIL("claims_status_detail"),
 
-    ClaimHonorPledge("claim_honor_pledge"),
+    CLAIM_HONOR_PLEDGE("claim_honor_pledge"),
 
-    CommonClaimDetail("common_claim_detail"),
+    COMMON_CLAIM_DETAIL("common_claim_detail"),
 
-    Embark("embark"),
+    EMBARK("embark"),
 
-    EmbarkTooltip("embark_tooltip"),
+    EMBARK_TOOLTIP("embark_tooltip"),
 
-    MarketPicker("market_picker"),
+    MARKET_PICKER("market_picker"),
 
-    Marketing("marketing"),
+    MARKETING("marketing"),
 
-    DataCollectionAuthenticating("data_collection_authenticating"),
+    DATA_COLLECTION_AUTHENTICATING("data_collection_authenticating"),
 
-    DataCollectionCredentials("data_collection_credentials"),
+    DATA_COLLECTION_CREDENTIALS("data_collection_credentials"),
 
-    DataCollectionFail("data_collection_fail"),
+    DATA_COLLECTION_FAIL("data_collection_fail"),
 
-    DataCollectionIntro("data_collection_intro"),
+    DATA_COLLECTION_INTRO("data_collection_intro"),
 
-    DataCollectionSuccess("data_collection_success"),
+    DATA_COLLECTION_SUCCESS("data_collection_success"),
 
-    ConnectPaymentAdyen("connect_payment_adyen"),
+    CONNECT_PAYMENT_ADYEN("connect_payment_adyen"),
 
-    ConnectPaymentTrustly("connect_payment_trustly"),
+    CONNECT_PAYMENT_TRUSTLY("connect_payment_trustly"),
 
-    ConnectPaymentFailed("connect_payment_failed"),
+    CONNECT_PAYMENT_FAILED("connect_payment_failed"),
 
-    ConnectPaymentSuccess("connect_payment_success"),
+    CONNECT_PAYMENT_SUCCESS("connect_payment_success"),
 
-    Payments("payments"),
+    PAYMENTS("payments"),
 
-    Charity("charity"),
+    CHARITY("charity"),
 
-    ContactInfo("contact_info"),
+    CONTACT_INFO("contact_info"),
 
-    CrossSellDetail("cross_sell_detail"),
+    CROSS_SELL_DETAIL("cross_sell_detail"),
 
-    Forever("forever"),
+    FOREVER("forever"),
 
-    Home("home"),
+    HOME("home"),
 
-    InsuranceDetail("insurance_Detail"),
+    INSURANCE_DETAIL("insurance_Detail"),
 
-    Insurances("insurances"),
+    INSURANCES("insurances"),
 
-    MovingFlowIntro("moving_flow_intro"),
+    MOVING_FLOW_INTRO("moving_flow_intro"),
 
-    Profile("profile"),
+    PROFILE("profile"),
 
-    App_information("app_information"),
+    APP_INFORMATION("app_information"),
 
-    App_settings("app_settings"),
+    APP_SETTINGS("app_settings"),
 
-    Chat("chat")
+    CHAT("chat")
     ;
 }
 
