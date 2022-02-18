@@ -15,7 +15,7 @@ const eventToSchemaFields = async (
   };
 
   const addFields = async (input) => {
-    let typeOptions = await typeMaps.bigQuerySchemaTypeMap(input.type);
+    let typeOptions = typeMaps.bigQuerySchemaTypeMap(input.type);
 
     if (!typeOptions) {
       return;

@@ -34,9 +34,6 @@ const mockContextProperties = async () =>
 const mockEventProperties = async () =>
   (await schemaFields.eventFields()).reduce(mockFieldReducer, {});
 
-const mockGeneralProperties = async () =>
-  (await schemaFields.generalFields()).reduce(mockFieldReducer, {});
-
 describe("periodicIngestor", () => {
   test("ingests correctly", async () => {
     const bigQueryConfig = createBigQueryConfigMock([
@@ -104,7 +101,6 @@ describe("periodicIngestor", () => {
           row: {
             ...(await mockContextProperties()),
             ...(await mockEventProperties()),
-            ...(await mockGeneralProperties()),
             property: {
               hello: "HELLO",
             },
@@ -152,7 +148,6 @@ describe("periodicIngestor", () => {
           row: {
             ...(await mockContextProperties()),
             ...(await mockEventProperties()),
-            ...(await mockGeneralProperties()),
             property: {
               hello: "HELLO",
               hello_other: Math.random(),
@@ -169,7 +164,6 @@ describe("periodicIngestor", () => {
           row: {
             ...(await mockContextProperties()),
             ...(await mockEventProperties()),
-            ...(await mockGeneralProperties()),
             property: {
               hello: "HELLO",
               hello_other: "value",

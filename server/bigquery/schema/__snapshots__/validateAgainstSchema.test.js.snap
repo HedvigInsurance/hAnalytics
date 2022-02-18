@@ -48,7 +48,6 @@ Array [
       },
       "timePartitioning": Object {
         "expirationMS": "7776000000",
-        "field": "timestamp",
         "type": "DAY",
       },
     },

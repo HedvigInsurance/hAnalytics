@@ -8,26 +8,16 @@ Array [
     "config": Object {
       "description": "",
       "schema": Object {
-        "fields": Array [
-          Object {
-            "description": "",
-            "mode": "REQUIRED",
-            "name": "property_hello",
-            "type": "STRING",
-          },
-        ],
+        "fields": Array [],
       },
       "timePartitioning": Object {
         "expirationMS": "7776000000",
-        "field": "timestamp",
         "type": "DAY",
       },
     },
     "name": "mock_event",
     "rows": Array [
-      Object {
-        "property_hello": "HELLO",
-      },
+      Object {},
     ],
   },
 ]

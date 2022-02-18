@@ -10,22 +10,22 @@ const eventFields = async () => [
       {
         name: "name",
         description: "String name of event, for example screen_view_offer",
-        ...(await bigQuerySchemaTypeMap("String")),
+        ...bigQuerySchemaTypeMap("String"),
       },
       {
         name: "id",
         description: "Unique ID of the event",
-        ...(await bigQuerySchemaTypeMap("String")),
+        ...bigQuerySchemaTypeMap("String"),
       },
       {
         name: "timestamp",
         description: "Time when event happened",
-        ...(await bigQuerySchemaTypeMap("Date")),
+        ...bigQuerySchemaTypeMap("Date"),
       },
       {
         name: "ingested",
         description: "Time when event was ingested",
-        ...(await bigQuerySchemaTypeMap("Date")),
+        ...bigQuerySchemaTypeMap("Date"),
       },
     ],
   },
@@ -46,22 +46,22 @@ const contextFields = async () => [
           {
             name: "build",
             description: "The build number of the app, for example 8293",
-            ...(await bigQuerySchemaTypeMap("String")),
+            ...bigQuerySchemaTypeMap("String"),
           },
           {
             name: "name",
             description: "The name of the app, for example Hedvig, Ugglan",
-            ...(await bigQuerySchemaTypeMap("String")),
+            ...bigQuerySchemaTypeMap("String"),
           },
           {
             name: "namespace",
             description: "The namespace of the app, for example com.hedvig.app",
-            ...(await bigQuerySchemaTypeMap("String")),
+            ...bigQuerySchemaTypeMap("String"),
           },
           {
             name: "version",
             description: "The version of the app, for example 7.6.0",
-            ...(await bigQuerySchemaTypeMap("String")),
+            ...bigQuerySchemaTypeMap("String"),
           },
         ],
       },
@@ -75,28 +75,28 @@ const contextFields = async () => [
             name: "id",
             description:
               "Use this primarily to identify a singular user which doesn't have a member id yet",
-            ...(await bigQuerySchemaTypeMap("String")),
+            ...bigQuerySchemaTypeMap("String"),
           },
           {
             name: "manufacturer",
             description:
               "The manufacturer of the device, for example Samsung or Apple",
-            ...(await bigQuerySchemaTypeMap("Optional<String>")),
+            ...bigQuerySchemaTypeMap("Optional<String>"),
           },
           {
             name: "model",
             description: "The model of device, for example iPhone13,3",
-            ...(await bigQuerySchemaTypeMap("Optional<String>")),
+            ...bigQuerySchemaTypeMap("Optional<String>"),
           },
           {
             name: "type",
             description: "The type of device, for example ios or android",
-            ...(await bigQuerySchemaTypeMap("Optional<String>")),
+            ...bigQuerySchemaTypeMap("Optional<String>"),
           },
           {
             name: "name",
             description: "The name of the device, for example iPhone",
-            ...(await bigQuerySchemaTypeMap("Optional<String>")),
+            ...bigQuerySchemaTypeMap("Optional<String>"),
           },
           {
             name: "screen",
@@ -107,17 +107,17 @@ const contextFields = async () => [
               {
                 name: "height",
                 description: "Height of screen in pixels",
-                ...(await bigQuerySchemaTypeMap("Optional<Double>")),
+                ...bigQuerySchemaTypeMap("Optional<Double>"),
               },
               {
                 name: "width",
                 description: "Width of screen in pixels",
-                ...(await bigQuerySchemaTypeMap("Optional<Double>")),
+                ...bigQuerySchemaTypeMap("Optional<Double>"),
               },
               {
                 name: "density",
                 description: "Pixel density of screen",
-                ...(await bigQuerySchemaTypeMap("Optional<Double>")),
+                ...bigQuerySchemaTypeMap("Optional<Double>"),
               },
             ],
           },
@@ -131,12 +131,12 @@ const contextFields = async () => [
                 name: "name",
                 description:
                   "OS name for example Android, iOS, iPadOS, MacOS, Windows",
-                ...(await bigQuerySchemaTypeMap("String")),
+                ...bigQuerySchemaTypeMap("String"),
               },
               {
                 name: "version",
                 description: "OS version for example 15.0.1 for iOS 15.0.1",
-                ...(await bigQuerySchemaTypeMap("String")),
+                ...bigQuerySchemaTypeMap("String"),
               },
             ],
           },
@@ -145,12 +145,12 @@ const contextFields = async () => [
       {
         name: "ip",
         description: "The users IP address",
-        ...(await bigQuerySchemaTypeMap("String")),
+        ...bigQuerySchemaTypeMap("String"),
       },
       {
         name: "locale",
         description: "The locale that was current, for example en-SE",
-        ...(await bigQuerySchemaTypeMap("String")),
+        ...bigQuerySchemaTypeMap("String"),
       },
       {
         name: "session",
@@ -162,14 +162,14 @@ const contextFields = async () => [
             name: "id",
             description:
               "An id which is preserved across a session, when application is closed a new id is generated",
-            ...(await bigQuerySchemaTypeMap("String")),
+            ...bigQuerySchemaTypeMap("String"),
           },
         ],
       },
       {
         name: "timezone",
         description: "Timezone of device",
-        ...(await bigQuerySchemaTypeMap("String")),
+        ...bigQuerySchemaTypeMap("String"),
       },
       {
         name: "traits",
@@ -186,7 +186,7 @@ const contextFields = async () => [
               {
                 name: "id",
                 description: "Member id associated with the event",
-                ...(await bigQuerySchemaTypeMap("String")),
+                ...bigQuerySchemaTypeMap("String"),
               },
             ],
           },

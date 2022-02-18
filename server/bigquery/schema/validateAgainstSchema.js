@@ -8,7 +8,7 @@ const validateAgainstSchema = async (name, row, bigQueryConfig) => {
     metadata = await getSchema(name, bigQueryConfig);
   }
 
-  const validateField = async (field, value) => {
+  const validateField = (field, value) => {
     const key = field.name;
 
     if (field.type === "BOOLEAN") {
@@ -47,7 +47,7 @@ const validateAgainstSchema = async (name, row, bigQueryConfig) => {
 
       for (itemToValidate of itemsToValidate) {
         for (structField of field.fields) {
-          const invalidField = await validateField(
+          const invalidField = validateField(
             structField,
             itemToValidate[structField.name]
           );
@@ -68,16 +68,12 @@ const validateAgainstSchema = async (name, row, bigQueryConfig) => {
     }
 
     if (Array.isArray(value) && field.mode === "REPEATED") {
-      const validatedFields = await Promise.all(
-        value.map(async (item) => {
-          const hanalyticsType = typeMaps.jsTypeMap(item);
-          const bigQueryType = await typeMaps.bigQuerySchemaTypeMap(
-            hanalyticsType
-          );
+      const validatedFields = value.map((item) => {
+        const hanalyticsType = typeMaps.jsTypeMap(item);
+        const bigQueryType = typeMaps.bigQuerySchemaTypeMap(hanalyticsType);
 
-          return bigQueryType?.type === field.type;
-        })
-      );
+        return bigQueryType?.type === field.type;
+      });
 
       const invalid = validatedFields.includes(false);
 
@@ -99,7 +95,7 @@ const validateAgainstSchema = async (name, row, bigQueryConfig) => {
     }
 
     const hanalyticsType = typeMaps.jsTypeMap(value);
-    const bigQueryType = await typeMaps.bigQuerySchemaTypeMap(hanalyticsType);
+    const bigQueryType = typeMaps.bigQuerySchemaTypeMap(hanalyticsType);
 
     if (bigQueryType?.type !== field.type) {
       console.log(
@@ -115,8 +111,8 @@ const validateAgainstSchema = async (name, row, bigQueryConfig) => {
     return;
   };
 
-  const fieldResults = await Promise.all(
-    metadata.schema.fields.map((field) => validateField(field, row[field.name]))
+  const fieldResults = metadata.schema.fields.map((field) =>
+    validateField(field, row[field.name])
   );
   const invalidFields = fieldResults.filter((i) => i);
 

@@ -78,7 +78,7 @@ const getKotlinType = (type) => {
   return primitive;
 };
 
-const getBigQuerySchemaType = async (type, ignoreCustom = false) => {
+const getBigQuerySchemaType = (type, ignoreCustom = false) => {
   if (!type) {
     return null;
   }
@@ -105,7 +105,7 @@ const getBigQuerySchemaType = async (type, ignoreCustom = false) => {
       mode: "REQUIRED",
     },
     Optional: async (inner) => {
-      const resolvedInner = await getBigQuerySchemaType(inner);
+      const resolvedInner = getBigQuerySchemaType(inner);
 
       return {
         ...resolvedInner,
@@ -113,7 +113,7 @@ const getBigQuerySchemaType = async (type, ignoreCustom = false) => {
       };
     },
     Array: async (inner) => {
-      const resolvedInner = await getBigQuerySchemaType(inner);
+      const resolvedInner = getBigQuerySchemaType(inner);
 
       return {
         ...resolvedInner,
@@ -123,8 +123,8 @@ const getBigQuerySchemaType = async (type, ignoreCustom = false) => {
     Dictionary: async (inner) => {
       const types = inner.split(", ");
 
-      const keyType = await getBigQuerySchemaType(types[0]);
-      const valueType = await getBigQuerySchemaType(types[1]);
+      const keyType = getBigQuerySchemaType(types[0]);
+      const valueType = getBigQuerySchemaType(types[1]);
 
       return {
         type: "STRUCT",
@@ -146,7 +146,7 @@ const getBigQuerySchemaType = async (type, ignoreCustom = false) => {
   if (!ignoreCustom) {
     for (customType of customTypes) {
       if (customType.type === "Enum") {
-        const rawType = await getBigQuerySchemaType(customType.rawType, true);
+        const rawType = getBigQuerySchemaType(customType.rawType, true);
 
         primitives[customType.name] = {
           ...rawType,
@@ -163,7 +163,7 @@ const getBigQuerySchemaType = async (type, ignoreCustom = false) => {
   const primitive = primitives[splitted.shift().replaceAll(">", "")];
 
   if (typeof primitive === "function") {
-    return await primitive(splitted.join("<"));
+    return primitive(splitted.join("<"));
   }
 
   return primitive;

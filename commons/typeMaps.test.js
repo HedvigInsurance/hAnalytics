@@ -29,21 +29,21 @@ test("kotlinTypeMap", () => {
 });
 
 test("bigQuerySchemaTypeMap", async () => {
-  expect(await typeMaps.bigQuerySchemaTypeMap("String")).toEqual({
+  expect(typeMaps.bigQuerySchemaTypeMap("String")).toEqual({
     type: "STRING",
     mode: "REQUIRED",
   });
-  expect(await typeMaps.bigQuerySchemaTypeMap("Double")).toEqual({
+  expect(typeMaps.bigQuerySchemaTypeMap("Double")).toEqual({
     type: "INTEGER",
     mode: "REQUIRED",
   });
-  expect(await typeMaps.bigQuerySchemaTypeMap("Optional<Double>")).toEqual({
+  expect(typeMaps.bigQuerySchemaTypeMap("Optional<Double>")).toEqual({
     type: "INTEGER",
     mode: "NULLABLE",
   });
 
   expect(
-    await typeMaps.bigQuerySchemaTypeMap("Dictionary<String, String>", {
+    typeMaps.bigQuerySchemaTypeMap("Dictionary<String, String>", {
       hello: 123,
     })
   ).toEqual({
@@ -55,15 +55,13 @@ test("bigQuerySchemaTypeMap", async () => {
     type: "STRUCT",
   });
 
-  expect(
-    await typeMaps.bigQuerySchemaTypeMap("Optional<String>", "Value")
-  ).toEqual({
+  expect(typeMaps.bigQuerySchemaTypeMap("Optional<String>", "Value")).toEqual({
     type: "STRING",
     mode: "NULLABLE",
   });
 
   expect(
-    await typeMaps.bigQuerySchemaTypeMap(
+    typeMaps.bigQuerySchemaTypeMap(
       "Dictionary<Optional<String>, Optional<String>>",
       {
         hello: 123,
