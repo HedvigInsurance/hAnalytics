@@ -2,13 +2,16 @@
 
 exports[`filters according to event: another_mock_event 1`] = `
 Object {
-  "context_app_name": "Hedvig",
-  "property_store": Array [],
+  "context": null,
+  "event": null,
+  "properties": null,
 }
 `;
 
 exports[`filters according to event: mock_event 1`] = `
 Object {
-  "context_app_name": "Hedvig",
+  "context": null,
+  "event": null,
+  "properties": null,
 }
 `;

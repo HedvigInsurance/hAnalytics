@@ -1,41 +1,28 @@
 const typeMaps = require("../../../commons/typeMaps");
-const {
-  generalFields,
-  contextFields,
-  eventFields,
-  loadedAtFields,
-} = require("./schemaFields");
+const { contextFields, eventFields } = require("./schemaFields");
 const sortFields = require("./sortFields");
 
-const eventToSchemaFields = async (
-  event,
-  bigQueryConfig,
-  propertyPrefix = `property_`
-) => {
-  var propertyFields = [];
+const eventToSchemaFields = async (event, bigQueryConfig) => {
+  var propertiesField = {
+    name: "properties",
+    description: "Properties associated with this event",
+    type: "STRUCT",
+    mode: "REQUIRED",
+    fields: [],
+  };
 
   const addFields = async (input) => {
-    let typeOptions = await typeMaps.bigQuerySchemaTypeMap(input.type);
+    let typeOption = typeMaps.bigQuerySchemaTypeMap(input.type);
 
-    if (!typeOptions) {
+    if (!typeOption) {
       return;
     }
 
-    if (Array.isArray(typeOptions)) {
-      typeOptions.forEach((option) => {
-        propertyFields.push({
-          ...option,
-          name: `${propertyPrefix}${input.name}`,
-          description: input.description || "",
-        });
-      });
-    } else {
-      propertyFields.push({
-        name: `${propertyPrefix}${input.name}`,
-        description: input.description || "",
-        ...typeOptions,
-      });
-    }
+    propertiesField.fields.push({
+      name: input.name,
+      description: input.description || "",
+      ...typeOption,
+    });
   };
 
   if (event.inputs) {
@@ -65,7 +52,6 @@ const eventToSchemaFields = async (
               ...aggregateEvent.bigQuery,
               noEventFields: true,
               noContextFields: true,
-              noGeneralFields: true,
             },
           },
           {
@@ -75,13 +61,13 @@ const eventToSchemaFields = async (
           ""
         );
 
-        if (fields.length) {
-          propertyFields.push({
-            name: `properties_${aggregateEvent.name}`,
+        if (fields[0]?.fields.length) {
+          propertiesField.fields.push({
+            name: aggregateEvent.name,
             description: aggregateEvent.description || "",
             type: "STRUCT",
             mode: "NULLABLE",
-            fields,
+            fields: fields[0].fields,
           });
         }
       }
@@ -90,16 +76,12 @@ const eventToSchemaFields = async (
 
   const excludeEventFields = event.bigQuery?.noEventFields === true;
   const excludeContextFields = event.bigQuery?.noContextFields === true;
-  const excludeGeneralFields = event.bigQuery?.noGeneralFields === true;
-  const excludeLoadedAtField = !bigQueryConfig.injectLoadedAtField;
 
   return sortFields(
     [
-      excludeEventFields ? [] : await eventFields(),
-      propertyFields,
-      excludeGeneralFields ? [] : await generalFields(),
-      excludeContextFields ? [] : await contextFields(),
-      excludeLoadedAtField ? [] : await loadedAtFields(),
+      excludeEventFields ? [] : eventFields,
+      !propertiesField.fields.length ? [] : [propertiesField],
+      excludeContextFields ? [] : contextFields,
     ].flatMap((i) => i)
   );
 };

@@ -73,7 +73,6 @@ module.exports = (events) => {
     bigquery: bigquery,
     projectId: "mock_project_id",
     tablePrefix: "",
-    injectLoadedAtField: false,
     getEvents: async () => events,
   };
 };

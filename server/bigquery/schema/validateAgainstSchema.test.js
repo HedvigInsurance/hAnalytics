@@ -12,7 +12,7 @@ test("validate String", async () => {
     [
       {
         name: "property_hello",
-        ...(await bigQuerySchemaTypeMap("String")),
+        ...bigQuerySchemaTypeMap("String"),
       },
     ],
     bigQueryConfig
@@ -38,7 +38,7 @@ test("validate should fail with unknown properites", async () => {
     [
       {
         name: "property_hello",
-        ...(await bigQuerySchemaTypeMap("String")),
+        ...bigQuerySchemaTypeMap("String"),
       },
     ],
     bigQueryConfig
@@ -64,7 +64,7 @@ test("validate should fail with wrong type", async () => {
     [
       {
         name: "property_hello",
-        ...(await bigQuerySchemaTypeMap("String")),
+        ...bigQuerySchemaTypeMap("String"),
       },
     ],
     bigQueryConfig
@@ -90,7 +90,7 @@ test("validate should accept nullable", async () => {
     [
       {
         name: "property_mock",
-        ...(await bigQuerySchemaTypeMap("Optional<String>")),
+        ...bigQuerySchemaTypeMap("Optional<String>"),
       },
     ],
     bigQueryConfig
@@ -116,7 +116,7 @@ test("validate should not accept null", async () => {
     [
       {
         name: "property_hello",
-        ...(await bigQuerySchemaTypeMap("String")),
+        ...bigQuerySchemaTypeMap("String"),
       },
     ],
     bigQueryConfig
@@ -142,7 +142,7 @@ test("validate should accept array", async () => {
     [
       {
         name: "experiments",
-        ...(await bigQuerySchemaTypeMap("Array<String>")),
+        ...bigQuerySchemaTypeMap("Array<String>"),
       },
     ],
     bigQueryConfig
@@ -168,7 +168,7 @@ test("validate should not accept array with wrong type", async () => {
     [
       {
         name: "experiments",
-        ...(await bigQuerySchemaTypeMap("Array<String>")),
+        ...bigQuerySchemaTypeMap("Array<String>"),
       },
     ],
     bigQueryConfig
@@ -194,7 +194,7 @@ test("validate custom enum type values", async () => {
     [
       {
         name: "app_screen_name",
-        ...(await bigQuerySchemaTypeMap("AppScreen")),
+        ...bigQuerySchemaTypeMap("AppScreen"),
       },
     ],
     bigQueryConfig

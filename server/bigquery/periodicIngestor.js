@@ -2,7 +2,6 @@ const timersPromises = require("timers/promises");
 const setupSchema = require("./setupSchema");
 const validateAgainstSchema = require("./schema/validateAgainstSchema");
 const filterFieldsAccordingToEvent = require("./schema/filterFieldsAccordingToEvent");
-const flattenObj = require("./flattenObj");
 
 const createState = () => {
   var _schemaLoadedPromiseHandlers = {};
@@ -17,7 +16,6 @@ const createState = () => {
     running: false,
     didStop: false,
     isIdle: false,
-    droppedRowsErrors: [],
     currentInterval: 10000,
   };
 };

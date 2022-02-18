@@ -10,23 +10,32 @@ Array [
       "schema": Object {
         "fields": Array [
           Object {
-            "description": "",
+            "description": "Properties associated with this event",
+            "fields": Array [
+              Object {
+                "description": "",
+                "mode": "REQUIRED",
+                "name": "hello",
+                "type": "STRING",
+              },
+            ],
             "mode": "REQUIRED",
-            "name": "property_hello",
-            "type": "STRING",
+            "name": "properties",
+            "type": "STRUCT",
           },
         ],
       },
       "timePartitioning": Object {
         "expirationMS": "7776000000",
-        "field": "timestamp",
         "type": "DAY",
       },
     },
     "name": "mock_event",
     "rows": Array [
       Object {
-        "property_hello": "HELLO",
+        "properties": Object {
+          "hello": "HELLO",
+        },
       },
     ],
   },

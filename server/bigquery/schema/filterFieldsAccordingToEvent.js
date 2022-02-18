@@ -1,10 +1,7 @@
-const flattenObj = require("../flattenObj");
 const eventToSchemaFields = require("./eventToSchemaFields");
 
 const filterFieldsAccordingToFields = (fields, row = {}) => {
   const result = {};
-
-  const flattenRow = flattenObj(row);
 
   fields.forEach((field) => {
     const key = field.name;
@@ -36,17 +33,12 @@ const filterFieldsAccordingToFields = (fields, row = {}) => {
       return;
     }
 
-    if (!row[key] && !flattenRow[key]) {
-      return;
-    }
-
-    if (field.fields) {
-      result[key] = filterFieldsAccordingToFields(
-        field.fields,
-        row[key] || flattenRow[key]
-      );
+    if (typeof row[key] === "undefined") {
+      result[key] = null;
+    } else if (field.fields) {
+      result[key] = filterFieldsAccordingToFields(field.fields, row[key]);
     } else {
-      result[key] = row[key] || flattenRow[key];
+      result[key] = row[key];
     }
   });
 

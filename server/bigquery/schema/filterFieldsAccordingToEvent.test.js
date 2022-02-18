@@ -60,6 +60,8 @@ test("filters according to event", async () => {
       name: "aggregate",
       bigQuery: {
         includeAggregateProperties: true,
+        noContextFields: true,
+        noEventFields: true,
       },
     },
   ]);
@@ -68,10 +70,12 @@ test("filters according to event", async () => {
     await filterFieldsAccordingToEvent(
       "aggregate",
       {
-        properties_mock_event: {
-          input_mock: {
-            hello: "hello",
-            otherValue: "hello",
+        properties: {
+          mock_event: {
+            input_mock: {
+              hello: "hello",
+              otherValue: "hello",
+            },
           },
           faulty: true,
         },
@@ -79,17 +83,19 @@ test("filters according to event", async () => {
       bigQueryConfig
     )
   ).toEqual({
-    properties_mock_event: {
-      input_mock: [
-        {
-          key: "hello",
-          value: "hello",
-        },
-        {
-          key: "otherValue",
-          value: "hello",
-        },
-      ],
+    properties: {
+      mock_event: {
+        input_mock: [
+          {
+            key: "hello",
+            value: "hello",
+          },
+          {
+            key: "otherValue",
+            value: "hello",
+          },
+        ],
+      },
     },
   });
 });

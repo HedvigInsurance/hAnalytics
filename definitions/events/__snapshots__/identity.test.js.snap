@@ -2,7 +2,7 @@
 
 exports[`validate 1`] = `
 Object {
-  "name": "identifies",
+  "name": "identity",
   "variables": Object {
     "member_id": "123",
   },
@@ -11,7 +11,7 @@ Object {
 
 exports[`validate nullable memberId 1`] = `
 Object {
-  "name": "identifies",
+  "name": "identity",
   "variables": Object {
     "member_id": null,
   },

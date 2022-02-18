@@ -1,10 +1,9 @@
-name: identifies
+name: identity
 description: Automatically created by hAnalytics when identifiying
 accessor: null
 type: INTERNAL
 bigQuery:
   noContextFields: true
-  noEventFields: true
   excludeFromAggregate: true
 inputs:
   - name: member_id

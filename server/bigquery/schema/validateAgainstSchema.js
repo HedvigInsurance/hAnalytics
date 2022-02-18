@@ -1,125 +1,100 @@
 const typeMaps = require("../../../commons/typeMaps");
+const getSchema = require("./getSchema");
 
 const validateAgainstSchema = async (name, row, bigQueryConfig) => {
-  const metadata = bigQueryConfig.cacher.get(`schema-${name}`);
+  var metadata = bigQueryConfig.cacher.get(`schema-${name}`);
 
-  const validateField = async (field, row) => {
-    const key = field.name;
+  if (!metadata) {
+    metadata = await getSchema(name, bigQueryConfig);
+  }
 
+  const validateField = (field, value) => {
     if (field.type === "BOOLEAN") {
-      if (row[key] === true || row[key] === false) {
-        return;
+      if (value === true || value === false) {
+        return true;
       }
     }
 
-    if (row[key] == null && field.mode === "REQUIRED") {
-      return field;
+    if (value === null && field.mode === "REQUIRED") {
+      return false;
     }
 
-    if (row[key] == null && field.mode === "NULLABLE") {
-      return;
+    if (value === null && field.mode === "NULLABLE") {
+      return true;
+    }
+
+    if (field.mode === "REPEATED") {
+      if (!Array.isArray(value)) {
+        return false;
+      }
+
+      return !value
+        .map((item) =>
+          validateField(
+            {
+              ...field,
+              mode: "REQUIRED",
+            },
+            item
+          )
+        )
+        .includes(false);
     }
 
     if (field.type === "RECORD" || field.type === "STRUCT") {
-      const itemsToValidate = [];
+      return !field.fields
+        .map((field) => {
+          if (!value) {
+            return false;
+          }
 
-      if (field.mode === "REPEATED") {
-        if (!Array.isArray(row[key])) {
-          return {
-            ...field,
-            fields: field.fields,
-          };
-        }
-
-        for (item of row[key]) {
-          itemsToValidate.push(item);
-        }
-      } else {
-        itemsToValidate.push(row[key]);
-      }
-
-      const fieldResults = [];
-
-      for (itemToValidate of itemsToValidate) {
-        for (structField of field.fields) {
-          fieldResults.push(await validateField(structField, itemToValidate));
-        }
-      }
-
-      const invalidFields = fieldResults.filter((i) => i);
-
-      if (invalidFields.length) {
-        return {
-          ...field,
-          fields: invalidFields,
-        };
-      }
-
-      return;
-    }
-
-    if (Array.isArray(row[key]) && field.mode === "REPEATED") {
-      const validatedFields = await Promise.all(
-        row[key].map(async (item) => {
-          const hanalyticsType = typeMaps.jsTypeMap(item);
-          const bigQueryType = await typeMaps.bigQuerySchemaTypeMap(
-            hanalyticsType
-          );
-
-          return bigQueryType?.type === field.type;
+          return validateField(field, value[field.name]);
         })
-      );
-
-      const invalid = validatedFields.includes(false);
-
-      if (invalid) {
-        return field;
-      }
-
-      return;
+        .includes(false);
     }
 
     if (field.type === "TIMESTAMP") {
-      const timestamp = row[key]?.value || row[key];
+      const timestamp = value?.value || value;
 
       if (!Date.parse(timestamp)) {
-        return field;
+        return false;
       }
 
-      return;
+      return true;
     }
 
-    const hanalyticsType = typeMaps.jsTypeMap(row[key]);
-    const bigQueryType = await typeMaps.bigQuerySchemaTypeMap(hanalyticsType);
+    const hanalyticsType = typeMaps.jsTypeMap(value);
+    const bigQueryType = typeMaps.bigQuerySchemaTypeMap(hanalyticsType);
 
     if (bigQueryType?.type !== field.type) {
       console.log(
-        `Got type ${bigQueryType?.type} for ${key} but expected ${field.type}`
+        `Got type ${bigQueryType?.type} for ${field.name} but expected ${field.type}`
       );
-      return field;
+      return false;
     }
 
-    if (field?.permittedValues && !field.permittedValues.includes(row[key])) {
-      return field;
+    if (field?.permittedValues && !field.permittedValues.includes(value)) {
+      return false;
     }
 
-    return;
+    return true;
   };
 
-  const fieldResults = await Promise.all(
-    metadata.schema.fields.map((field) => validateField(field, row))
-  );
-  const invalidFields = fieldResults.filter((i) => i);
+  const validationResults = metadata.schema.fields.map((field) => {
+    const valid = validateField(field, row[field.name]);
 
-  if (invalidFields.length) {
-    console.log(
-      `Struck some invalid fields when validating ${name}`,
-      JSON.stringify(invalidFields, null, 2),
-      JSON.stringify(row, null, 2)
-    );
-  }
+    if (!valid) {
+      console.log(
+        `Struck invalid field when validating ${name}`,
+        JSON.stringify(field, null, 2),
+        JSON.stringify(row[field.name], null, 2)
+      );
+    }
 
-  return invalidFields.length === 0;
+    return valid;
+  });
+
+  return !validationResults.includes(false);
 };
 
 module.exports = validateAgainstSchema;
