@@ -40,7 +40,11 @@ const filterFieldsAccordingToFields = (fields, row = {}) => {
         result[key] = filterFieldsAccordingToFields(field.fields, row[key]);
       }
     } else {
-      result[key] = row[key] || null;
+      if (field.type === "BOOLEAN") {
+        result[key] = row[key] || false;
+      } else {
+        result[key] = row[key] || null;
+      }
     }
   });
 
