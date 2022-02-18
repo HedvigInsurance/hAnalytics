@@ -51,8 +51,6 @@ const ingest = async (config, state) => {
   for (const entry of queue) {
     console.log(`inserting row into BQ ${entry.table}`);
 
-    console.log(entry);
-
     var filteredRow = await filterFieldsAccordingToEvent(
       entry.eventName,
       entry.row,

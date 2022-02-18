@@ -104,7 +104,7 @@ const getBigQuerySchemaType = (type, ignoreCustom = false) => {
       type: "TIMESTAMP",
       mode: "REQUIRED",
     },
-    Optional: async (inner) => {
+    Optional: (inner) => {
       const resolvedInner = getBigQuerySchemaType(inner);
 
       return {
@@ -112,7 +112,7 @@ const getBigQuerySchemaType = (type, ignoreCustom = false) => {
         mode: "NULLABLE",
       };
     },
-    Array: async (inner) => {
+    Array: (inner) => {
       const resolvedInner = getBigQuerySchemaType(inner);
 
       return {
@@ -120,7 +120,7 @@ const getBigQuerySchemaType = (type, ignoreCustom = false) => {
         mode: "REPEATED",
       };
     },
-    Dictionary: async (inner) => {
+    Dictionary: (inner) => {
       const types = inner.split(", ");
 
       const keyType = getBigQuerySchemaType(types[0]);
