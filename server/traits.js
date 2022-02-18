@@ -36,9 +36,11 @@ const getTraits = async (headers, allowJWTMemberId = false) => {
     }
 
     return {
-      member: {
-        id: memberId,
-      },
+      member: memberId
+        ? {
+            id: memberId,
+          }
+        : null,
     };
   } catch (err) {
     console.error("Failed to fetch traits", err);
