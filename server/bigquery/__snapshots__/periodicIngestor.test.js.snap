@@ -19,6 +19,7 @@ Array [
                 "type": "STRING",
               },
             ],
+            "mode": "REQUIRED",
             "name": "properties",
             "type": "STRUCT",
           },
