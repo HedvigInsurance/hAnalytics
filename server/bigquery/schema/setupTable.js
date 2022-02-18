@@ -20,7 +20,6 @@ const setupTable = async (name, description = "", fields, bigQueryConfig) => {
       timePartitioning: {
         type: "DAY",
         expirationMS: "7776000000",
-        field: "timestamp",
       },
     };
 

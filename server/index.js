@@ -26,13 +26,15 @@ app.post("/identify", async (req, res) => {
     bqAnalytics.identify({
       trackingId,
       property: {
-        memberId: traits?.memberId || null,
+        memberId: traits?.member?.id || null,
       },
     });
 
     segmentAnalytics.identify({
       userId: trackingId,
-      traits,
+      traits: {
+        memberId: traits?.member?.id || null,
+      },
       context: {
         library: {
           name: "hAnalytics",
@@ -102,14 +104,18 @@ app.post("/event", async (req, res) => {
     const traits = await getTraits(transformHeaders(req.headers));
     const hanalyticsEventId = uuid.v1();
 
-    bqAnalytics.track(event, {
-      tracking_id: trackingId,
-      property: allProperties,
-      timestamp,
-      event_id: hanalyticsEventId,
+    bqAnalytics.track({
+      properties: allProperties,
+      event: {
+        id: hanalyticsEventId,
+        name: event,
+        timestamp,
+      },
       context: {
         timezone,
-        session_id: sessionId,
+        session: {
+          id: sessionId,
+        },
         os: {
           name: os.name,
           version: os.version,
@@ -127,8 +133,7 @@ app.post("/event", async (req, res) => {
           model: device.model,
           name: device.name,
           type: device.type,
-          version: device.version,
-          id: device.id,
+          id: trackingId,
         },
         screen: {
           density: screen.density,

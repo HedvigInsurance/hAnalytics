@@ -51,7 +51,6 @@ describe("periodicIngestor", () => {
         bigQuery: {
           noContextFields: true,
           noEventFields: true,
-          noGeneralFields: true,
         },
       },
     ]);

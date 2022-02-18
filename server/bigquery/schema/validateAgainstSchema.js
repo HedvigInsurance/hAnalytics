@@ -1,7 +1,12 @@
 const typeMaps = require("../../../commons/typeMaps");
+const getSchema = require("./getSchema");
 
 const validateAgainstSchema = async (name, row, bigQueryConfig) => {
-  const metadata = bigQueryConfig.cacher.get(`schema-${name}`);
+  var metadata = bigQueryConfig.cacher.get(`schema-${name}`);
+
+  if (!metadata) {
+    metadata = await getSchema(name, bigQueryConfig);
+  }
 
   const validateField = async (field, row) => {
     const key = field.name;
@@ -42,7 +47,8 @@ const validateAgainstSchema = async (name, row, bigQueryConfig) => {
 
       for (itemToValidate of itemsToValidate) {
         for (structField of field.fields) {
-          fieldResults.push(await validateField(structField, itemToValidate));
+          const invalidField = await validateField(structField, itemToValidate);
+          fieldResults.push(invalidField);
         }
       }
 

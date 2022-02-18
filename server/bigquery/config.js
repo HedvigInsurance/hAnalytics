@@ -15,7 +15,6 @@ module.exports = {
   dataset,
   bigquery,
   tablePrefix: "",
-  injectLoadedAtField: false,
   projectId: process.env.GCLOUD_PROJECT,
   getEvents: getEvents,
 };

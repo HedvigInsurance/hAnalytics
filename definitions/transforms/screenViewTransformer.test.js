@@ -4,12 +4,15 @@ test("screen_view_offer", () => {
   const screenViewOfferEvent = screenViewTransformer.transform({
     event: "screen_view_offer",
     event_id: "mock",
+    properties: {
+      otherArgument: true,
+    },
   });
 
   expect(screenViewOfferEvent).toEqual({
     event: "app_screen_view",
     event_id: "mock-transformed-app_screen_view",
-    property: {
+    properties: {
       screen_name: "offer",
     },
   });
@@ -24,7 +27,7 @@ test("screen_view_claim_honor_pledge", () => {
   expect(screenViewOfferEvent).toEqual({
     event: "app_screen_view",
     event_id: "mock-transformed-app_screen_view",
-    property: {
+    properties: {
       screen_name: "claim_honor_pledge",
     },
   });

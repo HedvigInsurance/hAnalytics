@@ -2,7 +2,6 @@ const timersPromises = require("timers/promises");
 const setupSchema = require("./setupSchema");
 const validateAgainstSchema = require("./schema/validateAgainstSchema");
 const filterFieldsAccordingToEvent = require("./schema/filterFieldsAccordingToEvent");
-const flattenObj = require("./flattenObj");
 
 const createState = () => {
   var _schemaLoadedPromiseHandlers = {};
@@ -17,7 +16,6 @@ const createState = () => {
     running: false,
     didStop: false,
     isIdle: false,
-    droppedRowsErrors: [],
     currentInterval: 10000,
   };
 };
@@ -52,6 +50,8 @@ const ingest = async (config, state) => {
 
   for (const entry of queue) {
     console.log(`inserting row into BQ ${entry.table}`);
+
+    console.log(entry);
 
     var filteredRow = await filterFieldsAccordingToEvent(
       entry.eventName,

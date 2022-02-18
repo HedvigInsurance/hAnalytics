@@ -110,7 +110,7 @@ const getBigQuerySchemaType = async (type, ignoreCustom = false) => {
 
       return {
         type: "STRUCT",
-        mode: "REPEATED",
+        mode: "REQUIRED",
         fields: [
           {
             ...keyType,

@@ -20,8 +20,8 @@ const state = start(
   process.env.BQ_INGESTION_INTERVAL
 );
 
-const track = async (name, event) => {
-  trackers.track(name, event, bigQueryConfig, state);
+const track = async (event) => {
+  trackers.track(event, bigQueryConfig, state);
 };
 
 const identify = async (identity) => {

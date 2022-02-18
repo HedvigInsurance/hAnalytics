@@ -1,7 +1,7 @@
-const flattenObj = require("./flattenObj");
 const omit = require("./omit");
 const transform = require("../../definitions/transforms");
 const { addToQueue } = require("./periodicIngestor");
+const deepmerge = require("deepmerge");
 
 const parseTimestamp = (value, bigQueryConfig) => {
   // assume its a bq obj
@@ -16,20 +16,18 @@ const parseTimestamp = (value, bigQueryConfig) => {
   return value;
 };
 
-const track = async (name, event, bigQueryConfig, ingestorState) => {
-  const completeEvent = {
-    ...event,
-    event: name,
-    timestamp: parseTimestamp(event.timestamp, bigQueryConfig),
-    loaded_at: bigQueryConfig.injectLoadedAtField
-      ? parseTimestamp(new Date(), bigQueryConfig)
-      : null,
-  };
+const track = async (event, bigQueryConfig, ingestorState) => {
+  const completeEvent = deepmerge(event, {
+    event: {
+      ingested: parseTimestamp(new Date(), bigQueryConfig),
+      timestamp: parseTimestamp(event.event.timestamp, bigQueryConfig),
+    },
+  });
 
   for (transformedEvent of transform(completeEvent)) {
     const eventInsertEntry = {
-      table: `${bigQueryConfig.tablePrefix}${transformedEvent.event}`,
-      eventName: transformedEvent.event,
+      table: `${bigQueryConfig.tablePrefix}${transformedEvent.event.name}`,
+      eventName: transformedEvent.event.name,
       row: transformedEvent,
     };
 
@@ -39,13 +37,10 @@ const track = async (name, event, bigQueryConfig, ingestorState) => {
       table: `${bigQueryConfig.tablePrefix}aggregate`,
       eventName: "aggregate",
       row: {
-        ...omit("property", transformedEvent),
-        event_id: transformedEvent.event_id,
-        event: transformedEvent.event,
-        [`properties_${transformedEvent.event}`]: transformedEvent.property,
-        timestamp: transformedEvent.timestamp,
-        tracking_id: transformedEvent.tracking_id,
-        loaded_at: completeEvent.loaded_at,
+        ...omit("properties", transformedEvent),
+        properties: {
+          [transformedEvent.event.name]: transformedEvent.properties,
+        },
       },
     };
 
@@ -55,25 +50,20 @@ const track = async (name, event, bigQueryConfig, ingestorState) => {
       table: `${bigQueryConfig.tablePrefix}raw`,
       eventName: "raw",
       row: {
-        event_id: transformedEvent.event_id,
-        event: "raw",
-        property_data: JSON.stringify(transformedEvent),
-        timestamp: transformedEvent.timestamp,
-        tracking_id: transformedEvent.tracking_id,
-        loaded_at: completeEvent.loaded_at,
+        ...transformedEvent,
+        data: JSON.stringify(transformedEvent),
       },
     };
 
     addToQueue(rawEventInsertEntry, ingestorState);
 
-    const eventOmittedProperty = omit("property", transformedEvent);
+    const eventOmittedProperties = omit("properties", transformedEvent);
 
     const trackInsertEntry = {
       table: `${bigQueryConfig.tablePrefix}tracks`,
       eventName: "tracks",
       row: {
-        ...eventOmittedProperty,
-        loaded_at: completeEvent.loaded_at,
+        ...eventOmittedProperties,
       },
     };
 
@@ -82,15 +72,16 @@ const track = async (name, event, bigQueryConfig, ingestorState) => {
 };
 
 const identify = async (identity, bigQueryConfig, ingestorState) => {
-  const flatIdentity = flattenObj(identity);
-
   const insertEntry = {
-    table: `${bigQueryConfig.tablePrefix}identifies`,
-    eventName: "identifies",
+    table: `${bigQueryConfig.tablePrefix}identify`,
+    eventName: "identify",
     row: {
-      ...flatIdentity,
-      timestamp: parseTimestamp(new Date(), bigQueryConfig),
-      loaded_at: identity.loaded_at,
+      ...identity,
+      event: {
+        ...identity.event,
+        name: "identify",
+        timestamp: parseTimestamp(new Date(), bigQueryConfig),
+      },
     },
   };
 
