@@ -8,20 +8,20 @@ const validateAgainstSchema = async (name, row, bigQueryConfig) => {
     metadata = await getSchema(name, bigQueryConfig);
   }
 
-  const validateField = async (field, row) => {
+  const validateField = async (field, value) => {
     const key = field.name;
 
     if (field.type === "BOOLEAN") {
-      if (row[key] === true || row[key] === false) {
+      if (value === true || value === false) {
         return;
       }
     }
 
-    if (row[key] == null && field.mode === "REQUIRED") {
+    if (value == null && field.mode === "REQUIRED") {
       return field;
     }
 
-    if (row[key] == null && field.mode === "NULLABLE") {
+    if (value == null && field.mode === "NULLABLE") {
       return;
     }
 
@@ -29,25 +29,28 @@ const validateAgainstSchema = async (name, row, bigQueryConfig) => {
       const itemsToValidate = [];
 
       if (field.mode === "REPEATED") {
-        if (!Array.isArray(row[key])) {
+        if (!Array.isArray(value)) {
           return {
             ...field,
             fields: field.fields,
           };
         }
 
-        for (item of row[key]) {
+        for (item of value) {
           itemsToValidate.push(item);
         }
       } else {
-        itemsToValidate.push(row[key]);
+        itemsToValidate.push(value);
       }
 
       const fieldResults = [];
 
       for (itemToValidate of itemsToValidate) {
         for (structField of field.fields) {
-          const invalidField = await validateField(structField, itemToValidate);
+          const invalidField = await validateField(
+            structField,
+            itemToValidate[structField.name]
+          );
           fieldResults.push(invalidField);
         }
       }
@@ -64,9 +67,9 @@ const validateAgainstSchema = async (name, row, bigQueryConfig) => {
       return;
     }
 
-    if (Array.isArray(row[key]) && field.mode === "REPEATED") {
+    if (Array.isArray(value) && field.mode === "REPEATED") {
       const validatedFields = await Promise.all(
-        row[key].map(async (item) => {
+        value.map(async (item) => {
           const hanalyticsType = typeMaps.jsTypeMap(item);
           const bigQueryType = await typeMaps.bigQuerySchemaTypeMap(
             hanalyticsType
@@ -86,7 +89,7 @@ const validateAgainstSchema = async (name, row, bigQueryConfig) => {
     }
 
     if (field.type === "TIMESTAMP") {
-      const timestamp = row[key]?.value || row[key];
+      const timestamp = value?.value || value;
 
       if (!Date.parse(timestamp)) {
         return field;
@@ -95,7 +98,7 @@ const validateAgainstSchema = async (name, row, bigQueryConfig) => {
       return;
     }
 
-    const hanalyticsType = typeMaps.jsTypeMap(row[key]);
+    const hanalyticsType = typeMaps.jsTypeMap(value);
     const bigQueryType = await typeMaps.bigQuerySchemaTypeMap(hanalyticsType);
 
     if (bigQueryType?.type !== field.type) {
@@ -105,7 +108,7 @@ const validateAgainstSchema = async (name, row, bigQueryConfig) => {
       return field;
     }
 
-    if (field?.permittedValues && !field.permittedValues.includes(row[key])) {
+    if (field?.permittedValues && !field.permittedValues.includes(value)) {
       return field;
     }
 
@@ -113,7 +116,7 @@ const validateAgainstSchema = async (name, row, bigQueryConfig) => {
   };
 
   const fieldResults = await Promise.all(
-    metadata.schema.fields.map((field) => validateField(field, row))
+    metadata.schema.fields.map((field) => validateField(field, row[field.name]))
   );
   const invalidFields = fieldResults.filter((i) => i);
 
