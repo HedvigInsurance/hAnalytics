@@ -9,7 +9,7 @@ test("swiftTypeMap", () => {
   expect(typeMaps.kotlinTypeMap("Optional<String>")).toEqual("String?");
   expect(
     typeMaps.kotlinTypeMap("Dictionary<String, Optional<String>>")
-  ).toEqual("[String: String?]?");
+  ).toEqual("[String: String?]");
 });
 
 test("kotlinTypeMap", () => {
@@ -20,12 +20,12 @@ test("kotlinTypeMap", () => {
   );
   expect(typeMaps.kotlinTypeMap("Optional<String>")).toEqual("String?");
   expect(typeMaps.kotlinTypeMap("Dictionary<String, String>")).toEqual(
-    "Map<String, String>?"
+    "Map<String, String>"
   );
 
   expect(
     typeMaps.kotlinTypeMap("Dictionary<String, Optional<String>>")
-  ).toEqual("Map<String, String?>?");
+  ).toEqual("Map<String, String?>");
 });
 
 test("bigQuerySchemaTypeMap", async () => {
