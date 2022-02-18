@@ -51,21 +51,25 @@ const ingest = async (config, state) => {
   for (const entry of queue) {
     console.log(`inserting row into BQ ${entry.table}`);
 
-    var filteredRow = await filterFieldsAccordingToEvent(
-      entry.eventName,
-      entry.row,
-      config
-    );
+    try {
+      var filteredRow = await filterFieldsAccordingToEvent(
+        entry.eventName,
+        entry.row,
+        config
+      );
 
-    var valid = await validateAgainstSchema(entry.table, filteredRow, config);
+      var valid = await validateAgainstSchema(entry.table, filteredRow, config);
 
-    if (!valid) {
-      console.log("Not valid event against schema, ignoring event");
-    } else {
-      await config.bigquery
-        .dataset(config.dataset)
-        .table(entry.table)
-        .insert([filteredRow]);
+      if (!valid) {
+        console.log("Not valid event against schema, ignoring event");
+      } else {
+        await config.bigquery
+          .dataset(config.dataset)
+          .table(entry.table)
+          .insert([filteredRow]);
+      }
+    } catch (err) {
+      console.log("Error when trying to process event", err);
     }
   }
 
