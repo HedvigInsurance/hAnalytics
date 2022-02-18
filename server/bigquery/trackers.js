@@ -75,13 +75,13 @@ const track = async (event, bigQueryConfig, ingestorState) => {
 
 const identify = async (identity, bigQueryConfig, ingestorState) => {
   const insertEntry = {
-    table: `${bigQueryConfig.tablePrefix}identify`,
-    eventName: "identify",
+    table: `${bigQueryConfig.tablePrefix}identity`,
+    eventName: "identity",
     row: {
       ...identity,
       event: {
         ...identity.event,
-        name: "identify",
+        name: "identity",
         timestamp: parseTimestamp(new Date(), bigQueryConfig),
       },
     },
