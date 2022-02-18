@@ -51,7 +51,9 @@ const track = async (event, bigQueryConfig, ingestorState) => {
       eventName: "raw",
       row: {
         ...transformedEvent,
-        data: JSON.stringify(transformedEvent),
+        properties: {
+          data: JSON.stringify(transformedEvent),
+        },
       },
     };
 

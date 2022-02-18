@@ -1,6 +1,6 @@
 const { bigQuerySchemaTypeMap } = require("../../../commons/typeMaps");
 
-const eventFields = async () => [
+const eventFields = [
   {
     name: "event",
     description: "Information about the event",
@@ -31,11 +31,12 @@ const eventFields = async () => [
   },
 ];
 
-const contextFields = async () => [
+const contextFields = [
   {
     name: "context",
     description: "Context with device, user, and other info",
     type: "STRUCT",
+    mode: "REQUIRED",
     fields: [
       {
         name: "app",

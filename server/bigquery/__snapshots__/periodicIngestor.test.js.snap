@@ -8,7 +8,21 @@ Array [
     "config": Object {
       "description": "",
       "schema": Object {
-        "fields": Array [],
+        "fields": Array [
+          Object {
+            "description": "Properties associated with this event",
+            "fields": Array [
+              Object {
+                "description": "",
+                "mode": "REQUIRED",
+                "name": "hello",
+                "type": "STRING",
+              },
+            ],
+            "name": "properties",
+            "type": "STRUCT",
+          },
+        ],
       },
       "timePartitioning": Object {
         "expirationMS": "7776000000",
@@ -17,7 +31,11 @@ Array [
     },
     "name": "mock_event",
     "rows": Array [
-      Object {},
+      Object {
+        "properties": Object {
+          "hello": "HELLO",
+        },
+      },
     ],
   },
 ]

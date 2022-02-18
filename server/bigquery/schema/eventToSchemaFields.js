@@ -2,40 +2,27 @@ const typeMaps = require("../../../commons/typeMaps");
 const { contextFields, eventFields } = require("./schemaFields");
 const sortFields = require("./sortFields");
 
-const eventToSchemaFields = async (
-  event,
-  bigQueryConfig,
-  propertyPrefix = `property_`
-) => {
+const eventToSchemaFields = async (event, bigQueryConfig) => {
   var propertiesField = {
     name: "properties",
     description: "Properties associated with this event",
     type: "STRUCT",
+    mode: "REQUIRED",
     fields: [],
   };
 
   const addFields = async (input) => {
-    let typeOptions = typeMaps.bigQuerySchemaTypeMap(input.type);
+    let typeOption = typeMaps.bigQuerySchemaTypeMap(input.type);
 
-    if (!typeOptions) {
+    if (!typeOption) {
       return;
     }
 
-    if (Array.isArray(typeOptions)) {
-      typeOptions.forEach((option) => {
-        propertiesField.fields.push({
-          ...option,
-          name: `${propertyPrefix}${input.name}`,
-          description: input.description || "",
-        });
-      });
-    } else {
-      propertiesField.fields.push({
-        name: `${propertyPrefix}${input.name}`,
-        description: input.description || "",
-        ...typeOptions,
-      });
-    }
+    propertiesField.fields.push({
+      name: input.name,
+      description: input.description || "",
+      ...typeOption,
+    });
   };
 
   if (event.inputs) {
@@ -74,13 +61,13 @@ const eventToSchemaFields = async (
           ""
         );
 
-        if (fields.length) {
+        if (fields[0]?.fields.length) {
           propertiesField.fields.push({
             name: aggregateEvent.name,
             description: aggregateEvent.description || "",
             type: "STRUCT",
             mode: "NULLABLE",
-            fields,
+            fields: fields[0].fields,
           });
         }
       }
@@ -92,9 +79,9 @@ const eventToSchemaFields = async (
 
   return sortFields(
     [
-      excludeEventFields ? [] : await eventFields(),
-      !propertiesField.length ? [] : [propertiesField],
-      excludeContextFields ? [] : await contextFields(),
+      excludeEventFields ? [] : eventFields,
+      !propertiesField.fields.length ? [] : [propertiesField],
+      excludeContextFields ? [] : contextFields,
     ].flatMap((i) => i)
   );
 };

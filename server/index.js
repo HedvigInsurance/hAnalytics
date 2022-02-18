@@ -116,10 +116,6 @@ app.post("/event", async (req, res) => {
         session: {
           id: sessionId,
         },
-        os: {
-          name: os.name,
-          version: os.version,
-        },
         locale,
         ip,
         app: {
@@ -134,11 +130,15 @@ app.post("/event", async (req, res) => {
           name: device.name,
           type: device.type,
           id: trackingId,
-        },
-        screen: {
-          density: screen.density,
-          height: screen.height,
-          width: screen.width,
+          screen: {
+            density: screen.density,
+            height: screen.height,
+            width: screen.width,
+          },
+          os: {
+            name: os.name,
+            version: os.version,
+          },
         },
         traits: traits,
       },

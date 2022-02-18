@@ -43,7 +43,13 @@ const validateAgainstSchema = async (name, row, bigQueryConfig) => {
 
     if (field.type === "RECORD" || field.type === "STRUCT") {
       return !field.fields
-        .map((field) => validateField(field, value[field.name]))
+        .map((field) => {
+          if (!value) {
+            return false;
+          }
+
+          return validateField(field, value[field.name]);
+        })
         .includes(false);
     }
 

@@ -128,7 +128,7 @@ const getBigQuerySchemaType = (type, ignoreCustom = false) => {
 
       return {
         type: "STRUCT",
-        mode: "REQUIRED",
+        mode: "REPEATED",
         fields: [
           {
             ...keyType,

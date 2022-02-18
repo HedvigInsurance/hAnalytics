@@ -2,16 +2,20 @@ const screenViewTransformer = require("./screenViewTransformer");
 
 test("screen_view_offer", () => {
   const screenViewOfferEvent = screenViewTransformer.transform({
-    event: "screen_view_offer",
-    event_id: "mock",
+    event: {
+      name: "screen_view_offer",
+      id: "mock",
+    },
     properties: {
       otherArgument: true,
     },
   });
 
   expect(screenViewOfferEvent).toEqual({
-    event: "app_screen_view",
-    event_id: "mock-transformed-app_screen_view",
+    event: {
+      name: "app_screen_view",
+      id: "mock-transformed-app_screen_view",
+    },
     properties: {
       screen_name: "offer",
     },
@@ -20,13 +24,17 @@ test("screen_view_offer", () => {
 
 test("screen_view_claim_honor_pledge", () => {
   const screenViewOfferEvent = screenViewTransformer.transform({
-    event: "screen_view_claim_honor_pledge",
-    event_id: "mock",
+    event: {
+      name: "screen_view_claim_honor_pledge",
+      id: "mock",
+    },
   });
 
   expect(screenViewOfferEvent).toEqual({
-    event: "app_screen_view",
-    event_id: "mock-transformed-app_screen_view",
+    event: {
+      name: "app_screen_view",
+      id: "mock-transformed-app_screen_view",
+    },
     properties: {
       screen_name: "claim_honor_pledge",
     },
@@ -36,15 +44,19 @@ test("screen_view_claim_honor_pledge", () => {
 test("shouldTransform reports correctly", () => {
   expect(
     screenViewTransformer.shouldTransform({
-      event: "screen_view_claim_honor_pledge",
-      event_id: "mock",
+      event: {
+        name: "screen_view_claim_honor_pledge",
+        id: "mock",
+      },
     })
   ).toEqual(true);
 
   expect(
     screenViewTransformer.shouldTransform({
-      event: "app_started",
-      event_id: "mock",
+      event: {
+        name: "app_started",
+        id: "mock",
+      },
     })
   ).toEqual(false);
 });

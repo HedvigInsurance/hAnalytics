@@ -211,6 +211,591 @@ Array [
     "name": "event",
     "type": "STRUCT",
   },
+  Object {
+    "description": "Properties associated with this event",
+    "fields": Array [
+      Object {
+        "description": "A screen was shown in the app",
+        "fields": Array [
+          Object {
+            "description": "",
+            "mode": "REQUIRED",
+            "name": "screen_name",
+            "permittedValues": Array [
+              "offer",
+              "claims_status_detail",
+              "claim_honor_pledge",
+              "common_claim_detail",
+              "embark",
+              "embark_tooltip",
+              "market_picker",
+              "marketing",
+              "data_collection_authenticating",
+              "data_collection_credentials",
+              "data_collection_fail",
+              "data_collection_intro",
+              "data_collection_success",
+              "connect_payment_adyen",
+              "connect_payment_trustly",
+              "connect_payment_failed",
+              "connect_payment_success",
+              "payments",
+              "charity",
+              "contact_info",
+              "cross_sell_detail",
+              "forever",
+              "home",
+              "insurance_Detail",
+              "insurances",
+              "moving_flow_intro",
+              "profile",
+              "app_information",
+              "app_settings",
+              "chat",
+            ],
+            "type": "STRING",
+          },
+        ],
+        "mode": "NULLABLE",
+        "name": "app_screen_view",
+        "type": "STRUCT",
+      },
+      Object {
+        "description": "When a claim card has been clicked on screen",
+        "fields": Array [
+          Object {
+            "description": "",
+            "mode": "REQUIRED",
+            "name": "claim_id",
+            "type": "STRING",
+          },
+          Object {
+            "description": "",
+            "mode": "REQUIRED",
+            "name": "claim_status",
+            "type": "STRING",
+          },
+        ],
+        "mode": "NULLABLE",
+        "name": "claim_card_click",
+        "type": "STRUCT",
+      },
+      Object {
+        "description": "When a claim card has been shown on screen",
+        "fields": Array [
+          Object {
+            "description": "",
+            "mode": "REQUIRED",
+            "name": "claim_id",
+            "type": "STRING",
+          },
+          Object {
+            "description": "",
+            "mode": "REQUIRED",
+            "name": "claim_status",
+            "type": "STRING",
+          },
+        ],
+        "mode": "NULLABLE",
+        "name": "claim_card_visible",
+        "type": "STRUCT",
+      },
+      Object {
+        "description": "When contact chat is tapped on claim details",
+        "fields": Array [
+          Object {
+            "description": "",
+            "mode": "REQUIRED",
+            "name": "claim_id",
+            "type": "STRING",
+          },
+          Object {
+            "description": "",
+            "mode": "REQUIRED",
+            "name": "claim_status",
+            "type": "STRING",
+          },
+        ],
+        "mode": "NULLABLE",
+        "name": "claim_status_detail_click_open_chat",
+        "type": "STRUCT",
+      },
+      Object {
+        "description": "When a claims recording has been played in the claims status screen",
+        "fields": Array [
+          Object {
+            "description": "",
+            "mode": "REQUIRED",
+            "name": "claim_id",
+            "type": "STRING",
+          },
+        ],
+        "mode": "NULLABLE",
+        "name": "claims_detail_recording_played",
+        "type": "STRUCT",
+      },
+      Object {
+        "description": "When a deep link was opened",
+        "fields": Array [
+          Object {
+            "description": "",
+            "mode": "REQUIRED",
+            "name": "type",
+            "type": "STRING",
+          },
+        ],
+        "mode": "NULLABLE",
+        "name": "deep_link_opened",
+        "type": "STRUCT",
+      },
+      Object {
+        "description": "When the detail screen of a cross sell is shown",
+        "fields": Array [
+          Object {
+            "description": "",
+            "mode": "REQUIRED",
+            "name": "type_of_contract",
+            "type": "STRING",
+          },
+        ],
+        "mode": "NULLABLE",
+        "name": "screen_view_cross_sell_detail",
+        "type": "STRUCT",
+      },
+      Object {
+        "description": "When detail screen of an insurance is shown",
+        "fields": Array [
+          Object {
+            "description": "",
+            "mode": "REQUIRED",
+            "name": "contract_id",
+            "type": "STRING",
+          },
+        ],
+        "mode": "NULLABLE",
+        "name": "screen_view_insurance_detail",
+        "type": "STRUCT",
+      },
+      Object {
+        "description": "When Insurances tab is shown",
+        "fields": Array [
+          Object {
+            "description": "",
+            "mode": "REQUIRED",
+            "name": "has_accident_insurance",
+            "type": "BOOLEAN",
+          },
+          Object {
+            "description": "",
+            "mode": "REQUIRED",
+            "name": "has_home_insurance",
+            "type": "BOOLEAN",
+          },
+        ],
+        "mode": "NULLABLE",
+        "name": "screen_view_insurances",
+        "type": "STRUCT",
+      },
+      Object {
+        "description": "When Offer screen is shown",
+        "fields": Array [
+          Object {
+            "description": "",
+            "mode": "REPEATED",
+            "name": "offer_ids",
+            "type": "STRING",
+          },
+          Object {
+            "description": "",
+            "mode": "REQUIRED",
+            "name": "type_of_contracts",
+            "type": "STRING",
+          },
+          Object {
+            "description": "",
+            "mode": "REQUIRED",
+            "name": "initiated_from",
+            "type": "STRING",
+          },
+        ],
+        "mode": "NULLABLE",
+        "name": "screen_view_offer",
+        "type": "STRUCT",
+      },
+      Object {
+        "description": "When the claims status detail screen is shown",
+        "fields": Array [
+          Object {
+            "description": "",
+            "mode": "REQUIRED",
+            "name": "claim_id",
+            "type": "STRING",
+          },
+          Object {
+            "description": "",
+            "mode": "REQUIRED",
+            "name": "claim_status",
+            "type": "STRING",
+          },
+        ],
+        "mode": "NULLABLE",
+        "name": "screen_view_claims_status_detail",
+        "type": "STRUCT",
+      },
+      Object {
+        "description": "When a common claim detail screen is shown",
+        "fields": Array [
+          Object {
+            "description": "",
+            "mode": "REQUIRED",
+            "name": "id",
+            "type": "STRING",
+          },
+        ],
+        "mode": "NULLABLE",
+        "name": "screen_view_common_claim_detail",
+        "type": "STRUCT",
+      },
+      Object {
+        "description": "When data collection waiting for authentication screen is shown",
+        "fields": Array [
+          Object {
+            "description": "",
+            "mode": "REQUIRED",
+            "name": "provider_id",
+            "type": "STRING",
+          },
+        ],
+        "mode": "NULLABLE",
+        "name": "screen_view_data_collection_authenticating",
+        "type": "STRUCT",
+      },
+      Object {
+        "description": "When data collection credentials screen is shown (Insurely)",
+        "fields": Array [
+          Object {
+            "description": "",
+            "mode": "REQUIRED",
+            "name": "provider_id",
+            "type": "STRING",
+          },
+        ],
+        "mode": "NULLABLE",
+        "name": "screen_view_data_collection_credentials",
+        "type": "STRUCT",
+      },
+      Object {
+        "description": "When data collection failed",
+        "fields": Array [
+          Object {
+            "description": "",
+            "mode": "REQUIRED",
+            "name": "provider_id",
+            "type": "STRING",
+          },
+        ],
+        "mode": "NULLABLE",
+        "name": "screen_view_data_collection_fail",
+        "type": "STRUCT",
+      },
+      Object {
+        "description": "When data collection intro screen is shown (Insurely)",
+        "fields": Array [
+          Object {
+            "description": "",
+            "mode": "REQUIRED",
+            "name": "provider_id",
+            "type": "STRING",
+          },
+        ],
+        "mode": "NULLABLE",
+        "name": "screen_view_data_collection_intro",
+        "type": "STRUCT",
+      },
+      Object {
+        "description": "When data collection succeeded",
+        "fields": Array [
+          Object {
+            "description": "",
+            "mode": "REQUIRED",
+            "name": "provider_id",
+            "type": "STRING",
+          },
+        ],
+        "mode": "NULLABLE",
+        "name": "screen_view_data_collection_success",
+        "type": "STRUCT",
+      },
+      Object {
+        "description": "When embark is shown",
+        "fields": Array [
+          Object {
+            "description": "",
+            "mode": "REQUIRED",
+            "name": "story_name",
+            "type": "STRING",
+          },
+        ],
+        "mode": "NULLABLE",
+        "name": "screen_view_embark",
+        "type": "STRUCT",
+      },
+      Object {
+        "description": "When embark does an external redirect",
+        "fields": Array [
+          Object {
+            "description": "",
+            "mode": "REQUIRED",
+            "name": "location",
+            "type": "STRING",
+          },
+        ],
+        "mode": "NULLABLE",
+        "name": "embark_external_redirect",
+        "type": "STRUCT",
+      },
+      Object {
+        "description": "When embark goes back one passage",
+        "fields": Array [
+          Object {
+            "description": "",
+            "mode": "REQUIRED",
+            "name": "originated_from_embark_story",
+            "type": "STRING",
+          },
+          Object {
+            "description": "",
+            "mode": "REQUIRED",
+            "name": "passage_name",
+            "type": "STRING",
+          },
+        ],
+        "mode": "NULLABLE",
+        "name": "embark_passage_go_back",
+        "type": "STRUCT",
+      },
+      Object {
+        "description": "When embark sends a tracking event",
+        "fields": Array [
+          Object {
+            "description": "",
+            "mode": "REQUIRED",
+            "name": "originated_from_embark_story",
+            "type": "STRING",
+          },
+          Object {
+            "description": "",
+            "mode": "REQUIRED",
+            "name": "event_name",
+            "type": "STRING",
+          },
+          Object {
+            "description": "",
+            "fields": Array [
+              Object {
+                "mode": "REQUIRED",
+                "name": "key",
+                "type": "STRING",
+              },
+              Object {
+                "mode": "NULLABLE",
+                "name": "value",
+                "type": "STRING",
+              },
+            ],
+            "mode": "REPEATED",
+            "name": "store",
+            "type": "STRUCT",
+          },
+        ],
+        "mode": "NULLABLE",
+        "name": "embark_track",
+        "type": "STRUCT",
+      },
+      Object {
+        "description": "When embark does a varianted offer redirect",
+        "fields": Array [
+          Object {
+            "description": "",
+            "mode": "REPEATED",
+            "name": "all_ids",
+            "type": "STRING",
+          },
+          Object {
+            "description": "",
+            "mode": "REPEATED",
+            "name": "selected_ids",
+            "type": "STRING",
+          },
+        ],
+        "mode": "NULLABLE",
+        "name": "embark_varianted_offer_redirect",
+        "type": "STRUCT",
+      },
+      Object {
+        "description": "Experiment where evaluated, typically means it was shown on screen or similar",
+        "fields": Array [
+          Object {
+            "description": "",
+            "mode": "REQUIRED",
+            "name": "name",
+            "type": "STRING",
+          },
+          Object {
+            "description": "",
+            "mode": "REQUIRED",
+            "name": "variant",
+            "type": "STRING",
+          },
+        ],
+        "mode": "NULLABLE",
+        "name": "experiment_evaluated",
+        "type": "STRUCT",
+      },
+      Object {
+        "description": "Experiments where loaded from server",
+        "fields": Array [
+          Object {
+            "description": "",
+            "mode": "REPEATED",
+            "name": "experiments",
+            "type": "STRING",
+          },
+        ],
+        "mode": "NULLABLE",
+        "name": "experiments_loaded",
+        "type": "STRUCT",
+      },
+      Object {
+        "description": "A push notification was opened",
+        "fields": Array [
+          Object {
+            "description": "",
+            "mode": "REQUIRED",
+            "name": "type",
+            "type": "STRING",
+          },
+        ],
+        "mode": "NULLABLE",
+        "name": "notification_opened",
+        "type": "STRUCT",
+      },
+      Object {
+        "description": "The state of notification permission:
+  granted == true: push notifications permissions are approved
+  granted == false: push notifications permissions are denied
+  granted == null: push notifications permissions are not determined yet / unknown
+",
+        "fields": Array [
+          Object {
+            "description": "",
+            "mode": "NULLABLE",
+            "name": "granted",
+            "type": "BOOLEAN",
+          },
+        ],
+        "mode": "NULLABLE",
+        "name": "notification_permission",
+        "type": "STRUCT",
+      },
+      Object {
+        "description": "When an embark flow is choosen on the choose screen",
+        "fields": Array [
+          Object {
+            "description": "",
+            "mode": "REQUIRED",
+            "name": "embark_story_id",
+            "type": "STRING",
+          },
+        ],
+        "mode": "NULLABLE",
+        "name": "onboarding_choose_embark_flow",
+        "type": "STRUCT",
+      },
+      Object {
+        "description": "When the user decided to skip data collection",
+        "fields": Array [
+          Object {
+            "description": "",
+            "mode": "REQUIRED",
+            "name": "provider_id",
+            "type": "STRING",
+          },
+        ],
+        "mode": "NULLABLE",
+        "name": "data_collection_skipped",
+        "type": "STRUCT",
+      },
+      Object {
+        "description": "When a market was selected on the market picker screen",
+        "fields": Array [
+          Object {
+            "description": "",
+            "mode": "REQUIRED",
+            "name": "locale",
+            "type": "STRING",
+          },
+        ],
+        "mode": "NULLABLE",
+        "name": "market_selected",
+        "type": "STRUCT",
+      },
+      Object {
+        "description": "When quotes are signed in the offer screen",
+        "fields": Array [
+          Object {
+            "description": "",
+            "mode": "REPEATED",
+            "name": "quote_ids",
+            "type": "STRING",
+          },
+          Object {
+            "description": "",
+            "mode": "REQUIRED",
+            "name": "type_of_contracts",
+            "type": "STRING",
+          },
+          Object {
+            "description": "",
+            "mode": "REQUIRED",
+            "name": "initiated_from",
+            "type": "STRING",
+          },
+        ],
+        "mode": "NULLABLE",
+        "name": "quotes_signed",
+        "type": "STRUCT",
+      },
+      Object {
+        "description": "When the user received some quotes",
+        "fields": Array [
+          Object {
+            "description": "",
+            "mode": "REPEATED",
+            "name": "quote_ids",
+            "type": "STRING",
+          },
+          Object {
+            "description": "",
+            "mode": "REPEATED",
+            "name": "type_of_contracts",
+            "type": "STRING",
+          },
+          Object {
+            "description": "",
+            "mode": "REQUIRED",
+            "name": "initiated_from",
+            "type": "STRING",
+          },
+        ],
+        "mode": "NULLABLE",
+        "name": "received_quotes",
+        "type": "STRUCT",
+      },
+    ],
+    "name": "properties",
+    "type": "STRUCT",
+  },
 ]
 `;
 
@@ -851,6 +1436,51 @@ Array [
     ],
     "mode": "REQUIRED",
     "name": "event",
+    "type": "STRUCT",
+  },
+  Object {
+    "description": "Properties associated with this event",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "screen_name",
+        "permittedValues": Array [
+          "offer",
+          "claims_status_detail",
+          "claim_honor_pledge",
+          "common_claim_detail",
+          "embark",
+          "embark_tooltip",
+          "market_picker",
+          "marketing",
+          "data_collection_authenticating",
+          "data_collection_credentials",
+          "data_collection_fail",
+          "data_collection_intro",
+          "data_collection_success",
+          "connect_payment_adyen",
+          "connect_payment_trustly",
+          "connect_payment_failed",
+          "connect_payment_success",
+          "payments",
+          "charity",
+          "contact_info",
+          "cross_sell_detail",
+          "forever",
+          "home",
+          "insurance_Detail",
+          "insurances",
+          "moving_flow_intro",
+          "profile",
+          "app_information",
+          "app_settings",
+          "chat",
+        ],
+        "type": "STRING",
+      },
+    ],
+    "name": "properties",
     "type": "STRUCT",
   },
 ]
@@ -2351,6 +2981,25 @@ Array [
     "name": "event",
     "type": "STRUCT",
   },
+  Object {
+    "description": "Properties associated with this event",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "claim_id",
+        "type": "STRING",
+      },
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "claim_status",
+        "type": "STRING",
+      },
+    ],
+    "name": "properties",
+    "type": "STRUCT",
+  },
 ]
 `;
 
@@ -2563,6 +3212,25 @@ Array [
     ],
     "mode": "REQUIRED",
     "name": "event",
+    "type": "STRUCT",
+  },
+  Object {
+    "description": "Properties associated with this event",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "claim_id",
+        "type": "STRING",
+      },
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "claim_status",
+        "type": "STRING",
+      },
+    ],
+    "name": "properties",
     "type": "STRUCT",
   },
 ]
@@ -2779,6 +3447,25 @@ Array [
     "name": "event",
     "type": "STRUCT",
   },
+  Object {
+    "description": "Properties associated with this event",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "claim_id",
+        "type": "STRING",
+      },
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "claim_status",
+        "type": "STRING",
+      },
+    ],
+    "name": "properties",
+    "type": "STRUCT",
+  },
 ]
 `;
 
@@ -2991,6 +3678,19 @@ Array [
     ],
     "mode": "REQUIRED",
     "name": "event",
+    "type": "STRUCT",
+  },
+  Object {
+    "description": "Properties associated with this event",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "claim_id",
+        "type": "STRING",
+      },
+    ],
+    "name": "properties",
     "type": "STRUCT",
   },
 ]
@@ -3207,6 +3907,19 @@ Array [
     "name": "event",
     "type": "STRUCT",
   },
+  Object {
+    "description": "Properties associated with this event",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "provider_id",
+        "type": "STRING",
+      },
+    ],
+    "name": "properties",
+    "type": "STRUCT",
+  },
 ]
 `;
 
@@ -3419,6 +4132,19 @@ Array [
     ],
     "mode": "REQUIRED",
     "name": "event",
+    "type": "STRUCT",
+  },
+  Object {
+    "description": "Properties associated with this event",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "type",
+        "type": "STRING",
+      },
+    ],
+    "name": "properties",
     "type": "STRUCT",
   },
 ]
@@ -3635,6 +4361,19 @@ Array [
     "name": "event",
     "type": "STRUCT",
   },
+  Object {
+    "description": "Properties associated with this event",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "location",
+        "type": "STRING",
+      },
+    ],
+    "name": "properties",
+    "type": "STRUCT",
+  },
 ]
 `;
 
@@ -3847,6 +4586,25 @@ Array [
     ],
     "mode": "REQUIRED",
     "name": "event",
+    "type": "STRUCT",
+  },
+  Object {
+    "description": "Properties associated with this event",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "originated_from_embark_story",
+        "type": "STRING",
+      },
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "passage_name",
+        "type": "STRING",
+      },
+    ],
+    "name": "properties",
     "type": "STRUCT",
   },
 ]
@@ -4063,6 +4821,43 @@ Array [
     "name": "event",
     "type": "STRUCT",
   },
+  Object {
+    "description": "Properties associated with this event",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "originated_from_embark_story",
+        "type": "STRING",
+      },
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "event_name",
+        "type": "STRING",
+      },
+      Object {
+        "description": "",
+        "fields": Array [
+          Object {
+            "mode": "REQUIRED",
+            "name": "key",
+            "type": "STRING",
+          },
+          Object {
+            "mode": "NULLABLE",
+            "name": "value",
+            "type": "STRING",
+          },
+        ],
+        "mode": "REPEATED",
+        "name": "store",
+        "type": "STRUCT",
+      },
+    ],
+    "name": "properties",
+    "type": "STRUCT",
+  },
 ]
 `;
 
@@ -4275,6 +5070,25 @@ Array [
     ],
     "mode": "REQUIRED",
     "name": "event",
+    "type": "STRUCT",
+  },
+  Object {
+    "description": "Properties associated with this event",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REPEATED",
+        "name": "all_ids",
+        "type": "STRING",
+      },
+      Object {
+        "description": "",
+        "mode": "REPEATED",
+        "name": "selected_ids",
+        "type": "STRING",
+      },
+    ],
+    "name": "properties",
     "type": "STRUCT",
   },
 ]
@@ -4491,6 +5305,25 @@ Array [
     "name": "event",
     "type": "STRUCT",
   },
+  Object {
+    "description": "Properties associated with this event",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "name",
+        "type": "STRING",
+      },
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "variant",
+        "type": "STRING",
+      },
+    ],
+    "name": "properties",
+    "type": "STRUCT",
+  },
 ]
 `;
 
@@ -4703,6 +5536,19 @@ Array [
     ],
     "mode": "REQUIRED",
     "name": "event",
+    "type": "STRUCT",
+  },
+  Object {
+    "description": "Properties associated with this event",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REPEATED",
+        "name": "experiments",
+        "type": "STRING",
+      },
+    ],
+    "name": "properties",
     "type": "STRUCT",
   },
 ]
@@ -4954,6 +5800,19 @@ Array [
     ],
     "mode": "REQUIRED",
     "name": "event",
+    "type": "STRUCT",
+  },
+  Object {
+    "description": "Properties associated with this event",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "NULLABLE",
+        "name": "member_id",
+        "type": "STRING",
+      },
+    ],
+    "name": "properties",
     "type": "STRUCT",
   },
 ]
@@ -5598,6 +6457,19 @@ Array [
     "name": "event",
     "type": "STRUCT",
   },
+  Object {
+    "description": "Properties associated with this event",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "locale",
+        "type": "STRING",
+      },
+    ],
+    "name": "properties",
+    "type": "STRUCT",
+  },
 ]
 `;
 
@@ -5810,6 +6682,19 @@ Array [
     ],
     "mode": "REQUIRED",
     "name": "event",
+    "type": "STRUCT",
+  },
+  Object {
+    "description": "Properties associated with this event",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "type",
+        "type": "STRING",
+      },
+    ],
+    "name": "properties",
     "type": "STRUCT",
   },
 ]
@@ -6026,6 +6911,19 @@ Array [
     "name": "event",
     "type": "STRUCT",
   },
+  Object {
+    "description": "Properties associated with this event",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "NULLABLE",
+        "name": "granted",
+        "type": "BOOLEAN",
+      },
+    ],
+    "name": "properties",
+    "type": "STRUCT",
+  },
 ]
 `;
 
@@ -6238,6 +7136,19 @@ Array [
     ],
     "mode": "REQUIRED",
     "name": "event",
+    "type": "STRUCT",
+  },
+  Object {
+    "description": "Properties associated with this event",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "embark_story_id",
+        "type": "STRING",
+      },
+    ],
+    "name": "properties",
     "type": "STRUCT",
   },
 ]
@@ -6454,6 +7365,31 @@ Array [
     "name": "event",
     "type": "STRUCT",
   },
+  Object {
+    "description": "Properties associated with this event",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REPEATED",
+        "name": "quote_ids",
+        "type": "STRING",
+      },
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "type_of_contracts",
+        "type": "STRING",
+      },
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "initiated_from",
+        "type": "STRING",
+      },
+    ],
+    "name": "properties",
+    "type": "STRUCT",
+  },
 ]
 `;
 
@@ -6489,6 +7425,19 @@ Array [
     ],
     "mode": "REQUIRED",
     "name": "event",
+    "type": "STRUCT",
+  },
+  Object {
+    "description": "Properties associated with this event",
+    "fields": Array [
+      Object {
+        "description": "Event as JSON",
+        "mode": "REQUIRED",
+        "name": "data",
+        "type": "STRING",
+      },
+    ],
+    "name": "properties",
     "type": "STRUCT",
   },
 ]
@@ -6703,6 +7652,31 @@ Array [
     ],
     "mode": "REQUIRED",
     "name": "event",
+    "type": "STRUCT",
+  },
+  Object {
+    "description": "Properties associated with this event",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REPEATED",
+        "name": "quote_ids",
+        "type": "STRING",
+      },
+      Object {
+        "description": "",
+        "mode": "REPEATED",
+        "name": "type_of_contracts",
+        "type": "STRING",
+      },
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "initiated_from",
+        "type": "STRING",
+      },
+    ],
+    "name": "properties",
     "type": "STRUCT",
   },
 ]
@@ -7989,6 +8963,25 @@ Array [
     "name": "event",
     "type": "STRUCT",
   },
+  Object {
+    "description": "Properties associated with this event",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "claim_id",
+        "type": "STRING",
+      },
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "claim_status",
+        "type": "STRING",
+      },
+    ],
+    "name": "properties",
+    "type": "STRUCT",
+  },
 ]
 `;
 
@@ -8201,6 +9194,19 @@ Array [
     ],
     "mode": "REQUIRED",
     "name": "event",
+    "type": "STRUCT",
+  },
+  Object {
+    "description": "Properties associated with this event",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "id",
+        "type": "STRING",
+      },
+    ],
+    "name": "properties",
     "type": "STRUCT",
   },
 ]
@@ -9487,6 +10493,19 @@ Array [
     "name": "event",
     "type": "STRUCT",
   },
+  Object {
+    "description": "Properties associated with this event",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "type_of_contract",
+        "type": "STRING",
+      },
+    ],
+    "name": "properties",
+    "type": "STRUCT",
+  },
 ]
 `;
 
@@ -9699,6 +10718,19 @@ Array [
     ],
     "mode": "REQUIRED",
     "name": "event",
+    "type": "STRUCT",
+  },
+  Object {
+    "description": "Properties associated with this event",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "provider_id",
+        "type": "STRING",
+      },
+    ],
+    "name": "properties",
     "type": "STRUCT",
   },
 ]
@@ -9915,6 +10947,19 @@ Array [
     "name": "event",
     "type": "STRUCT",
   },
+  Object {
+    "description": "Properties associated with this event",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "provider_id",
+        "type": "STRING",
+      },
+    ],
+    "name": "properties",
+    "type": "STRUCT",
+  },
 ]
 `;
 
@@ -10127,6 +11172,19 @@ Array [
     ],
     "mode": "REQUIRED",
     "name": "event",
+    "type": "STRUCT",
+  },
+  Object {
+    "description": "Properties associated with this event",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "provider_id",
+        "type": "STRING",
+      },
+    ],
+    "name": "properties",
     "type": "STRUCT",
   },
 ]
@@ -10343,6 +11401,19 @@ Array [
     "name": "event",
     "type": "STRUCT",
   },
+  Object {
+    "description": "Properties associated with this event",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "provider_id",
+        "type": "STRING",
+      },
+    ],
+    "name": "properties",
+    "type": "STRUCT",
+  },
 ]
 `;
 
@@ -10557,6 +11628,19 @@ Array [
     "name": "event",
     "type": "STRUCT",
   },
+  Object {
+    "description": "Properties associated with this event",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "provider_id",
+        "type": "STRING",
+      },
+    ],
+    "name": "properties",
+    "type": "STRUCT",
+  },
 ]
 `;
 
@@ -10769,6 +11853,19 @@ Array [
     ],
     "mode": "REQUIRED",
     "name": "event",
+    "type": "STRUCT",
+  },
+  Object {
+    "description": "Properties associated with this event",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "story_name",
+        "type": "STRING",
+      },
+    ],
+    "name": "properties",
     "type": "STRUCT",
   },
 ]
@@ -11627,6 +12724,19 @@ Array [
     "name": "event",
     "type": "STRUCT",
   },
+  Object {
+    "description": "Properties associated with this event",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "contract_id",
+        "type": "STRING",
+      },
+    ],
+    "name": "properties",
+    "type": "STRUCT",
+  },
 ]
 `;
 
@@ -11839,6 +12949,25 @@ Array [
     ],
     "mode": "REQUIRED",
     "name": "event",
+    "type": "STRUCT",
+  },
+  Object {
+    "description": "Properties associated with this event",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "has_accident_insurance",
+        "type": "BOOLEAN",
+      },
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "has_home_insurance",
+        "type": "BOOLEAN",
+      },
+    ],
+    "name": "properties",
     "type": "STRUCT",
   },
 ]
@@ -12695,6 +13824,31 @@ Array [
     ],
     "mode": "REQUIRED",
     "name": "event",
+    "type": "STRUCT",
+  },
+  Object {
+    "description": "Properties associated with this event",
+    "fields": Array [
+      Object {
+        "description": "",
+        "mode": "REPEATED",
+        "name": "offer_ids",
+        "type": "STRING",
+      },
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "type_of_contracts",
+        "type": "STRING",
+      },
+      Object {
+        "description": "",
+        "mode": "REQUIRED",
+        "name": "initiated_from",
+        "type": "STRING",
+      },
+    ],
+    "name": "properties",
     "type": "STRUCT",
   },
 ]

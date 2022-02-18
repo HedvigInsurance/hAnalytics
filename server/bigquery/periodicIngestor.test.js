@@ -9,30 +9,48 @@ const createInMemoryBackend = require("./periodicIngestorInMemoryBackend");
 const createBigQueryConfigMock = require("./config.mock");
 const schemaFields = require("./schema/schemaFields");
 
-const mockFieldReducer = (acc, curr) => {
-  switch (curr.type) {
-    case "INTEGER":
-      acc[curr.name] = 0;
-      return acc;
-    case "BOOLEAN":
-      acc[curr.name] = true;
-      return acc;
-    case "STRING":
-      acc[curr.name] = "mock";
-      return acc;
-    case "TIMESTAMP":
-      acc[curr.name] = "2020-02-10";
-      return acc;
-  }
-
-  return acc;
+const mockContextObj = {
+  app: {
+    build: "1234",
+    name: "hedvig",
+    namespace: "mock.hedvig.app",
+    version: "abc",
+  },
+  device: {
+    id: "an_id",
+    manufacturer: "Apple",
+    model: "iPhone8,1",
+    type: "iphone",
+    name: "iphone",
+    screen: {
+      height: 100,
+      width: 100,
+      density: 1,
+    },
+    os: {
+      name: "macOS",
+      version: "8",
+    },
+  },
+  ip: "::1",
+  locale: "sv_SE",
+  session: {
+    id: "mock",
+  },
+  timezone: "Europe/Stockholm",
+  traits: {
+    member: {
+      id: "123",
+    },
+  },
 };
 
-const mockContextProperties = async () =>
-  (await schemaFields.contextFields()).reduce(mockFieldReducer, {});
-
-const mockEventProperties = async () =>
-  (await schemaFields.eventFields()).reduce(mockFieldReducer, {});
+const mockEventObj = {
+  name: "mock",
+  id: "mock",
+  timestamp: "2022-02-30",
+  ingested: "2022-02-30",
+};
 
 describe("periodicIngestor", () => {
   test("ingests correctly", async () => {
@@ -59,7 +77,9 @@ describe("periodicIngestor", () => {
         table: "mock_event",
         eventName: "mock_event",
         row: {
-          property: {
+          context: mockContextObj,
+          event: mockEventObj,
+          properties: {
             hello: "HELLO",
           },
         },
@@ -99,9 +119,9 @@ describe("periodicIngestor", () => {
           table: "mock_event",
           eventName: "mock_event",
           row: {
-            ...(await mockContextProperties()),
-            ...(await mockEventProperties()),
-            property: {
+            context: mockContextObj,
+            event: mockEventObj,
+            properties: {
               hello: "HELLO",
             },
           },
@@ -146,9 +166,9 @@ describe("periodicIngestor", () => {
           table: "mock_event",
           eventName: "mock_event",
           row: {
-            ...(await mockContextProperties()),
-            ...(await mockEventProperties()),
-            property: {
+            context: mockContextObj,
+            event: mockEventObj,
+            properties: {
               hello: "HELLO",
               hello_other: Math.random(),
             },
@@ -162,9 +182,9 @@ describe("periodicIngestor", () => {
           table: "mock_event",
           eventName: "mock_event",
           row: {
-            ...(await mockContextProperties()),
-            ...(await mockEventProperties()),
-            property: {
+            context: mockContextObj,
+            event: mockEventObj,
+            properties: {
               hello: "HELLO",
               hello_other: "value",
             },
