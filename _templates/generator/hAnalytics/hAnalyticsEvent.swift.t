@@ -28,7 +28,7 @@ public struct hAnalyticsParcel {
     }
 }
 
-<% types.forEach((type) => { %>
+<% customTypes.forEach((type) => { %>
 
     <% if (type.type === "Enum") { %>
 

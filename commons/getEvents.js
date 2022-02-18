@@ -1,6 +1,7 @@
 const yaml = require("js-yaml");
 const fs = require("fs");
 const glob = require("glob");
+const typeMaps = require("./typeMaps");
 
 const loadEvent = async (importPath) => {
   const fileData = await new Promise((resolve, reject) => {
@@ -13,7 +14,19 @@ const loadEvent = async (importPath) => {
     });
   });
 
-  return yaml.load(fileData);
+  const event = yaml.load(fileData);
+
+  if (event.inputs) {
+    event.inputs = await Promise.all(
+      event.inputs.map(async (input) => ({
+        ...input,
+        kotlinType: await typeMaps.kotlinTypeMap(input.type),
+        swiftType: await typeMaps.swiftTypeMap(input.type),
+      }))
+    );
+  }
+
+  return event;
 };
 
 const getEvents = async () =>
