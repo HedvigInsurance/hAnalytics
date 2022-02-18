@@ -16,6 +16,7 @@ const validateAgainstSchema = async (name, row, bigQueryConfig) => {
     }
 
     if (value === null && field.mode === "REQUIRED") {
+      console.log(`Value was null but mode is REQUIRED for ${field.name}`);
       return false;
     }
 
@@ -25,6 +26,7 @@ const validateAgainstSchema = async (name, row, bigQueryConfig) => {
 
     if (field.mode === "REPEATED") {
       if (!Array.isArray(value)) {
+        console.log(`Received value which wasn't an array for ${field.name}`);
         return false;
       }
 
@@ -57,6 +59,7 @@ const validateAgainstSchema = async (name, row, bigQueryConfig) => {
       const timestamp = value?.value || value;
 
       if (!Date.parse(timestamp)) {
+        console.log(`Timestamp for ${field.name} not a timestamp`);
         return false;
       }
 
@@ -74,6 +77,9 @@ const validateAgainstSchema = async (name, row, bigQueryConfig) => {
     }
 
     if (field?.permittedValues && !field.permittedValues.includes(value)) {
+      console.log(
+        `Received value which wasn't in the permitted values for ${field.name}`
+      );
       return false;
     }
 
@@ -82,14 +88,6 @@ const validateAgainstSchema = async (name, row, bigQueryConfig) => {
 
   const validationResults = metadata.schema.fields.map((field) => {
     const valid = validateField(field, row[field.name]);
-
-    if (!valid) {
-      console.log(
-        `Struck invalid field when validating ${name}`,
-        JSON.stringify(field, null, 2),
-        JSON.stringify(row[field.name], null, 2)
-      );
-    }
 
     return valid;
   });
