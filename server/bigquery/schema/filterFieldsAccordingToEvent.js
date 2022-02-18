@@ -33,7 +33,7 @@ const filterFieldsAccordingToFields = (fields, row = {}) => {
       return;
     }
 
-    if (typeof row[key] === "undefined") {
+    if (typeof row === "undefined" || typeof row[key] === "undefined") {
       result[key] = null;
     } else if (field.fields) {
       result[key] = filterFieldsAccordingToFields(field.fields, row[key]);
