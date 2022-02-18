@@ -3,23 +3,17 @@ to: kotlin/src/main/kotlin/com/hedvig/hanalytics/HAnalytics.kt
 ---
 package com.hedvig.hanalytics
 
-<% types.forEach((type) => { %>
+<% customTypes.forEach((type) => { %>
 
     <% if (type.type === "Enum") { %>
-
-        interface <%= type.name %>Raw {
-            val value: <%- kotlinTypeMap(type.rawType) %>
-        }
-
          /**
          <%- stringToKotlinComment(type.description) || "* No description given" %>
          */
-        enum class <%= type.name %>: <%= type.name %>Raw {
+        enum class <%= type.name %>(val value: <%- kotlinTypeMap(type.rawType) %>) {
             <% var caseKeys = Object.keys(type.cases) %>
             <% caseKeys.forEach((enumCaseKey) => { %>
-                <%= capitalizeFirstLetter(enumCaseKey) %> {
-                    override val value = <%- kotlinLiteral(type.cases[enumCaseKey], type.rawType) %>
-                } <%= enumCaseKey === caseKeys[caseKeys.length - 1] ? `;` : `,` %>
+                <%= snakeCase(enumCaseKey).toUpperCase() %>(<%- kotlinLiteral(type.cases[enumCaseKey], type.rawType) %>)
+                <%= enumCaseKey === caseKeys[caseKeys.length - 1] ? `;` : `,` %>
             <% }) %>
         }
 

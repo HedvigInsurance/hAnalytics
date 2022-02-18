@@ -6,7 +6,10 @@ test("swiftTypeMap", () => {
   expect(typeMaps.swiftTypeMap("Array<Dictionary<String, String>>")).toEqual(
     "[[String: String]]"
   );
-  expect(typeMaps.kotlinTypeMap("Optional<String>")).toEqual("String?");
+  expect(typeMaps.swiftTypeMap("Optional<String>")).toEqual("String?");
+  expect(typeMaps.swiftTypeMap("Dictionary<String, Optional<String>>")).toEqual(
+    "[String: String?]"
+  );
 });
 
 test("kotlinTypeMap", () => {
@@ -16,6 +19,13 @@ test("kotlinTypeMap", () => {
     "List<Map<String, String>>"
   );
   expect(typeMaps.kotlinTypeMap("Optional<String>")).toEqual("String?");
+  expect(typeMaps.kotlinTypeMap("Dictionary<String, String>")).toEqual(
+    "Map<String, String>"
+  );
+
+  expect(
+    typeMaps.kotlinTypeMap("Dictionary<String, Optional<String>>")
+  ).toEqual("Map<String, String?>");
 });
 
 test("bigQuerySchemaTypeMap", async () => {

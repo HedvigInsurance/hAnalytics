@@ -588,7 +588,7 @@ extension hAnalyticsEvent {
 
   /// When embark sends a tracking event
 
-  public static func embarkTrack(storyName: String, eventName: String, store: [String: Optional])
+  public static func embarkTrack(storyName: String, eventName: String, store: [String: String?])
     -> hAnalyticsParcel
   {
     return hAnalyticsParcel {

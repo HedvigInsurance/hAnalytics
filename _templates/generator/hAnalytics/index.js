@@ -3,7 +3,8 @@ const typeMaps = require("../../../commons/typeMaps");
 const mockRunGraphQLQuery = require("../../../commons/mockRunGraphqlEvent");
 const getEvents = require("../../../commons/getEvents");
 const getExperiments = require("../../../commons/getExperiments");
-const getTypes = require("../../../commons/getTypes");
+const customTypes = require("../../../commons/customTypes");
+const { snakeCase } = require("snake-case");
 
 const capitalizeFirstLetter = (s) => `${s[0].toUpperCase()}${s.slice(1)}`;
 
@@ -35,11 +36,10 @@ module.exports = {
     };
 
     const experiments = (await getExperiments()).map(mapExperiment);
-    const types = await getTypes();
 
     return {
       events,
-      types,
+      customTypes,
       experiments: {
         swift: experiments.filter((experiment) =>
           experiment.targets.includes("Swift")
@@ -80,7 +80,7 @@ module.exports = {
         }
       },
       swiftInputToGetter: (input) => {
-        const type = types.find((type) => type.name === input.type);
+        const type = customTypes.find((type) => type.name === input.type);
 
         if (type) {
           return `${input.argument}.rawValue`;
@@ -89,15 +89,16 @@ module.exports = {
         return input.argument;
       },
       kotlinInputToGetter: (input) => {
-        const type = types.find((type) => type.name === input.type);
+        const type = customTypes.find((type) => type.name === input.type);
 
         if (type) {
-          return `${input.argument}.rawValue`;
+          return `${input.argument}.value`;
         }
 
         return input.argument;
       },
       ...typeMaps,
+      snakeCase,
       stringToSwiftComment: (s) =>
         s
           .split("\n")

@@ -1,4 +1,4 @@
-const getTypes = require("./getTypes");
+const customTypes = require("./customTypes");
 
 const getSwiftType = (type) => {
   if (!type) {
@@ -10,24 +10,33 @@ const getSwiftType = (type) => {
     Integer: "Int",
     Boolean: "Bool",
     Double: "Double",
-    Optional: (s) => `${s}?`,
-    Array: (s) => `[${s}]`,
-    Dictionary: (s) => `[${s.replace(",", ":")}]`,
+    Optional: (s) => `${getSwiftType(s)}?`,
+    Array: (s) => `[${getSwiftType(s)}]`,
+    Dictionary: (inner) => {
+      const types = inner.split(", ");
+
+      const keyType = getSwiftType(types[0]);
+      const valueType = getSwiftType(types[1]);
+
+      return `[${keyType}: ${valueType}]`;
+    },
   };
 
-  return type
-    .split("<")
-    .reverse()
-    .reduce((acc, curr) => {
-      const currWithoutBrackets = curr.replace(/>/g, "");
-      const primitive = primitives[currWithoutBrackets];
+  for (customType of customTypes) {
+    if (customType.type) {
+      primitives[customType.name] = customType.name;
+    }
+  }
 
-      if (typeof primitive === "function") {
-        return primitive(acc ?? "");
-      }
+  const splitted = type.split("<");
 
-      return primitive ? primitive : currWithoutBrackets;
-    }, "");
+  const primitive = primitives[splitted.shift().replaceAll(">", "")];
+
+  if (typeof primitive === "function") {
+    return primitive(splitted.join("<"));
+  }
+
+  return primitive;
 };
 
 const getKotlinType = (type) => {
@@ -40,24 +49,33 @@ const getKotlinType = (type) => {
     Integer: "Int",
     Boolean: "Boolean",
     Double: "Double",
-    Optional: (s) => `${s}?`,
-    Array: (s) => `List<${s}>`,
-    Dictionary: (s) => `Map<${s}>`,
+    Optional: (s) => `${getKotlinType(s)}?`,
+    Array: (s) => `List<${getKotlinType(s)}>`,
+    Dictionary: (inner) => {
+      const types = inner.split(", ");
+
+      const keyType = getKotlinType(types[0]);
+      const valueType = getKotlinType(types[1]);
+
+      return `Map<${keyType}, ${valueType}>`;
+    },
   };
 
-  return type
-    .split("<")
-    .reverse()
-    .reduce((acc, curr) => {
-      const currWithoutBrackets = curr.replace(/>/g, "");
-      const primitive = primitives[currWithoutBrackets];
+  for (customType of customTypes) {
+    if (customType.type) {
+      primitives[customType.name] = customType.name;
+    }
+  }
 
-      if (typeof primitive === "function") {
-        return primitive(acc ?? "");
-      }
+  const splitted = type.split("<");
 
-      return primitive ? primitive : currWithoutBrackets;
-    }, "");
+  const primitive = primitives[splitted.shift().replaceAll(">", "")];
+
+  if (typeof primitive === "function") {
+    return primitive(splitted.join("<"));
+  }
+
+  return primitive;
 };
 
 const getBigQuerySchemaType = async (type, ignoreCustom = false) => {
@@ -124,8 +142,6 @@ const getBigQuerySchemaType = async (type, ignoreCustom = false) => {
       };
     },
   };
-
-  const customTypes = await getTypes();
 
   if (!ignoreCustom) {
     for (customType of customTypes) {
