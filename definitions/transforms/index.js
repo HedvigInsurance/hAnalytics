@@ -1,7 +1,8 @@
+const screenViewOfferTransformer = require("./screenViewOfferTransformer");
 const screenViewTransformer = require("./screenViewTransformer");
 const deepcopy = require("deepcopy");
 
-const transformers = [screenViewTransformer];
+const transformers = [screenViewOfferTransformer, screenViewTransformer];
 
 module.exports = (event) => {
   var stack = [];
