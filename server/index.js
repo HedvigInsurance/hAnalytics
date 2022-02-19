@@ -23,8 +23,11 @@ app.post("/identify", async (req, res) => {
     console.log(`Identifiying ${trackingId}`);
     const traits = await getTraits(transformHeaders(req.headers));
 
+    const eventId = uuid.v1();
+
     bqAnalytics.identify({
       trackingId,
+      event: { id: eventId },
       properties: {
         member_id: traits?.member?.id || null,
       },

@@ -83,6 +83,7 @@ const identify = async (identity, bigQueryConfig, ingestorState) => {
         ...identity.event,
         name: "identity",
         timestamp: parseTimestamp(new Date(), bigQueryConfig),
+        ingested: parseTimestamp(new Date(), bigQueryConfig),
       },
     },
   };
