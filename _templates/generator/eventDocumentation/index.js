@@ -17,7 +17,7 @@ const getIntegrationStatus = async (event) => {
         SELECT
             count(*) as count
         FROM \`${bigQueryConfig.projectId}.${bigQueryConfig.dataset}.${event.name}\`
-        WHERE context_os_name="${os}" AND EXTRACT(DATE FROM timestamp) >= DATE_ADD(CURRENT_DATE(), INTERVAL -30 DAY)
+        WHERE context.device.os.name="${os}" AND EXTRACT(DATE FROM event.timestamp) >= DATE_ADD(CURRENT_DATE(), INTERVAL -30 DAY)
       `;
 
       const [rows] = await bigQueryConfig.bigquery
@@ -53,9 +53,53 @@ module.exports = {
 
     const graphqlResults = await mockRunGraphQLQuery(event);
 
+    const schemaFields = await eventToSchemaFields(event, bigQueryConfig);
+
+    const generateSchemaTable = (fields, name, inlineContent = "") => `
+<details>
+
+<summary>${name}</summary>
+${inlineContent}
+
+## Fields
+
+${
+  fields.filter((field) => !field.fields).length
+    ? `
+| Name      | Mode | Type | Description |
+| ----------- | ----------- | ----------- | ----------- |`
+    : ""
+}
+${fields
+  .filter((field) => !field.fields)
+  .map((field) => {
+    return `| ${field.name} | ${field.mode} | ${field.type} | ${field.description} |`;
+  })
+  .join("\r\n")}
+
+${fields
+  .filter((field) => field.fields?.length)
+  .map((field) => {
+    if (field.fields) {
+      return generateSchemaTable(
+        field.fields,
+        `${field.name}`,
+        `
+| Name      | Mode | Type | Description |
+| ----------- | ----------- | ----------- | ----------- |
+| ${field.name} | ${field.mode} | ${field.type} | ${field.description} |
+        `
+      );
+    }
+  })
+  .join("\r\n")}
+
+</details>
+    `;
+
     return {
       event,
-      schemaFields: await eventToSchemaFields(event, bigQueryConfig),
+      schemaTable: generateSchemaTable(schemaFields, "Schema"),
       graphqlResults: graphqlResults,
       file: args.path.replace(".yml", ""),
       integrationStatus: await getIntegrationStatus(event),

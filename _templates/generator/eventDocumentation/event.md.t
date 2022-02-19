@@ -7,15 +7,7 @@ to: docs/docs/<%= file.replace("definitions/events/", "Definitions/Events/") %>.
 
 ## Schema
 
-<details>
-
-<summary>Read schema</summary>
-
-| Name      | Mode | Type | Description |
-| ----------- | ----------- | ----------- | ----------- |
-<%= schemaFields.flatMap(i => i).map(input => `| ${input.name} | ${input.mode} | ${input.type} | ${input.description} |`).join("\r\n") %>
-
-</details>
+<%- schemaTable %>
 
 <% if (event.accessor) { %>
 
