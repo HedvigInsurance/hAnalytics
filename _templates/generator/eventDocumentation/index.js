@@ -73,7 +73,13 @@ ${
 ${fields
   .filter((field) => !field.fields)
   .map((field) => {
-    return `| ${field.name} | ${field.mode} | ${field.type} | ${field.description} |`;
+    const permittedValues = field.permittedValues?.join("<br />");
+
+    return `| ${field.name} | ${field.mode} | ${
+      permittedValues
+        ? `<details><summary>Enum ${field.type}</summary>${permittedValues}</details>`
+        : field.type
+    } | ${field.description} |`;
   })
   .join("\r\n")}
 
