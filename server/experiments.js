@@ -67,7 +67,7 @@ module.exports = (app) => {
     };
 
     const experiments = await new Promise((resolve) => {
-      glob("experiments/**/*.yml", {}, async (_, files) => {
+      glob("definitions/experiments/**/*.yml", {}, async (_, files) => {
         const experiments = await Promise.all(files.map(evaluateExperiment));
         resolve(experiments.filter((i) => i));
       });
