@@ -10,5 +10,8 @@
     "dependencies": {
         "@types/ua-parser-js": "^0.7.36",
         "ua-parser-js": "^1.0.2"
+    },
+    "devDependencies": {
+        "tsup": "^5.11.13"
     }
 }

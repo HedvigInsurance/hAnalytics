@@ -1,4 +1,4 @@
 export type hAnalyticsExperiment = {
-    name: string
-    variant: string
-}
+  name: string;
+  variant: string;
+};

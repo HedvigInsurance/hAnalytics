@@ -3,7 +3,8 @@
     "test": "jest",
     "start": "node server/index.js",
     "dev": "nodemon server/index.js",
-    "fetch-experiments": "node scripts/fetchExperimentsFromUnleash.js"
+    "fetch-experiments": "node scripts/fetchExperimentsFromUnleash.js",
+    "compile": "sh compile.sh"
   },
   "dependencies": {
     "@google-cloud/bigquery": "^5.10.0",
@@ -44,7 +45,6 @@
     "hygen": "^6.1.0",
     "ioredis-mock": "^7.0.0",
     "jest": "^27.4.7",
-    "prettier": "2.5.1",
-    "tsup": "^5.11.13"
+    "prettier": "2.5.1"
   }
 }

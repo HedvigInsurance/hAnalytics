@@ -46,7 +46,7 @@ else
     cd ../../
 fi
 
-npx prettier --write client/ts/**/*.ts
+npx prettier --write client/*.ts
 
 swift-format format -i swift/hAnalyticsEvent.swift
 swift-format format -i swift/hAnalyticsExperiment.swift
