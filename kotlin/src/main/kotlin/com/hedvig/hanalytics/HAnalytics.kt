@@ -69,8 +69,9 @@ enum class PaymentType(val variantName: String) {
 abstract class HAnalytics {
     protected abstract fun send(event: HAnalyticsEvent)
     protected abstract suspend fun getExperiment(name: String): HAnalyticsExperiment
+    protected abstract suspend fun invalidateExperiments()
 
-    fun experimentEvaluated(experiment: HAnalyticsExperiment) {
+    protected fun experimentEvaluated(experiment: HAnalyticsExperiment) {
         send(
             HAnalyticsEvent(
                 "experiment_evaluated",

@@ -38,8 +38,9 @@ package com.hedvig.hanalytics
 abstract class HAnalytics {
     abstract protected fun send(event: HAnalyticsEvent)
     abstract protected suspend fun getExperiment(name: String): HAnalyticsExperiment
+    abstract protected suspend fun invalidateExperiments()
 
-    fun experimentEvaluated(experiment: HAnalyticsExperiment) {
+    protected fun experimentEvaluated(experiment: HAnalyticsExperiment) {
         send(
             HAnalyticsEvent(
                 "experiment_evaluated",
