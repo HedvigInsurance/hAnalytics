@@ -911,7 +911,7 @@ query QuotesSigned(${"\$"}quote_ids: [ID!]!) {
             /**
             * When the user received some quotes
          */
-         fun received_quotes(quoteIds: List<String>) {
+         fun receivedQuotes(quoteIds: List<String>) {
                 send(
                     HAnalyticsEvent(
                         name = "received_quotes",

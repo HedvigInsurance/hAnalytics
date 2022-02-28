@@ -43,6 +43,7 @@
     "hygen": "^6.1.0",
     "ioredis-mock": "^7.0.0",
     "jest": "^27.4.7",
-    "prettier": "2.5.1"
+    "prettier": "2.5.1",
+    "tsup": "^5.11.13"
   }
 }

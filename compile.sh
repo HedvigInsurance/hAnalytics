@@ -6,7 +6,8 @@ set -e
 HYGEN_OVERWRITE=1 npx hygen generator hAnalytics
 
 cd client/ts
-npx tsc
+npm install
+npx tsup index.ts --dts
 cd ../..
 
 # formatting

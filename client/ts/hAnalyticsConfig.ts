@@ -1,10 +1,9 @@
-import { hAnalyticsContext } from "./hAnalyticsContext";
+import { hAnalyticsConsumerContext } from "./hAnalyticsContext";
 import { hAnalyticsEvent } from "./hAnalyticsEvent";
 
 export type hAnalyticsConfig = {
   httpHeaders: { [name: string]: string };
-  deviceId: string;
   endpointURL: string;
-  context: hAnalyticsContext;
+  context: hAnalyticsConsumerContext;
   onSend: (event: hAnalyticsEvent) => void;
 };

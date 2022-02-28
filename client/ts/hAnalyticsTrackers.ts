@@ -1237,7 +1237,7 @@ export class hAnalyticsTrackers {
 
     // When the user received some quotes
     
-    static received_quotes(quoteIds: string[]): () => void {
+    static receivedQuotes(quoteIds: string[]): () => void {
         return () => {
         
                 const properties: { [name: string]: any } = {

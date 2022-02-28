@@ -27,3 +27,10 @@ export type hAnalyticsContext = {
     };
   };
 };
+
+export type hAnalyticsConsumerContext = {
+locale: string;
+device: {
+    id: string;
+};
+};
