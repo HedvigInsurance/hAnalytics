@@ -4,9 +4,6 @@ import { hAnalyticsEvent } from "./hAnalyticsEvent";
 export class hAnalyticsNetworking {
   static getConfig: () => hAnalyticsConfig;
 
-  // allows defining other locations to send events too
-  static sendHook: (event: hAnalyticsEvent) => void = () => {};
-
   static async identify() {
     const config = this.getConfig();
 
@@ -23,8 +20,6 @@ export class hAnalyticsNetworking {
   }
 
   static async send(event: hAnalyticsEvent) {
-    this.sendHook(event);
-
     const config = this.getConfig();
 
     const context = config.context;
@@ -35,6 +30,8 @@ export class hAnalyticsNetworking {
       );
       return;
     }
+
+    config.onSend(event)
 
     return fetch(config.endpointURL + "/collect", {
       method: "POST",
