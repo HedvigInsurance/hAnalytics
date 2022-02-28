@@ -9,3 +9,4 @@ docs/docs/Definitions/**/*.md
 docs/docs/Definitions/**/*.md
 google-credentials.json
 .env
+client/ts/dist/**/*
