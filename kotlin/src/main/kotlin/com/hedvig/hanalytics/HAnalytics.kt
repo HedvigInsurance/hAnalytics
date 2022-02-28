@@ -68,8 +68,19 @@ enum class PaymentType(val variantName: String) {
 
 abstract class HAnalytics {
     protected abstract fun send(event: HAnalyticsEvent)
-    abstract fun experimentEvaluated(experiment: HAnalyticsExperiment)
     protected abstract suspend fun getExperiment(name: String): HAnalyticsExperiment
+
+    fun experimentEvaluated(experiment: HAnalyticsExperiment) {
+        send(
+            HAnalyticsEvent(
+                "experiment_evaluated",
+                mapOf(
+                    "name" to experiment.name,
+                    "variant" to experiment.variant,
+                )
+            )
+        )
+    }
 
     /**
      * Allow fetching data with external data providers (for example insurely)

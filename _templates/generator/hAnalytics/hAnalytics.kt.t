@@ -37,8 +37,19 @@ package com.hedvig.hanalytics
 
 abstract class HAnalytics {
     abstract protected fun send(event: HAnalyticsEvent)
-    abstract fun experimentEvaluated(experiment: HAnalyticsExperiment)
     abstract protected suspend fun getExperiment(name: String): HAnalyticsExperiment
+
+    fun experimentEvaluated(experiment: HAnalyticsExperiment) {
+        send(
+            HAnalyticsEvent(
+                "experiment_evaluated",
+                mapOf(
+                    "name" to experiment.name,
+                    "variant" to experiment.variant,
+                )
+            )
+        )
+    }
 
     <% experiments.kotlin.forEach(function(experiment) { -%>
         /**
