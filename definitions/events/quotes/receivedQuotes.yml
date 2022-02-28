@@ -1,6 +1,6 @@
 name: received_quotes
 description: When the user received some quotes
-accessor: received_quotes
+accessor: receivedQuotes
 inputs:
   - name: quote_ids
     type: Array<String>

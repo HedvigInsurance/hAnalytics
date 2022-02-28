@@ -793,7 +793,7 @@ extension hAnalyticsEvent {
 
   /// When the user received some quotes
 
-  public static func received_quotes(quoteIds: [String]) -> hAnalyticsParcel {
+  public static func receivedQuotes(quoteIds: [String]) -> hAnalyticsParcel {
     return hAnalyticsParcel {
       let properties: [String: Any?] = ["quote_ids": quoteIds]
 

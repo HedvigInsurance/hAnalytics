@@ -13,6 +13,7 @@
     "@graphql-tools/wrap": "^8.3.2",
     "apollo-link-http": "^1.5.17",
     "camelcase": "^6.3.0",
+    "cors": "^2.8.5",
     "cross-fetch": "^3.1.4",
     "dd-trace": "^1.7.0",
     "deepcopy": "^2.1.0",
@@ -34,6 +35,7 @@
     "redis-task-queue": "^0.3.0",
     "redis-url-parse": "^2.0.0",
     "snake-case": "^3.0.4",
+    "typescript": "^4.5.5",
     "unleash-client": "^3.12.0",
     "uuid": "^8.3.2",
     "validate-graphql": "^1.0.9"
@@ -41,6 +43,8 @@
   "devDependencies": {
     "hygen": "^6.1.0",
     "ioredis-mock": "^7.0.0",
-    "jest": "^27.4.7"
+    "jest": "^27.4.7",
+    "prettier": "2.5.1",
+    "tsup": "^5.11.13"
   }
 }

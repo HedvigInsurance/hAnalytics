@@ -78,6 +78,45 @@ const getKotlinType = (type) => {
   return primitive;
 };
 
+const getJSType = (type) => {
+  if (!type) {
+    return null;
+  }
+
+  const primitives = {
+    String: "string",
+    Integer: "number",
+    Boolean: "boolean",
+    Double: "number",
+    Optional: (s) => `${getJSType(s)} | null`,
+    Array: (s) => `${getJSType(s)}[]`,
+    Dictionary: (inner) => {
+      const types = inner.split(", ");
+
+      const keyType = getJSType(types[0]);
+      const valueType = getJSType(types[1]);
+
+      return `{ [name: ${keyType}]: ${valueType} }`;
+    },
+  };
+
+  for (customType of customTypes) {
+    if (customType.type) {
+      primitives[customType.name] = customType.name;
+    }
+  }
+
+  const splitted = type.split("<");
+
+  const primitive = primitives[splitted.shift().replaceAll(">", "")];
+
+  if (typeof primitive === "function") {
+    return primitive(splitted.join("<"));
+  }
+
+  return primitive;
+};
+
 const getBigQuerySchemaType = (type, ignoreCustom = false) => {
   if (!type) {
     return null;
@@ -189,6 +228,7 @@ const getJSToHAnalyticsType = (value) => {
 module.exports = {
   swiftTypeMap: getSwiftType,
   kotlinTypeMap: getKotlinType,
+  jsTypeMap: getJSType,
   bigQuerySchemaTypeMap: getBigQuerySchemaType,
-  jsTypeMap: getJSToHAnalyticsType,
+  jsHAnalyticsTypeMap: getJSToHAnalyticsType,
 };

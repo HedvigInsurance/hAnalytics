@@ -64,6 +64,21 @@ module.exports = {
             return `${value}`;
         }
       },
+      jsLiteral: (value, type) => {
+        switch (type) {
+          case "String":
+          case "Optional<String>":
+            return `"${value}"`;
+          case "Boolean":
+          case "Optional<Boolean>":
+            return `${value}`;
+          case "Double":
+          case "Integer":
+          case "Optional<Double>":
+          case "Optional<Integer>":
+            return `${value}`;
+        }
+      },
       kotlinLiteral: (value, type) => {
         switch (type) {
           case "String":
@@ -97,8 +112,22 @@ module.exports = {
 
         return input.argument;
       },
+      jsInputToGetter: (input) => {
+        const type = customTypes.find((type) => type.name === input.type);
+
+        if (type) {
+          return `${input.argument}`;
+        }
+
+        return input.argument;
+      },
       ...typeMaps,
       snakeCase,
+      stringToJSComment: (s) =>
+        s
+          .split("\n")
+          .map((line) => `// ${line}`)
+          .join("\n"),
       stringToSwiftComment: (s) =>
         s
           .split("\n")

@@ -66,7 +66,7 @@ const validateAgainstSchema = async (name, row, bigQueryConfig) => {
       return true;
     }
 
-    const hanalyticsType = typeMaps.jsTypeMap(value);
+    const hanalyticsType = typeMaps.jsHAnalyticsTypeMap(value);
     const bigQueryType = typeMaps.bigQuerySchemaTypeMap(hanalyticsType);
 
     if (bigQueryType?.type !== field.type) {
