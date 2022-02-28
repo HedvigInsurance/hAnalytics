@@ -10,28 +10,4 @@ static load(onLoad: (success: boolean) => void) {
 }
 
 
-    
-    /// no description given
-    static frenchMarket(): boolean {
-        const experiment = hAnalyticsNetworking.findExperimentByName("french_market")
-        const variant = experiment.variant
-
-        if (variant) {
-            hAnalyticsTrackers.experimentEvaluated(
-               "french_market",
-               variant
-            )
-            
-            return variant == "enabled"
-        }
-
-        hAnalyticsTrackers.experimentEvaluated(
-            "french_market",
-            "disabled"
-        )
-
-        return false
-    }
-    
-
 }
