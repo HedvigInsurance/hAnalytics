@@ -1,7 +1,15 @@
 #!/usr/bin/env bash
 set -e
 
+# generation
+
 HYGEN_OVERWRITE=1 npx hygen generator hAnalytics
+
+cd client/ts
+npx tsc
+cd ../..
+
+# formatting
 
 if [ -x /usr/local/bin/swift-format ] 
 then
@@ -23,12 +31,18 @@ else
     cd ../../
 fi
 
+npx prettier --write client/ts/**/*.ts
+
 swift-format format -i swift/hAnalyticsEvent.swift
 swift-format format -i swift/hAnalyticsExperiment.swift
 
 ./gradlew ktlintFormat
 
+# testing
+
 npm run test -- --ci
+
+# documentation
 
 rm -rf docs/docs/events
 

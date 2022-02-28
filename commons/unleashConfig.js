@@ -21,20 +21,20 @@ class RedisStorageProvider {
 
   async set(key, data) {
     try {
-        const client = await this.getClient();
-        await client.set(key, JSON.stringify(data));
+      const client = await this.getClient();
+      await client.set(key, JSON.stringify(data));
     } catch (err) {
-        console.error("Redis error", err)
+      console.error("Redis error", err);
     }
   }
 
   async get(key) {
     try {
-        const data = await client.get(key);
-        return JSON.parse(data);
+      const data = await client.get(key);
+      return JSON.parse(data);
     } catch (err) {
-        console.error("Redis error", err)
-        return null
+      console.error("Redis error", err);
+      return null;
     }
   }
 }
@@ -50,17 +50,20 @@ class MemberIdsStrategy extends Strategy {
 }
 
 function isSmallerVersionThanThreshold(version, threshold) {
-  let compareRes = threshold.localeCompare(version, undefined, { numeric: true, sensitivity: 'base' })
+  let compareRes = threshold.localeCompare(version, undefined, {
+    numeric: true,
+    sensitivity: "base",
+  });
 
-  var isInvalid = false
+  var isInvalid = false;
   if (compareRes === 0) {
-    isInvalid = true
+    isInvalid = true;
   } else if (compareRes === -1) {
-    isInvalid = false
+    isInvalid = false;
   } else if (compareRes === 1) {
-    isInvalid = true
+    isInvalid = true;
   }
-  return isInvalid
+  return isInvalid;
 }
 
 class AppVersionStrategy extends Strategy {
@@ -69,7 +72,10 @@ class AppVersionStrategy extends Strategy {
   }
 
   isEnabled(parameters, context) {
-    return isSmallerVersionThanThreshold(context.appVersion, parameters.lowestAppVersion)
+    return isSmallerVersionThanThreshold(
+      context.appVersion,
+      parameters.lowestAppVersion
+    );
   }
 }
 
