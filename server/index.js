@@ -6,9 +6,12 @@ const { request, gql } = require("graphql-request");
 const jmespath = require("jmespath");
 const uuid = require("uuid");
 const bqAnalytics = require("./bigquery/analytics");
+const cors = require("cors");
+
 const app = express();
 const port = process.env.PORT ?? 3034;
 
+app.use(cors());
 app.use(express.json());
 
 const { getTraits } = require("./traits");
