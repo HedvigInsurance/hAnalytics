@@ -48,7 +48,7 @@ const populateExperimentsFolder = async () => {
         name: variant.name,
         case: camelCase(variant.name),
       })),
-      targets: ["Swift", "Kotlin"].filter(
+      targets: ["Swift", "Kotlin", "JS"].filter(
         (target) => codegenStrategy.parameters[target] === "true"
       ),
     };
