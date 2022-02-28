@@ -1,7 +1,7 @@
 name: login_method
 description: Which login method to use
 accessor: loginMethod
-defaultFallback: bankIdSweden
+defaultFallback: nemId
 variants:
   - name: bank_id_sweden
     case: bankIdSweden
