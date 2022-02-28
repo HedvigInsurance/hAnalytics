@@ -4,9 +4,7 @@ require("dotenv").config();
 const express = require("express");
 const { request, gql } = require("graphql-request");
 const jmespath = require("jmespath");
-const Segment = require("analytics-node");
 const uuid = require("uuid");
-const segmentAnalytics = new Segment(process.env.SEGMENT_WRITE_KEY);
 const bqAnalytics = require("./bigquery/analytics");
 const app = express();
 const port = process.env.PORT ?? 3034;
@@ -30,18 +28,6 @@ app.post("/identify", async (req, res) => {
       event: { id: eventId },
       properties: {
         member_id: traits?.member?.id || null,
-      },
-    });
-
-    segmentAnalytics.identify({
-      userId: trackingId,
-      traits: {
-        member_id: traits?.member?.id || null,
-      },
-      context: {
-        library: {
-          name: "hAnalytics",
-        },
       },
     });
 
@@ -143,44 +129,6 @@ app.post("/event", async (req, res) => {
             version: os.version,
           },
         },
-        traits: traits,
-      },
-    });
-
-    segmentAnalytics.track({
-      userId: trackingId,
-      event,
-      properties: allProperties,
-      timestamp,
-      context: {
-        timezone,
-        sessionId,
-        os: {
-          name: os.name,
-          version: os.version,
-        },
-        locale,
-        ip,
-        app: {
-          name: app.name,
-          version: app.version,
-          build: app.build,
-          namespace: app.namespace,
-        },
-        device: {
-          manufacturer: device.manufacturer,
-          model: device.model,
-          name: device.name,
-          type: device.type,
-          version: device.version,
-          id: device.id,
-        },
-        screen: {
-          density: screen.density,
-          height: screen.height,
-          width: screen.width,
-        },
-        hanalyticsEventId,
         traits: traits,
       },
     });
