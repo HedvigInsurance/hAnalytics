@@ -38,6 +38,69 @@ app.post("/identify", async (req, res) => {
   }
 });
 
+app.post("/collect", async (req, res) => {
+  try {
+    const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
+    const { context, event } = req.body;
+
+    const timestamp = new Date();
+
+    console.log(`Processing event from ${ip}: ${event}`);
+
+    var allProperties = {
+      ...event.properties,
+    };
+
+    if (event.graphql) {
+      const forwardedHeaders = {
+        authorization: req.headers["authorization"],
+      };
+
+      const query = gql`
+        ${event.graphql.query}
+      `;
+
+      const graphqlData = await request(
+        process.env.GRAPHQL_ENDPOINT,
+        query,
+        event.graphql.variables,
+        forwardedHeaders
+      );
+
+      event.graphql.selectors.forEach((selector) => {
+        allProperties[selector.name] = jmespath.search(
+          graphqlData,
+          selector.path
+        );
+      });
+    }
+
+    const traits = await getTraits(transformHeaders(req.headers));
+    const hanalyticsEventId = uuid.v1();
+
+    bqAnalytics.track({
+      properties: allProperties,
+      event: {
+        id: hanalyticsEventId,
+        name: event,
+        timestamp,
+      },
+      context: {
+        ...context,
+        ip,
+        traits: traits,
+      },
+    });
+
+    console.log(`Event from ${ip} was processed: ${event}`);
+
+    res.status(200).send("OK");
+  } catch (err) {
+    console.error("Failed to process event", err);
+    res.status(400).send("BAD REQUEST");
+  }
+});
+
 app.post("/event", async (req, res) => {
   try {
     const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
