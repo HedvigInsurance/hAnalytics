@@ -85,7 +85,7 @@ app.post("/collect", async (req, res) => {
       properties: allProperties,
       event: {
         id: hanalyticsEventId,
-        name: event,
+        name: event.name,
         timestamp,
       },
       context: {
