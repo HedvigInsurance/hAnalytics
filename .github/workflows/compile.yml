@@ -30,6 +30,13 @@ jobs:
             /usr/local/bin/swift-format
             ktfmt.jar
           key: ${{ runner.os }}
+      - name: Get new version
+        id: getNewTag
+        uses: anothrNick/github-tag-action@1.36.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WITH_V: true
+          DRY_RUN: true
       - run: npm install
       - run: npm run fetch-experiments
         env:
@@ -40,6 +47,8 @@ jobs:
           BQ_DATASET: hanalytics_production_live
           GCLOUD_PROJECT: hedvig-dagobah
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+          BUMP_VERSION_TO: steps.getNewTag.outputs.new_tag
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - uses: EndBug/add-and-commit@v7
         with:
           add: "."

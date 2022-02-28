@@ -29,8 +29,17 @@ export type hAnalyticsContext = {
 };
 
 export type hAnalyticsConsumerContext = {
-locale: string;
-device: {
-    id: string;
-};
+    locale: string;
+    device: {
+        id: string;
+    };
+    session: {
+        id: string;
+    }
+    app: {
+        name: string;
+        version: string;
+        build: string;
+        namespace: string;
+    }
 };

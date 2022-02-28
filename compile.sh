@@ -8,6 +8,20 @@ HYGEN_OVERWRITE=1 npx hygen generator hAnalytics
 cd client/ts
 npm install
 npx tsup index.ts --dts
+npm version
+
+if [[ -z "${BUMP_VERSION_TO}" ]]; then
+  echo "Not bumping TS client version"
+else
+  npm version $BUMP_VERSION_TO
+
+  if [[ -z "${NODE_AUTH_TOKEN}" ]]; then
+    npm publish
+  else
+    echo "Not publishing to NPM"
+  fi
+fi
+
 cd ../..
 
 # formatting

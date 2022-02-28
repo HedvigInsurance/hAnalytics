@@ -47,6 +47,9 @@ module.exports = {
         kotlin: experiments.filter((experiment) =>
           experiment.targets.includes("Kotlin")
         ),
+        js: experiments.filter((experiment) =>
+          experiment.targets.includes("JS")
+        ),
       },
       capitalizeFirstLetter,
       swiftLiteral: (value, type) => {
