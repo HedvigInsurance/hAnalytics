@@ -153,4 +153,12 @@ abstract class HAnalytics {
             <%_ } -%>
         }
     <% }); %>
+
+    companion object {
+        val EXPERIMENTS = listOf(
+            <% experiments.kotlin.forEach(function(experiment) { -%>
+                "<%= experiment.name %>",
+            <% }); -%>
+        )
+    }
 }

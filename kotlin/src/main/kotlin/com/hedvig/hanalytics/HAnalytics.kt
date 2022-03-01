@@ -689,4 +689,18 @@ query ReceivedQuotes(${"\$"}quote_ids: [ID!]!) {
             )
         )
     }
+
+    companion object {
+        val EXPERIMENTS = listOf(
+            "allow_external_data_collection",
+            "forever_february_campaign",
+            "french_market",
+            "key_gear",
+            "login_method",
+            "moving_flow",
+            "payment_type",
+            "post_onboarding_show_payment_step",
+            "update_necessary",
+        )
+    }
 }
