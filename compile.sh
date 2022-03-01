@@ -7,8 +7,7 @@ HYGEN_OVERWRITE=1 npx hygen generator hAnalytics
 
 cd client/ts
 npm install
-npx tsup index.ts --dts
-npm version
+npm run build
 
 if [[ -z "${BUMP_VERSION_TO}" ]]; then
   echo "Not bumping TS client version"
@@ -46,7 +45,7 @@ else
     cd ../../
 fi
 
-npx prettier --write client/*.ts
+npx prettier --write client/**/*.ts
 
 swift-format format -i swift/hAnalyticsEvent.swift
 swift-format format -i swift/hAnalyticsExperiment.swift

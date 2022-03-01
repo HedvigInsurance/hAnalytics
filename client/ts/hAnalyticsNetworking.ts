@@ -1,60 +1,19 @@
+import * as UAParser from "ua-parser-js";
+import fetch from "cross-fetch";
+
 import { hAnalyticsConfig } from "./hAnalyticsConfig";
 import { hAnalyticsEvent } from "./hAnalyticsEvent";
-import * as UAParser from "ua-parser-js";
 import { hAnalyticsContext } from "./hAnalyticsContext";
 import { hAnalyticsExperiment } from "./hAnalyticsExperiment";
 
-const constructContext = (): hAnalyticsContext => {
-  if (!hAnalyticsNetworking.getConfig) {
-    console.warn(
-      "[hAnalytics] Not configurated, define hAnalyticsNetworking.getConfig"
-    );
-    return;
+export class hAnalyticsNetworking {
+  getConfig: () => hAnalyticsConfig;
+
+  constructor(getConfig: () => hAnalyticsConfig) {
+    this.getConfig = getConfig;
   }
 
-  const config = hAnalyticsNetworking.getConfig();
-
-  const uaParser = new UAParser.UAParser();
-  const device = uaParser.getDevice();
-  const os = uaParser.getOS();
-
-  const context = {
-    locale: config.context.locale,
-    session: config.context.session,
-    app: config.context.app,
-    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-    device: {
-      ...config.context.device,
-      manufacturer: device.vendor,
-      model: device.model,
-      name: "browser",
-      type: device.type,
-      screen: {
-        density: window.devicePixelRatio || 0,
-        height: window.innerHeight || 0,
-        width: window.innerWidth || 0,
-      },
-      os: {
-        name: os.name,
-        version: os.version,
-      },
-    },
-  };
-
-  return context;
-};
-
-export class hAnalyticsNetworking {
-  static getConfig?: () => hAnalyticsConfig;
-
-  static async identify() {
-    if (!this.getConfig) {
-      console.warn(
-        "[hAnalytics] Not configurated, define hAnalyticsNetworking.getConfig"
-      );
-      return;
-    }
-
+  async identify() {
     const config = this.getConfig();
 
     return fetch(config.endpointURL + "/identify", {
@@ -69,17 +28,50 @@ export class hAnalyticsNetworking {
     }).then((res) => res.json());
   }
 
-  static async send(event: hAnalyticsEvent) {
-    if (!this.getConfig) {
-      console.warn(
-        "[hAnalytics] Not configurated, define hAnalyticsNetworking.getConfig"
-      );
-      return;
-    }
-
+  constructContext(): hAnalyticsContext {
     const config = this.getConfig();
 
-    const context = constructContext();
+    const uaParser = new UAParser.UAParser();
+    const device = uaParser.getDevice();
+    const os = uaParser.getOS();
+
+    var safeWindow: any;
+
+    if (typeof window !== "undefined") {
+      safeWindow = window;
+    } else {
+      safeWindow = null;
+    }
+
+    const context = {
+      locale: config.context.locale,
+      session: config.context.session,
+      app: config.context.app,
+      timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+      device: {
+        ...config.context.device,
+        manufacturer: device.vendor,
+        model: device.model,
+        name: "browser",
+        type: device.type,
+        screen: {
+          density: safeWindow?.devicePixelRatio || 0,
+          height: safeWindow?.innerHeight || 0,
+          width: safeWindow?.innerWidth || 0,
+        },
+        os: {
+          name: os.name,
+          version: os.version,
+        },
+      },
+    };
+
+    return context;
+  }
+
+  async send(event: hAnalyticsEvent) {
+    const config = this.getConfig();
+    const context = this.constructContext();
 
     config.onSend(event);
 
@@ -93,15 +85,16 @@ export class hAnalyticsNetworking {
         event: event,
         context: context,
       }),
-    }).then((res) => res.json());
+    });
   }
 
-  private static experimentsList?: hAnalyticsExperiment[] = null;
+  private experimentsList?: hAnalyticsExperiment[] = null;
 
-  static async loadExperiments(
-    filter: string[],
-    onLoad: (success: boolean) => void
-  ) {
+  bootstrapExperiments(experimentsList: hAnalyticsExperiment[]) {
+    this.experimentsList = experimentsList;
+  }
+
+  async loadExperiments(filter: string[]): Promise<hAnalyticsExperiment[]> {
     if (!this.getConfig) {
       console.warn(
         "[hAnalytics] Not configurated, define hAnalyticsNetworking.getConfig"
@@ -110,8 +103,7 @@ export class hAnalyticsNetworking {
     }
 
     const config = this.getConfig();
-
-    const context = constructContext();
+    const context = this.constructContext();
 
     return fetch(config.endpointURL + "/experiments", {
       method: "POST",
@@ -134,14 +126,14 @@ export class hAnalyticsNetworking {
             name: item.name,
             variant: item.variant,
           }));
-          onLoad(true);
+          return this.experimentsList;
         } else {
-          onLoad(false);
+          throw new Error("Couldn't load experiments");
         }
       });
   }
 
-  static findExperimentByName(name: string): hAnalyticsExperiment | null {
+  findExperimentByName(name: string): hAnalyticsExperiment | null {
     return this.experimentsList.find((experiment) => experiment.name === name);
   }
 }

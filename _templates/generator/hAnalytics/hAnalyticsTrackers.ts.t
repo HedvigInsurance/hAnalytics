@@ -6,7 +6,7 @@ import { hAnalyticsNetworking } from "./hAnalyticsNetworking"
 <% customTypes.forEach((type) => { %>
     <% if (type.type === "Enum") { %>
         <%- stringToJSComment(type.description) || "no description given" %>
-        enum <%= type.name %> {
+        export enum <%= type.name %> {
             <% Object.keys(type.cases).forEach((enumCaseKey) => { %>
                 <%- snakeCase(enumCaseKey).toUpperCase() %> = <%- jsLiteral(type.cases[enumCaseKey], type.rawType) %>,
             <% }) %>
@@ -15,15 +15,23 @@ import { hAnalyticsNetworking } from "./hAnalyticsNetworking"
 <% }) %>
 
 export class hAnalyticsTrackers {
+    networking: hAnalyticsNetworking
+
+    constructor(
+        networking: hAnalyticsNetworking
+    ) {
+        this.networking = networking
+    }
+
     // identifies and registers the trackingId
-    static identify() {
-        hAnalyticsNetworking.identify()
+    identify() {
+        this.networking.identify()
     }
 
 <% events.forEach(function(event) { %>
     <%- stringToJSComment(event.description) || "no description given" %>
     <%- event.deprecationReason ? `// @deprecated ${event.deprecationReason}` : "" %>
-    static <%= event.accessor %>(<%= (event.inputs ?? []).map((input) => `${input.argument}: ${jsTypeMap(input.type)}`).join(",") %>) {
+    <%= event.accessor %>(<%= (event.inputs ?? []).map((input) => `${input.argument}: ${jsTypeMap(input.type)}`).join(",") %>) {
     <% if (event.graphql) { %>
             const properties: { [name: string]: any } = {
                 <% (event.inputs ?? []).forEach(function(input) { %>
@@ -46,7 +54,7 @@ export class hAnalyticsTrackers {
                 <% }); %>
             }
 
-            hAnalyticsNetworking.send({
+            this.networking.send({
                 name: "<%= event.name %>",
                 properties: properties,
                 graphql: {
@@ -71,7 +79,7 @@ export class hAnalyticsTrackers {
                 <% }); %>
             }
 
-            hAnalyticsNetworking.send({
+            this.networking.send({
                 name: "<%= event.name %>",
                 properties: properties
             })

@@ -1,17 +1,26 @@
 {
     "name": "@hedviginsurance/hanalytics-client",
-    "version": "0.189.0",
+    "version": "0.189",
     "description": "",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "files": [
         "/dist"
     ],
-    "dependencies": {
-        "@types/ua-parser-js": "^0.7.36",
-        "ua-parser-js": "^1.0.2"
+    "scripts": {
+        "build": "tsup --dts --external react"
+    },
+    "peerDependencies": {
+        "react": "16 - 17"
     },
     "devDependencies": {
-        "tsup": "^5.11.13"
+        "@types/react": "^16.13.0",
+        "@types/ua-parser-js": "^0.7.36",
+        "react": "^16.13.0",
+        "tsup": "^5.11.13",
+        "ua-parser-js": "^1.0.2"
+    },
+    "dependencies": {
+        "cross-fetch": "^3.1.5"
     }
 }

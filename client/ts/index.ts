@@ -1,3 +1,8 @@
 export { hAnalyticsNetworking } from "./hAnalyticsNetworking";
-export { hAnalyticsTrackers } from "./hAnalyticsTrackers";
+export * from "./hAnalyticsTrackers";
 export { hAnalyticsExperiments } from "./hAnalyticsExperiments";
+export {
+  HAnalyticsProvider,
+  useHAnalytics,
+  bootstrapExperiments,
+} from "./useHAnalytics";

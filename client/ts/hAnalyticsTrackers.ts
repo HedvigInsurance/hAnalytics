@@ -1,7 +1,7 @@
 import { hAnalyticsNetworking } from "./hAnalyticsNetworking";
 
 // An app screen
-enum AppScreen {
+export enum AppScreen {
   OFFER = "offer",
 
   CLAIMS_STATUS_DETAIL = "claims_status_detail",
@@ -64,19 +64,25 @@ enum AppScreen {
 }
 
 export class hAnalyticsTrackers {
+  networking: hAnalyticsNetworking;
+
+  constructor(networking: hAnalyticsNetworking) {
+    this.networking = networking;
+  }
+
   // identifies and registers the trackingId
-  static identify() {
-    hAnalyticsNetworking.identify();
+  identify() {
+    this.networking.identify();
   }
 
   // A screen was shown in the app
 
-  static screenView(screen: AppScreen) {
+  screenView(screen: AppScreen) {
     const properties: { [name: string]: any } = {
       screen_name: screen,
     };
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "app_screen_view",
       properties: properties,
     });
@@ -84,10 +90,10 @@ export class hAnalyticsTrackers {
 
   // When a file, video, image, gif is sent in the chat
 
-  static chatRichMessageSent() {
+  chatRichMessageSent() {
     const properties: { [name: string]: any } = {};
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "chat_rich_message_sent",
       properties: properties,
     });
@@ -95,10 +101,10 @@ export class hAnalyticsTrackers {
 
   // When a text message is sent in the chat
 
-  static chatTextMessageSent() {
+  chatTextMessageSent() {
     const properties: { [name: string]: any } = {};
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "chat_text_message_sent",
       properties: properties,
     });
@@ -106,14 +112,14 @@ export class hAnalyticsTrackers {
 
   // When a claim card has been clicked on screen
 
-  static claimCardClick(claimId: string, claimStatus: string) {
+  claimCardClick(claimId: string, claimStatus: string) {
     const properties: { [name: string]: any } = {
       claim_id: claimId,
 
       claim_status: claimStatus,
     };
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "claim_card_click",
       properties: properties,
     });
@@ -121,14 +127,14 @@ export class hAnalyticsTrackers {
 
   // When a claim card has been shown on screen
 
-  static claimCardVisible(claimId: string, claimStatus: string) {
+  claimCardVisible(claimId: string, claimStatus: string) {
     const properties: { [name: string]: any } = {
       claim_id: claimId,
 
       claim_status: claimStatus,
     };
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "claim_card_visible",
       properties: properties,
     });
@@ -136,14 +142,14 @@ export class hAnalyticsTrackers {
 
   // When contact chat is tapped on claim details
 
-  static claimDetailClickOpenChat(claimId: string, claimStatus: string) {
+  claimDetailClickOpenChat(claimId: string, claimStatus: string) {
     const properties: { [name: string]: any } = {
       claim_id: claimId,
 
       claim_status: claimStatus,
     };
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "claim_status_detail_click_open_chat",
       properties: properties,
     });
@@ -151,12 +157,12 @@ export class hAnalyticsTrackers {
 
   // When a claims recording has been played in the claims status screen
 
-  static claimsDetailRecordingPlayed(claimId: string) {
+  claimsDetailRecordingPlayed(claimId: string) {
     const properties: { [name: string]: any } = {
       claim_id: claimId,
     };
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "claims_detail_recording_played",
       properties: properties,
     });
@@ -164,12 +170,12 @@ export class hAnalyticsTrackers {
 
   // When a deep link was opened
 
-  static deepLinkOpened(type: string) {
+  deepLinkOpened(type: string) {
     const properties: { [name: string]: any } = {
       type: type,
     };
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "deep_link_opened",
       properties: properties,
     });
@@ -177,10 +183,10 @@ export class hAnalyticsTrackers {
 
   // When the charity screen is shown
   // @deprecated Replaced with screenView
-  static screenViewCharity() {
+  screenViewCharity() {
     const properties: { [name: string]: any } = {};
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "screen_view_charity",
       properties: properties,
     });
@@ -188,10 +194,10 @@ export class hAnalyticsTrackers {
 
   // When the contact info screen is shown
   // @deprecated Replaced with screenView
-  static screenViewContactInfo() {
+  screenViewContactInfo() {
     const properties: { [name: string]: any } = {};
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "screen_view_contact_info",
       properties: properties,
     });
@@ -199,12 +205,12 @@ export class hAnalyticsTrackers {
 
   // When the detail screen of a cross sell is shown
   // @deprecated Replaced with screenView
-  static screenViewCrossSellDetail(typeOfContract: string) {
+  screenViewCrossSellDetail(typeOfContract: string) {
     const properties: { [name: string]: any } = {
       type_of_contract: typeOfContract,
     };
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "screen_view_cross_sell_detail",
       properties: properties,
     });
@@ -212,10 +218,10 @@ export class hAnalyticsTrackers {
 
   // When Hedvig Forever is shown
   // @deprecated Replaced with screenView
-  static screenViewForever() {
+  screenViewForever() {
     const properties: { [name: string]: any } = {};
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "screen_view_forever",
       properties: properties,
     });
@@ -223,10 +229,10 @@ export class hAnalyticsTrackers {
 
   // When Home tab is shown
   // @deprecated Replaced with screenView
-  static screenViewHome() {
+  screenViewHome() {
     const properties: { [name: string]: any } = {};
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "screen_view_home",
       properties: properties,
     });
@@ -234,12 +240,12 @@ export class hAnalyticsTrackers {
 
   // When detail screen of an insurance is shown
   // @deprecated Replaced with screenView
-  static screenViewInsuranceDetail(contractId: string) {
+  screenViewInsuranceDetail(contractId: string) {
     const properties: { [name: string]: any } = {
       contract_id: contractId,
     };
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "screen_view_insurance_detail",
       properties: properties,
     });
@@ -247,12 +253,12 @@ export class hAnalyticsTrackers {
 
   // When Insurances tab is shown
   // @deprecated Replaced with screenView
-  static screenViewInsurances() {
+  screenViewInsurances() {
     const properties: { [name: string]: any } = {};
 
     const graphQLVariables: { [name: string]: any } = {};
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "screen_view_insurances",
       properties: properties,
       graphql: {
@@ -281,10 +287,10 @@ export class hAnalyticsTrackers {
 
   // When market picker is shown
 
-  static screenViewMarketPicker() {
+  screenViewMarketPicker() {
     const properties: { [name: string]: any } = {};
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "screen_view_market_picker",
       properties: properties,
     });
@@ -292,10 +298,10 @@ export class hAnalyticsTrackers {
 
   // When moving flow intro screen is shown
   // @deprecated Replaced with screenView
-  static screenViewMovingFlowIntro() {
+  screenViewMovingFlowIntro() {
     const properties: { [name: string]: any } = {};
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "screen_view_moving_flow_intro",
       properties: properties,
     });
@@ -303,7 +309,7 @@ export class hAnalyticsTrackers {
 
   // When Offer screen is shown
 
-  static screenViewOffer(offerIds: string[]) {
+  screenViewOffer(offerIds: string[]) {
     const properties: { [name: string]: any } = {
       offer_ids: offerIds,
     };
@@ -312,7 +318,7 @@ export class hAnalyticsTrackers {
       offer_ids: offerIds,
     };
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "screen_view_offer",
       properties: properties,
       graphql: {
@@ -346,10 +352,10 @@ export class hAnalyticsTrackers {
 
   // When Profile tab is shown
   // @deprecated Replaced with screenView
-  static screenViewProfile() {
+  screenViewProfile() {
     const properties: { [name: string]: any } = {};
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "screen_view_profile",
       properties: properties,
     });
@@ -357,10 +363,10 @@ export class hAnalyticsTrackers {
 
   // When app information screen was shown
   // @deprecated Replaced with screenView
-  static screenViewAppInformation() {
+  screenViewAppInformation() {
     const properties: { [name: string]: any } = {};
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "screen_view_app_information",
       properties: properties,
     });
@@ -368,10 +374,10 @@ export class hAnalyticsTrackers {
 
   // When app settings screen was shown
   // @deprecated Replaced with screenView
-  static screenViewAppSettings() {
+  screenViewAppSettings() {
     const properties: { [name: string]: any } = {};
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "screen_view_app_settings",
       properties: properties,
     });
@@ -379,10 +385,10 @@ export class hAnalyticsTrackers {
 
   // When the chat is shown
   // @deprecated Replaced with screenView
-  static screenViewChat() {
+  screenViewChat() {
     const properties: { [name: string]: any } = {};
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "screen_view_chat",
       properties: properties,
     });
@@ -390,10 +396,10 @@ export class hAnalyticsTrackers {
 
   // When the honor pledge screen is shown
   // @deprecated Replaced with screenView
-  static screenViewClaimHonorPledge() {
+  screenViewClaimHonorPledge() {
     const properties: { [name: string]: any } = {};
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "screen_view_claim_honor_pledge",
       properties: properties,
     });
@@ -401,14 +407,14 @@ export class hAnalyticsTrackers {
 
   // When the claims status detail screen is shown
   // @deprecated Replaced with screenView
-  static screenViewClaimsStatusDetail(claimId: string, claimStatus: string) {
+  screenViewClaimsStatusDetail(claimId: string, claimStatus: string) {
     const properties: { [name: string]: any } = {
       claim_id: claimId,
 
       claim_status: claimStatus,
     };
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "screen_view_claims_status_detail",
       properties: properties,
     });
@@ -416,12 +422,12 @@ export class hAnalyticsTrackers {
 
   // When a common claim detail screen is shown
   // @deprecated Replaced with screenView
-  static screenViewCommonClaimDetail(id: string) {
+  screenViewCommonClaimDetail(id: string) {
     const properties: { [name: string]: any } = {
       id: id,
     };
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "screen_view_common_claim_detail",
       properties: properties,
     });
@@ -429,10 +435,10 @@ export class hAnalyticsTrackers {
 
   // Connecting payment with Adyen screen was shown
   // @deprecated Replaced with screenView
-  static screenViewConnectPaymentAdyen() {
+  screenViewConnectPaymentAdyen() {
     const properties: { [name: string]: any } = {};
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "screen_view_connect_payment_adyen",
       properties: properties,
     });
@@ -440,10 +446,10 @@ export class hAnalyticsTrackers {
 
   // When payment connection did fail
   // @deprecated Replaced with screenView
-  static screenViewConnectPaymentFailed() {
+  screenViewConnectPaymentFailed() {
     const properties: { [name: string]: any } = {};
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "screen_view_connect_payment_failed",
       properties: properties,
     });
@@ -451,10 +457,10 @@ export class hAnalyticsTrackers {
 
   // When payment was connected successfully
   // @deprecated Replaced with screenView
-  static screenViewConnectPaymentSuccess() {
+  screenViewConnectPaymentSuccess() {
     const properties: { [name: string]: any } = {};
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "screen_view_connect_payment_success",
       properties: properties,
     });
@@ -462,10 +468,10 @@ export class hAnalyticsTrackers {
 
   // Connecting payment with Trustly screen was shown
   // @deprecated Replaced with screenView
-  static screenViewConnectPaymentTrustly() {
+  screenViewConnectPaymentTrustly() {
     const properties: { [name: string]: any } = {};
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "screen_view_connect_payment_trustly",
       properties: properties,
     });
@@ -473,12 +479,12 @@ export class hAnalyticsTrackers {
 
   // When data collection waiting for authentication screen is shown
   // @deprecated Replaced with screenView
-  static screenViewDataCollectionAuthenticating(providerId: string) {
+  screenViewDataCollectionAuthenticating(providerId: string) {
     const properties: { [name: string]: any } = {
       provider_id: providerId,
     };
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "screen_view_data_collection_authenticating",
       properties: properties,
     });
@@ -486,12 +492,12 @@ export class hAnalyticsTrackers {
 
   // When data collection credentials screen is shown (Insurely)
   // @deprecated Replaced with screenView
-  static screenViewDataCollectionCredentials(providerId: string) {
+  screenViewDataCollectionCredentials(providerId: string) {
     const properties: { [name: string]: any } = {
       provider_id: providerId,
     };
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "screen_view_data_collection_credentials",
       properties: properties,
     });
@@ -499,12 +505,12 @@ export class hAnalyticsTrackers {
 
   // When data collection failed
   // @deprecated Replaced with screenView
-  static screenViewDataCollectionFail(providerId: string) {
+  screenViewDataCollectionFail(providerId: string) {
     const properties: { [name: string]: any } = {
       provider_id: providerId,
     };
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "screen_view_data_collection_fail",
       properties: properties,
     });
@@ -512,12 +518,12 @@ export class hAnalyticsTrackers {
 
   // When data collection intro screen is shown (Insurely)
   // @deprecated Replaced with screenView
-  static screenViewDataCollectionIntro(providerId: string) {
+  screenViewDataCollectionIntro(providerId: string) {
     const properties: { [name: string]: any } = {
       provider_id: providerId,
     };
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "screen_view_data_collection_intro",
       properties: properties,
     });
@@ -525,12 +531,12 @@ export class hAnalyticsTrackers {
 
   // When data collection succeeded
   // @deprecated Replaced with screenView
-  static screenViewDataCollectionSuccess(providerId: string) {
+  screenViewDataCollectionSuccess(providerId: string) {
     const properties: { [name: string]: any } = {
       provider_id: providerId,
     };
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "screen_view_data_collection_success",
       properties: properties,
     });
@@ -538,12 +544,12 @@ export class hAnalyticsTrackers {
 
   // When embark is shown
   // @deprecated Replaced with screenView
-  static screenViewEmbark(storyName: string) {
+  screenViewEmbark(storyName: string) {
     const properties: { [name: string]: any } = {
       story_name: storyName,
     };
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "screen_view_embark",
       properties: properties,
     });
@@ -551,10 +557,10 @@ export class hAnalyticsTrackers {
 
   // When embark tooltip screen is shown
   // @deprecated Replaced with screenView
-  static screenViewEmbarkTooltip() {
+  screenViewEmbarkTooltip() {
     const properties: { [name: string]: any } = {};
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "screen_view_embark_tooltip",
       properties: properties,
     });
@@ -562,10 +568,10 @@ export class hAnalyticsTrackers {
 
   // When marketing screen is shown
   // @deprecated Replaced with screenView
-  static screenViewMarketing() {
+  screenViewMarketing() {
     const properties: { [name: string]: any } = {};
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "screen_view_marketing",
       properties: properties,
     });
@@ -573,10 +579,10 @@ export class hAnalyticsTrackers {
 
   // Payments screen was shown
   // @deprecated Replaced with screenView
-  static screenViewPayments() {
+  screenViewPayments() {
     const properties: { [name: string]: any } = {};
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "screen_view_payments",
       properties: properties,
     });
@@ -584,12 +590,12 @@ export class hAnalyticsTrackers {
 
   // When embark does an external redirect
 
-  static embarkExternalRedirect(location: string) {
+  embarkExternalRedirect(location: string) {
     const properties: { [name: string]: any } = {
       location: location,
     };
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "embark_external_redirect",
       properties: properties,
     });
@@ -597,14 +603,14 @@ export class hAnalyticsTrackers {
 
   // When embark goes back one passage
 
-  static embarkPassageGoBack(storyName: string, passageName: string) {
+  embarkPassageGoBack(storyName: string, passageName: string) {
     const properties: { [name: string]: any } = {
       originated_from_embark_story: storyName,
 
       passage_name: passageName,
     };
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "embark_passage_go_back",
       properties: properties,
     });
@@ -612,7 +618,7 @@ export class hAnalyticsTrackers {
 
   // When embark sends a tracking event
 
-  static embarkTrack(
+  embarkTrack(
     storyName: string,
     eventName: string,
     store: { [name: string]: string | null }
@@ -625,7 +631,7 @@ export class hAnalyticsTrackers {
       store: store,
     };
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "embark_track",
       properties: properties,
     });
@@ -633,14 +639,14 @@ export class hAnalyticsTrackers {
 
   // When embark does a varianted offer redirect
 
-  static embarkVariantedOfferRedirect(allIds: string[], selectedIds: string[]) {
+  embarkVariantedOfferRedirect(allIds: string[], selectedIds: string[]) {
     const properties: { [name: string]: any } = {
       all_ids: allIds,
 
       selected_ids: selectedIds,
     };
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "embark_varianted_offer_redirect",
       properties: properties,
     });
@@ -648,14 +654,14 @@ export class hAnalyticsTrackers {
 
   // Experiment where evaluated, typically means it was shown on screen or similar
 
-  static experimentEvaluated(name: string, variant: string) {
+  experimentEvaluated(name: string, variant: string) {
     const properties: { [name: string]: any } = {
       name: name,
 
       variant: variant,
     };
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "experiment_evaluated",
       properties: properties,
     });
@@ -663,12 +669,12 @@ export class hAnalyticsTrackers {
 
   // Experiments where loaded from server
 
-  static experimentsLoaded(experiments: string[]) {
+  experimentsLoaded(experiments: string[]) {
     const properties: { [name: string]: any } = {
       experiments: experiments,
     };
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "experiments_loaded",
       properties: properties,
     });
@@ -676,10 +682,10 @@ export class hAnalyticsTrackers {
 
   // User just logged in
 
-  static loggedIn() {
+  loggedIn() {
     const properties: { [name: string]: any } = {};
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "logged_in",
       properties: properties,
     });
@@ -687,10 +693,10 @@ export class hAnalyticsTrackers {
 
   // User just logged out
 
-  static loggedOut() {
+  loggedOut() {
     const properties: { [name: string]: any } = {};
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "logged_out",
       properties: properties,
     });
@@ -698,12 +704,12 @@ export class hAnalyticsTrackers {
 
   // A push notification was opened
 
-  static notificationOpened(type: string) {
+  notificationOpened(type: string) {
     const properties: { [name: string]: any } = {
       type: type,
     };
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "notification_opened",
       properties: properties,
     });
@@ -715,12 +721,12 @@ export class hAnalyticsTrackers {
   //   granted == null: push notifications permissions are not determined yet / unknown
   //
 
-  static notificationPermission(granted: boolean | null) {
+  notificationPermission(granted: boolean | null) {
     const properties: { [name: string]: any } = {
       granted: granted,
     };
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "notification_permission",
       properties: properties,
     });
@@ -728,10 +734,10 @@ export class hAnalyticsTrackers {
 
   // When a user clicks "Already a member? Log in" on the marketing screen
 
-  static buttonClickMarketingLogin() {
+  buttonClickMarketingLogin() {
     const properties: { [name: string]: any } = {};
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "button_click_marketing_login",
       properties: properties,
     });
@@ -739,10 +745,10 @@ export class hAnalyticsTrackers {
 
   // When a user clicks "Get a price quote" on the marketing screen
 
-  static buttonClickMarketingOnboard() {
+  buttonClickMarketingOnboard() {
     const properties: { [name: string]: any } = {};
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "button_click_marketing_onboard",
       properties: properties,
     });
@@ -750,12 +756,12 @@ export class hAnalyticsTrackers {
 
   // When an embark flow is choosen on the choose screen
 
-  static onboardingChooseEmbarkFlow(embarkStoryId: string) {
+  onboardingChooseEmbarkFlow(embarkStoryId: string) {
     const properties: { [name: string]: any } = {
       embark_story_id: embarkStoryId,
     };
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "onboarding_choose_embark_flow",
       properties: properties,
     });
@@ -763,12 +769,12 @@ export class hAnalyticsTrackers {
 
   // When the user decided to skip data collection
 
-  static dataCollectionSkipped(providerId: string) {
+  dataCollectionSkipped(providerId: string) {
     const properties: { [name: string]: any } = {
       provider_id: providerId,
     };
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "data_collection_skipped",
       properties: properties,
     });
@@ -776,12 +782,12 @@ export class hAnalyticsTrackers {
 
   // When a market was selected on the market picker screen
 
-  static marketSelected(locale: string) {
+  marketSelected(locale: string) {
     const properties: { [name: string]: any } = {
       locale: locale,
     };
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "market_selected",
       properties: properties,
     });
@@ -789,10 +795,10 @@ export class hAnalyticsTrackers {
 
   // A payment card was shown on the home screen
 
-  static homePaymentCardVisible() {
+  homePaymentCardVisible() {
     const properties: { [name: string]: any } = {};
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "home_payment_card_visible",
       properties: properties,
     });
@@ -800,7 +806,7 @@ export class hAnalyticsTrackers {
 
   // When quotes are signed in the offer screen
 
-  static quotesSigned(quoteIds: string[]) {
+  quotesSigned(quoteIds: string[]) {
     const properties: { [name: string]: any } = {
       quote_ids: quoteIds,
     };
@@ -809,7 +815,7 @@ export class hAnalyticsTrackers {
       quote_ids: quoteIds,
     };
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "quotes_signed",
       properties: properties,
       graphql: {
@@ -843,7 +849,7 @@ export class hAnalyticsTrackers {
 
   // When the user received some quotes
 
-  static receivedQuotes(quoteIds: string[]) {
+  receivedQuotes(quoteIds: string[]) {
     const properties: { [name: string]: any } = {
       quote_ids: quoteIds,
     };
@@ -852,7 +858,7 @@ export class hAnalyticsTrackers {
       quote_ids: quoteIds,
     };
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "received_quotes",
       properties: properties,
       graphql: {
@@ -886,10 +892,10 @@ export class hAnalyticsTrackers {
 
   // App was put into background
 
-  static appBackground() {
+  appBackground() {
     const properties: { [name: string]: any } = {};
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "app_background",
       properties: properties,
     });
@@ -897,10 +903,10 @@ export class hAnalyticsTrackers {
 
   // App was resumed after being in background
 
-  static appResumed() {
+  appResumed() {
     const properties: { [name: string]: any } = {};
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "app_resumed",
       properties: properties,
     });
@@ -908,10 +914,10 @@ export class hAnalyticsTrackers {
 
   // App was shutdown
 
-  static appShutdown() {
+  appShutdown() {
     const properties: { [name: string]: any } = {};
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "app_shutdown",
       properties: properties,
     });
@@ -919,10 +925,10 @@ export class hAnalyticsTrackers {
 
   // App was started
 
-  static appStarted() {
+  appStarted() {
     const properties: { [name: string]: any } = {};
 
-    hAnalyticsNetworking.send({
+    this.networking.send({
       name: "app_started",
       properties: properties,
     });
