@@ -1,9 +1,10 @@
 import { hAnalyticsConsumerContext } from "./hAnalyticsContext";
-import { hAnalyticsEvent } from "./hAnalyticsEvent";
+import { hAnalyticsCollectResponse } from "./hAnalyticsEvent"
 
 export type hAnalyticsConfig = {
   httpHeaders: { [name: string]: string };
   endpointURL: string;
   context: hAnalyticsConsumerContext;
-  onSend: (event: hAnalyticsEvent) => void;
+  onEvent?: (event: hAnalyticsCollectResponse) => void;
+  userAgent: string;
 };

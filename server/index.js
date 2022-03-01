@@ -7,6 +7,7 @@ const jmespath = require("jmespath");
 const uuid = require("uuid");
 const bqAnalytics = require("./bigquery/analytics");
 const cors = require("cors");
+const fetch = require("cross-fetch");
 
 const app = express();
 const port = process.env.PORT ?? 3034;
@@ -81,7 +82,7 @@ app.post("/collect", async (req, res) => {
     const traits = await getTraits(transformHeaders(req.headers));
     const hanalyticsEventId = uuid.v1();
 
-    bqAnalytics.track({
+    const finalEvent = {
       properties: allProperties,
       event: {
         id: hanalyticsEventId,
@@ -93,11 +94,12 @@ app.post("/collect", async (req, res) => {
         ip,
         traits: traits,
       },
-    });
+    };
+    bqAnalytics.track(finalEvent);
 
     console.log(`Event from ${ip} was processed: ${event}`);
 
-    res.status(200).send("OK");
+    res.status(200).json(finalEvent);
   } catch (err) {
     console.error("Failed to process event", err);
     res.status(400).send("BAD REQUEST");

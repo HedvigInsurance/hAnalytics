@@ -4,7 +4,7 @@ import {
   bootstrapExperiments,
 } from "@hedviginsurance/hanalytics-client";
 
-const getHAnalyticsConfig = () => ({
+const getHAnalyticsConfig = (userAgent) => ({
   httpHeaders: {},
   endpointURL: "https://hanalytics-staging.herokuapp.com",
   context: {
@@ -22,25 +22,51 @@ const getHAnalyticsConfig = () => ({
       id: "AN_ID",
     },
   },
-  onSend: (event) => {
-    /// send to google analytics or other tracking partner here
+  userAgent,
+  onEvent: (event) => {
+    if (typeof window !== "undefined") {
+      window.gtag("event", event.name, event.properties);
+    }
   },
 });
 
 function MyApp({ Component, pageProps }) {
   return (
-    <HAnalyticsProvider
-      getConfig={() => getHAnalyticsConfig()}
-      bootstrapExperiments={pageProps.experimentsBootstrap}
-    >
-      <Component {...pageProps} />
-    </HAnalyticsProvider>
+    <>
+      <HAnalyticsProvider
+        getConfig={() => getHAnalyticsConfig(pageProps.userAgent)}
+        bootstrapExperiments={pageProps.experimentsBootstrap}
+      >
+        <Component {...pageProps} />
+      </HAnalyticsProvider>
+      <div
+        dangerouslySetInnerHTML={{
+          __html: `
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-TGSXK2QHSD"></script>
+          <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+          
+            gtag('config', 'G-TGSXK2QHSD');
+          </script>
+          `,
+        }}
+      ></div>
+    </>
   );
 }
 
-MyApp.getInitialProps = async (appctx) => {
-  const experimentsBootstrap = await bootstrapExperiments(getHAnalyticsConfig);
-  return { pageProps: { experimentsBootstrap } };
+MyApp.getInitialProps = async ({ ctx }) => {
+  const userAgent = ctx.req
+    ? ctx.req.headers["user-agent"]
+    : navigator.userAgent;
+
+  const experimentsBootstrap = await bootstrapExperiments(() =>
+    getHAnalyticsConfig(userAgent)
+  );
+
+  return { pageProps: { experimentsBootstrap, userAgent } };
 };
 
 export default MyApp;
