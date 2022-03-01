@@ -15,9 +15,9 @@ else
   npm version $BUMP_VERSION_TO
 
   if [[ -z "${NODE_AUTH_TOKEN}" ]]; then
-    npm publish
-  else
     echo "Not publishing to NPM"
+  else
+    npm publish
   fi
 fi
 
