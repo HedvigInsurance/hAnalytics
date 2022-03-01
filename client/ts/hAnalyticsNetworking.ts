@@ -26,11 +26,11 @@ export class hAnalyticsNetworking {
         body: JSON.stringify({
           trackingId: config.context.device.id,
         }),
-      })
+      });
 
-      return true
+      return true;
     } catch (err) {
-      return false
+      return false;
     }
   }
 
@@ -88,20 +88,20 @@ export class hAnalyticsNetworking {
         },
         body: JSON.stringify({
           event: event,
-          context: context
+          context: context,
         }),
-      }).then(res => res.json())
+      }).then((res) => res.json());
 
       const collectReponse: hAnalyticsCollectResponse = {
         name: response.event.name,
-        properties: response.properties
-      }
+        properties: response.properties,
+      };
 
-      config.onEvent(collectReponse)
+      config.onEvent(collectReponse);
 
-      return true
+      return true;
     } catch (err) {
-      return false
+      return false;
     }
   }
 
@@ -138,7 +138,7 @@ export class hAnalyticsNetworking {
         }),
       })
         .then((res) => {
-          return res.json()
+          return res.json();
         })
         .then((payload) => {
           if (Array.isArray(payload)) {
@@ -148,11 +148,11 @@ export class hAnalyticsNetworking {
             }));
             return this.experimentsList;
           } else {
-            return []
+            return [];
           }
         });
     } catch (err) {
-      return []
+      return [];
     }
   }
 

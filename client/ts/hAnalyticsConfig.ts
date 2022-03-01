@@ -1,5 +1,5 @@
 import { hAnalyticsConsumerContext } from "./hAnalyticsContext";
-import { hAnalyticsCollectResponse } from "./hAnalyticsEvent"
+import { hAnalyticsCollectResponse } from "./hAnalyticsEvent";
 
 export type hAnalyticsConfig = {
   httpHeaders: { [name: string]: string };

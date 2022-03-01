@@ -7,4 +7,4 @@ export type hAnalyticsEvent = {
 export type hAnalyticsCollectResponse = {
   name: string;
   properties: { [name: string]: any };
-}
+};
