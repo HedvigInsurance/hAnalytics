@@ -23,7 +23,7 @@ useEffect(() => {
 
 ## Experiments
 
-Experiments gives the possibility to tailor your UI and activate / deactive features, do A/B tests and similar, configuration is handled in Hedvigs hosted unleash-server.
+Experiments gives the possibility to tailor your UI and activate / deactive features, do A/B tests and similar, actual feature flag handling is done in Hedvigs hosted [unleash-server](https://hedvig-unleash.herokuapp.com).
 
 ### Example
 
