@@ -58,13 +58,3 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           WITH_V: true
-      - name: Install and Build gh-pages 🔧
-        run: |
-          cd docs
-          npm ci
-          npm run build
-      - name: Deploy gh-pages 🚀
-        uses: JamesIves/github-pages-deploy-action@v4.2.2
-        with:
-          branch: gh-pages
-          folder: docs/build

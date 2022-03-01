@@ -210,6 +210,8 @@ app.post("/event", async (req, res) => {
   }
 });
 
+app.use("/docs", express.static("docs/build"));
+
 require("./experiments")(app);
 
 app.listen(port, () => {

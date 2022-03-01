@@ -9,7 +9,7 @@ const config = {
   title: "hAnalytics",
   tagline: "Unified Hedvig app-analytics",
   url: "https://hedviginsurance.github.io",
-  baseUrl: "/hAnalytics/",
+  baseUrl: "/docs/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",

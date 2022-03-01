@@ -1,6 +1,7 @@
 {
   "scripts": {
     "test": "jest",
+    "build": "cd docs; npm ci; npm run build",
     "start": "node server/index.js",
     "dev": "nodemon server/index.js",
     "fetch-experiments": "node scripts/fetchExperimentsFromUnleash.js",
