@@ -1,0 +1,117 @@
+# React
+
+To use hAnalytics from React use the supplied provider, like so:
+
+```typescript
+<HAnalyticsProvider
+    getConfig={() => getHAnalyticsConfig(pageProps.userAgent)}
+    bootstrapExperiments={pageProps.experimentsBootstrap}
+>
+    {...}
+</HAnalyticsProvider>
+```
+
+then you can use the supplied `useHAnalytics` hook like so:
+
+```typescript
+const { trackers } = useHAnalytics();
+
+useEffect(() => {
+  trackers.quotesSigned(quoteIds);
+}, [quoteIds]);
+```
+
+## Experiments
+
+Experiments gives the possibility to tailor your UI and activate / deactive features, do A/B tests and similar, configuration is handled in Hedvigs hosted unleash-server.
+
+### Example
+
+```typescript
+const { experiments } = useHAnalytics();
+
+experiments.allowExternalDataCollection(); // this returns a boolean
+```
+
+### SSR
+
+To use experiments with SSR you need to bootstrapExperiments, first load the experiments and then supply it to the provider to render the React tree correctly.
+
+Here is an example in Next.js:
+
+```typescript
+import {
+  HAnalyticsProvider,
+  bootstrapExperiments,
+} from "@hedviginsurance/hanalytics-client";
+
+const getHAnalyticsConfig = (userAgent) => ({
+  httpHeaders: {},
+  endpointURL: "https://hanalytics-staging.herokuapp.com",
+  context: {
+    locale: "sv-SE",
+    app: {
+      name: "NextJSExample",
+      namespace: "staging",
+      version: "1.0.0",
+      build: "3000",
+    },
+    device: {
+      id: "UUID",
+    },
+    session: {
+      id: "UUID",
+    },
+  },
+  userAgent,
+  onEvent: (event) => {},
+});
+
+function App({ Component, pageProps }) {
+  return (
+    <>
+      <HAnalyticsProvider
+        getConfig={() => getHAnalyticsConfig(pageProps.userAgent)}
+        bootstrapExperiments={pageProps.experimentsBootstrap}
+      >
+        <Component {...pageProps} />
+      </HAnalyticsProvider>
+    </>
+  );
+}
+
+App.getInitialProps = async ({ ctx }) => {
+  const userAgent = ctx.req
+    ? ctx.req.headers["user-agent"]
+    : navigator.userAgent;
+
+  const experimentsBootstrap = await bootstrapExperiments(() =>
+    getHAnalyticsConfig(userAgent)
+  );
+
+  return { pageProps: { experimentsBootstrap, userAgent } };
+};
+```
+
+then in any component you just use the hook:
+
+```typescript
+import { useHAnalytics } from "@hedviginsurance/hanalytics-client";
+
+export default function Home() {
+  const { trackers, experiments } = useHAnalytics();
+
+  return (
+    <div>
+      <main>
+        <button onClick={() => trackers.trackSomething()}>
+          Click to send a tracking event
+        </button>
+        {experiments.allowExternalDataCollection() ? (
+          <ShowDataCollection />
+        ) : null}
+      </main>
+    </div>
+  );
+}
+```
