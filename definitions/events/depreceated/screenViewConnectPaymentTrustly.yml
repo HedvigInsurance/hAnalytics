@@ -1,4 +1,0 @@
-name: screen_view_connect_payment_trustly
-description: Connecting payment with Trustly screen was shown
-accessor: screenViewConnectPaymentTrustly
-deprecationReason: Replaced with screenView

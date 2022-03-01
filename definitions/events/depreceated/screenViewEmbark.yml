@@ -1,8 +1,0 @@
-name: screen_view_embark
-description: When embark is shown
-accessor: screenViewEmbark
-deprecationReason: Replaced with screenView
-inputs:
-  - name: story_name
-    type: String
-    argument: storyName

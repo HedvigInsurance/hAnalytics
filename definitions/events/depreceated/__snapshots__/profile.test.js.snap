@@ -1,8 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`validate profile 1`] = `
-Object {
-  "name": "screen_view_profile",
-  "variables": Object {},
-}
-`;

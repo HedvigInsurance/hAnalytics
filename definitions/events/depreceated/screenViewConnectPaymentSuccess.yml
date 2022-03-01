@@ -1,4 +1,0 @@
-name: screen_view_connect_payment_success
-description: When payment was connected successfully
-accessor: screenViewConnectPaymentSuccess
-deprecationReason: Replaced with screenView

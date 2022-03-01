@@ -1,8 +1,0 @@
-name: screen_view_data_collection_intro
-description: When data collection intro screen is shown (Insurely)
-accessor: screenViewDataCollectionIntro
-deprecationReason: Replaced with screenView
-inputs:
-  - name: provider_id
-    type: String
-    argument: providerId

@@ -1,8 +1,0 @@
-name: screen_view_insurance_detail
-description: When detail screen of an insurance is shown
-accessor: screenViewInsuranceDetail
-deprecationReason: Replaced with screenView
-inputs:
-  - name: contract_id
-    type: String
-    argument: contractId
