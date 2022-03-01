@@ -6,7 +6,7 @@ set -e
 HYGEN_OVERWRITE=1 npx hygen generator hAnalytics
 
 cd client/ts
-npm install
+npm ci
 npm run build
 
 if [[ -z "${BUMP_VERSION_TO}" ]]; then

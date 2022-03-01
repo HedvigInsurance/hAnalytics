@@ -19,6 +19,7 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: "15"
+          registry-url: "https://registry.npmjs.org"
       - uses: actions/setup-java@v2
         with:
           distribution: "temurin"
@@ -37,7 +38,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           WITH_V: true
           DRY_RUN: true
-      - run: npm install
+      - run: npm ci
       - run: npm run fetch-experiments
         env:
           UNLEASH_API_URL: ${{ secrets.UNLEASH_API_URL }}
