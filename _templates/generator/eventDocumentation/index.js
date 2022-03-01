@@ -61,7 +61,7 @@ module.exports = {
 <summary>${name}</summary>
 ${inlineContent}
 
-## Fields
+### Fields
 
 ${
   fields.filter((field) => !field.fields).length
