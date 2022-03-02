@@ -91,7 +91,8 @@ const contextFields = [
           },
           {
             name: "type",
-            description: "The type of device, for example ios or android",
+            description:
+              "The type of device, for example ios, android or browser",
             ...bigQuerySchemaTypeMap("Optional<String>"),
           },
           {

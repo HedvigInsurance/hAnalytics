@@ -15,8 +15,12 @@ const populateExperimentsFolder = async () => {
   fs.mkdirSync(DIR);
 
   definitions.forEach((definition) => {
-    const defaultFallback = unleash.getVariant(definition.name);
-    const defaultIsEnabled = unleash.isEnabled(definition.name);
+    const defaultFallback = unleash.getVariant(definition.name, {
+      environment: "default",
+    });
+    const defaultIsEnabled = unleash.isEnabled(definition.name, {
+      environment: "default",
+    });
 
     const codegenStrategy = definition.strategies.find(
       (strategy) => strategy.name === "Codegen"

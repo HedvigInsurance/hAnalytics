@@ -13,7 +13,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <button onClick={() => trackers.screenView(AppScreen.HOME)}>
+        <button onClick={() => trackers.appBackground()}>
           Click to send a tracking event
         </button>
 
