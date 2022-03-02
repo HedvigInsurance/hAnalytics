@@ -19,6 +19,17 @@ type HAnalyticsProviderProps = {
   bootstrapExperiments?: hAnalyticsExperiment[];
 }
 
+const browserVisibilityEvent: (document: Document & {msHidden?: boolean; webkitHidden?: boolean}) => string = (document) => {
+  if (typeof document.hidden !== "undefined") {
+    // Opera 12.10 and Firefox 18 and later support
+    return "visibilitychange"
+  } else if (typeof document.msHidden !== "undefined") {
+    return "msvisibilitychange"
+  } else if (typeof document.webkitHidden !== "undefined") {
+    return "webkitvisibilitychange"
+  }
+}
+
 export const HAnalyticsProvider: FunctionComponent<HAnalyticsProviderProps> = (props) => {
   const networking = new hAnalyticsNetworking(props.getConfig);
   const trackers = new hAnalyticsTrackers(networking)
@@ -28,10 +39,33 @@ export const HAnalyticsProvider: FunctionComponent<HAnalyticsProviderProps> = (p
 
   useEffect(() => {
     trackers.identify()
+    trackers.appStarted()
     experiments.load().then(() => {
       setExperimentsLoading(false)
     })
   }, [])
+
+  useEffect(() => {
+    if (typeof document === "undefined") {
+      return
+    }
+
+    const visibilityChange = browserVisibilityEvent(document)
+
+    const handler = () => {
+      if (document.hidden) {
+        trackers.appBackground()
+      } else {
+        trackers.appResumed()
+      }
+    }
+
+    document.addEventListener(visibilityChange, handler, false)
+
+    return () => {
+      document.removeEventListener(visibilityChange, handler)
+    }
+  })
 
   return <HAnalyticsContext.Provider value={{
     trackers,
