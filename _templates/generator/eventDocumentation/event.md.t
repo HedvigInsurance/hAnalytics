@@ -34,7 +34,7 @@ hAnalytics.<%= event.accessor %>(<%- (event.inputs ?? []).map((input) => `${inpu
 
 <% if (event.targets.includes("JS")) { %>
 
-## JS / TS
+## Typescript
 
 ```typescript
 hAnalyticsTrackers.<%= event.accessor %>(<%- (event.inputs ?? []).map((input) => `${input.argument}: ${swiftTypeMap(input.type)}`).join(", ") %>)
