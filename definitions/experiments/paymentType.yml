@@ -1,7 +1,7 @@
 name: payment_type
 description: Which payment provider to use
 accessor: paymentType
-defaultFallback: adyen
+defaultFallback: trustly
 variants:
   - name: adyen
     case: adyen
