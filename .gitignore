@@ -11,3 +11,4 @@ google-credentials.json
 .env
 client/ts/dist/**/*
 .next/**/*
+.next
