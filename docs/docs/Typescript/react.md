@@ -47,26 +47,7 @@ import {
 } from "@hedviginsurance/hanalytics-client";
 
 const getHAnalyticsConfig = (userAgent) => ({
-  httpHeaders: {},
-  environment:
-    Environment.STAGING || Environment.PRODUCTION || Environment.LOCAL,
-  context: {
-    locale: "sv-SE",
-    app: {
-      name: "NextJSExample",
-      namespace: "staging",
-      version: "1.0.0",
-      build: "3000",
-    },
-    device: {
-      id: "UUID",
-    },
-    session: {
-      id: "UUID",
-    },
-  },
-  userAgent,
-  onEvent: (event) => {},
+  // see episode on configuration
 });
 
 function App({ Component, pageProps }) {

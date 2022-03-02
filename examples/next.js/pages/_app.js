@@ -2,16 +2,17 @@ import "../styles/globals.css";
 import {
   HAnalyticsProvider,
   bootstrapExperiments,
+  Environment,
 } from "@hedviginsurance/hanalytics-client";
 
 const getHAnalyticsConfig = (userAgent) => ({
   httpHeaders: {},
-  endpointURL: "https://hanalytics-staging.herokuapp.com",
+  environment: Environment.STAGING,
   context: {
     locale: "sv-SE",
     app: {
       name: "web-onboarding",
-      namespace: "staging",
+      namespace: "com.hedvig.test.web-onboarding",
       version: "1.0.0",
       build: "3000",
     },

@@ -15,10 +15,10 @@ const networking = new hAnalyticsNetworking(() => ({
   context: {
     locale: "sv-SE",
     app: {
-      name: "NextJSExample", // name of app
-      namespace: "staging", // environment
-      version: "1.0.0", // version, preferably pick from package.json
-      build: "3000", // build number
+      name: "web-onboarding", // name of app
+      namespace: "com.hedvig.test.web-onboarding", // namespace, usually uniquely identifies an application inside an environment
+      version: "1.0.0", // version, preferably picked from package.json
+      build: "3000", // build number or git hash or similar
     },
     device: {
       id: "UUID", // Hedvig Device ID
