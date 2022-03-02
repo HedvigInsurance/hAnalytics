@@ -6,69 +6,272 @@ package com.hedvig.hanalytics
 enum class AppScreen(val value: String) {
 
     OFFER("offer"),
-
     CLAIMS_STATUS_DETAIL("claims_status_detail"),
-
     CLAIM_HONOR_PLEDGE("claim_honor_pledge"),
-
     COMMON_CLAIM_DETAIL("common_claim_detail"),
-
     EMBARK("embark"),
-
     EMBARK_TOOLTIP("embark_tooltip"),
-
     MARKET_PICKER("market_picker"),
-
     MARKETING("marketing"),
-
     DATA_COLLECTION_AUTHENTICATING("data_collection_authenticating"),
-
     DATA_COLLECTION_CREDENTIALS("data_collection_credentials"),
-
     DATA_COLLECTION_FAIL("data_collection_fail"),
-
     DATA_COLLECTION_INTRO("data_collection_intro"),
-
     DATA_COLLECTION_SUCCESS("data_collection_success"),
-
     CONNECT_PAYMENT_ADYEN("connect_payment_adyen"),
-
     CONNECT_PAYMENT_TRUSTLY("connect_payment_trustly"),
-
     CONNECT_PAYMENT_FAILED("connect_payment_failed"),
-
     CONNECT_PAYMENT_SUCCESS("connect_payment_success"),
-
     PAYMENTS("payments"),
-
     CHARITY("charity"),
-
     CONTACT_INFO("contact_info"),
-
     CROSS_SELL_DETAIL("cross_sell_detail"),
-
     FOREVER("forever"),
-
     HOME("home"),
-
     INSURANCE_DETAIL("insurance_Detail"),
-
     INSURANCES("insurances"),
-
     MOVING_FLOW_INTRO("moving_flow_intro"),
-
     PROFILE("profile"),
-
     APP_INFORMATION("app_information"),
-
     APP_SETTINGS("app_settings"),
-
     CHAT("chat")
     ;
 }
 
+/**
+ * Which login method to use
+ */
+enum class LoginMethod(val variantName: String) {
+    BANK_ID_SWEDEN("bank_id_sweden"),
+    NEM_ID("nem_id"),
+    OTP("otp"),
+    BANK_ID_NORWAY("bank_id_norway"),
+    ;
+
+    companion object {
+        fun getByVariantName(name: String) = values().first { it.variantName == name }
+    }
+}
+
+/**
+ * Which payment provider to use
+ */
+enum class PaymentType(val variantName: String) {
+    ADYEN("adyen"),
+    TRUSTLY("trustly"),
+    ;
+
+    companion object {
+        fun getByVariantName(name: String) = values().first { it.variantName == name }
+    }
+}
+
 abstract class HAnalytics {
     protected abstract fun send(event: HAnalyticsEvent)
+    protected abstract suspend fun getExperiment(name: String): HAnalyticsExperiment
+    abstract suspend fun invalidateExperiments()
+
+    protected fun experimentEvaluated(experiment: HAnalyticsExperiment) {
+        send(
+            HAnalyticsEvent(
+                "experiment_evaluated",
+                mapOf(
+                    "name" to experiment.name,
+                    "variant" to experiment.variant,
+                )
+            )
+        )
+    }
+
+    /**
+     * Allow fetching data with external data providers (for example insurely)
+     */
+    suspend fun allowExternalDataCollection(): Boolean {
+        try {
+            val experiment = getExperiment("allow_external_data_collection")
+            experimentEvaluated(experiment)
+
+            return experiment.variant == "enabled"
+        } catch (e: Exception) {
+            experimentEvaluated(
+                HAnalyticsExperiment(
+                    "allow_external_data_collection",
+                    "disabled",
+                )
+            )
+
+            return false
+        }
+    }
+
+    /**
+     * Is the forever february campaign activated
+     */
+    suspend fun foreverFebruaryCampaign(): Boolean {
+        try {
+            val experiment = getExperiment("forever_february_campaign")
+            experimentEvaluated(experiment)
+
+            return experiment.variant == "enabled"
+        } catch (e: Exception) {
+            experimentEvaluated(
+                HAnalyticsExperiment(
+                    "forever_february_campaign",
+                    "disabled",
+                )
+            )
+
+            return false
+        }
+    }
+
+    /**
+     * Should the french market be shown
+     */
+    suspend fun frenchMarket(): Boolean {
+        try {
+            val experiment = getExperiment("french_market")
+            experimentEvaluated(experiment)
+
+            return experiment.variant == "enabled"
+        } catch (e: Exception) {
+            experimentEvaluated(
+                HAnalyticsExperiment(
+                    "french_market",
+                    "disabled",
+                )
+            )
+
+            return false
+        }
+    }
+
+    /**
+     * Is the key gear feature activated
+     */
+    suspend fun keyGear(): Boolean {
+        try {
+            val experiment = getExperiment("key_gear")
+            experimentEvaluated(experiment)
+
+            return experiment.variant == "enabled"
+        } catch (e: Exception) {
+            experimentEvaluated(
+                HAnalyticsExperiment(
+                    "key_gear",
+                    "disabled",
+                )
+            )
+
+            return false
+        }
+    }
+
+    /**
+     * Which login method to use
+     */
+    suspend fun loginMethod(): LoginMethod {
+        try {
+            val experiment = getExperiment("login_method")
+            experimentEvaluated(experiment)
+
+            return LoginMethod.getByVariantName(experiment.variant)
+        } catch (e: Exception) {
+            experimentEvaluated(
+                HAnalyticsExperiment(
+                    "login_method",
+                    "otp",
+                )
+            )
+
+            return LoginMethod.getByVariantName("otp")
+        }
+    }
+
+    /**
+     * Is moving flow activated
+     */
+    suspend fun movingFlow(): Boolean {
+        try {
+            val experiment = getExperiment("moving_flow")
+            experimentEvaluated(experiment)
+
+            return experiment.variant == "enabled"
+        } catch (e: Exception) {
+            experimentEvaluated(
+                HAnalyticsExperiment(
+                    "moving_flow",
+                    "disabled",
+                )
+            )
+
+            return false
+        }
+    }
+
+    /**
+     * Which payment provider to use
+     */
+    suspend fun paymentType(): PaymentType {
+        try {
+            val experiment = getExperiment("payment_type")
+            experimentEvaluated(experiment)
+
+            return PaymentType.getByVariantName(experiment.variant)
+        } catch (e: Exception) {
+            experimentEvaluated(
+                HAnalyticsExperiment(
+                    "payment_type",
+                    "adyen",
+                )
+            )
+
+            return PaymentType.getByVariantName("adyen")
+        }
+    }
+
+    /**
+     * Show payment step in PostOnboarding
+     */
+    suspend fun postOnboardingShowPaymentStep(): Boolean {
+        try {
+            val experiment = getExperiment("post_onboarding_show_payment_step")
+            experimentEvaluated(experiment)
+
+            return experiment.variant == "enabled"
+        } catch (e: Exception) {
+            experimentEvaluated(
+                HAnalyticsExperiment(
+                    "post_onboarding_show_payment_step",
+                    "disabled",
+                )
+            )
+
+            return false
+        }
+    }
+
+    /**
+     * Defines the lowest supported app version. Should prompt a user to update if it uses an outdated version.
+     */
+    suspend fun updateNecessary(): Boolean {
+        try {
+            val experiment = getExperiment("update_necessary")
+            experimentEvaluated(experiment)
+
+            return experiment.variant == "enabled"
+        } catch (e: Exception) {
+            experimentEvaluated(
+                HAnalyticsExperiment(
+                    "update_necessary",
+                    "disabled",
+                )
+            )
+
+            return false
+        }
+    }
+
     /**
      * A screen was shown in the app
      */
@@ -484,6 +687,20 @@ query ReceivedQuotes(${"\$"}quote_ids: [ID!]!) {
                 name = "app_started",
                 properties = mapOf(),
             )
+        )
+    }
+
+    companion object {
+        val EXPERIMENTS = listOf(
+            "allow_external_data_collection",
+            "forever_february_campaign",
+            "french_market",
+            "key_gear",
+            "login_method",
+            "moving_flow",
+            "payment_type",
+            "post_onboarding_show_payment_step",
+            "update_necessary",
         )
     }
 }
