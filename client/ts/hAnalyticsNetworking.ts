@@ -17,7 +17,7 @@ export class hAnalyticsNetworking {
     const config = this.getConfig();
 
     try {
-      await fetch(config.endpointURL + "/identify", {
+      await fetch(config.environment + "/identify", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -81,7 +81,7 @@ export class hAnalyticsNetworking {
     const context = this.constructContext();
 
     try {
-      const response = await fetch(config.endpointURL + "/collect", {
+      const response = await fetch(config.environment + "/collect", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -125,7 +125,7 @@ export class hAnalyticsNetworking {
     const context = this.constructContext();
 
     try {
-      return fetch(config.endpointURL + "/experiments", {
+      return fetch(config.environment + "/experiments", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

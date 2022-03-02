@@ -3,12 +3,15 @@
 Here is an example configuration
 
 ```typescript
+import { Environment } from "@hedviginsurance/hanalytics-client";
+
 const networking = new hAnalyticsNetworking(() => ({
   httpHeaders: {
     Authorization: "Bearer hedvigtoken", // not required
     // pass all other hedvig standard headers here
   },
-  endpointURL: "https://hanalytics-staging.herokuapp.com", // url to hanalytics
+  environment:
+    Environment.STAGING || Environment.PRODUCTION || Environment.LOCAL,
   context: {
     locale: "sv-SE",
     app: {

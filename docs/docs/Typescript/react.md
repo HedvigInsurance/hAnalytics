@@ -43,11 +43,13 @@ Here is an example in Next.js:
 import {
   HAnalyticsProvider,
   bootstrapExperiments,
+  Environment,
 } from "@hedviginsurance/hanalytics-client";
 
 const getHAnalyticsConfig = (userAgent) => ({
   httpHeaders: {},
-  endpointURL: "https://hanalytics-staging.herokuapp.com",
+  environment:
+    Environment.STAGING || Environment.PRODUCTION || Environment.LOCAL,
   context: {
     locale: "sv-SE",
     app: {
