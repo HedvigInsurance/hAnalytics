@@ -10,7 +10,7 @@ const getHAnalyticsConfig = (userAgent) => ({
   context: {
     locale: "sv-SE",
     app: {
-      name: "NextJSExample",
+      name: "web-onboarding",
       namespace: "staging",
       version: "1.0.0",
       build: "3000",
