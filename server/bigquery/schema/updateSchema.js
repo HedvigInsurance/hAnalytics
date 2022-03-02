@@ -1,7 +1,6 @@
 const omit = require("../omit");
 const sortFields = require("./sortFields");
 const deepmerge = require("deepmerge");
-const printDiff = require("print-diff");
 
 const mergeFields = (a, b) => {
   const mergedFields = [];
