@@ -80,6 +80,8 @@ export const HAnalyticsProvider: FunctionComponent<HAnalyticsProviderProps> = (p
       )
     }
 
+    handler()
+
     window.addEventListener("locationchange", handler, false)
 
     return () => {
