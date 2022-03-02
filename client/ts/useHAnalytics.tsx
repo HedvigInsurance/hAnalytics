@@ -104,5 +104,10 @@ export const bootstrapExperiments: (getConfig: () => hAnalyticsConfig) => Promis
 
 export const useHAnalytics = (): hAnalytics => {
   const hAnalyticsContext = useContext(HAnalyticsContext)
+
+  if (hAnalyticsContext === null) {
+    throw new Error("[hAnalytics] useHAnalytics requires a HAnalyticsProvider to be used.")
+  }
+
   return hAnalyticsContext
 };
