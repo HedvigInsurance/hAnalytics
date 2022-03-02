@@ -1,6 +1,6 @@
 {
     "name": "@hedviginsurance/hanalytics-client",
-    "version": "0.199.0",
+    "version": "0.201.0",
     "description": "",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",

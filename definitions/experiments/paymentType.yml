@@ -1,7 +1,7 @@
 name: payment_type
 description: Which payment provider to use
 accessor: paymentType
-defaultFallback: trustly
+defaultFallback: adyen
 variants:
   - name: adyen
     case: adyen
@@ -9,4 +9,3 @@ variants:
     case: trustly
 targets:
   - Swift
-  - Kotlin
