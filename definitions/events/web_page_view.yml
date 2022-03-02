@@ -1,0 +1,18 @@
+name: web_page_view
+description: A page was shown on the web
+accessor: pageView
+inputs:
+  - name: href
+    description: URL of the current page
+    type: String
+    argument: href
+  - name: pathname
+    description: Pathname of the current page
+    type: String
+    argument: pathname
+  - name: hostname
+    description: Hostname of the current page
+    type: String
+    argument: hostname
+targets:
+  - JS

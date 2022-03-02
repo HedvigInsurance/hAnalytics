@@ -67,6 +67,26 @@ export const HAnalyticsProvider: FunctionComponent<HAnalyticsProviderProps> = (p
     }
   })
 
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return
+    }
+
+    const handler = () => {
+      trackers.pageView(
+        window.location.href,
+        window.location.pathname,
+        window.location.hostname
+      )
+    }
+
+    window.addEventListener("locationchange", handler, false)
+
+    return () => {
+      window.removeEventListener("locationchange", handler)
+    }
+  })
+
   return <HAnalyticsContext.Provider value={{
     trackers,
     experiments,

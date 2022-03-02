@@ -526,4 +526,21 @@ export class hAnalyticsTrackers {
       properties: properties,
     });
   }
+
+  // A page was shown on the web
+
+  pageView(href: string, pathname: string, hostname: string) {
+    const properties: { [name: string]: any } = {
+      href: href,
+
+      pathname: pathname,
+
+      hostname: hostname,
+    };
+
+    this.networking.send({
+      name: "web_page_view",
+      properties: properties,
+    });
+  }
 }
