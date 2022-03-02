@@ -6,4 +6,4 @@ export {
   useHAnalytics,
   bootstrapExperiments,
 } from "./useHAnalytics";
-export { Environment } from "./hAnalyticsConfig"
+export { Environment } from "./hAnalyticsConfig";

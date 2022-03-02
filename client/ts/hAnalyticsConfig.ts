@@ -4,7 +4,7 @@ import { hAnalyticsCollectResponse } from "./hAnalyticsEvent";
 export enum Environment {
   STAGING = "https://hanalytics-staging.herokuapp.com",
   PRODUCTION = "https://hanalytics-production.herokuapp.com",
-  LOCAL = "http://localhost:3034"
+  LOCAL = "http://localhost:3034",
 }
 
 export type hAnalyticsConfig = {
