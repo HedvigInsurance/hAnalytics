@@ -180,11 +180,11 @@ abstract class HAnalytics {
             experimentEvaluated(
                 HAnalyticsExperiment(
                     "login_method",
-                    "bankIdSweden",
+                    "otp",
                 )
             )
 
-            return LoginMethod.getByVariantName("bankIdSweden")
+            return LoginMethod.getByVariantName("otp")
         }
     }
 
