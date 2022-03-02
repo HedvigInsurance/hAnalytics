@@ -1,0 +1,4 @@
+name: screen_view_forever
+description: When Hedvig Forever is shown
+accessor: screenViewForever
+deprecationReason: Replaced with screenView

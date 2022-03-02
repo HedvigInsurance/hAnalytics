@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`validate event 1`] = `
+Object {
+  "name": "screen_view_connect_payment_adyen",
+  "variables": Object {},
+}
+`;

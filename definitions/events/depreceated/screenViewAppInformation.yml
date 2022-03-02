@@ -1,0 +1,4 @@
+name: screen_view_app_information
+description: When app information screen was shown
+accessor: screenViewAppInformation
+deprecationReason: Replaced with screenView

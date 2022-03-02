@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`validate insuranceDetail 1`] = `
+Object {
+  "name": "screen_view_insurance_detail",
+  "variables": Object {
+    "contract_id": "28426fd4-8157-4efd-8e58-52d02a052b1e",
+  },
+}
+`;

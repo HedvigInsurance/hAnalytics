@@ -1,0 +1,4 @@
+name: screen_view_home
+description: When Home tab is shown
+accessor: screenViewHome
+deprecationReason: Replaced with screenView

@@ -1,0 +1,8 @@
+name: screen_view_data_collection_fail
+description: When data collection failed
+accessor: screenViewDataCollectionFail
+deprecationReason: Replaced with screenView
+inputs:
+  - name: provider_id
+    type: String
+    argument: providerId
