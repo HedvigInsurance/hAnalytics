@@ -6,12 +6,27 @@ const { getTraits } = require("./traits");
 const { transformHeaders } = require("./tools");
 const unleashConfig = require("../commons/unleashConfig");
 
-const unleash = initialize(unleashConfig);
+const unleashInstances = {};
+
+const getUnleash = (appName) => {
+  if (unleashInstances[appName]) {
+    return unleashInstances[appName];
+  }
+
+  unleashInstances[appName] = initialize({
+    ...unleashConfig,
+    appName,
+  });
+
+  return unleashInstances[appName];
+};
 
 module.exports = (app) => {
   app.post("/experiments", async (req, res) => {
     const { trackingId, appName, appVersion, filter } = req.body;
     const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
+
+    const unleash = getUnleash(appName);
 
     const acceptsLanguage = req.acceptsLanguages()[0];
 
