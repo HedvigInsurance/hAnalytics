@@ -61,7 +61,6 @@ const filterFieldsAccordingToEvent = async (eventName, row, bigQueryConfig) => {
   }
 
   const fields = await eventToSchemaFields(event, bigQueryConfig);
-
   return filterFieldsAccordingToFields(fields, row);
 };
 

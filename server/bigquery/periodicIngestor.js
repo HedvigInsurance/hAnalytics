@@ -2,6 +2,7 @@ const timersPromises = require("timers/promises");
 const setupSchema = require("./setupSchema");
 const validateAgainstSchema = require("./schema/validateAgainstSchema");
 const filterFieldsAccordingToEvent = require("./schema/filterFieldsAccordingToEvent");
+const removeNullValues = require("./removeNullValues");
 
 const createState = () => {
   var _schemaLoadedPromiseHandlers = {};
@@ -66,7 +67,7 @@ const ingest = async (config, state) => {
         await config.bigquery
           .dataset(config.dataset)
           .table(entry.table)
-          .insert([filteredRow]);
+          .insert([removeNullValues(filteredRow)]);
       }
     } catch (err) {
       console.log(
