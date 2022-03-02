@@ -127,6 +127,7 @@ export class hAnalyticsNetworking {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "Accepts-Language": config.context.locale,
           ...config.httpHeaders,
         },
         body: JSON.stringify({
