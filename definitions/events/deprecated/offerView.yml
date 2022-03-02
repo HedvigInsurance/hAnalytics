@@ -26,3 +26,5 @@ graphql:
     - name: initiated_from
       type: String
       path: quoteBundle.quotes[0].initiatedFrom
+targets:
+  - Kotlin

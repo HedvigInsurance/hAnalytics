@@ -2,3 +2,5 @@ name: screen_view_claim_honor_pledge
 description: When the honor pledge screen is shown
 accessor: screenViewClaimHonorPledge
 deprecationReason: Replaced with screenView
+targets:
+  - Kotlin

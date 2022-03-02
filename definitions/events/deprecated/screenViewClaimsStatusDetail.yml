@@ -9,3 +9,5 @@ inputs:
   - name: claim_status
     type: String
     argument: claimStatus
+targets:
+  - Kotlin

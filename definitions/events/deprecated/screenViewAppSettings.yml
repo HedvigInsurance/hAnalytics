@@ -2,3 +2,5 @@ name: screen_view_app_settings
 description: When app settings screen was shown
 accessor: screenViewAppSettings
 deprecationReason: Replaced with screenView
+targets:
+  - Kotlin

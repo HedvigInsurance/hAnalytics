@@ -6,3 +6,5 @@ inputs:
   - name: story_name
     type: String
     argument: storyName
+targets:
+  - Kotlin

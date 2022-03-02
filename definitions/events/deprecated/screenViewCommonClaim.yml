@@ -6,3 +6,5 @@ inputs:
   - name: id
     type: String
     argument: id
+targets:
+  - Kotlin

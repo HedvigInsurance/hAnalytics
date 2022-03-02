@@ -2,3 +2,5 @@ name: screen_view_charity
 description: When the charity screen is shown
 accessor: screenViewCharity
 deprecationReason: Replaced with screenView
+targets:
+  - Kotlin

@@ -6,3 +6,5 @@ inputs:
   - name: contract_id
     type: String
     argument: contractId
+targets:
+  - Kotlin

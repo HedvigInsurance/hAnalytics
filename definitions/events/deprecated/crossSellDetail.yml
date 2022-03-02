@@ -6,3 +6,5 @@ inputs:
   - name: type_of_contract
     type: String
     argument: typeOfContract
+targets:
+  - Kotlin

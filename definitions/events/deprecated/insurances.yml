@@ -16,3 +16,5 @@ graphql:
     - name: has_home_insurance
       type: Boolean
       path: "((contracts[?contains(typeOfContract, 'HOME') == `true`] || contracts[?contains(typeOfContract, 'APARTMENT') == `true`] || contracts[?contains(typeOfContract, 'HOUSE') == `true`]) && true) == true"
+targets:
+  - Kotlin

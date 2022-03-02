@@ -2,3 +2,5 @@ name: screen_view_profile
 description: When Profile tab is shown
 accessor: screenViewProfile
 deprecationReason: Replaced with screenView
+targets:
+  - Kotlin
