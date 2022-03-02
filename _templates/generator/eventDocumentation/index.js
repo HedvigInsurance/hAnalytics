@@ -12,12 +12,12 @@ const getIntegrationStatus = async (event) => {
     .replace(/\..+/, "");
 
   try {
-    const hasEvent = async (os) => {
+    const hasEvent = async (where) => {
       const query = `
         SELECT
             count(*) as count
         FROM \`${bigQueryConfig.projectId}.${bigQueryConfig.dataset}.${event.name}\`
-        WHERE context.device.os.name="${os}" AND EXTRACT(DATE FROM event.timestamp) >= DATE_ADD(CURRENT_DATE(), INTERVAL -30 DAY)
+        WHERE ${where} AND EXTRACT(DATE FROM event.timestamp) >= DATE_ADD(CURRENT_DATE(), INTERVAL -30 DAY)
       `;
 
       const [rows] = await bigQueryConfig.bigquery
@@ -30,12 +30,21 @@ const getIntegrationStatus = async (event) => {
       return rows[0].count > 0;
     };
 
-    const hasIOSEvent = await hasEvent("iOS");
-    const hasAndroidEvent = await hasEvent("Android");
+    const hasIOSEvent = await hasEvent(
+      `context.app.name = "Hedvig" AND context.os.name = "iOS"`
+    );
+    const hasAndroidEvent = await hasEvent(
+      `context.app.name = "Hedvig" AND context.os.name = "Android"`
+    );
+
+    const hasWebOnboardingEvent = await hasEvent(
+      `context.app.name = "WebOnboarding"`
+    );
 
     return {
       ios: hasIOSEvent,
       android: hasAndroidEvent,
+      webOnboarding: hasWebOnboardingEvent,
       lastUpdated: lastUpdated,
     };
   } catch (err) {

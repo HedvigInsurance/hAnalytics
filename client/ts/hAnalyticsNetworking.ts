@@ -58,8 +58,8 @@ export class hAnalyticsNetworking {
         ...config.context.device,
         manufacturer: device.vendor,
         model: device.model,
-        name: "browser",
-        type: device.type,
+        name: device.type,
+        type: "browser",
         screen: {
           density: safeWindow?.devicePixelRatio || 0,
           height: safeWindow?.innerHeight || 0,

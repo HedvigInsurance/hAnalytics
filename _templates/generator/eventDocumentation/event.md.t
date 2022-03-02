@@ -46,20 +46,21 @@ hAnalyticsTrackers.<%= event.accessor %>(<%- (event.inputs ?? []).map((input) =>
 
 <% if (event.type !== "INTERNAL") { %>
 
-## Platform status
+## App status
 
-| Platform      | Status |
+| App      | Status |
 | ----------- | ----------- |
 | iOS      |    <%= integrationStatus.ios ? "Yes" : "No" %>    |
 | Android      | <%= integrationStatus.android ? "Yes" : "No" %>       |
+| Web-Onboarding      | <%= integrationStatus.webOnboarding ? "Yes" : "No" %>       |
 
 Yes means that the platform has sent data atleast once in the last 30 days for this event.
 
-Platform status was last checked on <%= integrationStatus.lastUpdated %>
+App status was last checked on <%= integrationStatus.lastUpdated %>
 
 <% } else { %>
 
-## Platform status
+## App status
 
 This is an internal event, its automatically collected and managed by the `hAnalytics` server. As such it should be available always given its characteristics, see description for more info.
 
