@@ -214,89 +214,6 @@ abstract class HAnalytics {
                 )
         }
             /**
-            * When embark does an external redirect
-         */
-         fun embarkExternalRedirect(location: String) {
-                send(
-                    HAnalyticsEvent(
-                        name = "embark_external_redirect",
-                        properties = mapOf(
-                                "location" to location,
-                        ),
-                    )
-                )
-        }
-            /**
-            * When embark goes back one passage
-         */
-         fun embarkPassageGoBack(storyName: String,passageName: String) {
-                send(
-                    HAnalyticsEvent(
-                        name = "embark_passage_go_back",
-                        properties = mapOf(
-                                "originated_from_embark_story" to storyName,
-                                "passage_name" to passageName,
-                        ),
-                    )
-                )
-        }
-            /**
-            * When embark sends a tracking event
-         */
-         fun embarkTrack(storyName: String,eventName: String,store: Map<String, String?>) {
-                send(
-                    HAnalyticsEvent(
-                        name = "embark_track",
-                        properties = mapOf(
-                                "originated_from_embark_story" to storyName,
-                                "event_name" to eventName,
-                                "store" to store,
-                        ),
-                    )
-                )
-        }
-            /**
-            * When embark does a varianted offer redirect
-         */
-         fun embarkVariantedOfferRedirect(allIds: List<String>,selectedIds: List<String>) {
-                send(
-                    HAnalyticsEvent(
-                        name = "embark_varianted_offer_redirect",
-                        properties = mapOf(
-                                "all_ids" to allIds,
-                                "selected_ids" to selectedIds,
-                        ),
-                    )
-                )
-        }
-            /**
-            * Experiment where evaluated, typically means it was shown on screen or similar
-         */
-         fun experimentEvaluated(name: String,variant: String) {
-                send(
-                    HAnalyticsEvent(
-                        name = "experiment_evaluated",
-                        properties = mapOf(
-                                "name" to name,
-                                "variant" to variant,
-                        ),
-                    )
-                )
-        }
-            /**
-            * Experiments where loaded from server
-         */
-         fun experimentsLoaded(experiments: List<String>) {
-                send(
-                    HAnalyticsEvent(
-                        name = "experiments_loaded",
-                        properties = mapOf(
-                                "experiments" to experiments,
-                        ),
-                    )
-                )
-        }
-            /**
             * User just logged in
          */
          fun loggedIn() {
@@ -421,6 +338,89 @@ abstract class HAnalytics {
                     HAnalyticsEvent(
                         name = "home_payment_card_visible",
                         properties = mapOf(
+                        ),
+                    )
+                )
+        }
+            /**
+            * When embark does an external redirect
+         */
+         fun embarkExternalRedirect(location: String) {
+                send(
+                    HAnalyticsEvent(
+                        name = "embark_external_redirect",
+                        properties = mapOf(
+                                "location" to location,
+                        ),
+                    )
+                )
+        }
+            /**
+            * When embark goes back one passage
+         */
+         fun embarkPassageGoBack(storyName: String,passageName: String) {
+                send(
+                    HAnalyticsEvent(
+                        name = "embark_passage_go_back",
+                        properties = mapOf(
+                                "originated_from_embark_story" to storyName,
+                                "passage_name" to passageName,
+                        ),
+                    )
+                )
+        }
+            /**
+            * When embark sends a tracking event
+         */
+         fun embarkTrack(storyName: String,eventName: String,store: Map<String, String?>) {
+                send(
+                    HAnalyticsEvent(
+                        name = "embark_track",
+                        properties = mapOf(
+                                "originated_from_embark_story" to storyName,
+                                "event_name" to eventName,
+                                "store" to store,
+                        ),
+                    )
+                )
+        }
+            /**
+            * When embark does a varianted offer redirect
+         */
+         fun embarkVariantedOfferRedirect(allIds: List<String>,selectedIds: List<String>) {
+                send(
+                    HAnalyticsEvent(
+                        name = "embark_varianted_offer_redirect",
+                        properties = mapOf(
+                                "all_ids" to allIds,
+                                "selected_ids" to selectedIds,
+                        ),
+                    )
+                )
+        }
+            /**
+            * Experiment where evaluated, typically means it was shown on screen or similar
+         */
+         fun experimentEvaluated(name: String,variant: String) {
+                send(
+                    HAnalyticsEvent(
+                        name = "experiment_evaluated",
+                        properties = mapOf(
+                                "name" to name,
+                                "variant" to variant,
+                        ),
+                    )
+                )
+        }
+            /**
+            * Experiments where loaded from server
+         */
+         fun experimentsLoaded(experiments: List<String>) {
+                send(
+                    HAnalyticsEvent(
+                        name = "experiments_loaded",
+                        properties = mapOf(
+                                "experiments" to experiments,
                         ),
                     )
                 )

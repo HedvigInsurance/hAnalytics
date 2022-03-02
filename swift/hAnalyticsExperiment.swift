@@ -1,168 +1,241 @@
 import Foundation
 
-/// Which login method to use
-public enum LoginMethod: String {
-  case bankIdSweden = "bank_id_sweden"
-  case nemId = "nem_id"
-  case otp = "otp"
-  case bankIdNorway = "bank_id_norway"
-}
 
-/// Which payment provider to use
-public enum PaymentType: String {
-  case adyen = "adyen"
-  case trustly = "trustly"
-}
+    /// Which login method to use
+    public enum LoginMethod: String {
+       
+        case bankIdSweden = "bank_id_sweden"
+       
+        case nemId = "nem_id"
+       
+        case otp = "otp"
+       
+        case bankIdNorway = "bank_id_norway"
+       
+    }
+
+    /// Which payment provider to use
+    public enum PaymentType: String {
+       
+        case adyen = "adyen"
+       
+        case trustly = "trustly"
+       
+    }
+
 
 public struct hAnalyticsExperiment {
-  // loads all experiments from server
-  public static func load(onComplete: @escaping (_ success: Bool) -> Void) {
-    hAnalyticsNetworking.loadExperiments(
-      filter: [
-        "allow_external_data_collection", "forever_february_campaign", "french_market", "key_gear",
-        "login_method", "moving_flow", "payment_type", "post_onboarding_show_payment_step",
-        "update_necessary",
-      ],
-      onComplete: onComplete
-    )
-  }
+// loads all experiments from server
+public static func load(onComplete: @escaping (_ success: Bool) -> Void) {
+    hAnalyticsNetworking.loadExperiments(filter: ["allow_external_data_collection","forever_february_campaign","french_market","key_gear","login_method","moving_flow","payment_type","post_onboarding_show_payment_step","update_necessary"], onComplete: onComplete)
+}
 
-  /// Allow fetching data with external data providers (for example insurely)
-  public static var allowExternalDataCollection: Bool {
-    if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
-      experiment["name"] == "allow_external_data_collection"
-    }), let variant = experiment["variant"] {
-      hAnalyticsEvent.experimentEvaluated(name: "allow_external_data_collection", variant: variant)
-        .send()
-      return variant == "enabled"
+
+    
+    /// Allow fetching data with external data providers (for example insurely)
+    public static var allowExternalDataCollection: Bool {
+       if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
+            experiment["name"] == "allow_external_data_collection"
+       }), let variant = experiment["variant"] {
+            hAnalyticsEvent.experimentEvaluated(
+                name: "allow_external_data_collection",
+                variant: variant
+            ).send()
+           
+           return variant == "enabled"
+       }
+
+       hAnalyticsEvent.experimentEvaluated(
+            name: "allow_external_data_collection",
+            variant: "disabled"
+        ).send()
+
+       return false
     }
+    
 
-    hAnalyticsEvent.experimentEvaluated(name: "allow_external_data_collection", variant: "disabled")
-      .send()
+    
+    /// Is the forever february campaign activated
+    public static var foreverFebruaryCampaign: Bool {
+       if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
+            experiment["name"] == "forever_february_campaign"
+       }), let variant = experiment["variant"] {
+            hAnalyticsEvent.experimentEvaluated(
+                name: "forever_february_campaign",
+                variant: variant
+            ).send()
+           
+           return variant == "enabled"
+       }
 
-    return false
-  }
+       hAnalyticsEvent.experimentEvaluated(
+            name: "forever_february_campaign",
+            variant: "disabled"
+        ).send()
 
-  /// Is the forever february campaign activated
-  public static var foreverFebruaryCampaign: Bool {
-    if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
-      experiment["name"] == "forever_february_campaign"
-    }), let variant = experiment["variant"] {
-      hAnalyticsEvent.experimentEvaluated(name: "forever_february_campaign", variant: variant)
-        .send()
-      return variant == "enabled"
+       return false
     }
+    
 
-    hAnalyticsEvent.experimentEvaluated(name: "forever_february_campaign", variant: "disabled")
-      .send()
+    
+    /// Should the french market be shown
+    public static var frenchMarket: Bool {
+       if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
+            experiment["name"] == "french_market"
+       }), let variant = experiment["variant"] {
+            hAnalyticsEvent.experimentEvaluated(
+                name: "french_market",
+                variant: variant
+            ).send()
+           
+           return variant == "enabled"
+       }
 
-    return false
-  }
+       hAnalyticsEvent.experimentEvaluated(
+            name: "french_market",
+            variant: "disabled"
+        ).send()
 
-  /// Should the french market be shown
-  public static var frenchMarket: Bool {
-    if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
-      experiment["name"] == "french_market"
-    }), let variant = experiment["variant"] {
-      hAnalyticsEvent.experimentEvaluated(name: "french_market", variant: variant).send()
-      return variant == "enabled"
+       return false
     }
+    
 
-    hAnalyticsEvent.experimentEvaluated(name: "french_market", variant: "disabled").send()
+    
+    /// Is the key gear feature activated
+    public static var keyGear: Bool {
+       if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
+            experiment["name"] == "key_gear"
+       }), let variant = experiment["variant"] {
+            hAnalyticsEvent.experimentEvaluated(
+                name: "key_gear",
+                variant: variant
+            ).send()
+           
+           return variant == "enabled"
+       }
 
-    return false
-  }
+       hAnalyticsEvent.experimentEvaluated(
+            name: "key_gear",
+            variant: "disabled"
+        ).send()
 
-  /// Is the key gear feature activated
-  public static var keyGear: Bool {
-    if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
-      experiment["name"] == "key_gear"
-    }), let variant = experiment["variant"] {
-      hAnalyticsEvent.experimentEvaluated(name: "key_gear", variant: variant).send()
-      return variant == "enabled"
+       return false
     }
+    
 
-    hAnalyticsEvent.experimentEvaluated(name: "key_gear", variant: "disabled").send()
+    
+    /// no description given
+    public static var loginMethod: LoginMethod {
+       if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
+            experiment["name"] == "login_method"
+       }), let variant = LoginMethod(rawValue: experiment["variant"] ?? "") {
+           hAnalyticsEvent.experimentEvaluated(
+               name: "login_method",
+               variant: variant.rawValue
+            ).send()
+           
+           return variant
+       }
 
-    return false
-  }
+       hAnalyticsEvent.experimentEvaluated(
+            name: "login_method",
+            variant: LoginMethod.otp.rawValue
+       ).send()
 
-  /// no description given
-  public static var loginMethod: LoginMethod {
-    if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
-      experiment["name"] == "login_method"
-    }), let variant = LoginMethod(rawValue: experiment["variant"] ?? "") {
-      hAnalyticsEvent.experimentEvaluated(name: "login_method", variant: variant.rawValue).send()
-      return variant
+        return .otp
     }
+    
 
-    hAnalyticsEvent.experimentEvaluated(name: "login_method", variant: LoginMethod.nemId.rawValue)
-      .send()
+    
+    /// Is moving flow activated
+    public static var movingFlow: Bool {
+       if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
+            experiment["name"] == "moving_flow"
+       }), let variant = experiment["variant"] {
+            hAnalyticsEvent.experimentEvaluated(
+                name: "moving_flow",
+                variant: variant
+            ).send()
+           
+           return variant == "enabled"
+       }
 
-    return .nemId
-  }
+       hAnalyticsEvent.experimentEvaluated(
+            name: "moving_flow",
+            variant: "disabled"
+        ).send()
 
-  /// Is moving flow activated
-  public static var movingFlow: Bool {
-    if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
-      experiment["name"] == "moving_flow"
-    }), let variant = experiment["variant"] {
-      hAnalyticsEvent.experimentEvaluated(name: "moving_flow", variant: variant).send()
-      return variant == "enabled"
+       return false
     }
+    
 
-    hAnalyticsEvent.experimentEvaluated(name: "moving_flow", variant: "disabled").send()
+    
+    /// no description given
+    public static var paymentType: PaymentType {
+       if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
+            experiment["name"] == "payment_type"
+       }), let variant = PaymentType(rawValue: experiment["variant"] ?? "") {
+           hAnalyticsEvent.experimentEvaluated(
+               name: "payment_type",
+               variant: variant.rawValue
+            ).send()
+           
+           return variant
+       }
 
-    return false
-  }
+       hAnalyticsEvent.experimentEvaluated(
+            name: "payment_type",
+            variant: PaymentType.adyen.rawValue
+       ).send()
 
-  /// no description given
-  public static var paymentType: PaymentType {
-    if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
-      experiment["name"] == "payment_type"
-    }), let variant = PaymentType(rawValue: experiment["variant"] ?? "") {
-      hAnalyticsEvent.experimentEvaluated(name: "payment_type", variant: variant.rawValue).send()
-      return variant
+        return .adyen
     }
+    
 
-    hAnalyticsEvent.experimentEvaluated(name: "payment_type", variant: PaymentType.adyen.rawValue)
-      .send()
+    
+    /// Show payment step in PostOnboarding
+    public static var postOnboardingShowPaymentStep: Bool {
+       if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
+            experiment["name"] == "post_onboarding_show_payment_step"
+       }), let variant = experiment["variant"] {
+            hAnalyticsEvent.experimentEvaluated(
+                name: "post_onboarding_show_payment_step",
+                variant: variant
+            ).send()
+           
+           return variant == "enabled"
+       }
 
-    return .adyen
-  }
+       hAnalyticsEvent.experimentEvaluated(
+            name: "post_onboarding_show_payment_step",
+            variant: "disabled"
+        ).send()
 
-  /// Show payment step in PostOnboarding
-  public static var postOnboardingShowPaymentStep: Bool {
-    if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
-      experiment["name"] == "post_onboarding_show_payment_step"
-    }), let variant = experiment["variant"] {
-      hAnalyticsEvent.experimentEvaluated(
-        name: "post_onboarding_show_payment_step",
-        variant: variant
-      ).send()
-      return variant == "enabled"
+       return false
     }
+    
 
-    hAnalyticsEvent.experimentEvaluated(
-      name: "post_onboarding_show_payment_step",
-      variant: "disabled"
-    ).send()
+    
+    /// Defines the lowest supported app version. Should prompt a user to update if it uses an outdated version.
+    public static var updateNecessary: Bool {
+       if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
+            experiment["name"] == "update_necessary"
+       }), let variant = experiment["variant"] {
+            hAnalyticsEvent.experimentEvaluated(
+                name: "update_necessary",
+                variant: variant
+            ).send()
+           
+           return variant == "enabled"
+       }
 
-    return false
-  }
+       hAnalyticsEvent.experimentEvaluated(
+            name: "update_necessary",
+            variant: "disabled"
+        ).send()
 
-  /// Defines the lowest supported app version. Should prompt a user to update if it uses an outdated version.
-  public static var updateNecessary: Bool {
-    if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
-      experiment["name"] == "update_necessary"
-    }), let variant = experiment["variant"] {
-      hAnalyticsEvent.experimentEvaluated(name: "update_necessary", variant: variant).send()
-      return variant == "enabled"
+       return false
     }
-
-    hAnalyticsEvent.experimentEvaluated(name: "update_necessary", variant: "disabled").send()
-
-    return false
-  }
+    
 
 }
