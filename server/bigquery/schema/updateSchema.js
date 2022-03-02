@@ -1,5 +1,4 @@
 const omit = require("../omit");
-const getSchema = require("./getSchema");
 const sortFields = require("./sortFields");
 const deepmerge = require("deepmerge");
 const printDiff = require("print-diff");
@@ -51,21 +50,12 @@ const updateSchema = async (tableName, fields, description, bigQueryConfig) => {
     mergeFields(currentMetadata.schema.fields, updatedMetadata.schema.fields)
   );
 
-  if (JSON.stringify(currentMetadata) !== JSON.stringify(updatedMetadata)) {
-    printDiff.inline(
-      JSON.stringify(currentMetadata, null, 2),
-      JSON.stringify(updatedMetadata, null, 2)
-    );
+  const table = bigQueryConfig.bigquery
+    .dataset(bigQueryConfig.dataset)
+    .table(tableName);
 
-    const table = bigQueryConfig.bigquery
-      .dataset(bigQueryConfig.dataset)
-      .table(tableName);
-
-    await table.setMetadata(updatedMetadata);
-    bigQueryConfig.cacher.set(`schema-${tableName}`, updatedMetadata);
-
-    return true;
-  }
+  await table.setMetadata(updatedMetadata);
+  bigQueryConfig.cacher.set(`schema-${tableName}`, updatedMetadata);
 
   return false;
 };
