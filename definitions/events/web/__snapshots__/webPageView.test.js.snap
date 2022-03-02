@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`validate 1`] = `
+Object {
+  "name": "web_page_view",
+  "variables": Object {
+    "hostname": "www.hedvig.com",
+    "href": "http://www.hedvig.com/page",
+    "pathname": "/page",
+  },
+}
+`;
