@@ -69,7 +69,10 @@ const ingest = async (config, state) => {
           .insert([filteredRow]);
       }
     } catch (err) {
-      console.log("Error when trying to process event", err);
+      console.log(
+        "Error when trying to process event",
+        JSON.stringify(err, null, 2)
+      );
     }
   }
 
