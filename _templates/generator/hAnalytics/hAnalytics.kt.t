@@ -13,17 +13,77 @@ package com.hedvig.hanalytics
             <% var caseKeys = Object.keys(type.cases) %>
             <% caseKeys.forEach((enumCaseKey) => { %>
                 <%= snakeCase(enumCaseKey).toUpperCase() %>(<%- kotlinLiteral(type.cases[enumCaseKey], type.rawType) %>)
-                <%= enumCaseKey === caseKeys[caseKeys.length - 1] ? `;` : `,` %>
+                <%= enumCaseKey === caseKeys[caseKeys.length - 1] ? `;` : `,` -%>
             <% }) %>
         }
 
     <% } %>
+<% }) %>
 
+<% experiments.kotlin.filter(experiment => experiment.variants.length > 0).forEach(function(experiment) { %>
+    /**
+    <%- stringToKotlinComment(experiment.description) %>
+    */
+    enum class <%- experiment.enumName %>(val variantName: String) {
+        <% experiment.variants.forEach(function(variant) { -%>
+            <%- variant.name.toUpperCase() %>("<%- variant.name %>"),
+        <% }) %>;
 
+        companion object {
+            fun getByVariantName(name: String) = values().first { it.variantName == name }
+        }
+    }
 <% }) %>
 
 abstract class HAnalytics {
     abstract protected fun send(event: HAnalyticsEvent)
+    abstract fun experimentEvaluated(experiment: HAnalyticsExperiment)
+    abstract protected suspend fun getExperiment(name: String): HAnalyticsExperiment
+
+    <% experiments.kotlin.forEach(function(experiment) { -%>
+        /**
+        <%- stringToKotlinComment(experiment.description) %>
+        */
+        <% if (experiment.variants.length > 0) { -%>
+            suspend fun <%- experiment.accessor %>(): <%- experiment.enumName %> {
+                try {
+                    val experiment = getExperiment("<%- experiment.name %>")
+                    experimentEvaluated(experiment)
+
+                    return <%- experiment.enumName %>.getByVariantName(experiment.variant)
+                } catch (e: Exception) {
+                    experimentEvaluated(
+                        HAnalyticsExperiment(
+                            "<%- experiment.name %>",
+                            "<%- experiment.defaultFallback %>",
+                        )
+                    )
+
+                    return <%- experiment.enumName%>.getByVariantName("<%- experiment.defaultFallback %>")
+                }
+
+            }
+        <% } else { -%>
+            suspend fun <%- experiment.accessor %>(): Boolean {
+                try {
+                    val experiment = getExperiment("<%- experiment.name %>")
+                    experimentEvaluated(experiment)
+
+                    return experiment.variant == "enabled"
+                } catch (e: Exception) {
+                    experimentEvaluated(
+                        HAnalyticsExperiment(
+                            "<%- experiment.name %>",
+                            "<%- experiment.defaultFallback %>",
+                        )
+                    )
+
+                    return <%- experiment.defaultFallback == "enabled" ? "true" : "false" %>
+                }
+            }
+        <% } %>
+    <% }) %>
+
     <%_ events.kotlin.forEach(function(event) { -%>
         /**
          <%- stringToKotlinComment(event.description) || "* No description given" %>
