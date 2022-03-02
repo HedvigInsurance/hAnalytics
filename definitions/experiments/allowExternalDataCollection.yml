@@ -5,5 +5,5 @@ defaultFallback: disabled
 variants: []
 targets:
   - Swift
-  - JS
   - Kotlin
+  - JS
