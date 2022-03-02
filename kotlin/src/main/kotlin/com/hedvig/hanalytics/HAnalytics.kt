@@ -56,6 +56,90 @@ abstract class HAnalytics {
     }
 
     /**
+     * Allow fetching data with external data providers (for example insurely)
+     */
+    suspend fun allowExternalDataCollection(): Boolean {
+        try {
+            val experiment = getExperiment("allow_external_data_collection")
+            experimentEvaluated(experiment)
+
+            return experiment.variant == "enabled"
+        } catch (e: Exception) {
+            experimentEvaluated(
+                HAnalyticsExperiment(
+                    "allow_external_data_collection",
+                    "disabled",
+                )
+            )
+
+            return false
+        }
+    }
+
+    /**
+     * Is the forever february campaign activated
+     */
+    suspend fun foreverFebruaryCampaign(): Boolean {
+        try {
+            val experiment = getExperiment("forever_february_campaign")
+            experimentEvaluated(experiment)
+
+            return experiment.variant == "enabled"
+        } catch (e: Exception) {
+            experimentEvaluated(
+                HAnalyticsExperiment(
+                    "forever_february_campaign",
+                    "disabled",
+                )
+            )
+
+            return false
+        }
+    }
+
+    /**
+     * Should the french market be shown
+     */
+    suspend fun frenchMarket(): Boolean {
+        try {
+            val experiment = getExperiment("french_market")
+            experimentEvaluated(experiment)
+
+            return experiment.variant == "enabled"
+        } catch (e: Exception) {
+            experimentEvaluated(
+                HAnalyticsExperiment(
+                    "french_market",
+                    "disabled",
+                )
+            )
+
+            return false
+        }
+    }
+
+    /**
+     * Is the key gear feature activated
+     */
+    suspend fun keyGear(): Boolean {
+        try {
+            val experiment = getExperiment("key_gear")
+            experimentEvaluated(experiment)
+
+            return experiment.variant == "enabled"
+        } catch (e: Exception) {
+            experimentEvaluated(
+                HAnalyticsExperiment(
+                    "key_gear",
+                    "disabled",
+                )
+            )
+
+            return false
+        }
+    }
+
+    /**
      * A screen was shown in the app
      */
     fun screenView(screen: AppScreen) {
@@ -474,6 +558,11 @@ query ReceivedQuotes(${"\$"}quote_ids: [ID!]!) {
     }
 
     companion object {
-        val EXPERIMENTS = listOf()
+        val EXPERIMENTS = listOf(
+            "allow_external_data_collection",
+            "forever_february_campaign",
+            "french_market",
+            "key_gear",
+        )
     }
 }
