@@ -9,3 +9,4 @@ variants:
     case: trustly
 targets:
   - Swift
+  - Kotlin

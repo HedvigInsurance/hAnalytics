@@ -13,3 +13,4 @@ variants:
     case: bankIdNorway
 targets:
   - Swift
+  - Kotlin

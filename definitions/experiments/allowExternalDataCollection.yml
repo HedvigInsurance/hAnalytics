@@ -6,3 +6,4 @@ variants: []
 targets:
   - Swift
   - JS
+  - Kotlin
