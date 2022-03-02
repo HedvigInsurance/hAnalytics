@@ -4,3 +4,4 @@ accessor: null
 type: INTERNAL
 bigQuery:
   excludeFromAggregate: true
+targets: []

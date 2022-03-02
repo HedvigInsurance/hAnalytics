@@ -11,3 +11,7 @@ inputs:
   - name: store
     type: Dictionary<String, Optional<String>>
     argument: store
+targets:
+  - Kotlin
+  - Swift
+  - JS

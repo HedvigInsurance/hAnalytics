@@ -10,3 +10,4 @@ inputs:
     type: String
     description: Event as JSON
     argument: data
+targets: []

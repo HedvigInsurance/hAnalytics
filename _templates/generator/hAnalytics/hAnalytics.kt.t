@@ -24,7 +24,7 @@ package com.hedvig.hanalytics
 
 abstract class HAnalytics {
     abstract protected fun send(event: HAnalyticsEvent)
-    <%_ events.forEach(function(event) { -%>
+    <%_ events.kotlin.forEach(function(event) { -%>
         /**
          <%- stringToKotlinComment(event.description) || "* No description given" %>
          */

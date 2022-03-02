@@ -1,3 +1,7 @@
 name: app_started
 description: App was started
 accessor: appStarted
+targets:
+  - Kotlin
+  - Swift
+  - JS

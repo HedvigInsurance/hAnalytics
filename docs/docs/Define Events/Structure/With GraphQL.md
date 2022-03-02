@@ -66,4 +66,10 @@ graphql:
 
       /* a JMESPath specced getter */
       path: quoteBundle.quotes[0].initiatedFrom
+
+/* which language targets to compile code for */
+targets:
+    - Kotlin
+    - JS
+    - Swift
 ```

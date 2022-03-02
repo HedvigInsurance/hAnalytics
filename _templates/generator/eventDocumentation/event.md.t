@@ -11,17 +11,36 @@ to: docs/docs/<%= file.replace("definitions/events/", "Definitions/Events/") %>.
 
 <% if (event.accessor) { %>
 
+<% if (event.targets.includes("Swift")) { %>
+
 ## Swift
 
 ```swift
 hAnalyticsEvent.<%= event.accessor %>(<%- (event.inputs ?? []).map((input) => `${input.argument}: ${swiftTypeMap(input.type)}`).join(", ") %>)
 ```
 
+<% } %>
+
+<% if (event.targets.includes("Kotlin")) { %>
+
 ## Kotlin
 
 ```kotlin
 hAnalytics.<%= event.accessor %>(<%- (event.inputs ?? []).map((input) => `${input.argument}: ${kotlinTypeMap(input.type)}`).join(", ") %>)
 ```
+
+<% } %>
+
+
+<% if (event.targets.includes("JS")) { %>
+
+## JS / TS
+
+```typescript
+hAnalyticsTrackers.<%= event.accessor %>(<%- (event.inputs ?? []).map((input) => `${input.argument}: ${swiftTypeMap(input.type)}`).join(", ") %>)
+```
+
+<% } %>
 
 <% } %>
 

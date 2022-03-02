@@ -1,3 +1,6 @@
 name: chat_rich_message_sent
 description: When a file, video, image, gif is sent in the chat
 accessor: chatRichMessageSent
+targets:
+  - Kotlin
+  - Swift

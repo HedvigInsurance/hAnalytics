@@ -1,3 +1,7 @@
 name: app_background
 description: App was put into background
 accessor: appBackground
+targets:
+  - Kotlin
+  - Swift
+  - JS

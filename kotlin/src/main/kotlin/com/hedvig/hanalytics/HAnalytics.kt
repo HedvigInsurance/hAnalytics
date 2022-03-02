@@ -526,18 +526,6 @@ query ReceivedQuotes(${"\$"}quote_ids: [ID!]!) {
                 )
         }
             /**
-            * App was shutdown
-         */
-         fun appShutdown() {
-                send(
-                    HAnalyticsEvent(
-                        name = "app_shutdown",
-                        properties = mapOf(
-                        ),
-                    )
-                )
-        }
-            /**
             * App was started
          */
          fun appStarted() {
@@ -545,21 +533,6 @@ query ReceivedQuotes(${"\$"}quote_ids: [ID!]!) {
                     HAnalyticsEvent(
                         name = "app_started",
                         properties = mapOf(
-                        ),
-                    )
-                )
-        }
-            /**
-            * A page was shown on the web
-         */
-         fun pageView(href: String,pathname: String,hostname: String) {
-                send(
-                    HAnalyticsEvent(
-                        name = "web_page_view",
-                        properties = mapOf(
-                                "href" to href,
-                                "pathname" to pathname,
-                                "hostname" to hostname,
                         ),
                     )
                 )

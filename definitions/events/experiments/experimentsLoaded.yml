@@ -5,3 +5,7 @@ inputs:
   - name: experiments
     type: Array<String>
     argument: experiments
+targets:
+  - Kotlin
+  - Swift
+  - JS

@@ -8,3 +8,7 @@ inputs:
   - name: selected_ids
     type: Array<String>
     argument: selectedIds
+targets:
+  - Kotlin
+  - Swift
+  - JS

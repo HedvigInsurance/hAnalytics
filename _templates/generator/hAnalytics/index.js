@@ -38,7 +38,11 @@ module.exports = {
     const experiments = (await getExperiments()).map(mapExperiment);
 
     return {
-      events,
+      events: {
+        swift: events.filter((event) => event.targets.includes("Swift")),
+        kotlin: events.filter((event) => event.targets.includes("Kotlin")),
+        js: events.filter((event) => event.targets.includes("JS")),
+      },
       customTypes,
       experiments: {
         swift: experiments.filter((experiment) =>

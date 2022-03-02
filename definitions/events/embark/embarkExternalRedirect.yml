@@ -5,3 +5,7 @@ inputs:
   - name: location
     type: String
     argument: location
+targets:
+  - Kotlin
+  - Swift
+  - JS

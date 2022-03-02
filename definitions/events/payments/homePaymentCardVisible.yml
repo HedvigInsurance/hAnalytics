@@ -1,3 +1,6 @@
 name: home_payment_card_visible
 description: A payment card was shown on the home screen
 accessor: homePaymentCardVisible
+targets:
+  - Kotlin
+  - Swift

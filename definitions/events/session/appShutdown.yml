@@ -1,3 +1,5 @@
 name: app_shutdown
 description: App was shutdown
 accessor: appShutdown
+targets:
+  - Swift

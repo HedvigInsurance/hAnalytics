@@ -28,7 +28,7 @@ export class hAnalyticsTrackers {
         this.networking.identify()
     }
 
-<% events.forEach(function(event) { %>
+<% events.js.forEach(function(event) { %>
     <%- stringToJSComment(event.description) || "no description given" %>
     <%- event.deprecationReason ? `// @deprecated ${event.deprecationReason}` : "" %>
     <%= event.accessor %>(<%= (event.inputs ?? []).map((input) => `${input.argument}: ${jsTypeMap(input.type)}`).join(",") %>) {

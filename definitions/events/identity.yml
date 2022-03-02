@@ -9,3 +9,4 @@ inputs:
   - name: member_id
     type: Optional<String>
     argument: memberId
+targets: []

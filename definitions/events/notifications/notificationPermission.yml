@@ -9,3 +9,6 @@ inputs:
   - name: granted
     type: Optional<Boolean>
     argument: granted
+targets:
+  - Kotlin
+  - Swift

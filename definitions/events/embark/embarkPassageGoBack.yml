@@ -8,3 +8,7 @@ inputs:
   - name: passage_name
     type: String
     argument: passageName
+targets:
+  - Kotlin
+  - Swift
+  - JS

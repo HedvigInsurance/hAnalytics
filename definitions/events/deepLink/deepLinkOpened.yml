@@ -5,3 +5,6 @@ inputs:
   - name: type
     type: String
     argument: type
+targets:
+  - Kotlin
+  - Swift

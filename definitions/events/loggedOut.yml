@@ -1,3 +1,6 @@
 name: logged_out
 description: User just logged out
 accessor: loggedOut
+targets:
+  - Kotlin
+  - Swift

@@ -30,4 +30,10 @@ constants:
 
     /* the value to send to the datawarehouse */
     value: 'Hedvig'
+
+/* which language targets to compile code for */
+targets:
+    - Kotlin
+    - JS
+    - Swift
 ```

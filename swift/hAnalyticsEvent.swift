@@ -458,15 +458,4 @@ extension hAnalyticsEvent {
     }
   }
 
-  /// A page was shown on the web
-
-  public static func pageView(href: String, pathname: String, hostname: String) -> hAnalyticsParcel
-  {
-    return hAnalyticsParcel {
-      let properties: [String: Any?] = ["href": href, "pathname": pathname, "hostname": hostname]
-
-      hAnalyticsNetworking.send(hAnalyticsEvent(name: "web_page_view", properties: properties))
-    }
-  }
-
 }

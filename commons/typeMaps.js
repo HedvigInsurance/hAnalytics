@@ -199,7 +199,7 @@ const getBigQuerySchemaType = (type, ignoreCustom = false) => {
 
   const splitted = type.split("<");
 
-  const primitive = primitives[splitted.shift().replaceAll(">", "")];
+  const primitive = primitives[splitted.shift().replace(/>/g, "")];
 
   if (typeof primitive === "function") {
     return primitive(splitted.join("<"));
