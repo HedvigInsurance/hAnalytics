@@ -689,6 +689,430 @@ query ReceivedQuotes(${"\$"}quote_ids: [ID!]!) {
             )
         )
     }
+    /**
+     * When the charity screen is shown
+     */
+    @Deprecated("Replaced with screenView")
+    fun screenViewCharity() {
+        send(
+            HAnalyticsEvent(
+                name = "screen_view_charity",
+                properties = mapOf(),
+            )
+        )
+    }
+    /**
+     * When the contact info screen is shown
+     */
+    @Deprecated("Replaced with screenView")
+    fun screenViewContactInfo() {
+        send(
+            HAnalyticsEvent(
+                name = "screen_view_contact_info",
+                properties = mapOf(),
+            )
+        )
+    }
+    /**
+     * When the detail screen of a cross sell is shown
+     */
+    @Deprecated("Replaced with screenView")
+    fun screenViewCrossSellDetail(typeOfContract: String) {
+        send(
+            HAnalyticsEvent(
+                name = "screen_view_cross_sell_detail",
+                properties = mapOf(
+                    "type_of_contract" to typeOfContract,
+                ),
+            )
+        )
+    }
+    /**
+     * When Hedvig Forever is shown
+     */
+    @Deprecated("Replaced with screenView")
+    fun screenViewForever() {
+        send(
+            HAnalyticsEvent(
+                name = "screen_view_forever",
+                properties = mapOf(),
+            )
+        )
+    }
+    /**
+     * When Home tab is shown
+     */
+    @Deprecated("Replaced with screenView")
+    fun screenViewHome() {
+        send(
+            HAnalyticsEvent(
+                name = "screen_view_home",
+                properties = mapOf(),
+            )
+        )
+    }
+    /**
+     * When detail screen of an insurance is shown
+     */
+    @Deprecated("Replaced with screenView")
+    fun screenViewInsuranceDetail(contractId: String) {
+        send(
+            HAnalyticsEvent(
+                name = "screen_view_insurance_detail",
+                properties = mapOf(
+                    "contract_id" to contractId,
+                ),
+            )
+        )
+    }
+    /**
+     * When Insurances tab is shown
+     */
+    @Deprecated("Replaced with screenView")
+    fun screenViewInsurances() {
+        send(
+            HAnalyticsEvent(
+                name = "screen_view_insurances",
+                properties = mapOf(),
+                graphql = mapOf(
+                    "query" to """
+query ScreenViewInsurances {
+	contracts {
+		typeOfContract
+	}
+}                            """.trimIndent(),
+                    "selectors" to listOf(
+                        mapOf(
+                            "name" to "has_accident_insurance",
+                            "path" to "(contracts[?contains(typeOfContract, 'ACCIDENT') == `true`] && true) == true",
+                        ),
+                        mapOf(
+                            "name" to "has_home_insurance",
+                            "path" to "((contracts[?contains(typeOfContract, 'HOME') == `true`] || contracts[?contains(typeOfContract, 'APARTMENT') == `true`] || contracts[?contains(typeOfContract, 'HOUSE') == `true`]) && true) == true",
+                        ),
+                    ),
+                    "variables" to mapOf<String, Any?>(),
+                ),
+            )
+        )
+    }
+    /**
+     * When market picker is shown
+     */
+    fun screenViewMarketPicker() {
+        send(
+            HAnalyticsEvent(
+                name = "screen_view_market_picker",
+                properties = mapOf(),
+            )
+        )
+    }
+    /**
+     * When moving flow intro screen is shown
+     */
+    @Deprecated("Replaced with screenView")
+    fun screenViewMovingFlowIntro() {
+        send(
+            HAnalyticsEvent(
+                name = "screen_view_moving_flow_intro",
+                properties = mapOf(),
+            )
+        )
+    }
+    /**
+     * When Offer screen is shown
+     */
+    fun screenViewOffer(offerIds: List<String>) {
+        send(
+            HAnalyticsEvent(
+                name = "screen_view_offer",
+                properties = mapOf(
+                    "offer_ids" to offerIds,
+                ),
+                graphql = mapOf(
+                    "query" to """
+query ScreenViewOffer(${"\$"}offer_ids: [ID!]!) {
+	quoteBundle(input: {
+		ids: ${"\$"}offer_ids
+	}) {
+		quotes {
+			typeOfContract
+			initiatedFrom
+		}
+	}
+}                            """.trimIndent(),
+                    "selectors" to listOf(
+                        mapOf(
+                            "name" to "type_of_contracts",
+                            "path" to "quoteBundle.quotes[*].typeOfContract | sort(@) | join(', ', @)",
+                        ),
+                        mapOf(
+                            "name" to "initiated_from",
+                            "path" to "quoteBundle.quotes[0].initiatedFrom",
+                        ),
+                    ),
+                    "variables" to mapOf<String, Any?>(),
+                ),
+            )
+        )
+    }
+    /**
+     * When Profile tab is shown
+     */
+    @Deprecated("Replaced with screenView")
+    fun screenViewProfile() {
+        send(
+            HAnalyticsEvent(
+                name = "screen_view_profile",
+                properties = mapOf(),
+            )
+        )
+    }
+    /**
+     * When app information screen was shown
+     */
+    @Deprecated("Replaced with screenView")
+    fun screenViewAppInformation() {
+        send(
+            HAnalyticsEvent(
+                name = "screen_view_app_information",
+                properties = mapOf(),
+            )
+        )
+    }
+    /**
+     * When app settings screen was shown
+     */
+    @Deprecated("Replaced with screenView")
+    fun screenViewAppSettings() {
+        send(
+            HAnalyticsEvent(
+                name = "screen_view_app_settings",
+                properties = mapOf(),
+            )
+        )
+    }
+    /**
+     * When the chat is shown
+     */
+    @Deprecated("Replaced with screenView")
+    fun screenViewChat() {
+        send(
+            HAnalyticsEvent(
+                name = "screen_view_chat",
+                properties = mapOf(),
+            )
+        )
+    }
+    /**
+     * When the honor pledge screen is shown
+     */
+    @Deprecated("Replaced with screenView")
+    fun screenViewClaimHonorPledge() {
+        send(
+            HAnalyticsEvent(
+                name = "screen_view_claim_honor_pledge",
+                properties = mapOf(),
+            )
+        )
+    }
+    /**
+     * When the claims status detail screen is shown
+     */
+    @Deprecated("Replaced with screenView")
+    fun screenViewClaimsStatusDetail(claimId: String, claimStatus: String) {
+        send(
+            HAnalyticsEvent(
+                name = "screen_view_claims_status_detail",
+                properties = mapOf(
+                    "claim_id" to claimId,
+                    "claim_status" to claimStatus,
+                ),
+            )
+        )
+    }
+    /**
+     * When a common claim detail screen is shown
+     */
+    @Deprecated("Replaced with screenView")
+    fun screenViewCommonClaimDetail(id: String) {
+        send(
+            HAnalyticsEvent(
+                name = "screen_view_common_claim_detail",
+                properties = mapOf(
+                    "id" to id,
+                ),
+            )
+        )
+    }
+    /**
+     * Connecting payment with Adyen screen was shown
+     */
+    @Deprecated("Replaced with screenView")
+    fun screenViewConnectPaymentAdyen() {
+        send(
+            HAnalyticsEvent(
+                name = "screen_view_connect_payment_adyen",
+                properties = mapOf(),
+            )
+        )
+    }
+    /**
+     * When payment connection did fail
+     */
+    @Deprecated("Replaced with screenView")
+    fun screenViewConnectPaymentFailed() {
+        send(
+            HAnalyticsEvent(
+                name = "screen_view_connect_payment_failed",
+                properties = mapOf(),
+            )
+        )
+    }
+    /**
+     * When payment was connected successfully
+     */
+    @Deprecated("Replaced with screenView")
+    fun screenViewConnectPaymentSuccess() {
+        send(
+            HAnalyticsEvent(
+                name = "screen_view_connect_payment_success",
+                properties = mapOf(),
+            )
+        )
+    }
+    /**
+     * Connecting payment with Trustly screen was shown
+     */
+    @Deprecated("Replaced with screenView")
+    fun screenViewConnectPaymentTrustly() {
+        send(
+            HAnalyticsEvent(
+                name = "screen_view_connect_payment_trustly",
+                properties = mapOf(),
+            )
+        )
+    }
+    /**
+     * When data collection waiting for authentication screen is shown
+     */
+    @Deprecated("Replaced with screenView")
+    fun screenViewDataCollectionAuthenticating(providerId: String) {
+        send(
+            HAnalyticsEvent(
+                name = "screen_view_data_collection_authenticating",
+                properties = mapOf(
+                    "provider_id" to providerId,
+                ),
+            )
+        )
+    }
+    /**
+     * When data collection credentials screen is shown (Insurely)
+     */
+    @Deprecated("Replaced with screenView")
+    fun screenViewDataCollectionCredentials(providerId: String) {
+        send(
+            HAnalyticsEvent(
+                name = "screen_view_data_collection_credentials",
+                properties = mapOf(
+                    "provider_id" to providerId,
+                ),
+            )
+        )
+    }
+    /**
+     * When data collection failed
+     */
+    @Deprecated("Replaced with screenView")
+    fun screenViewDataCollectionFail(providerId: String) {
+        send(
+            HAnalyticsEvent(
+                name = "screen_view_data_collection_fail",
+                properties = mapOf(
+                    "provider_id" to providerId,
+                ),
+            )
+        )
+    }
+    /**
+     * When data collection intro screen is shown (Insurely)
+     */
+    @Deprecated("Replaced with screenView")
+    fun screenViewDataCollectionIntro(providerId: String) {
+        send(
+            HAnalyticsEvent(
+                name = "screen_view_data_collection_intro",
+                properties = mapOf(
+                    "provider_id" to providerId,
+                ),
+            )
+        )
+    }
+    /**
+     * When data collection succeeded
+     */
+    @Deprecated("Replaced with screenView")
+    fun screenViewDataCollectionSuccess(providerId: String) {
+        send(
+            HAnalyticsEvent(
+                name = "screen_view_data_collection_success",
+                properties = mapOf(
+                    "provider_id" to providerId,
+                ),
+            )
+        )
+    }
+    /**
+     * When embark is shown
+     */
+    @Deprecated("Replaced with screenView")
+    fun screenViewEmbark(storyName: String) {
+        send(
+            HAnalyticsEvent(
+                name = "screen_view_embark",
+                properties = mapOf(
+                    "story_name" to storyName,
+                ),
+            )
+        )
+    }
+    /**
+     * When embark tooltip screen is shown
+     */
+    @Deprecated("Replaced with screenView")
+    fun screenViewEmbarkTooltip() {
+        send(
+            HAnalyticsEvent(
+                name = "screen_view_embark_tooltip",
+                properties = mapOf(),
+            )
+        )
+    }
+    /**
+     * When marketing screen is shown
+     */
+    @Deprecated("Replaced with screenView")
+    fun screenViewMarketing() {
+        send(
+            HAnalyticsEvent(
+                name = "screen_view_marketing",
+                properties = mapOf(),
+            )
+        )
+    }
+    /**
+     * Payments screen was shown
+     */
+    @Deprecated("Replaced with screenView")
+    fun screenViewPayments() {
+        send(
+            HAnalyticsEvent(
+                name = "screen_view_payments",
+                properties = mapOf(),
+            )
+        )
+    }
 
     companion object {
         val EXPERIMENTS = listOf(
