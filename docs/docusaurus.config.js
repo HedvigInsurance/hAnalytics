@@ -7,7 +7,8 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "hAnalytics",
-  tagline: "Unified Hedvig app-analytics",
+  tagline:
+    "A framework to enable type-safe data collection through the whole stack from the client to the data-warehouse",
   url: "https://hedviginsurance.github.io",
   baseUrl: "/docs/",
   onBrokenLinks: "warn",
