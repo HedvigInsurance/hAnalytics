@@ -55,6 +55,7 @@ module.exports = {
           experiment.targets.includes("JS")
         ),
       },
+      dedent: require("dedent-js"),
       capitalizeFirstLetter,
       swiftLiteral: (value, type) => {
         switch (type) {

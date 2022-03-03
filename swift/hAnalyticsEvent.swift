@@ -359,14 +359,14 @@ extension hAnalyticsEvent {
           graphql: [
             "query": """
               query QuotesSigned($quote_ids: [ID!]!) {
-              	quoteBundle(input: {
-              		ids: $quote_ids
-              	}) {
-              		quotes {
-              			typeOfContract
-              			initiatedFrom
-              		}
+              quoteBundle(input: {
+              	ids: $quote_ids
+              }) {
+              	quotes {
+              		typeOfContract
+              		initiatedFrom
               	}
+              }
               }
               """,
             "selectors": [
@@ -396,14 +396,14 @@ extension hAnalyticsEvent {
           graphql: [
             "query": """
               query ReceivedQuotes($quote_ids: [ID!]!) {
-              	quoteBundle(input: {
-              		ids: $quote_ids
-              	}) {
-              		quotes {
-              			typeOfContract
-              			initiatedFrom
-              		}
+              quoteBundle(input: {
+              	ids: $quote_ids
+              }) {
+              	quotes {
+              		typeOfContract
+              		initiatedFrom
               	}
+              }
               }
               """,
             "selectors": [

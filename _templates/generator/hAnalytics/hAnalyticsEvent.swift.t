@@ -84,7 +84,7 @@ extension hAnalyticsEvent {
                     properties: properties,
                     graphql: [
                         "query": """
-                        <%- formatGQL(event.graphql.query) %>
+                        <%- dedent(formatGQL(event.graphql.query)) %>
                         """,
                         "selectors": [
                             <% event.graphql.selectors.forEach(function(selector) { %>
