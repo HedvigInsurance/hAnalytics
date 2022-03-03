@@ -35,7 +35,7 @@ public struct hAnalyticsParcel {
         <%- stringToSwiftComment(type.description) || "no description given" %>
         public enum <%= type.name %>: <%- swiftTypeMap(type.rawType) %> {
             <% Object.keys(type.cases).forEach((enumCaseKey) => { %>
-                case <%- enumCaseKey %> = <%- swiftLiteral(type.cases[enumCaseKey], type.rawType) %>
+                case <%- decapitalizeFirstLetter(pascalCase(enumCaseKey)) %> = <%- swiftLiteral(type.cases[enumCaseKey], type.rawType) %>
             <% }) %>
         }
 

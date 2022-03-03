@@ -5,8 +5,10 @@ const getEvents = require("../../../commons/getEvents");
 const getExperiments = require("../../../commons/getExperiments");
 const customTypes = require("../../../commons/customTypes");
 const { snakeCase } = require("snake-case");
+const pascalCase = require("pascal-case");
 
 const capitalizeFirstLetter = (s) => `${s[0].toUpperCase()}${s.slice(1)}`;
+const decapitalizeFirstLetter = (s) => `${s[0].toLowerCase()}${s.slice(1)}`;
 
 module.exports = {
   params: async () => {
@@ -57,6 +59,7 @@ module.exports = {
       },
       dedent: require("dedent-js"),
       capitalizeFirstLetter,
+      decapitalizeFirstLetter,
       swiftLiteral: (value, type) => {
         switch (type) {
           case "String":
@@ -131,6 +134,7 @@ module.exports = {
       },
       ...typeMaps,
       snakeCase,
+      pascalCase,
       stringToJSComment: (s) =>
         s
           .split("\n")
