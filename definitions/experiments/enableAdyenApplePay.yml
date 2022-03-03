@@ -1,0 +1,7 @@
+name: enable_adyen_apple_pay
+description: Should Apple Pay be enabled
+accessor: enableAdyenApplePay
+defaultFallback: disabled
+variants: []
+targets:
+  - Swift
