@@ -1,0 +1,8 @@
+name: use_hedvig_letters_font
+description: Should we use new Hedvig Letters font
+accessor: useHedvigLettersFont
+defaultFallback: disabled
+variants: []
+targets:
+  - Swift
+  - Kotlin

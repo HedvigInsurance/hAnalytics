@@ -312,6 +312,27 @@ abstract class HAnalytics {
                 }
             }
         
+            /**
+           * Should we use new Hedvig Letters font
+        */
+                    suspend fun useHedvigLettersFont(): Boolean {
+                try {
+                    val experiment = getExperiment("use_hedvig_letters_font")
+                    experimentEvaluated(experiment)
+
+                    return experiment.variant == "enabled"
+                } catch (e: Exception) {
+                    experimentEvaluated(
+                        HAnalyticsExperiment(
+                            "use_hedvig_letters_font",
+                            "disabled",
+                        )
+                    )
+
+                    return false
+                }
+            }
+        
     
 
         /**
@@ -1201,6 +1222,7 @@ query ScreenViewOffer(${"\$"}offer_ids: [ID!]!) {
                             "payment_type",
                             "post_onboarding_show_payment_step",
                             "update_necessary",
+                            "use_hedvig_letters_font",
                     )
     }
 }
