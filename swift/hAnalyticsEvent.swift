@@ -50,8 +50,8 @@ public enum AppScreen: String {
   case insurances = "insurances"
   case movingFlowIntro = "moving_flow_intro"
   case profile = "profile"
-  case app_information = "app_information"
-  case app_settings = "app_settings"
+  case appInformation = "app_information"
+  case appSettings = "app_settings"
   case chat = "chat"
 }
 
