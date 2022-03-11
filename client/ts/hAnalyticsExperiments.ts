@@ -31,6 +31,7 @@ export class hAnalyticsExperiments {
       "post_onboarding_show_payment_step",
       "update_necessary",
       "use_hedvig_letters_font",
+      "use_quote_cart",
     ]);
     this.loading = false;
     return list;

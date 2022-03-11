@@ -21,7 +21,7 @@ public struct hAnalyticsExperiment {
       filter: [
         "allow_external_data_collection", "forever_february_campaign", "french_market", "key_gear",
         "login_method", "moving_flow", "payment_type", "post_onboarding_show_payment_step",
-        "update_necessary", "use_hedvig_letters_font",
+        "update_necessary", "use_hedvig_letters_font", "use_quote_cart",
       ],
       onComplete: onComplete
     )
@@ -175,6 +175,20 @@ public struct hAnalyticsExperiment {
     }
 
     hAnalyticsEvent.experimentEvaluated(name: "use_hedvig_letters_font", variant: "disabled").send()
+
+    return false
+  }
+
+  /// Should we use quote cart
+  public static var useQuoteCart: Bool {
+    if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
+      experiment["name"] == "use_quote_cart"
+    }), let variant = experiment["variant"] {
+      hAnalyticsEvent.experimentEvaluated(name: "use_quote_cart", variant: variant).send()
+      return variant == "enabled"
+    }
+
+    hAnalyticsEvent.experimentEvaluated(name: "use_quote_cart", variant: "disabled").send()
 
     return false
   }
