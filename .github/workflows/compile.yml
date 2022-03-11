@@ -3,6 +3,8 @@ name: Compile and release
 on:
   push:
     branches: [master]
+  workflow_dispatch:
+    inputs: []
   repository_dispatch:
     types:
       - webhook
