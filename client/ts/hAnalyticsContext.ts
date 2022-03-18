@@ -30,6 +30,7 @@ export type hAnalyticsContext = {
 
 export type hAnalyticsConsumerContext = {
   locale: string;
+  acceptLanguage: string;
   device: {
     id: string;
   };

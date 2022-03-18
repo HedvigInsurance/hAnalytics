@@ -21,7 +21,7 @@ export class hAnalyticsNetworking {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Accept-Language": config.context.locale,
+          "Accept-Language": config.context.acceptLanguage,
           ...config.httpHeaders,
         },
         body: JSON.stringify({
@@ -85,7 +85,7 @@ export class hAnalyticsNetworking {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Accept-Language": config.context.locale,
+          "Accept-Language": config.context.acceptLanguage,
           ...config.httpHeaders,
         },
         body: JSON.stringify({
@@ -129,7 +129,7 @@ export class hAnalyticsNetworking {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Accept-Language": config.context.locale,
+          "Accept-Language": config.context.acceptLanguage,
           ...config.httpHeaders,
         },
         body: JSON.stringify({
