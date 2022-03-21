@@ -1,5 +1,6 @@
 const jwt_decode = require("jwt-decode");
 const fetch = require("cross-fetch");
+const omit = require("./bigquery/omit");
 
 const getMemberIdFromMemberService = async (headers) => {
   const memberResponse = await fetch(
@@ -32,9 +33,9 @@ const getTraits = async (headers, allowJWTMemberId = false) => {
     }
 
     if (memberId === null) {
-      memberId = await getMemberIdFromMemberService({
-        authorization: headers.authorization,
-      });
+      memberId = await getMemberIdFromMemberService(
+        omit("Accept-Language", headers)
+      );
     }
 
     if (!memberId) {
