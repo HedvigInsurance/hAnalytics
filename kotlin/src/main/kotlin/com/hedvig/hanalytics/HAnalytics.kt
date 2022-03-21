@@ -294,6 +294,27 @@ abstract class HAnalytics {
     }
 
     /**
+     * Should we use quote cart
+     */
+    suspend fun useQuoteCart(): Boolean {
+        try {
+            val experiment = getExperiment("use_quote_cart")
+            experimentEvaluated(experiment)
+
+            return experiment.variant == "enabled"
+        } catch (e: Exception) {
+            experimentEvaluated(
+                HAnalyticsExperiment(
+                    "use_quote_cart",
+                    "disabled",
+                )
+            )
+
+            return false
+        }
+    }
+
+    /**
      * A screen was shown in the app
      */
     fun screenView(screen: AppScreen) {
@@ -1147,6 +1168,7 @@ query ScreenViewOffer(${"\$"}offer_ids: [ID!]!) {
             "post_onboarding_show_payment_step",
             "update_necessary",
             "use_hedvig_letters_font",
+            "use_quote_cart",
         )
     }
 }

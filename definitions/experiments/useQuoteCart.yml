@@ -1,0 +1,8 @@
+name: use_quote_cart
+description: Should we use quote cart
+accessor: useQuoteCart
+defaultFallback: disabled
+variants: []
+targets:
+  - Swift
+  - Kotlin
