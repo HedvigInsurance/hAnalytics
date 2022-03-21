@@ -32,7 +32,9 @@ const getTraits = async (headers, allowJWTMemberId = false) => {
     }
 
     if (memberId === null) {
-      memberId = await getMemberIdFromMemberService(headers);
+      memberId = await getMemberIdFromMemberService({
+        authorization: headers.authorization,
+      });
     }
 
     if (!memberId) {
