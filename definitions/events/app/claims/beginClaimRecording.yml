@@ -1,0 +1,13 @@
+name: begin_claim_recording
+description: When a user starts to record claim
+accessor: beginRecording
+inputs:
+  - name: claim_id
+    type: String
+    argument: claimId
+  - name: claim_status
+    type: String
+    argument: claimStatus
+targets:
+  - Kotlin
+  - Swift
