@@ -1,0 +1,13 @@
+name: honor_pledge_confirmed
+description: When the honor pledge slider has been slided
+accessor: honorPledgeConfirmed
+inputs:
+  - name: claim_id
+    type: String
+    argument: claimId
+  - name: claim_status
+    type: String
+    argument: claimStatus
+targets:
+  - Kotlin
+  - Swift
