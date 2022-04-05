@@ -1,6 +1,6 @@
 name: begin_claim_recording
 description: When a user starts to record claim
-accessor: beginRecording
+accessor: beginClaimRecording
 inputs:
   - name: claim_id
     type: String
