@@ -1,0 +1,13 @@
+name: embark_audio_recording_begin
+description: When a user starts to record in an embark flow
+accessor: embarkAudioRecordingBegin
+inputs:
+  - name: story_name
+    type: String
+    argument: storyName
+  - name: store
+    type: Dictionary<String, Optional<String>>
+    argument: store
+targets:
+  - Kotlin
+  - Swift

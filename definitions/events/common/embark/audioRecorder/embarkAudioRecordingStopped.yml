@@ -1,0 +1,13 @@
+name: embark_audio_recording_stopped
+description: When a user stopped the recording
+accessor: embarkAudioRecordingStopped
+inputs:
+  - name: story_name
+    type: String
+    argument: storyName
+  - name: store
+    type: Dictionary<String, Optional<String>>
+    argument: store
+targets:
+  - Kotlin
+  - Swift
