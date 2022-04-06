@@ -185,10 +185,10 @@ public static func load(onComplete: @escaping (_ success: Bool) -> Void) {
 
        hAnalyticsEvent.experimentEvaluated(
             name: "payment_type",
-            variant: PaymentType.adyen.rawValue
+            variant: PaymentType.trustly.rawValue
        ).send()
 
-        return .adyen
+        return .trustly
     }
     
 
