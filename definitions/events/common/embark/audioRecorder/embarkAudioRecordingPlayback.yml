@@ -1,0 +1,13 @@
+name: embark_audio_recording_playback
+description: When a user starts to playback a previously recordered voice memo in an embark flow
+accessor: embarkAudioRecordingPlayback
+inputs:
+  - name: story_name
+    type: String
+    argument: storyName
+  - name: store
+    type: Dictionary<String, Optional<String>>
+    argument: store
+targets:
+  - Kotlin
+  - Swift

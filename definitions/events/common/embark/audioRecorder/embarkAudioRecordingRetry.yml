@@ -1,0 +1,13 @@
+name: embark_audio_recording_retry
+description: When a user removes previous voice memo and records a new one in Embark
+accessor: embarkAudioRecordingRetry
+inputs:
+  - name: story_name
+    type: String
+    argument: storyName
+  - name: store
+    type: Dictionary<String, Optional<String>>
+    argument: store
+targets:
+  - Kotlin
+  - Swift
