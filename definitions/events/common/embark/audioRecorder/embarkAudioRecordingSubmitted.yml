@@ -1,0 +1,13 @@
+name: embark_audio_recording_submitted
+description: When a user submitted the recording
+accessor: embarkAudioRecordingSubmitted
+inputs:
+  - name: story_name
+    type: String
+    argument: storyName
+  - name: store
+    type: Dictionary<String, Optional<String>>
+    argument: store
+targets:
+  - Kotlin
+  - Swift

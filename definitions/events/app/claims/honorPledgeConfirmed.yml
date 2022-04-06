@@ -1,0 +1,6 @@
+name: honor_pledge_confirmed
+description: When the honor pledge slider has been slided
+accessor: honorPledgeConfirmed
+targets:
+  - Kotlin
+  - Swift

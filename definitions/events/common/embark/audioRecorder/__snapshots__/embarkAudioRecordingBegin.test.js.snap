@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`validate 1`] = `
+Object {
+  "name": "embark_audio_recording_begin",
+  "variables": Object {
+    "store": Object {
+      "hello": "something",
+    },
+    "story_name": "name of story",
+  },
+}
+`;

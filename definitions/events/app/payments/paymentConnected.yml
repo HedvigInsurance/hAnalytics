@@ -1,0 +1,6 @@
+name: payment_connected
+description: Payment has been connected
+accessor: paymentConnected
+targets:
+  - Kotlin
+  - Swift
