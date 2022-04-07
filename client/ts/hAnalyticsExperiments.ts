@@ -29,6 +29,7 @@ export class hAnalyticsExperiments {
       "moving_flow",
       "payment_type",
       "post_onboarding_show_payment_step",
+      "Qasa",
       "update_necessary",
       "use_hedvig_letters_font",
       "use_quote_cart",
