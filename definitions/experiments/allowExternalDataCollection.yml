@@ -1,9 +1,0 @@
-name: allow_external_data_collection
-description: Allow fetching data with external data providers (for example insurely)
-accessor: allowExternalDataCollection
-defaultFallback: disabled
-variants: []
-targets:
-  - Swift
-  - Kotlin
-  - JS
