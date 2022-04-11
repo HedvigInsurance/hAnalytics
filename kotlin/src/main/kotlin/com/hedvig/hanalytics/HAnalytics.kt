@@ -292,6 +292,27 @@ abstract class HAnalytics {
             }
         
             /**
+           * Identify members with Qasa rentals
+        */
+                    suspend fun qasa(): Boolean {
+                try {
+                    val experiment = getExperiment("Qasa")
+                    experimentEvaluated(experiment)
+
+                    return experiment.variant == "enabled"
+                } catch (e: Exception) {
+                    experimentEvaluated(
+                        HAnalyticsExperiment(
+                            "Qasa",
+                            "disabled",
+                        )
+                    )
+
+                    return false
+                }
+            }
+        
+            /**
            * Defines the lowest supported app version. Should prompt a user to update if it uses an outdated version.
         */
                     suspend fun updateNecessary(): Boolean {
@@ -1348,6 +1369,7 @@ query ScreenViewOffer(${"\$"}offer_ids: [ID!]!) {
                             "moving_flow",
                             "payment_type",
                             "post_onboarding_show_payment_step",
+                            "Qasa",
                             "update_necessary",
                             "use_hedvig_letters_font",
                             "use_quote_cart",
