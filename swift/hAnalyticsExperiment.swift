@@ -283,5 +283,23 @@ public static func load(onComplete: @escaping (_ success: Bool) -> Void) {
        return false
     }
     
+    public static var isQasaEnabled: Bool {
+       if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
+            experiment["name"] == "Qasa"
+       }), let variant = experiment["variant"] {
+            hAnalyticsEvent.experimentEvaluated(
+                name: "Qasa",
+                variant: variant
+            ).send()
+           
+           return variant == "enabled"
+       }
 
+       hAnalyticsEvent.experimentEvaluated(
+            name: "Qasa",
+            variant: "disabled"
+        ).send()
+
+       return false
+    }
 }
