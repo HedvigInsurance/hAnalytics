@@ -143,6 +143,29 @@ abstract class HAnalytics {
             }
         
             /**
+           * Shows/hides common claims on home tab.
+   * 
+   * Off for Qasa exclusive members. On for others
+        */
+                    suspend fun commonClaims(): Boolean {
+                try {
+                    val experiment = getExperiment("common_claims")
+                    experimentEvaluated(experiment)
+
+                    return experiment.variant == "enabled"
+                } catch (e: Exception) {
+                    experimentEvaluated(
+                        HAnalyticsExperiment(
+                            "common_claims",
+                            "enabled",
+                        )
+                    )
+
+                    return true
+                }
+            }
+        
+            /**
            * Is the forever february campaign activated
         */
                     suspend fun foreverFebruaryCampaign(): Boolean {
@@ -283,6 +306,27 @@ abstract class HAnalytics {
                     experimentEvaluated(
                         HAnalyticsExperiment(
                             "post_onboarding_show_payment_step",
+                            "disabled",
+                        )
+                    )
+
+                    return false
+                }
+            }
+        
+            /**
+           * Identify members with Qasa rentals
+        */
+                    suspend fun qasa(): Boolean {
+                try {
+                    val experiment = getExperiment("Qasa")
+                    experimentEvaluated(experiment)
+
+                    return experiment.variant == "enabled"
+                } catch (e: Exception) {
+                    experimentEvaluated(
+                        HAnalyticsExperiment(
+                            "Qasa",
                             "disabled",
                         )
                     )
@@ -1341,6 +1385,7 @@ query ScreenViewOffer(${"\$"}offer_ids: [ID!]!) {
     companion object {
         val EXPERIMENTS = listOf(
                             "allow_external_data_collection",
+                            "common_claims",
                             "forever_february_campaign",
                             "french_market",
                             "key_gear",
@@ -1348,6 +1393,7 @@ query ScreenViewOffer(${"\$"}offer_ids: [ID!]!) {
                             "moving_flow",
                             "payment_type",
                             "post_onboarding_show_payment_step",
+                            "Qasa",
                             "update_necessary",
                             "use_hedvig_letters_font",
                             "use_quote_cart",

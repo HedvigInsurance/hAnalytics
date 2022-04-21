@@ -27,7 +27,7 @@ import Foundation
 public struct hAnalyticsExperiment {
 // loads all experiments from server
 public static func load(onComplete: @escaping (_ success: Bool) -> Void) {
-    hAnalyticsNetworking.loadExperiments(filter: ["allow_external_data_collection","forever_february_campaign","french_market","key_gear","login_method","moving_flow","payment_type","post_onboarding_show_payment_step","update_necessary","use_hedvig_letters_font","use_quote_cart"], onComplete: onComplete)
+    hAnalyticsNetworking.loadExperiments(filter: ["allow_external_data_collection","common_claims","forever_february_campaign","french_market","key_gear","login_method","moving_flow","payment_type","post_onboarding_show_payment_step","Qasa","update_necessary","use_hedvig_letters_font","use_quote_cart"], onComplete: onComplete)
 }
 
 
@@ -51,6 +51,31 @@ public static func load(onComplete: @escaping (_ success: Bool) -> Void) {
         ).send()
 
        return false
+    }
+    
+
+    
+    /// Shows/hides common claims on home tab.
+
+Off for Qasa exclusive members. On for others
+    public static var commonClaims: Bool {
+       if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
+            experiment["name"] == "common_claims"
+       }), let variant = experiment["variant"] {
+            hAnalyticsEvent.experimentEvaluated(
+                name: "common_claims",
+                variant: variant
+            ).send()
+           
+           return variant == "enabled"
+       }
+
+       hAnalyticsEvent.experimentEvaluated(
+            name: "common_claims",
+            variant: "enabled"
+        ).send()
+
+       return true
     }
     
 
@@ -208,6 +233,29 @@ public static func load(onComplete: @escaping (_ success: Bool) -> Void) {
 
        hAnalyticsEvent.experimentEvaluated(
             name: "post_onboarding_show_payment_step",
+            variant: "disabled"
+        ).send()
+
+       return false
+    }
+    
+
+    
+    /// Identify members with Qasa rentals
+    public static var qasa: Bool {
+       if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
+            experiment["name"] == "Qasa"
+       }), let variant = experiment["variant"] {
+            hAnalyticsEvent.experimentEvaluated(
+                name: "Qasa",
+                variant: variant
+            ).send()
+           
+           return variant == "enabled"
+       }
+
+       hAnalyticsEvent.experimentEvaluated(
+            name: "Qasa",
             variant: "disabled"
         ).send()
 
