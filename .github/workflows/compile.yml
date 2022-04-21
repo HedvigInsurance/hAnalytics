@@ -44,7 +44,7 @@ jobs:
         env:
           UNLEASH_API_URL: ${{ secrets.UNLEASH_API_URL }}
           UNLEASH_API_KEY: ${{ secrets.UNLEASH_API_KEY }}
-      - run: sh compile.sh
+      - run: bash compile.sh
         env:
           BQ_DATASET: hanalytics_production_live
           GCLOUD_PROJECT: hedvig-dagobah
