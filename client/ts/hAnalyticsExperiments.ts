@@ -22,6 +22,7 @@ export class hAnalyticsExperiments {
   async load(): Promise<hAnalyticsExperiment[]> {
     const list = await this.networking.loadExperiments([
       "allow_external_data_collection",
+      "common_claims",
       "forever_february_campaign",
       "french_market",
       "key_gear",
@@ -29,6 +30,7 @@ export class hAnalyticsExperiments {
       "moving_flow",
       "payment_type",
       "post_onboarding_show_payment_step",
+      "Qasa",
       "update_necessary",
       "use_hedvig_letters_font",
       "use_quote_cart",
