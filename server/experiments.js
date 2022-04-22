@@ -5,6 +5,7 @@ const { initialize } = require("unleash-client");
 const { getTraits } = require("./traits");
 const { transformHeaders } = require("./tools");
 const unleashConfig = require("../commons/unleashConfig");
+const { getCustomContextProperties } = require("./custom-context-properties");
 
 const unleashInstances = {};
 
@@ -32,7 +33,10 @@ module.exports = (app) => {
 
     const forwardedHeaders = transformHeaders(req.headers);
 
-    const traits = await getTraits(forwardedHeaders, true);
+    const [traits, customContextProperties] = await Promise.all([
+      getTraits(forwardedHeaders, true),
+      getCustomContextProperties(forwardedHeaders),
+    ]);
 
     const evaluateExperiment = async (importPath) => {
       const fileData = await new Promise((resolve, reject) => {
@@ -62,6 +66,7 @@ module.exports = (app) => {
         locale: acceptsLanguage ?? null,
         market: acceptsLanguage.split("-")[1] ?? null,
         environment: unleashConfig.environment,
+        ...customContextProperties,
       };
 
       if (experiment.variants.length == 0) {
