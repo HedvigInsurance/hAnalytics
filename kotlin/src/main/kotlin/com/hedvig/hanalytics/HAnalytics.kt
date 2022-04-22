@@ -143,7 +143,7 @@ abstract class HAnalytics {
             }
         
             /**
-           * Shows or hides the connect payment warning on the home section of the app. For non paying members, this will return off
+           * Shows or hides the connect payment warning on the home
         */
                     suspend fun connectPaymentReminder(): Boolean {
                 try {
@@ -164,7 +164,7 @@ abstract class HAnalytics {
             }
         
             /**
-           * This is used to manage content in the forever tab. For non paying members, like only qasa exclusive members, this will be false and they don't see any codes in the forever tab
+           * This is used to manage content in the forever tab
    * 
         */
                     suspend fun forever(): Boolean {
@@ -313,7 +313,7 @@ abstract class HAnalytics {
             }
         
             /**
-           * Shows or hides the payment row on the profile section of the app. Hides this when the member is a non-paying member.
+           * Shows or hides the payment row on the profile section of the app
         */
                     suspend fun paymentScreen(): Boolean {
                 try {
@@ -346,11 +346,11 @@ abstract class HAnalytics {
                     experimentEvaluated(
                         HAnalyticsExperiment(
                             "payment_type",
-                            "trustly",
+                            "adyen",
                         )
                     )
 
-                    return PaymentType.getByVariantName("trustly")
+                    return PaymentType.getByVariantName("adyen")
                 }
 
             }
@@ -368,27 +368,6 @@ abstract class HAnalytics {
                     experimentEvaluated(
                         HAnalyticsExperiment(
                             "post_onboarding_show_payment_step",
-                            "disabled",
-                        )
-                    )
-
-                    return false
-                }
-            }
-        
-            /**
-           * Identify members with Qasa rentals
-        */
-                    suspend fun qasa(): Boolean {
-                try {
-                    val experiment = getExperiment("Qasa")
-                    experimentEvaluated(experiment)
-
-                    return experiment.variant == "enabled"
-                } catch (e: Exception) {
-                    experimentEvaluated(
-                        HAnalyticsExperiment(
-                            "Qasa",
                             "disabled",
                         )
                     )
@@ -1479,7 +1458,6 @@ query ScreenViewOffer(${"\$"}offer_ids: [ID!]!) {
                             "payment_screen",
                             "payment_type",
                             "post_onboarding_show_payment_step",
-                            "Qasa",
                             "show_charity",
                             "update_necessary",
                             "use_hedvig_letters_font",

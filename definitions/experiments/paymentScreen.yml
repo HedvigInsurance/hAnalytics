@@ -1,7 +1,5 @@
 name: payment_screen
-description: >-
-  Shows or hides the payment row on the profile section of the app. Hides this
-  when the member is a non-paying member.
+description: Shows or hides the payment row on the profile section of the app
 accessor: paymentScreen
 defaultFallback: enabled
 variants: []

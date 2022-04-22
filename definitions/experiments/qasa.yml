@@ -1,8 +1,0 @@
-name: Qasa
-description: Identify members with Qasa rentals
-accessor: qasa
-defaultFallback: disabled
-variants: []
-targets:
-  - Swift
-  - Kotlin

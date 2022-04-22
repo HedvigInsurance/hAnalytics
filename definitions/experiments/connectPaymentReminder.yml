@@ -1,7 +1,5 @@
 name: connect_payment_reminder
-description: >-
-  Shows or hides the connect payment warning on the home section of the app. For
-  non paying members, this will return off
+description: Shows or hides the connect payment warning on the home
 accessor: connectPaymentReminder
 defaultFallback: enabled
 variants: []

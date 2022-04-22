@@ -33,7 +33,6 @@ export class hAnalyticsExperiments {
       "payment_screen",
       "payment_type",
       "post_onboarding_show_payment_step",
-      "Qasa",
       "show_charity",
       "update_necessary",
       "use_hedvig_letters_font",
