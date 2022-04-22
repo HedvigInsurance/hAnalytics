@@ -83,7 +83,8 @@ extension hAnalyticsEvent {
                     name: "<%= event.name %>",
                     properties: properties,
                     graphql: [
-                        "query": """
+                        "query":
+                        """
                         <%- dedent(formatGQL(event.graphql.query)) %>
                         """,
                         "selectors": [
