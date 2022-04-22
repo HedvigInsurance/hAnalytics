@@ -2,6 +2,9 @@ const { startUnleash } = require("unleash-client");
 const yaml = require("js-yaml");
 const camelCase = require("camelcase");
 const fs = require("fs");
+
+require("dotenv").config();
+
 const unleashConfig = require("../commons/unleashConfig");
 
 const populateExperimentsFolder = async () => {

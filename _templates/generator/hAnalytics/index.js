@@ -147,7 +147,7 @@ module.exports = {
             return el != "";
           })
           .map((line) => `/// ${line}`)
-          .join("\n"),
+          .join(" "),
       stringToKotlinComment: (s) =>
         s
           .split("\n")
