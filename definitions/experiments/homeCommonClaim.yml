@@ -1,0 +1,9 @@
+name: home_common_claim
+description: Show or hide common claims on home tab
+accessor: homeCommonClaim
+defaultFallback: enabled
+variants: []
+targets:
+  - Swift
+  - Kotlin
+  - JS

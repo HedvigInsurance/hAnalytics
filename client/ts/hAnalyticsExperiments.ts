@@ -22,15 +22,19 @@ export class hAnalyticsExperiments {
   async load(): Promise<hAnalyticsExperiment[]> {
     const list = await this.networking.loadExperiments([
       "allow_external_data_collection",
-      "common_claims",
+      "connect_payment_reminder",
+      "forever",
       "forever_february_campaign",
       "french_market",
+      "home_common_claim",
       "key_gear",
       "login_method",
       "moving_flow",
+      "payment_screen",
       "payment_type",
       "post_onboarding_show_payment_step",
       "Qasa",
+      "show_charity",
       "update_necessary",
       "use_hedvig_letters_font",
       "use_quote_cart",
@@ -61,5 +65,22 @@ export class hAnalyticsExperiments {
     );
 
     return false;
+  }
+
+  /// no description given
+  homeCommonClaim(): boolean {
+    const experiment =
+      this.networking.findExperimentByName("home_common_claim");
+    const variant = experiment.variant;
+
+    if (variant) {
+      this.trackers.experimentEvaluated("home_common_claim", variant);
+
+      return variant == "enabled";
+    }
+
+    this.trackers.experimentEvaluated("home_common_claim", "enabled");
+
+    return true;
   }
 }

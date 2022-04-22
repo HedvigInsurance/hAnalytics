@@ -1,0 +1,11 @@
+name: forever
+description: >
+  This is used to manage content in the forever tab. For non paying members,
+  like only qasa exclusive members, this will be false and they don't see any
+  codes in the forever tab
+accessor: forever
+defaultFallback: enabled
+variants: []
+targets:
+  - Swift
+  - Kotlin

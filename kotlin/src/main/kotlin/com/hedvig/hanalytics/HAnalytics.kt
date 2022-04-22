@@ -143,20 +143,40 @@ abstract class HAnalytics {
             }
         
             /**
-           * Shows/hides common claims on home tab.
-   * 
-   * Off for Qasa exclusive members. On for others
+           * Shows or hides the connect payment warning on the home section of the app. For non paying members, this will return off
         */
-                    suspend fun commonClaims(): Boolean {
+                    suspend fun connectPaymentReminder(): Boolean {
                 try {
-                    val experiment = getExperiment("common_claims")
+                    val experiment = getExperiment("connect_payment_reminder")
                     experimentEvaluated(experiment)
 
                     return experiment.variant == "enabled"
                 } catch (e: Exception) {
                     experimentEvaluated(
                         HAnalyticsExperiment(
-                            "common_claims",
+                            "connect_payment_reminder",
+                            "enabled",
+                        )
+                    )
+
+                    return true
+                }
+            }
+        
+            /**
+           * This is used to manage content in the forever tab. For non paying members, like only qasa exclusive members, this will be false and they don't see any codes in the forever tab
+   * 
+        */
+                    suspend fun forever(): Boolean {
+                try {
+                    val experiment = getExperiment("forever")
+                    experimentEvaluated(experiment)
+
+                    return experiment.variant == "enabled"
+                } catch (e: Exception) {
+                    experimentEvaluated(
+                        HAnalyticsExperiment(
+                            "forever",
                             "enabled",
                         )
                     )
@@ -204,6 +224,27 @@ abstract class HAnalytics {
                     )
 
                     return false
+                }
+            }
+        
+            /**
+           * Show or hide common claims on home tab
+        */
+                    suspend fun homeCommonClaim(): Boolean {
+                try {
+                    val experiment = getExperiment("home_common_claim")
+                    experimentEvaluated(experiment)
+
+                    return experiment.variant == "enabled"
+                } catch (e: Exception) {
+                    experimentEvaluated(
+                        HAnalyticsExperiment(
+                            "home_common_claim",
+                            "enabled",
+                        )
+                    )
+
+                    return true
                 }
             }
         
@@ -272,6 +313,27 @@ abstract class HAnalytics {
             }
         
             /**
+           * Shows or hides the payment row on the profile section of the app. Hides this when the member is a non-paying member.
+        */
+                    suspend fun paymentScreen(): Boolean {
+                try {
+                    val experiment = getExperiment("payment_screen")
+                    experimentEvaluated(experiment)
+
+                    return experiment.variant == "enabled"
+                } catch (e: Exception) {
+                    experimentEvaluated(
+                        HAnalyticsExperiment(
+                            "payment_screen",
+                            "enabled",
+                        )
+                    )
+
+                    return true
+                }
+            }
+        
+            /**
            * Which payment provider to use
         */
                     suspend fun paymentType(): PaymentType {
@@ -284,11 +346,11 @@ abstract class HAnalytics {
                     experimentEvaluated(
                         HAnalyticsExperiment(
                             "payment_type",
-                            "adyen",
+                            "trustly",
                         )
                     )
 
-                    return PaymentType.getByVariantName("adyen")
+                    return PaymentType.getByVariantName("trustly")
                 }
 
             }
@@ -332,6 +394,27 @@ abstract class HAnalytics {
                     )
 
                     return false
+                }
+            }
+        
+            /**
+           * Shows or hides charity from profile tab
+        */
+                    suspend fun showCharity(): Boolean {
+                try {
+                    val experiment = getExperiment("show_charity")
+                    experimentEvaluated(experiment)
+
+                    return experiment.variant == "enabled"
+                } catch (e: Exception) {
+                    experimentEvaluated(
+                        HAnalyticsExperiment(
+                            "show_charity",
+                            "enabled",
+                        )
+                    )
+
+                    return true
                 }
             }
         
@@ -1385,15 +1468,19 @@ query ScreenViewOffer(${"\$"}offer_ids: [ID!]!) {
     companion object {
         val EXPERIMENTS = listOf(
                             "allow_external_data_collection",
-                            "common_claims",
+                            "connect_payment_reminder",
+                            "forever",
                             "forever_february_campaign",
                             "french_market",
+                            "home_common_claim",
                             "key_gear",
                             "login_method",
                             "moving_flow",
+                            "payment_screen",
                             "payment_type",
                             "post_onboarding_show_payment_step",
                             "Qasa",
+                            "show_charity",
                             "update_necessary",
                             "use_hedvig_letters_font",
                             "use_quote_cart",
