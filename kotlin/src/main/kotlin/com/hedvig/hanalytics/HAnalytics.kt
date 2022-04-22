@@ -896,8 +896,9 @@ abstract class HAnalytics {
                                 "quote_ids" to quoteIds,
                         ),
                         graphql = mapOf(
-                            "query" to """
-query QuotesSigned(${"\$"}quote_ids: [ID!]!) {
+                            "query" to 
+                            """
+                            query QuotesSigned(${"\$"}quote_ids: [ID!]!) {
 	quoteBundle(input: {
 		ids: ${"\$"}quote_ids
 	}) {
@@ -934,8 +935,9 @@ query QuotesSigned(${"\$"}quote_ids: [ID!]!) {
                                 "quote_ids" to quoteIds,
                         ),
                         graphql = mapOf(
-                            "query" to """
-query ReceivedQuotes(${"\$"}quote_ids: [ID!]!) {
+                            "query" to 
+                            """
+                            query ReceivedQuotes(${"\$"}quote_ids: [ID!]!) {
 	quoteBundle(input: {
 		ids: ${"\$"}quote_ids
 	}) {
@@ -1088,8 +1090,9 @@ query ReceivedQuotes(${"\$"}quote_ids: [ID!]!) {
                         properties = mapOf(
                         ),
                         graphql = mapOf(
-                            "query" to """
-query ScreenViewInsurances {
+                            "query" to 
+                            """
+                            query ScreenViewInsurances {
 	contracts {
 		typeOfContract
 	}
@@ -1146,8 +1149,9 @@ query ScreenViewInsurances {
                                 "offer_ids" to offerIds,
                         ),
                         graphql = mapOf(
-                            "query" to """
-query ScreenViewOffer(${"\$"}offer_ids: [ID!]!) {
+                            "query" to 
+                            """
+                            query ScreenViewOffer(${"\$"}offer_ids: [ID!]!) {
 	quoteBundle(input: {
 		ids: ${"\$"}offer_ids
 	}) {
