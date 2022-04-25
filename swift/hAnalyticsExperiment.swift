@@ -70,10 +70,10 @@ public static func load(onComplete: @escaping (_ success: Bool) -> Void) {
 
        hAnalyticsEvent.experimentEvaluated(
             name: "connect_payment_reminder",
-            variant: "enabled"
+            variant: "disabled"
         ).send()
 
-       return true
+       return false
     }
     
 

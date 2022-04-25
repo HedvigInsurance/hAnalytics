@@ -1,7 +1,7 @@
 name: connect_payment_reminder
 description: Shows or hides the connect payment warning on the home
 accessor: connectPaymentReminder
-defaultFallback: enabled
+defaultFallback: disabled
 variants: []
 targets:
   - Swift

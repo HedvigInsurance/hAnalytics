@@ -155,11 +155,11 @@ abstract class HAnalytics {
                     experimentEvaluated(
                         HAnalyticsExperiment(
                             "connect_payment_reminder",
-                            "enabled",
+                            "disabled",
                         )
                     )
 
-                    return true
+                    return false
                 }
             }
         
