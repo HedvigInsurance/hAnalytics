@@ -177,11 +177,11 @@ abstract class HAnalytics {
                     experimentEvaluated(
                         HAnalyticsExperiment(
                             "forever",
-                            "enabled",
+                            "disabled",
                         )
                     )
 
-                    return true
+                    return false
                 }
             }
         
@@ -325,11 +325,11 @@ abstract class HAnalytics {
                     experimentEvaluated(
                         HAnalyticsExperiment(
                             "payment_screen",
-                            "enabled",
+                            "disabled",
                         )
                     )
 
-                    return true
+                    return false
                 }
             }
         
@@ -389,11 +389,11 @@ abstract class HAnalytics {
                     experimentEvaluated(
                         HAnalyticsExperiment(
                             "show_charity",
-                            "enabled",
+                            "disabled",
                         )
                     )
 
-                    return true
+                    return false
                 }
             }
         

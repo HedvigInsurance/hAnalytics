@@ -1,7 +1,7 @@
 name: payment_screen
 description: Shows or hides the payment row on the profile section of the app
 accessor: paymentScreen
-defaultFallback: enabled
+defaultFallback: disabled
 variants: []
 targets:
   - Swift

@@ -1,7 +1,7 @@
 name: show_charity
 description: Shows or hides charity from profile tab
 accessor: showCharity
-defaultFallback: enabled
+defaultFallback: disabled
 variants: []
 targets:
   - Swift

@@ -94,10 +94,10 @@ public static func load(onComplete: @escaping (_ success: Bool) -> Void) {
 
        hAnalyticsEvent.experimentEvaluated(
             name: "forever",
-            variant: "enabled"
+            variant: "disabled"
         ).send()
 
-       return true
+       return false
     }
     
 
@@ -255,10 +255,10 @@ public static func load(onComplete: @escaping (_ success: Bool) -> Void) {
 
        hAnalyticsEvent.experimentEvaluated(
             name: "payment_screen",
-            variant: "enabled"
+            variant: "disabled"
         ).send()
 
-       return true
+       return false
     }
     
 
@@ -324,10 +324,10 @@ public static func load(onComplete: @escaping (_ success: Bool) -> Void) {
 
        hAnalyticsEvent.experimentEvaluated(
             name: "show_charity",
-            variant: "enabled"
+            variant: "disabled"
         ).send()
 
-       return true
+       return false
     }
     
 
