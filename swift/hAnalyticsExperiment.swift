@@ -27,7 +27,7 @@ import Foundation
 public struct hAnalyticsExperiment {
 // loads all experiments from server
 public static func load(onComplete: @escaping (_ success: Bool) -> Void) {
-    hAnalyticsNetworking.loadExperiments(filter: ["allow_external_data_collection","forever_february_campaign","french_market","key_gear","login_method","moving_flow","payment_type","post_onboarding_show_payment_step","update_necessary","use_hedvig_letters_font","use_quote_cart"], onComplete: onComplete)
+    hAnalyticsNetworking.loadExperiments(filter: ["allow_external_data_collection","connect_payment_reminder","forever","forever_february_campaign","french_market","home_common_claim","key_gear","login_method","moving_flow","payment_screen","payment_type","post_onboarding_show_payment_step","show_charity","update_necessary","use_hedvig_letters_font","use_quote_cart"], onComplete: onComplete)
 }
 
 
@@ -47,6 +47,53 @@ public static func load(onComplete: @escaping (_ success: Bool) -> Void) {
 
        hAnalyticsEvent.experimentEvaluated(
             name: "allow_external_data_collection",
+            variant: "disabled"
+        ).send()
+
+       return false
+    }
+    
+
+    
+    /// Shows or hides the connect payment warning on the home
+    public static var connectPaymentReminder: Bool {
+       if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
+            experiment["name"] == "connect_payment_reminder"
+       }), let variant = experiment["variant"] {
+            hAnalyticsEvent.experimentEvaluated(
+                name: "connect_payment_reminder",
+                variant: variant
+            ).send()
+           
+           return variant == "enabled"
+       }
+
+       hAnalyticsEvent.experimentEvaluated(
+            name: "connect_payment_reminder",
+            variant: "disabled"
+        ).send()
+
+       return false
+    }
+    
+
+    
+    /// This is used to manage content in the forever tab
+
+    public static var forever: Bool {
+       if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
+            experiment["name"] == "forever"
+       }), let variant = experiment["variant"] {
+            hAnalyticsEvent.experimentEvaluated(
+                name: "forever",
+                variant: variant
+            ).send()
+           
+           return variant == "enabled"
+       }
+
+       hAnalyticsEvent.experimentEvaluated(
+            name: "forever",
             variant: "disabled"
         ).send()
 
@@ -97,6 +144,29 @@ public static func load(onComplete: @escaping (_ success: Bool) -> Void) {
         ).send()
 
        return false
+    }
+    
+
+    
+    /// Show or hide common claims on home tab
+    public static var homeCommonClaim: Bool {
+       if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
+            experiment["name"] == "home_common_claim"
+       }), let variant = experiment["variant"] {
+            hAnalyticsEvent.experimentEvaluated(
+                name: "home_common_claim",
+                variant: variant
+            ).send()
+           
+           return variant == "enabled"
+       }
+
+       hAnalyticsEvent.experimentEvaluated(
+            name: "home_common_claim",
+            variant: "enabled"
+        ).send()
+
+       return true
     }
     
 
@@ -170,6 +240,29 @@ public static func load(onComplete: @escaping (_ success: Bool) -> Void) {
     
 
     
+    /// Shows or hides the payment row on the profile section of the app
+    public static var paymentScreen: Bool {
+       if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
+            experiment["name"] == "payment_screen"
+       }), let variant = experiment["variant"] {
+            hAnalyticsEvent.experimentEvaluated(
+                name: "payment_screen",
+                variant: variant
+            ).send()
+           
+           return variant == "enabled"
+       }
+
+       hAnalyticsEvent.experimentEvaluated(
+            name: "payment_screen",
+            variant: "disabled"
+        ).send()
+
+       return false
+    }
+    
+
+    
     /// no description given
     public static var paymentType: PaymentType {
        if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
@@ -185,10 +278,10 @@ public static func load(onComplete: @escaping (_ success: Bool) -> Void) {
 
        hAnalyticsEvent.experimentEvaluated(
             name: "payment_type",
-            variant: PaymentType.adyen.rawValue
+            variant: PaymentType.trustly.rawValue
        ).send()
 
-        return .adyen
+        return .trustly
     }
     
 
@@ -208,6 +301,29 @@ public static func load(onComplete: @escaping (_ success: Bool) -> Void) {
 
        hAnalyticsEvent.experimentEvaluated(
             name: "post_onboarding_show_payment_step",
+            variant: "disabled"
+        ).send()
+
+       return false
+    }
+    
+
+    
+    /// Shows or hides charity from profile tab
+    public static var showCharity: Bool {
+       if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
+            experiment["name"] == "show_charity"
+       }), let variant = experiment["variant"] {
+            hAnalyticsEvent.experimentEvaluated(
+                name: "show_charity",
+                variant: variant
+            ).send()
+           
+           return variant == "enabled"
+       }
+
+       hAnalyticsEvent.experimentEvaluated(
+            name: "show_charity",
             variant: "disabled"
         ).send()
 

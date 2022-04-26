@@ -9,12 +9,12 @@ cd client/ts
 npm ci
 npm run build
 
-if [[ -z "${BUMP_VERSION_TO}" ]]; then
+if [ -z "${BUMP_VERSION_TO}" ]; then
   echo "Not bumping TS client version"
 else
   npm version $BUMP_VERSION_TO
 
-  if [[ -z "${NODE_AUTH_TOKEN}" ]]; then
+  if [ -z "${NODE_AUTH_TOKEN}" ]; then
     echo "Not publishing to NPM"
   else
     npm publish

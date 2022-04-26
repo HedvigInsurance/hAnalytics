@@ -114,8 +114,9 @@ abstract class HAnalytics {
                             <%_ }); -%>
                         ),
                         graphql = mapOf(
-                            "query" to """
-<%- formatGQL(event.graphql.query).replace(/\$/g, '${"\\$"}') _%>
+                            "query" to 
+                            """
+                            <%- formatGQL(event.graphql.query).replace(/\$/g, '${"\\$"}') _%>
                             """.trimIndent(),
                             "selectors" to listOf(
                                 <%_ event.graphql.selectors.forEach(function(selector) { -%>

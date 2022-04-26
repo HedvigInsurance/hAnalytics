@@ -1,0 +1,9 @@
+name: forever
+description: |
+  This is used to manage content in the forever tab
+accessor: forever
+defaultFallback: disabled
+variants: []
+targets:
+  - Swift
+  - Kotlin

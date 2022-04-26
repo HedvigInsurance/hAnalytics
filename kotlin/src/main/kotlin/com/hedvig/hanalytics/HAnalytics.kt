@@ -143,6 +143,49 @@ abstract class HAnalytics {
             }
         
             /**
+           * Shows or hides the connect payment warning on the home
+        */
+                    suspend fun connectPaymentReminder(): Boolean {
+                try {
+                    val experiment = getExperiment("connect_payment_reminder")
+                    experimentEvaluated(experiment)
+
+                    return experiment.variant == "enabled"
+                } catch (e: Exception) {
+                    experimentEvaluated(
+                        HAnalyticsExperiment(
+                            "connect_payment_reminder",
+                            "disabled",
+                        )
+                    )
+
+                    return false
+                }
+            }
+        
+            /**
+           * This is used to manage content in the forever tab
+   * 
+        */
+                    suspend fun forever(): Boolean {
+                try {
+                    val experiment = getExperiment("forever")
+                    experimentEvaluated(experiment)
+
+                    return experiment.variant == "enabled"
+                } catch (e: Exception) {
+                    experimentEvaluated(
+                        HAnalyticsExperiment(
+                            "forever",
+                            "disabled",
+                        )
+                    )
+
+                    return false
+                }
+            }
+        
+            /**
            * Is the forever february campaign activated
         */
                     suspend fun foreverFebruaryCampaign(): Boolean {
@@ -181,6 +224,27 @@ abstract class HAnalytics {
                     )
 
                     return false
+                }
+            }
+        
+            /**
+           * Show or hide common claims on home tab
+        */
+                    suspend fun homeCommonClaim(): Boolean {
+                try {
+                    val experiment = getExperiment("home_common_claim")
+                    experimentEvaluated(experiment)
+
+                    return experiment.variant == "enabled"
+                } catch (e: Exception) {
+                    experimentEvaluated(
+                        HAnalyticsExperiment(
+                            "home_common_claim",
+                            "enabled",
+                        )
+                    )
+
+                    return true
                 }
             }
         
@@ -249,6 +313,27 @@ abstract class HAnalytics {
             }
         
             /**
+           * Shows or hides the payment row on the profile section of the app
+        */
+                    suspend fun paymentScreen(): Boolean {
+                try {
+                    val experiment = getExperiment("payment_screen")
+                    experimentEvaluated(experiment)
+
+                    return experiment.variant == "enabled"
+                } catch (e: Exception) {
+                    experimentEvaluated(
+                        HAnalyticsExperiment(
+                            "payment_screen",
+                            "disabled",
+                        )
+                    )
+
+                    return false
+                }
+            }
+        
+            /**
            * Which payment provider to use
         */
                     suspend fun paymentType(): PaymentType {
@@ -261,11 +346,11 @@ abstract class HAnalytics {
                     experimentEvaluated(
                         HAnalyticsExperiment(
                             "payment_type",
-                            "adyen",
+                            "trustly",
                         )
                     )
 
-                    return PaymentType.getByVariantName("adyen")
+                    return PaymentType.getByVariantName("trustly")
                 }
 
             }
@@ -283,6 +368,27 @@ abstract class HAnalytics {
                     experimentEvaluated(
                         HAnalyticsExperiment(
                             "post_onboarding_show_payment_step",
+                            "disabled",
+                        )
+                    )
+
+                    return false
+                }
+            }
+        
+            /**
+           * Shows or hides charity from profile tab
+        */
+                    suspend fun showCharity(): Boolean {
+                try {
+                    val experiment = getExperiment("show_charity")
+                    experimentEvaluated(experiment)
+
+                    return experiment.variant == "enabled"
+                } catch (e: Exception) {
+                    experimentEvaluated(
+                        HAnalyticsExperiment(
+                            "show_charity",
                             "disabled",
                         )
                     )
@@ -790,8 +896,9 @@ abstract class HAnalytics {
                                 "quote_ids" to quoteIds,
                         ),
                         graphql = mapOf(
-                            "query" to """
-query QuotesSigned(${"\$"}quote_ids: [ID!]!) {
+                            "query" to 
+                            """
+                            query QuotesSigned(${"\$"}quote_ids: [ID!]!) {
 	quoteBundle(input: {
 		ids: ${"\$"}quote_ids
 	}) {
@@ -828,8 +935,9 @@ query QuotesSigned(${"\$"}quote_ids: [ID!]!) {
                                 "quote_ids" to quoteIds,
                         ),
                         graphql = mapOf(
-                            "query" to """
-query ReceivedQuotes(${"\$"}quote_ids: [ID!]!) {
+                            "query" to 
+                            """
+                            query ReceivedQuotes(${"\$"}quote_ids: [ID!]!) {
 	quoteBundle(input: {
 		ids: ${"\$"}quote_ids
 	}) {
@@ -982,8 +1090,9 @@ query ReceivedQuotes(${"\$"}quote_ids: [ID!]!) {
                         properties = mapOf(
                         ),
                         graphql = mapOf(
-                            "query" to """
-query ScreenViewInsurances {
+                            "query" to 
+                            """
+                            query ScreenViewInsurances {
 	contracts {
 		typeOfContract
 	}
@@ -1040,8 +1149,9 @@ query ScreenViewInsurances {
                                 "offer_ids" to offerIds,
                         ),
                         graphql = mapOf(
-                            "query" to """
-query ScreenViewOffer(${"\$"}offer_ids: [ID!]!) {
+                            "query" to 
+                            """
+                            query ScreenViewOffer(${"\$"}offer_ids: [ID!]!) {
 	quoteBundle(input: {
 		ids: ${"\$"}offer_ids
 	}) {
@@ -1341,13 +1451,18 @@ query ScreenViewOffer(${"\$"}offer_ids: [ID!]!) {
     companion object {
         val EXPERIMENTS = listOf(
                             "allow_external_data_collection",
+                            "connect_payment_reminder",
+                            "forever",
                             "forever_february_campaign",
                             "french_market",
+                            "home_common_claim",
                             "key_gear",
                             "login_method",
                             "moving_flow",
+                            "payment_screen",
                             "payment_type",
                             "post_onboarding_show_payment_step",
+                            "show_charity",
                             "update_necessary",
                             "use_hedvig_letters_font",
                             "use_quote_cart",

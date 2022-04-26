@@ -144,8 +144,11 @@ module.exports = {
       stringToSwiftComment: (s) =>
         s
           .split("\n")
+          .filter(function (el) {
+            return el != "";
+          })
           .map((line) => `/// ${line}`)
-          .join("\n"),
+          .join(" "),
       stringToKotlinComment: (s) =>
         s
           .split("\n")

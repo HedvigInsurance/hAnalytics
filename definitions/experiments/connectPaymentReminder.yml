@@ -1,0 +1,8 @@
+name: connect_payment_reminder
+description: Shows or hides the connect payment warning on the home
+accessor: connectPaymentReminder
+defaultFallback: disabled
+variants: []
+targets:
+  - Swift
+  - Kotlin
