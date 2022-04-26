@@ -193,11 +193,7 @@ extension hAnalyticsEvent {
     }
   }
 
-  /// The state of notification permission:
-  ///   granted == true: push notifications permissions are approved
-  ///   granted == false: push notifications permissions are denied
-  ///   granted == null: push notifications permissions are not determined yet / unknown
-  ///
+  /// The state of notification permission: ///   granted == true: push notifications permissions are approved ///   granted == false: push notifications permissions are denied ///   granted == null: push notifications permissions are not determined yet / unknown
 
   public static func notificationPermission(granted: Bool?) -> hAnalyticsParcel {
     return hAnalyticsParcel {
