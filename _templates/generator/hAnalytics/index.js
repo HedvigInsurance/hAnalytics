@@ -58,6 +58,7 @@ module.exports = {
         ),
       },
       dedent: require("dedent-js"),
+      indent: require("indent"),
       capitalizeFirstLetter,
       decapitalizeFirstLetter,
       swiftLiteral: (value, type) => {
