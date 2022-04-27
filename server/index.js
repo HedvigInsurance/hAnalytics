@@ -49,8 +49,6 @@ app.post("/collect", async (req, res) => {
 
     const timestamp = new Date();
 
-    console.log(`Processing event from ${ip}: ${event}`);
-
     var allProperties = {
       ...event.properties,
     };
@@ -96,8 +94,6 @@ app.post("/collect", async (req, res) => {
       },
     };
     bqAnalytics.track(finalEvent);
-
-    console.log(`Event from ${ip} was processed: ${event}`);
 
     res.status(200).json(finalEvent);
   } catch (err) {
