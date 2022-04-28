@@ -114,9 +114,9 @@ public struct hAnalyticsExperiment {
       return variant == "enabled"
     }
 
-    hAnalyticsEvent.experimentEvaluated(name: "home_common_claim", variant: "enabled").send()
+    hAnalyticsEvent.experimentEvaluated(name: "home_common_claim", variant: "disabled").send()
 
-    return true
+    return false
   }
 
   /// Is the key gear feature activated

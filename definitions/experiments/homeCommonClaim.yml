@@ -1,7 +1,7 @@
 name: home_common_claim
 description: Show or hide common claims on home tab
 accessor: homeCommonClaim
-defaultFallback: enabled
+defaultFallback: disabled
 variants: []
 targets:
   - Swift

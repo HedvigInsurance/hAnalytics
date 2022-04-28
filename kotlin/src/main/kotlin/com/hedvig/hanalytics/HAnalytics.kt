@@ -202,11 +202,11 @@ abstract class HAnalytics {
             experimentEvaluated(
                 HAnalyticsExperiment(
                     "home_common_claim",
-                    "enabled",
+                    "disabled",
                 )
             )
 
-            return true
+            return false
         }
     }
 

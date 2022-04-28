@@ -78,8 +78,8 @@ export class hAnalyticsExperiments {
       return variant == "enabled";
     }
 
-    this.trackers.experimentEvaluated("home_common_claim", "enabled");
+    this.trackers.experimentEvaluated("home_common_claim", "disabled");
 
-    return true;
+    return false;
   }
 }
