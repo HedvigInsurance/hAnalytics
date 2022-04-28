@@ -123,8 +123,6 @@ app.post("/event", async (req, res) => {
 
     const timestamp = new Date();
 
-    console.log(`Processing event from ${ip}: ${event}`);
-
     var allProperties = {
       ...properties,
     };
@@ -196,8 +194,6 @@ app.post("/event", async (req, res) => {
         traits: traits,
       },
     });
-
-    console.log(`Event from ${ip} was processed: ${event}`);
 
     res.status(200).send("OK");
   } catch (err) {
