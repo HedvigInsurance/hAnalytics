@@ -307,11 +307,11 @@ abstract class HAnalytics {
             experimentEvaluated(
                 HAnalyticsExperiment(
                     "payment_type",
-                    "adyen",
+                    "trustly",
                 )
             )
 
-            return PaymentType.getByVariantName("adyen")
+            return PaymentType.getByVariantName("trustly")
         }
     }
 
