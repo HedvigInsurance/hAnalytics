@@ -21,12 +21,16 @@ module.exports = () => {
 
   return {
     append: async (entry) => {
-      redisTaskQueue.add({
-        queue,
-        data: {
-          entry,
-        },
-      });
+      try {
+        redisTaskQueue.add({
+          queue,
+          data: {
+            entry,
+          },
+        });
+      } catch (err) {
+        console.error("[REDIS] failed to add message to queue", err);
+      }
     },
     consume: async (maxNumberOfItems = 100) => {
       const numberOfItems = Math.min(
