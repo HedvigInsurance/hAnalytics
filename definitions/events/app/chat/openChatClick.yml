@@ -1,0 +1,10 @@
+name: open_chat_click
+description: When a member clicks on the open chat-icon
+accessor: openChatClick
+inputs:
+  - name: screen_name
+    type: String
+    argument: screenName
+targets:
+  - Kotlin
+  - Swift
