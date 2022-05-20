@@ -3,7 +3,7 @@ description: When a member clicks on the open chat-icon
 accessor: openChatClick
 inputs:
   - name: screen_name
-    type: String
+    type: ScreenName
     argument: screenName
 targets:
   - Kotlin
