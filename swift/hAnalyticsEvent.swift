@@ -151,6 +151,30 @@ extension hAnalyticsEvent {
     }
   }
 
+  /// When a member clicks a cross sell card on the "insurances" tab that takes you to the detail screen
+
+  public static func cardClickCrossSellDetail(id: String) -> hAnalyticsParcel {
+    return hAnalyticsParcel {
+      let properties: [String: Any?] = ["id": id]
+
+      hAnalyticsNetworking.send(
+        hAnalyticsEvent(name: "card_click_cross_sell_detail", properties: properties)
+      )
+    }
+  }
+
+  /// When a member clicks a cross sell card on the "insurances" tab that takes you to the embark screen
+
+  public static func cardClickCrossSellDetail(id: String, storyName: String) -> hAnalyticsParcel {
+    return hAnalyticsParcel {
+      let properties: [String: Any?] = ["id": id, "story_name": storyName]
+
+      hAnalyticsNetworking.send(
+        hAnalyticsEvent(name: "card_click_cross_sell_embark", properties: properties)
+      )
+    }
+  }
+
   /// When a deep link was opened
 
   public static func deepLinkOpened(type: String) -> hAnalyticsParcel {

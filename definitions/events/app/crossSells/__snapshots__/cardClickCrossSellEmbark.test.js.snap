@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`validate 1`] = `
+Object {
+  "name": "card_click_cross_sell_embark",
+  "variables": Object {
+    "id": "some_id",
+    "story_name": "name_of_story",
+  },
+}
+`;

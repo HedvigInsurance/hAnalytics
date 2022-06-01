@@ -1,5 +1,12 @@
 name: post_onboarding_show_payment_step
-description: Show payment step in PostOnboarding
+description: >-
+  Show payment step in PostOnboarding as opposed to in the Offer page.
+
+  "ON" means that the connect payment step should be shown post onboarding, aka
+  after the member has signed.
+
+  "OFF" means that the member will not be able to go past the Offer screen
+  without connecting payment
 accessor: postOnboardingShowPaymentStep
 defaultFallback: disabled
 variants: []
