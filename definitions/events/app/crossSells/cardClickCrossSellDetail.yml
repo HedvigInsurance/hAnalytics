@@ -1,0 +1,10 @@
+name: card_click_cross_sell_detail
+description: When a member clicks a cross sell card on the "insurances" tab that takes you to the detail screen
+accessor: cardClickCrossSellDetail
+inputs:
+  - name: id
+    type: String
+    argument: id
+targets:
+  - Kotlin
+  - Swift
