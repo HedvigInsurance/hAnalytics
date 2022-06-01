@@ -41,7 +41,7 @@ public static func load(onComplete: @escaping (_ success: Bool) -> Void) {
         return .<%= experiment.defaultFallback %>
     }
     <% } else { %>
-    /// <%- experiment.description || "no description given" %>
+    /// <%- stringToSwiftComment(experiment.description) || "no description given" %>
     public static var <%= experiment.accessor %>: Bool {
        if let experiment = hAnalyticsNetworking.experimentsPayload.first(where: { experiment in
             experiment["name"] == "<%= experiment.name %>"

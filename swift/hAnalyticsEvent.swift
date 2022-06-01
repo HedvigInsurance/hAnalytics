@@ -165,7 +165,7 @@ extension hAnalyticsEvent {
 
   /// When a member clicks a cross sell card on the "insurances" tab that takes you to the embark screen
 
-  public static func cardClickCrossSellDetail(id: String, storyName: String) -> hAnalyticsParcel {
+  public static func cardClickCrossSellEmbark(id: String, storyName: String) -> hAnalyticsParcel {
     return hAnalyticsParcel {
       let properties: [String: Any?] = ["id": id, "story_name": storyName]
 

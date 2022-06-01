@@ -585,7 +585,7 @@ abstract class HAnalytics {
             /**
             * When a member clicks a cross sell card on the "insurances" tab that takes you to the embark screen
          */
-         fun cardClickCrossSellDetail(id: String,storyName: String) {
+         fun cardClickCrossSellEmbark(id: String,storyName: String) {
                 send(
                     HAnalyticsEvent(
                         name = "card_click_cross_sell_embark",
