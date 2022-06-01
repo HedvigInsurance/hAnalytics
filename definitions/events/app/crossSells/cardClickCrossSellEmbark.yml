@@ -1,6 +1,6 @@
 name: card_click_cross_sell_embark
 description: When a member clicks a cross sell card on the "insurances" tab that takes you to the embark screen
-accessor: cardClickCrossSellDetail
+accessor: cardClickCrossSellEmbark
 inputs:
   - name: id
     type: String
