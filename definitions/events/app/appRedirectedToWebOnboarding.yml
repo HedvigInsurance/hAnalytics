@@ -1,0 +1,6 @@
+name: app_redirected_to_web_onboarding
+description: The app redirected the user to web onboarding to onboard
+accessor: redirectedToWebOnboarding
+targets:
+  - Kotlin
+  - Swift
