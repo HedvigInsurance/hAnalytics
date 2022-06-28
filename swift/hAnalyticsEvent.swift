@@ -59,6 +59,18 @@ extension hAnalyticsEvent {
   /// identifies and registers the trackingId
   public static func identify() { hAnalyticsNetworking.identify() }
 
+  /// The app redirected the user to web onboarding to onboard
+
+  public static func redirectedToWebOnboarding() -> hAnalyticsParcel {
+    return hAnalyticsParcel {
+      let properties: [String: Any?] = [:]
+
+      hAnalyticsNetworking.send(
+        hAnalyticsEvent(name: "app_redirected_to_web_onboarding", properties: properties)
+      )
+    }
+  }
+
   /// A screen was shown in the app
 
   public static func screenView(screen: AppScreen) -> hAnalyticsParcel {

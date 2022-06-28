@@ -308,11 +308,11 @@ abstract class HAnalytics {
             experimentEvaluated(
                 HAnalyticsExperiment(
                     "payment_type",
-                    "adyen",
+                    "trustly",
                 )
             )
 
-            return PaymentType.getByVariantName("adyen")
+            return PaymentType.getByVariantName("trustly")
         }
     }
 
@@ -423,6 +423,17 @@ abstract class HAnalytics {
         }
     }
 
+    /**
+     * The app redirected the user to web onboarding to onboard
+     */
+    fun redirectedToWebOnboarding() {
+        send(
+            HAnalyticsEvent(
+                name = "app_redirected_to_web_onboarding",
+                properties = mapOf(),
+            )
+        )
+    }
     /**
      * A screen was shown in the app
      */

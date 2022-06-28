@@ -184,10 +184,10 @@ public struct hAnalyticsExperiment {
       return variant
     }
 
-    hAnalyticsEvent.experimentEvaluated(name: "payment_type", variant: PaymentType.adyen.rawValue)
+    hAnalyticsEvent.experimentEvaluated(name: "payment_type", variant: PaymentType.trustly.rawValue)
       .send()
 
-    return .adyen
+    return .trustly
   }
 
   /// /// Show payment step in PostOnboarding as opposed to in the Offer page. /// "ON" means that the connect payment step should be shown post onboarding, aka after the member has signed. /// "OFF" means that the member will not be able to go past the Offer screen without connecting payment
